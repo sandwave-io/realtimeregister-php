@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types = 1);
+
 namespace SandwaveIo\RealtimeRegister\Tests;
 
 use GuzzleHttp\Client;
