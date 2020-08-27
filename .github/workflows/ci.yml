@@ -43,11 +43,6 @@ jobs:
       - name: Run test suite
         run: vendor/bin/phpunit
 
-      - name: Run mutation testing
-        env:
-          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
-        run: vendor/bin/infection --threads=4 --show-mutations --min-covered-msi=80
-
       - name: Upload code coverage
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
