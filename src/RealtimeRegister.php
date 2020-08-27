@@ -16,4 +16,9 @@ final class RealtimeRegister
         $url = $baseUrl ?: RealtimeRegister::BASE_URL;
         $this->client = new AuthorizedClient($url, $apiKey);
     }
+
+    public function setClient(AuthorizedClient $client): void
+    {
+        $this->client = $client;
+    }
 }
