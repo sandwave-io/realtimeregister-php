@@ -1,0 +1,7 @@
+vendor
+.idea
+.php_cs.cache
+composer.lock
+.DS_Store
+clover.xml
+infection.log

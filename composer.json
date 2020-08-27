@@ -1,0 +1,35 @@
+{
+    "name": "sandwave-io/realtimeregister-php",
+    "description": "A PHP SDK for the RealtimeRegister REST API.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jesse Kramer",
+            "email": "jesse@kramerventures.nl"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "infection/infection": "^0.13.6",
+        "phpstan/phpstan": "^0.12.25",
+        "phpunit/phpunit": "^7.5",
+        "uptimeproject/php-cs-fixer-config": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SandwaveIo\\RealtimeRegister\\": "./src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SandwaveIo\\RealtimeRegister\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
