@@ -4,10 +4,10 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 final class Account
 {
-    /** @var string */
+    /** @var int */
     public $balance;
 
-    /** @var string */
+    /** @var int */
     public $reservation;
 
     /** @var string */
