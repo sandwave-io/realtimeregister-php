@@ -3,6 +3,8 @@
 namespace SandwaveIo\RealtimeRegister;
 
 use SandwaveIo\RealtimeRegister\Api\ContactsApi;
+use SandwaveIo\RealtimeRegister\Api\CustomersApi;
+use SandwaveIo\RealtimeRegister\Api\DomainsApi;
 use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
 
 final class RealtimeRegister
@@ -12,18 +14,22 @@ final class RealtimeRegister
     /** @var ContactsApi */
     public $contacts;
 
-//    public $customers;
-//
-//    public $domains;
+    /** @var CustomersApi */
+    public $customers;
+
+    /** @var DomainsApi */
+    public $domains;
 
     public function __construct(string $apiKey, ?string $baseUrl = null)
     {
         $url = $baseUrl ?: RealtimeRegister::BASE_URL;
-        $this->setClients(new AuthorizedClient($url, $apiKey));
+        $this->setClient(new AuthorizedClient($url, $apiKey));
     }
 
-    public function setClients(AuthorizedClient $client): void
+    public function setClient(AuthorizedClient $client): void
     {
-        $this->contacts = new ContactsApi($client);
+        $this->contacts  = new ContactsApi($client);
+        $this->customers = new CustomersApi($client);
+        $this->domains   = new DomainsApi($client);
     }
 }
