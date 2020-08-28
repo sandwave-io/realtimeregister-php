@@ -172,14 +172,14 @@ final class ContactsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/validate
      *
-     * @param string                                                                $customer
-     * @param string                                                                $handle
+     * @param string        $customer
+     * @param string        $handle
      * @param array<string> $categories Must be one of ("General", "IisNu", "IisSe", "Nominet", "DkHostmaster")
      */
     public function validate(string $customer, string $handle, array $categories): void
     {
         foreach ($categories as $category) {
-            Assert::inArray($category, ["General", "IisNu", "IisSe", "Nominet", "DkHostmaster"]);
+            Assert::inArray($category, ['General', 'IisNu', 'IisSe', 'Nominet', 'DkHostmaster']);
         }
         $this->client->post("v2/customers/{$customer}/contacts/{$handle}/validate", [
             'categories' => $categories,
@@ -219,17 +219,17 @@ final class ContactsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/properties/add
      *
-     * @param string                                             $customer
-     * @param string                                             $handle
-     * @param string                                             $registry
-     * @param array<string, string>                              $properties
-     * @param string|null $intendedUsage Must be one of ("REGISTRANT","ADMIN","BILLING","TECH").
+     * @param string                $customer
+     * @param string                $handle
+     * @param string                $registry
+     * @param array<string, string> $properties
+     * @param string|null           $intendedUsage Must be one of ("REGISTRANT","ADMIN","BILLING","TECH").
      */
     public function addProperties(string $customer, string $handle, string $registry, array $properties, ?string $intendedUsage = null): void
     {
         $payload = ['properties' => $properties];
         if ($intendedUsage) {
-            Assert::inArray($intendedUsage, ["REGISTRANT","ADMIN","BILLING","TECH"]);
+            Assert::inArray($intendedUsage, ['REGISTRANT', 'ADMIN', 'BILLING', 'TECH']);
             $payload['intendedUsage'] = $intendedUsage;
         }
         $this->client->post("v2/customers/{$customer}/contacts/{$handle}/{$registry}", $payload);
