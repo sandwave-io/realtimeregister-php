@@ -13,7 +13,8 @@
         "php": "^7.2",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.0",
-        "nesbot/carbon": "^2.39"
+        "nesbot/carbon": "^2.39",
+        "webmozart/assert": "^1.9"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",

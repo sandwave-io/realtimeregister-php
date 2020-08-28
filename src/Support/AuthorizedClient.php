@@ -87,6 +87,6 @@ class AuthorizedClient
         if (is_int($expectedResponse)) {
             return $response->getStatusCode() === $expectedResponse;
         }
-        return $response->getStatusCode() >= 200 || $response->getStatusCode() < 300;
+        return $response->getStatusCode() >= 200 && $response->getStatusCode() < 300;
     }
 }

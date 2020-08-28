@@ -19,7 +19,7 @@ abstract class AbstractCollection implements ArrayAccess, IteratorAggregate, Cou
 
     public function offsetExists($offset): bool
     {
-        return isset($this->records[$offset]);
+        return isset($this->entities[$offset]);
     }
 
     abstract public function offsetGet($offset);
