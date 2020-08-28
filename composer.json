@@ -11,8 +11,9 @@
     ],
     "require": {
         "php": "^7.2",
+        "ext-json": "*",
         "guzzlehttp/guzzle": "^7.0",
-        "ext-json": "*"
+        "nesbot/carbon": "^2.39"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",

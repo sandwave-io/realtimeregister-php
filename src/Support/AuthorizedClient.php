@@ -29,27 +29,27 @@ class AuthorizedClient
         $this->client = $client;
     }
 
-    public function get(string $endpoint, array $query = [], int $expectedResponse = 200): RealtimeRegisterResponse
+    public function get(string $endpoint, array $query = [], ?int $expectedResponse = null): RealtimeRegisterResponse
     {
         return $this->request('GET', $endpoint, [], $query, $expectedResponse);
     }
 
-    public function post(string $endpoint, array $body = [], array $query = [], int $expectedResponse = 201): RealtimeRegisterResponse
+    public function post(string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): RealtimeRegisterResponse
     {
         return $this->request('POST', $endpoint, $body, $query, $expectedResponse);
     }
 
-    public function put(string $endpoint, array $body = [], array $query = [], int $expectedResponse = 200): RealtimeRegisterResponse
+    public function put(string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): RealtimeRegisterResponse
     {
         return $this->request('PUT', $endpoint, $body, $query, $expectedResponse);
     }
 
-    public function delete(string $endpoint, array $query = [], int $expectedResponse = 200): RealtimeRegisterResponse
+    public function delete(string $endpoint, array $query = [], ?int $expectedResponse = null): RealtimeRegisterResponse
     {
         return $this->request('DELETE', $endpoint, [], $query, $expectedResponse);
     }
 
-    private function request(string $method, string $endpoint, array $body = [], array $query = [], int $expectedResponse = 200): RealtimeRegisterResponse
+    private function request(string $method, string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): RealtimeRegisterResponse
     {
         $metaData = [
             'headers' => [
@@ -67,9 +67,9 @@ class AuthorizedClient
         return $this->handleResponse($response, $expectedResponse);
     }
 
-    private function handleResponse(ResponseInterface $response, int $expectedResponse): RealtimeRegisterResponse
+    private function handleResponse(ResponseInterface $response, ?int $expectedResponse = null): RealtimeRegisterResponse
     {
-        if ($response->getStatusCode() === $expectedResponse) {
+        if ($this->isResponseValid($response, $expectedResponse)) {
             return RealtimeRegisterResponse::fromString((string) $response->getBody());
         } elseif ($response->getStatusCode() === 404) {
             throw new NotFoundException('Not found.');
@@ -80,5 +80,13 @@ class AuthorizedClient
     private function buildQuery(array $parameters): string
     {
         return ($parameters === []) ? '' : ('?' . http_build_query($parameters));
+    }
+
+    private function isResponseValid(ResponseInterface $response, ?int $expectedResponse): bool
+    {
+        if (is_int($expectedResponse)) {
+            return $response->getStatusCode() === $expectedResponse;
+        }
+        return $response->getStatusCode() >= 200 || $response->getStatusCode() < 300;
     }
 }
