@@ -13,7 +13,13 @@ composer require sandwave-io/realtimeregister-php
 ```
 
 ```php
-// TODO: Fill
+<?php
+
+use SandwaveIo\RealtimeRegister\RealtimeRegister;
+
+$realtimeRegister = new RealtimeRegister('my-secret-api-key');
+
+$realtimeRegister->contacts->list('johndoe');
 ```
 
 ## How to contribute
