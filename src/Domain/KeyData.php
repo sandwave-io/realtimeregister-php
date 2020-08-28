@@ -4,7 +4,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 use Webmozart\Assert\Assert;
 
-final class KeyData
+final class KeyData implements DomainObjectInterface
 {
     const FLAG_ZSK = 256;
     const FLAG_KSK = 257;
@@ -67,5 +67,15 @@ final class KeyData
             $json['algorithm'],
             $json['publicKey']
         );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'protocol' => $this->protocol,
+            'flags' => $this->flags,
+            'algorithm' => $this->algorithm,
+            'publicKey' => $this->publicKey,
+        ];
     }
 }

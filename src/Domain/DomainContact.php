@@ -4,7 +4,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 use Webmozart\Assert\Assert;
 
-final class DomainContact
+final class DomainContact implements DomainObjectInterface
 {
     const ROLE_ADMIN = 'ADMIN';
     const ROLE_BILLING = 'BILLING';
@@ -30,5 +30,13 @@ final class DomainContact
             DomainContact::ROLE_TECH,
         ]);
         return new DomainContact($json['role'], $json['handle']);
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'role' =>$this->role,
+            'handle' =>$this->handle,
+        ];
     }
 }

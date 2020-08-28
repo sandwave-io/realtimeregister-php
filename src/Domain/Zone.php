@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-final class Zone
+final class Zone implements DomainObjectInterface
 {
     /** @var string */
     public $template;
@@ -22,5 +22,13 @@ final class Zone
             $data['template'],
             $data['link'] ?: null
         );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'template' => $this->template,
+            'link' => $this->link,
+        ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-final class Price
+final class Price implements DomainObjectInterface
 {
     /** @var string */
     public $product;
@@ -32,5 +32,15 @@ final class Price
             $json['currency'],
             $json['price']
         );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'product' =>$this->product,
+            'action' =>$this->action,
+            'currency' =>$this->currency,
+            'price' =>$this->price,
+        ];
     }
 }

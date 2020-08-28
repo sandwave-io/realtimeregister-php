@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-final class Country
+final class Country implements DomainObjectInterface
 {
     /** @var string */
     public $code;
@@ -32,5 +32,15 @@ final class Country
             $json['postalCodePattern'] ?? null,
             $json['postalCodeExample'] ?? null
         );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'code' =>$this->code,
+            'name' =>$this->name,
+            'postalCodePattern' =>$this->postalCodePattern,
+            'postalCodeExample' =>$this->postalCodeExample,
+        ];
     }
 }

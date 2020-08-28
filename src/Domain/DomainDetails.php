@@ -5,7 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 use Carbon\Carbon;
 use Webmozart\Assert\Assert;
 
-final class DomainDetails
+final class DomainDetails implements DomainObjectInterface
 {
     const STATUS_OK = 'OK';
     const STATUS_INACTIVE = 'INACTIVE';
@@ -202,5 +202,32 @@ final class DomainDetails
             $json['keyData'] ? KeyDataCollection::fromArray($json['keyData']) : null,
             $json['dsData'] ? DsDataCollection::fromArray($json['dsData']) : null
         );
+
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'domainName' => $this->domainName,
+            'registry' => $this->registry,
+            'customer' => $this->customer,
+            'registrant' => $this->registrant,
+            'privacyProtect' => $this->privacyProtect,
+            'status' => $this->status,
+            'authcode' => $this->authcode,
+            'languageCode' => $this->languageCode,
+            'autoRenew' => $this->autoRenew,
+            'autoRenewPeriod' => $this->autoRenewPeriod,
+            'ns' => $this->ns,
+            'childHosts' => $this->childHosts,
+            'createdDate' => $this->createdDate->toDateTimeString(),
+            'updatedDate' => $this->updatedDate ? $this->updatedDate->toDateTimeString() : null,
+            'expiryDate' => $this->expiryDate->toDateTimeString(),
+            'premium' => $this->premium,
+            'zone' => $this->zone ? $this->zone->toArray() : null,
+            'contacts' => $this->contacts ? $this->contacts->toArray() : null,
+            'keyData' => $this->keyData ? $this->keyData->toArray() : null,
+            'dsData' => $this->dsData ? $this->dsData->toArray() : null,
+        ];
     }
 }

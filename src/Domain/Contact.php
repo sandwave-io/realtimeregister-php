@@ -4,7 +4,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 use Carbon\Carbon;
 
-final class Contact
+final class Contact implements DomainObjectInterface
 {
     /** @var string */
     public $customer;
@@ -111,5 +111,27 @@ final class Contact
             new Carbon($data['createdDate']),
             $updatedDate
         );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'customer' =>$this->customer,
+            'handle' =>$this->handle,
+            'brand' =>$this->brand,
+            'name' =>$this->name,
+            'addressLine' =>$this->addressLine,
+            'postalCode' =>$this->postalCode,
+            'city' =>$this->city,
+            'state' =>$this->state,
+            'country' =>$this->country,
+            'email' =>$this->email,
+            'voice' =>$this->voice,
+            'fax' =>$this->fax,
+            'registries' =>$this->registries,
+            'properties' =>$this->properties,
+            'createdDate' =>$this->createdDate->toDateTimeString(),
+            'updatedDate' =>$this->updatedDate ? $this->updatedDate->toDateTimeString() : null,
+        ];
     }
 }

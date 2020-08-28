@@ -9,7 +9,7 @@ use IteratorAggregate;
 
 abstract class AbstractCollection implements ArrayAccess, IteratorAggregate, Countable
 {
-    /** @var array */
+    /** @var array<DomainObjectInterface> */
     public $entities;
 
     public function getIterator(): ArrayIterator
@@ -41,5 +41,13 @@ abstract class AbstractCollection implements ArrayAccess, IteratorAggregate, Cou
     public function count(): int
     {
         return count($this->entities);
+    }
+
+
+    public function toArray(): array
+    {
+        return array_map(function (DomainObjectInterface $object) {
+            return $object->toArray();
+        }, $this->entities);
     }
 }

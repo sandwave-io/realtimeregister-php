@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-final class Account
+final class Account implements DomainObjectInterface
 {
     /** @var int */
     public $balance;
@@ -32,5 +32,16 @@ final class Account
             $json['currency'],
             $json['locked']
         );
+    }
+
+
+    public function toArray(): array
+    {
+        return [
+            'balance' => $this->balance,
+            'reservation' => $this->reservation,
+            'currency' => $this->currency,
+            'locked' => $this->locked,
+        ];
     }
 }

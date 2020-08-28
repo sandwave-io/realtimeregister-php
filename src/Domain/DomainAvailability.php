@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-final class DomainAvailability
+final class DomainAvailability implements DomainObjectInterface
 {
     /** @var bool */
     public $available;
@@ -37,5 +37,16 @@ final class DomainAvailability
             $json['price'],
             $json['currency']
         );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'available' =>$this->available,
+            'reason' =>$this->reason,
+            'premium' =>$this->premium,
+            'price' =>$this->price,
+            'currency' =>$this->currency,
+        ];
     }
 }
