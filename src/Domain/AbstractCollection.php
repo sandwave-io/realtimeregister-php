@@ -6,11 +6,25 @@ use ArrayAccess;
 use ArrayIterator;
 use Countable;
 use IteratorAggregate;
+use Webmozart\Assert\Assert;
 
 abstract class AbstractCollection implements ArrayAccess, IteratorAggregate, Countable
 {
     /** @var array<DomainObjectInterface> */
     public $entities;
+
+    /** @var Pagination */
+    public $pagination;
+
+    /**
+     * @param Billable[] $entities
+     * @param Pagination $pagination
+     */
+    private function __construct(array $entities, Pagination $pagination)
+    {
+        $this->entities = $entities;
+        $this->pagination = $pagination;
+    }
 
     public function getIterator(): ArrayIterator
     {
@@ -43,6 +57,30 @@ abstract class AbstractCollection implements ArrayAccess, IteratorAggregate, Cou
         return count($this->entities);
     }
 
+    /* @phpstan-ignore-next-line */
+    public static function fromArray(array $json)
+    {
+        Assert::keyExists($json, 'entities');
+        Assert::isArray($json['entities']);
+        if ($json['pagination']) {
+            $pagination = Pagination::fromArray($json['pagination']);
+        } else {
+            $pagination = Pagination::fromArray([
+                'limit' => count($json['entities']),
+                'offset' => 0,
+                'total' => count($json['entities']),
+            ]);
+        }
+        $entities   = array_map(function ($child) {
+            return static::parseChild($child);
+        }, $json['entities']);
+
+        /* @phpstan-ignore-next-line */
+        return new static($entities, $pagination);
+    }
+
+    /* @phpstan-ignore-next-line */
+    abstract public static function parseChild(array $json);
 
     public function toArray(): array
     {

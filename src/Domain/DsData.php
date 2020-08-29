@@ -4,7 +4,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 use Webmozart\Assert\Assert;
 
-final class DsData  implements DomainObjectInterface
+final class DsData implements DomainObjectInterface
 {
     const ALGORITHM_DSA_SHA1 = 3;
     const ALGORITHM_RSA_SHA_1 = 5;
@@ -71,7 +71,6 @@ final class DsData  implements DomainObjectInterface
             $json['digest']
         );
     }
-
 
     public function toArray(): array
     {

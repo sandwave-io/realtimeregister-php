@@ -34,7 +34,6 @@ final class Account implements DomainObjectInterface
         );
     }
 
-
     public function toArray(): array
     {
         return [

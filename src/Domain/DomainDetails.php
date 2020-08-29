@@ -202,7 +202,6 @@ final class DomainDetails implements DomainObjectInterface
             $json['keyData'] ? KeyDataCollection::fromArray($json['keyData']) : null,
             $json['dsData'] ? DsDataCollection::fromArray($json['dsData']) : null
         );
-
     }
 
     public function toArray(): array

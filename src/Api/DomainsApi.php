@@ -2,10 +2,12 @@
 
 namespace SandwaveIo\RealtimeRegister\Api;
 
+use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
 use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainAvailabilityCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetailsCollection;
+use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
 use SandwaveIo\RealtimeRegister\Domain\KeyDataCollection;
 use SandwaveIo\RealtimeRegister\Domain\Zone;
 
@@ -53,8 +55,9 @@ final class DomainsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/domains/check
      *
-     * @param string $domainName
+     * @param string      $domainName
      * @param string|null $languageCode
+     *
      * @return DomainAvailabilityCollection
      */
     public function check(string $domainName, ?string $languageCode = null): DomainAvailabilityCollection
@@ -82,9 +85,10 @@ final class DomainsApi extends AbstractApi
         ?string $launchPhase = null,
         ?Zone $zone = null,
         ?ContactCollection $contacts = null,
-        ?KeyDataCollection $keyData = null, // TODO: Add the billables field after this, it also needs a domain object.
+        ?KeyDataCollection $keyData = null,
+        ?BillableCollection $billables = null,
         bool $isQuote = false
-    ): void {
+    ): DomainRegistration {
         $payload = [
             'customer' => $customer,
             'registrant' => $registrant,
@@ -110,9 +114,14 @@ final class DomainsApi extends AbstractApi
             $payload['keyData'] = $keyData->toArray();
         }
 
+        if ($billables) {
+            $payload['billables'] = $billables->toArray();
+        }
+
         $response = $this->client->post("v2/domains/{$domainName}", $payload, [
             'quote' => $isQuote,
         ]);
-        // TODO: Return a DomainRegistration
+
+        return DomainRegistration::fromArray($response->json());
     }
 }
