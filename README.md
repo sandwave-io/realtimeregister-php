@@ -1,10 +1,10 @@
 # Realtime Register RESTful API - PHP SDK
 
-![Codecov](https://img.shields.io/codecov/c/github/sandwave-io/realtimeregister-php?style=flat-square)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sandwave-io/realtimeregister-php/CI?style=flat-square)
-![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/sandwave-io/realtimeregister-php?style=flat-square)
-![Packagist PHP Version Support](https://img.shields.io/packagist/v/sandwave-io/realtimeregister-php?style=flat-square)
-![Packagist Downloads](https://img.shields.io/packagist/dt/sandwave-io/realtimeregister-php?style=flat-square)
+![Codecov](https://codecov.io/gh/sandwave-io/realtimeregister-php/branch/master/graph/badge.svg?token=CWWIFWRKZC)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sandwave-io/realtimeregister-php/CI)
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/sandwave-io/realtimeregister-php)
+![Packagist PHP Version Support](https://img.shields.io/packagist/v/sandwave-io/realtimeregister-php)
+![Packagist Downloads](https://img.shields.io/packagist/dt/sandwave-io/realtimeregister-php)
 
 ## How to use
 
