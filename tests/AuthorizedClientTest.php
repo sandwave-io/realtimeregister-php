@@ -31,6 +31,7 @@ class AuthorizedClientTest extends TestCase
             'POST request: not found'  => ['post', 404, NotFoundException::class],
             'POST request: error'  => ['post', 500, RealtimeRegisterClientException::class],
             'PUT request: success'  => ['put', 200, null],
+            'PUT request: success (204)'  => ['put', 204, null],
             'PUT request: not found'  => ['put', 404, NotFoundException::class],
             'PUT request: error'  => ['put', 500, RealtimeRegisterClientException::class],
             'DELETE request: success'  => ['delete', 200, null],
@@ -56,6 +57,27 @@ class AuthorizedClientTest extends TestCase
         } else {
             $client->{$method}('test');
         }
+    }
+
+    public function test_get_with_specific_return_code(): void
+    {
+        $client = $this->getMockedClient(201, 'test');
+        $response = $client->get('test', [], 201);
+        $this->assertEquals('test', $response->text());
+    }
+
+    public function test_get_with_specific_return_code_mismatch(): void
+    {
+        $client = $this->getMockedClient(200, 'test');
+        $this->expectException(RealtimeRegisterClientException::class);
+        $client->get('test', [], 201);
+    }
+
+    public function test_get_with_specific_return_code_notfound(): void
+    {
+        $client = $this->getMockedClient(404, 'test');
+        $this->expectException(NotFoundException::class);
+        $client->get('test', [], 201);
     }
 
     private function getMockedClient(int $responseCode, string $responseBody, ?callable $assertClosure = null): AuthorizedClient
