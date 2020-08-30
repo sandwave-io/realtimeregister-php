@@ -28,9 +28,9 @@ class DomainRegistration implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'domainName' => $this->domainName,
             'expiryDate' => $this->expiryDate,
-        ], function ($x) { return !is_null($x); });
+        ];
     }
 }

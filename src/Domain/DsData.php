@@ -74,11 +74,11 @@ final class DsData implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'keyTag' => $this->keyTag,
             'algorithm' => $this->algorithm,
             'digestType' => $this->digestType,
             'digest' => $this->digest,
-        ], function ($x) { return !is_null($x); });
+        ];
     }
 }

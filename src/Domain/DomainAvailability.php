@@ -41,12 +41,12 @@ final class DomainAvailability implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'available' =>$this->available,
             'reason' =>$this->reason,
             'premium' =>$this->premium,
             'price' =>$this->price,
             'currency' =>$this->currency,
-        ], function ($x) { return !is_null($x); });
+        ];
     }
 }

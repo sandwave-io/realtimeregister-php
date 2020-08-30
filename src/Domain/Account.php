@@ -36,11 +36,11 @@ final class Account implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'balance' => $this->balance,
             'reservation' => $this->reservation,
             'currency' => $this->currency,
             'locked' => $this->locked,
-        ], function ($x) { return !is_null($x); });
+        ];
     }
 }

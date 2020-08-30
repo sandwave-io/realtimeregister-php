@@ -67,10 +67,10 @@ final class Billable implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'product' =>$this->product,
             'action' =>$this->action,
             'quantity' =>$this->quantity,
-        ], function ($x) { return !is_null($x); });
+        ];
     }
 }

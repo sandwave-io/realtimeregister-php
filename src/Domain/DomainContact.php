@@ -34,9 +34,9 @@ final class DomainContact implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'role' =>$this->role,
             'handle' =>$this->handle,
-        ], function ($x) { return !is_null($x); });
+        ];
     }
 }
