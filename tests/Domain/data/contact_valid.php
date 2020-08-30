@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 return [
     'customer' => 'johndoe',
@@ -16,12 +16,12 @@ return [
     'voice' => '(350) 507-3602',
     'fax' => '+1-212-9876543',
     'registries' => [
-        'sidn'
+        'sidn',
     ],
     'properties' => [
         'sidn' => [
-            'is_verified' => 'true'
-        ]
+            'is_verified' => 'true',
+        ],
     ],
     'createdDate' => '2020-08-30 01:02:03',
     'updatedDate' => '2020-08-30 01:02:03',

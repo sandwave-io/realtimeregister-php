@@ -227,6 +227,8 @@ final class DomainDetails implements DomainObjectInterface
             'contacts' => $this->contacts ? $this->contacts->toArray() : null,
             'keyData' => $this->keyData ? $this->keyData->toArray() : null,
             'dsData' => $this->dsData ? $this->dsData->toArray() : null,
-        ], function ($x) { return !is_null($x); });
+        ], function ($x) {
+            return ! is_null($x);
+        });
     }
 }

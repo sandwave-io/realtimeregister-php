@@ -27,19 +27,19 @@ class DomainCollectionTest extends TestCase
          * A flat and a pagination is generated for each scenario.
          * The arguments:
          *  - Class
-         *  - Entity data
+         *  - Entity data.
          */
         $scenarios = [
-            'account collection' => [AccountCollection::class, include __DIR__.'/data/account_valid.php'],
-            'billable collection' => [BillableCollection::class, include __DIR__.'/data/billable_valid.php'],
-            'country collection' => [CountryCollection::class, include __DIR__.'/data/country_valid.php'],
-            'contact collection' => [ContactCollection::class, include __DIR__.'/data/contact_valid.php'],
-            'domain availability collection' => [DomainAvailabilityCollection::class, include __DIR__.'/data/domain_availability_valid.php'],
-            'domain contact collection' => [DomainContactCollection::class, include __DIR__.'/data/domain_contact_valid.php'],
-            'domain details collection' => [DomainDetailsCollection::class, include __DIR__.'/data/domain_details_valid.php'],
-            'ds data collection' => [DsDataCollection::class, include __DIR__.'/data/ds_data_valid.php'],
-            'key data collection' => [KeyDataCollection::class, include __DIR__.'/data/key_data_valid.php'],
-            'price collection' => [PriceCollection::class, include __DIR__.'/data/price_valid.php'],
+            'account collection' => [AccountCollection::class, include __DIR__ . '/data/account_valid.php'],
+            'billable collection' => [BillableCollection::class, include __DIR__ . '/data/billable_valid.php'],
+            'country collection' => [CountryCollection::class, include __DIR__ . '/data/country_valid.php'],
+            'contact collection' => [ContactCollection::class, include __DIR__ . '/data/contact_valid.php'],
+            'domain availability collection' => [DomainAvailabilityCollection::class, include __DIR__ . '/data/domain_availability_valid.php'],
+            'domain contact collection' => [DomainContactCollection::class, include __DIR__ . '/data/domain_contact_valid.php'],
+            'domain details collection' => [DomainDetailsCollection::class, include __DIR__ . '/data/domain_details_valid.php'],
+            'ds data collection' => [DsDataCollection::class, include __DIR__ . '/data/ds_data_valid.php'],
+            'key data collection' => [KeyDataCollection::class, include __DIR__ . '/data/key_data_valid.php'],
+            'price collection' => [PriceCollection::class, include __DIR__ . '/data/price_valid.php'],
         ];
         // For each type, create a flat and a pagination scenario.
         $dataset = [];
@@ -47,19 +47,19 @@ class DomainCollectionTest extends TestCase
             $dataset["{$key} (flat)"] = [
                 $scenario[0],
                 [$scenario[1], $scenario[1], $scenario[1]],
-                3
+                3,
             ];
             $dataset["{$key} (pagination)"] = [
                 $scenario[0],
                 [
-                    'entities' => [$scenario[1],$scenario[1], $scenario[1]],
+                    'entities' => [$scenario[1], $scenario[1], $scenario[1]],
                     'pagination' => [
                         'total'  => 3,
                         'offset' => 0,
                         'limit'  => 3,
-                    ]
+                    ],
                 ],
-                3
+                3,
             ];
         }
         return $dataset;
@@ -74,7 +74,7 @@ class DomainCollectionTest extends TestCase
         }
         // Object from array
         $collection = call_user_func($class . '::fromArray', $data);
-        $this->assertEquals($class, get_class($collection), "{$class}::fromArray(array \$json) gave an unexpected result.");
+        $this->assertSame($class, get_class($collection), "{$class}::fromArray(array \$json) gave an unexpected result.");
 
         // Array access.
         $this->assertInstanceOf(DomainObjectInterface::class, $collection[0], 'Instance in collection does not implement DomainObjectInterface');
@@ -85,17 +85,17 @@ class DomainCollectionTest extends TestCase
         $collection[] = $collection[0];
         $this->assertTrue(isset($collection[3]), 'Failed to set item on collection');
         $this->assertTrue(isset($collection[4]), 'Failed to push item to collection');
-        $this->assertEquals(5, count($collection));
+        $this->assertSame(5, count($collection));
         foreach ($collection as $item) {
             $this->assertInstanceOf(DomainObjectInterface::class, $item, 'Instance in collection does not implement DomainObjectInterface');
         }
         unset($collection[4]);
-        $this->assertEquals(4, count($collection), 'Failed to unset item in collection');
+        $this->assertSame(4, count($collection), 'Failed to unset item in collection');
 
         // Pagination values.
-        $this->assertEquals($count, $collection->pagination->total, "Pagination total gave an unexpected value.");
-        $this->assertEquals(3, $collection->pagination->limit, "Pagination limit gave an unexpected value.");
-        $this->assertEquals(0, $collection->pagination->offset, "Pagination offset gave an unexpected value.");
+        $this->assertSame($count, $collection->pagination->total, 'Pagination total gave an unexpected value.');
+        $this->assertSame(3, $collection->pagination->limit, 'Pagination limit gave an unexpected value.');
+        $this->assertSame(0, $collection->pagination->offset, 'Pagination offset gave an unexpected value.');
 
         // To array.
         $array = $collection->toArray();
