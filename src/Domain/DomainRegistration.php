@@ -30,7 +30,7 @@ class DomainRegistration implements DomainObjectInterface
     {
         return [
             'domainName' => $this->domainName,
-            'expiryDate' => $this->expiryDate,
+            'expiryDate' => $this->expiryDate->toDateTimeString(),
         ];
     }
 }
