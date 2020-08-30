@@ -92,22 +92,22 @@ final class Contact implements DomainObjectInterface
 
     public static function fromArray(array $data): Contact
     {
-        $updatedDate = $data['updatedDate'] ? new Carbon($data['updatedDate']) : null;
+        $updatedDate = ($data['updatedDate'] ?? null) ? new Carbon($data['updatedDate']) : null;
         return new Contact(
             $data['customer'],
             $data['handle'],
-            $data['brand'],
+            $data['brand'] ?? null,
             $data['name'],
             $data['addressLine'],
             $data['postalCode'],
             $data['city'],
-            $data['state'],
+            $data['state'] ?? null,
             $data['country'],
             $data['email'],
             $data['voice'],
-            $data['fax'],
-            $data['registries'],
-            $data['properties'],
+            $data['fax'] ?? null,
+            $data['registries'] ?? null,
+            $data['properties'] ?? null,
             new Carbon($data['createdDate']),
             $updatedDate
         );
@@ -115,7 +115,7 @@ final class Contact implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'customer' =>$this->customer,
             'handle' =>$this->handle,
             'brand' =>$this->brand,
@@ -132,6 +132,6 @@ final class Contact implements DomainObjectInterface
             'properties' =>$this->properties,
             'createdDate' =>$this->createdDate->toDateTimeString(),
             'updatedDate' =>$this->updatedDate ? $this->updatedDate->toDateTimeString() : null,
-        ];
+        ]);
     }
 }

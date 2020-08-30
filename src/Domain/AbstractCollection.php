@@ -84,8 +84,8 @@ abstract class AbstractCollection implements ArrayAccess, IteratorAggregate, Cou
 
     public function toArray(): array
     {
-        return array_map(function (DomainObjectInterface $object) {
+        return array_filter(array_map(function (DomainObjectInterface $object) {
             return $object->toArray();
-        }, $this->entities);
+        }, $this->entities));
     }
 }

@@ -36,11 +36,11 @@ final class Price implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'product' =>$this->product,
             'action' =>$this->action,
             'currency' =>$this->currency,
             'price' =>$this->price,
-        ];
+        ]);
     }
 }

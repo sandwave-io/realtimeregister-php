@@ -36,11 +36,11 @@ final class Country implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'code' =>$this->code,
             'name' =>$this->name,
             'postalCodePattern' =>$this->postalCodePattern,
             'postalCodeExample' =>$this->postalCodeExample,
-        ];
+        ]);
     }
 }

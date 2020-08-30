@@ -71,11 +71,11 @@ final class KeyData implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'protocol' => $this->protocol,
             'flags' => $this->flags,
             'algorithm' => $this->algorithm,
             'publicKey' => $this->publicKey,
-        ];
+        ]);
     }
 }

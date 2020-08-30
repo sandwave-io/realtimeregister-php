@@ -26,9 +26,9 @@ final class Zone implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'template' => $this->template,
             'link' => $this->link,
-        ];
+        ]);
     }
 }

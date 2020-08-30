@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\Account;
 use SandwaveIo\RealtimeRegister\Domain\Billable;
 use InvalidArgumentException;
+use SandwaveIo\RealtimeRegister\Domain\Contact;
+use SandwaveIo\RealtimeRegister\Domain\Country;
+use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
 use TypeError;
 
 /**
@@ -23,24 +26,64 @@ class DomainObjectTest extends TestCase
          *  - Exception: (nullable), the exception to expect. If null: no exception should occur.
          */
         return [
-            [
+            'valid account' => [
                 Account::class,
                 include __DIR__.'/data/account_valid.php',
             ],
-            [
+            'invalid account (balance)' => [
                 Account::class,
                 include __DIR__.'/data/account_invalid_balance.php',
                 TypeError::class
             ],
-            [
+
+            'valid billable' => [
                 Billable::class,
                 include __DIR__.'/data/billable_valid.php',
             ],
-            [
+            'invalid billable (action)' => [
                 Billable::class,
                 include __DIR__.'/data/billable_invalid_action.php',
                 InvalidArgumentException::class
             ],
+
+            'valid contact (all fields)' => [
+                Contact::class,
+                include __DIR__.'/data/contact_valid.php',
+            ],
+            'valid contact (only required fields)' => [
+                Contact::class,
+                include __DIR__.'/data/contact_valid_only_required.php',
+            ],
+            'invalid contact (name)' => [
+                Contact::class,
+                include __DIR__.'/data/contact_invalid_name.php',
+                TypeError::class,
+            ],
+
+            'valid country (all fields)' => [
+                Country::class,
+                include __DIR__.'/data/country_valid.php',
+            ],
+            'valid country (only required fields)' => [
+                Country::class,
+                include __DIR__.'/data/country_valid_only_required.php',
+            ],
+            'invalid country (name)' => [
+                Country::class,
+                include __DIR__.'/data/country_invalid_code.php',
+                TypeError::class,
+            ],
+
+            'valid domain availability (all fields)' => [
+                DomainAvailability::class,
+                include __DIR__.'/data/domain_availability_valid.php',
+            ],
+            'invalid domain availability (name)' => [
+                DomainAvailability::class,
+                include __DIR__.'/data/domain_availability_invalid_price.php',
+                TypeError::class,
+            ],
+
         ];
     }
 
