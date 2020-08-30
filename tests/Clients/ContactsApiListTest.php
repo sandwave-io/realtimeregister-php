@@ -3,11 +3,10 @@
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
 use PHPUnit\Framework\TestCase;
-use SandwaveIo\RealtimeRegister\Domain\Contact;
 use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
-class ContactsApiTest extends TestCase
+class ContactsApiListTest extends TestCase
 {
     public function test_list(): void
     {
@@ -32,15 +31,26 @@ class ContactsApiTest extends TestCase
         $this->assertInstanceOf(ContactCollection::class, $response);
     }
 
-    public function test_get(): void
+    public function test_list_with_queries(): void
     {
         $sdk = MockedClientFactory::makeSdk(
             200,
-            json_encode(include __DIR__ . '/../Domain/data/contact_valid.php'),
-            MockedClientFactory::assertRoute('GET', 'v2/customers/johndoe/contacts/test', $this)
+            json_encode([
+                'entities' => [
+                    include __DIR__ . '/../Domain/data/contact_valid.php',
+                    include __DIR__ . '/../Domain/data/contact_valid.php',
+                    include __DIR__ . '/../Domain/data/contact_valid.php',
+                ],
+                'pagination' => [
+                    'total'  => 3,
+                    'offset' => 0,
+                    'limit'  => 3,
+                ],
+            ]),
+            MockedClientFactory::assertRoute('GET', 'v2/customers/johndoe/contacts', $this)
         );
 
-        $response = $sdk->contacts->get('johndoe', 'test');
-        $this->assertInstanceOf(Contact::class, $response);
+        $response = $sdk->contacts->list('johndoe', 3, 0, 'john');
+        $this->assertInstanceOf(ContactCollection::class, $response);
     }
 }
