@@ -110,6 +110,10 @@ class DomainObjectTest extends TestCase
                 DomainDetails::class,
                 include __DIR__ . '/data/domain_details_valid.php',
             ],
+            'valid domain details (only required)' => [
+                DomainDetails::class,
+                include __DIR__ . '/data/domain_details_valid_only_required.php',
+            ],
 
             'valid domain registration (all fields)' => [
                 DomainRegistration::class,

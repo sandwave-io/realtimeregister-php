@@ -200,7 +200,7 @@ final class DomainDetails implements DomainObjectInterface
             isset($json['zone']) ? Zone::fromArray($json['zone']) : null,
             isset($json['contacts']) ? DomainContactCollection::fromArray($json['contacts']) : null,
             isset($json['keyData']) ? KeyDataCollection::fromArray($json['keyData']) : null,
-            isset($json['dsData']) ? DsDataCollection::fromArray($json['dsData']) : null
+            isset($json['ds_data']) ? DsDataCollection::fromArray($json['ds_data']) : null
         );
     }
 
@@ -226,7 +226,7 @@ final class DomainDetails implements DomainObjectInterface
             'zone' => $this->zone ? $this->zone->toArray() : null,
             'contacts' => $this->contacts ? $this->contacts->toArray() : null,
             'keyData' => $this->keyData ? $this->keyData->toArray() : null,
-            'dsData' => $this->dsData ? $this->dsData->toArray() : null,
+            'ds_data' => $this->dsData ? $this->dsData->toArray() : null,
         ], function ($x) {
             return ! is_null($x);
         });

@@ -11,18 +11,18 @@ class ContactsApiValidateTest extends TestCase
     public function test_validate(): void
     {
         $sdk = MockedClientFactory::makeSdk(
-            202,
+            201,
             '',
             MockedClientFactory::assertRoute('POST', 'v2/customers/johndoe/contacts/test/validate', $this)
         );
 
-        $sdk->contacts->validate('johndoe', 'test', ['General', 'Nominet']);
+        $sdk->contacts->validate('johndoe', 'test', ['General', 'DkHostmaster']);
     }
 
-    public function test_validate_invalid_category(): void
+    public function test_validate_registries(): void
     {
         $sdk = MockedClientFactory::makeSdk(
-            202,
+            201,
             '',
             MockedClientFactory::assertRoute('POST', 'v2/customers/johndoe/contacts/test/validate', $this)
         );
