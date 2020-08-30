@@ -9,6 +9,13 @@ use InvalidArgumentException;
 use SandwaveIo\RealtimeRegister\Domain\Contact;
 use SandwaveIo\RealtimeRegister\Domain\Country;
 use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
+use SandwaveIo\RealtimeRegister\Domain\DomainContact;
+use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
+use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
+use SandwaveIo\RealtimeRegister\Domain\DsData;
+use SandwaveIo\RealtimeRegister\Domain\KeyData;
+use SandwaveIo\RealtimeRegister\Domain\Price;
+use SandwaveIo\RealtimeRegister\Domain\Zone;
 use TypeError;
 
 /**
@@ -84,6 +91,60 @@ class DomainObjectTest extends TestCase
                 TypeError::class,
             ],
 
+            'valid domain contact (all fields)' => [
+                DomainContact::class,
+                include __DIR__.'/data/domain_contact_valid.php',
+            ],
+            'invalid domain contact (handle)' => [
+                DomainContact::class,
+                include __DIR__.'/data/domain_contact_invalid_handle.php',
+                TypeError::class,
+            ],
+            'invalid domain contact (role)' => [
+                DomainContact::class,
+                include __DIR__.'/data/domain_contact_invalid_role.php',
+                InvalidArgumentException::class,
+            ],
+
+            'valid domain details (all fields)' => [
+                DomainDetails::class,
+                include __DIR__.'/data/domain_details_valid.php',
+            ],
+
+            'valid domain registration (all fields)' => [
+                DomainRegistration::class,
+                include __DIR__.'/data/domain_registration_valid.php',
+            ],
+            'invalid domain registration (name)' => [
+                DomainRegistration::class,
+                include __DIR__.'/data/domain_registration_invalid_name.php',
+                TypeError::class,
+            ],
+            'invalid domain registration (expire)' => [
+                DomainRegistration::class,
+                include __DIR__.'/data/domain_registration_invalid_date.php',
+                InvalidArgumentException::class,
+            ],
+
+            'valid ds data (all fields)' => [
+                DsData::class,
+                include __DIR__.'/data/ds_data_valid.php',
+            ],
+
+            'valid key data (all fields)' => [
+                KeyData::class,
+                include __DIR__.'/data/key_data_valid.php',
+            ],
+
+            'valid price (all fields)' => [
+                Price::class,
+                include __DIR__.'/data/price_valid.php',
+            ],
+
+            'valid zone (all fields)' => [
+                Zone::class,
+                include __DIR__.'/data/zone_valid.php',
+            ],
         ];
     }
 

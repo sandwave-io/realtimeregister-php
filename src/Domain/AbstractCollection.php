@@ -60,20 +60,29 @@ abstract class AbstractCollection implements ArrayAccess, IteratorAggregate, Cou
     /* @phpstan-ignore-next-line */
     public static function fromArray(array $json)
     {
-        Assert::keyExists($json, 'entities');
-        Assert::isArray($json['entities']);
-        if ($json['pagination']) {
+        // Extract entities
+        if (array_key_exists('entities', $json)) {
+            Assert::isArray($json['entities']);
+            $entities = $json['entities'];
+        } else {
+            $entities = $json;
+        }
+
+        // Instantiate pagination object
+        if (array_key_exists('pagination', $json)) {
             $pagination = Pagination::fromArray($json['pagination']);
         } else {
             $pagination = Pagination::fromArray([
-                'limit' => count($json['entities']),
+                'limit' => count($entities),
                 'offset' => 0,
-                'total' => count($json['entities']),
+                'total' => count($entities),
             ]);
         }
-        $entities   = array_map(function ($child) {
+
+        // Parse entities
+        $entities = array_map(function ($child) {
             return static::parseChild($child);
-        }, $json['entities']);
+        }, $entities);
 
         /* @phpstan-ignore-next-line */
         return new static($entities, $pagination);

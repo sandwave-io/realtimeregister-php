@@ -41,6 +41,6 @@ final class Price implements DomainObjectInterface
             'action' =>$this->action,
             'currency' =>$this->currency,
             'price' =>$this->price,
-        ]);
+        ], function ($x) { return !is_null($x); });
     }
 }

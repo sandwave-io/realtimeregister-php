@@ -41,6 +41,6 @@ final class Country implements DomainObjectInterface
             'name' =>$this->name,
             'postalCodePattern' =>$this->postalCodePattern,
             'postalCodeExample' =>$this->postalCodeExample,
-        ]);
+        ], function ($x) { return !is_null($x); });
     }
 }

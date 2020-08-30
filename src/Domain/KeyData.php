@@ -76,6 +76,6 @@ final class KeyData implements DomainObjectInterface
             'flags' => $this->flags,
             'algorithm' => $this->algorithm,
             'publicKey' => $this->publicKey,
-        ]);
+        ], function ($x) { return !is_null($x); });
     }
 }

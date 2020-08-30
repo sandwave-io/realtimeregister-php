@@ -79,6 +79,6 @@ final class DsData implements DomainObjectInterface
             'algorithm' => $this->algorithm,
             'digestType' => $this->digestType,
             'digest' => $this->digest,
-        ]);
+        ], function ($x) { return !is_null($x); });
     }
 }

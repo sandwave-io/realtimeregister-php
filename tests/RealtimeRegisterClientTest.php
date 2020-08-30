@@ -3,6 +3,9 @@
 namespace SandwaveIo\RealtimeRegister\Tests;
 
 use PHPUnit\Framework\TestCase;
+use SandwaveIo\RealtimeRegister\Api\ContactsApi;
+use SandwaveIo\RealtimeRegister\Api\CustomersApi;
+use SandwaveIo\RealtimeRegister\Api\DomainsApi;
 use SandwaveIo\RealtimeRegister\RealtimeRegister;
 use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
 
@@ -15,6 +18,9 @@ class RealtimeRegisterClientTest extends TestCase
 
         $client->setClient(new AuthorizedClient('https://example.com/api/v2/', 'bigseretdonttellanyone'));
 
-        $this->assertInstanceOf(RealtimeRegister::class, $client);
+        $this->assertInstanceOf(RealtimeRegister::class, $client, 'The $client could not be instantiated.');
+        $this->assertInstanceOf(ContactsApi::class, $client->contacts, 'The contacts could not be instantiated.');
+        $this->assertInstanceOf(CustomersApi::class, $client->customers, 'The customers could not be instantiated.');
+        $this->assertInstanceOf(DomainsApi::class, $client->domains, 'The domains could not be instantiated.');
     }
 }

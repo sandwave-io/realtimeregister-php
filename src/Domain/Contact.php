@@ -132,6 +132,6 @@ final class Contact implements DomainObjectInterface
             'properties' =>$this->properties,
             'createdDate' =>$this->createdDate->toDateTimeString(),
             'updatedDate' =>$this->updatedDate ? $this->updatedDate->toDateTimeString() : null,
-        ]);
+        ], function ($x) { return !is_null($x); });
     }
 }

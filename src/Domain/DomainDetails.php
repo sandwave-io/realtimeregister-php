@@ -197,16 +197,16 @@ final class DomainDetails implements DomainObjectInterface
             $json['updatedDate'] ? new Carbon($json['updatedDate']) : null,
             new Carbon($json['expiryDate']),
             $json['premium'],
-            $json['zone'] ? Zone::fromArray($json['zone']) : null,
-            $json['contacts'] ? DomainContactCollection::fromArray($json['contacts']) : null,
-            $json['keyData'] ? KeyDataCollection::fromArray($json['keyData']) : null,
-            $json['dsData'] ? DsDataCollection::fromArray($json['dsData']) : null
+            isset($json['zone']) ? Zone::fromArray($json['zone']) : null,
+            isset($json['contacts']) ? DomainContactCollection::fromArray($json['contacts']) : null,
+            isset($json['keyData']) ? KeyDataCollection::fromArray($json['keyData']) : null,
+            isset($json['dsData']) ? DsDataCollection::fromArray($json['dsData']) : null
         );
     }
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'domainName' => $this->domainName,
             'registry' => $this->registry,
             'customer' => $this->customer,
@@ -227,6 +227,6 @@ final class DomainDetails implements DomainObjectInterface
             'contacts' => $this->contacts ? $this->contacts->toArray() : null,
             'keyData' => $this->keyData ? $this->keyData->toArray() : null,
             'dsData' => $this->dsData ? $this->dsData->toArray() : null,
-        ];
+        ], function ($x) { return !is_null($x); });
     }
 }

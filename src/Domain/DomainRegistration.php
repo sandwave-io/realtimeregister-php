@@ -31,6 +31,6 @@ class DomainRegistration implements DomainObjectInterface
         return array_filter([
             'domainName' => $this->domainName,
             'expiryDate' => $this->expiryDate,
-        ]);
+        ], function ($x) { return !is_null($x); });
     }
 }

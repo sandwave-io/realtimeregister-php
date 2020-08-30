@@ -29,6 +29,6 @@ final class Zone implements DomainObjectInterface
         return array_filter([
             'template' => $this->template,
             'link' => $this->link,
-        ]);
+        ], function ($x) { return !is_null($x); });
     }
 }
