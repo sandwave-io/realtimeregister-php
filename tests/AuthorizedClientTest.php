@@ -11,6 +11,7 @@ use Psr\Http\Message\RequestInterface;
 use SandwaveIo\RealtimeRegister\Exceptions\NotFoundException;
 use SandwaveIo\RealtimeRegister\Exceptions\RealtimeRegisterClientException;
 use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
+use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 /** @covers \SandwaveIo\RealtimeRegister\Support\AuthorizedClient */
 class AuthorizedClientTest extends TestCase
@@ -43,7 +44,7 @@ class AuthorizedClientTest extends TestCase
     /** @dataProvider requestVariants */
     public function test_http_methods(string $method, int $response, ?string $exception): void
     {
-        $client = $this->getMockedClient($response, '', function (RequestInterface $request) use ($method) {
+        $client = MockedClientFactory::makeAuthorizedClient($response, '', function (RequestInterface $request) use ($method) {
             $this->assertSame(strtoupper($method), strtoupper($request->getMethod()));
             $this->assertSame('test', $request->getUri()->getPath());
             $this->assertSame('ApiKey bigseretdonttellanyone', $request->getHeader('Authorization')[0]);
@@ -61,44 +62,22 @@ class AuthorizedClientTest extends TestCase
 
     public function test_get_with_specific_return_code(): void
     {
-        $client = $this->getMockedClient(201, 'test');
+        $client = MockedClientFactory::makeAuthorizedClient(201, 'test');
         $response = $client->get('test', [], 201);
         $this->assertEquals('test', $response->text());
     }
 
     public function test_get_with_specific_return_code_mismatch(): void
     {
-        $client = $this->getMockedClient(200, 'test');
+        $client = MockedClientFactory::makeAuthorizedClient(200, 'test');
         $this->expectException(RealtimeRegisterClientException::class);
         $client->get('test', [], 201);
     }
 
     public function test_get_with_specific_return_code_notfound(): void
     {
-        $client = $this->getMockedClient(404, 'test');
+        $client = MockedClientFactory::makeAuthorizedClient(404, 'test');
         $this->expectException(NotFoundException::class);
         $client->get('test', [], 201);
-    }
-
-    private function getMockedClient(int $responseCode, string $responseBody, ?callable $assertClosure = null): AuthorizedClient
-    {
-        $fakeClient = new AuthorizedClient('https://example.com/api/v2/', 'bigseretdonttellanyone');
-
-        $handlerStack = HandlerStack::create(new MockHandler([
-            new Response($responseCode, [], $responseBody),
-        ]));
-
-        if ($assertClosure !== null) {
-            $handlerStack->push(function (callable $handler) use ($assertClosure) {
-                return function (RequestInterface $request, $options) use ($handler, $assertClosure) {
-                    $assertClosure($request);
-                    return $handler($request, $options);
-                };
-            });
-        }
-
-        $fakeClient->setClient(new Client(['handler' => $handlerStack]));
-
-        return $fakeClient;
     }
 }

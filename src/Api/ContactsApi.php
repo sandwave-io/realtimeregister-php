@@ -47,7 +47,7 @@ final class ContactsApi extends AbstractApi
      */
     public function get(string $customer, string $handle): Contact
     {
-        $response = $this->client->get("v2/customers/{$customer}/contacts/$handle");
+        $response = $this->client->get("v2/customers/{$customer}/contacts/{$handle}");
         return Contact::fromArray($response->json());
     }
 
