@@ -4,8 +4,14 @@ namespace SandwaveIo\RealtimeRegister\Tests\Domain;
 
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\Account;
+use SandwaveIo\RealtimeRegister\Domain\Billable;
+use InvalidArgumentException;
 use TypeError;
 
+/**
+ * This TestCase is used to test all single Domain Objects.
+ * If you want to test Collections, use the DomainCollectionTest instead.
+ */
 class DomainObjectTest extends TestCase
 {
     public function parserDataSet(): array
@@ -25,6 +31,15 @@ class DomainObjectTest extends TestCase
                 Account::class,
                 include __DIR__.'/data/account_invalid_balance.php',
                 TypeError::class
+            ],
+            [
+                Billable::class,
+                include __DIR__.'/data/billable_valid.php',
+            ],
+            [
+                Billable::class,
+                include __DIR__.'/data/billable_invalid_action.php',
+                InvalidArgumentException::class
             ],
         ];
     }
