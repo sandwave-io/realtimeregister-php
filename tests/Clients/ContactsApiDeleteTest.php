@@ -2,7 +2,6 @@
 
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 

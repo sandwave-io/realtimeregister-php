@@ -22,17 +22,17 @@ return [
     'updatedDate' => '2020-08-30 01:02:03',
     'expiryDate' => '2020-11-30 01:02:03',
     'premium' => false,
-    'zone' => include __DIR__.'/zone_valid.php',
+    'zone' => include __DIR__ . '/zone_valid.php',
     'contacts' => [
-        include __DIR__.'/domain_contact_valid.php',
-        include __DIR__.'/domain_contact_valid.php',
+        include __DIR__ . '/domain_contact_valid.php',
+        include __DIR__ . '/domain_contact_valid.php',
     ],
     'keyData' => [
-        include __DIR__.'/key_data_valid.php',
-        include __DIR__.'/key_data_valid.php',
+        include __DIR__ . '/key_data_valid.php',
+        include __DIR__ . '/key_data_valid.php',
     ],
     'ds_data' => [
-        include __DIR__.'/ds_data_valid.php',
-        include __DIR__.'/ds_data_valid.php',
-    ]
+        include __DIR__ . '/ds_data_valid.php',
+        include __DIR__ . '/ds_data_valid.php',
+    ],
 ];

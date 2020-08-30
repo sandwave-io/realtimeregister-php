@@ -3,10 +3,7 @@
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
 use PHPUnit\Framework\TestCase;
-use SandwaveIo\RealtimeRegister\Domain\Contact;
-use SandwaveIo\RealtimeRegister\Domain\CountryCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainAvailabilityCollection;
-use SandwaveIo\RealtimeRegister\Domain\DomainDetailsCollection;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 class DomainsApiCheckTest extends TestCase

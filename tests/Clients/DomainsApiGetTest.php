@@ -3,7 +3,6 @@
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
 use PHPUnit\Framework\TestCase;
-use SandwaveIo\RealtimeRegister\Domain\Contact;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 

@@ -3,9 +3,7 @@
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
 use PHPUnit\Framework\TestCase;
-use SandwaveIo\RealtimeRegister\Domain\Account;
 use SandwaveIo\RealtimeRegister\Domain\AccountCollection;
-use SandwaveIo\RealtimeRegister\Domain\PriceCollection;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 class CustomersApiCreditsTest extends TestCase
