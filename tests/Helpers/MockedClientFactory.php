@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SandwaveIo\RealtimeRegister\Tests\Helpers;
 
@@ -21,7 +20,7 @@ class MockedClientFactory
         return function (RequestInterface $request) use ($method, $route, $testCase) {
             $testCase->assertSame(strtoupper($method), strtoupper($request->getMethod()));
             $testCase->assertSame($route, $request->getUri()->getPath());
-            $testCase->assertSame('ApiKey '.static::API_KEY, $request->getHeader('Authorization')[0]);
+            $testCase->assertSame('ApiKey ' . static::API_KEY, $request->getHeader('Authorization')[0]);
         };
     }
 

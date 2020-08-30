@@ -1,8 +1,6 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
-
 
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\Contact;
@@ -17,15 +15,15 @@ class ContactsApiTest extends TestCase
             200,
             json_encode([
                 'entities' => [
-                    include __DIR__.'/../Domain/data/contact_valid.php',
-                    include __DIR__.'/../Domain/data/contact_valid.php',
-                    include __DIR__.'/../Domain/data/contact_valid.php',
+                    include __DIR__ . '/../Domain/data/contact_valid.php',
+                    include __DIR__ . '/../Domain/data/contact_valid.php',
+                    include __DIR__ . '/../Domain/data/contact_valid.php',
                 ],
                 'pagination' => [
                     'total'  => 3,
                     'offset' => 0,
                     'limit'  => 10,
-                ]
+                ],
             ]),
             MockedClientFactory::assertRoute('GET', 'v2/customers/johndoe/contacts', $this)
         );
@@ -38,7 +36,7 @@ class ContactsApiTest extends TestCase
     {
         $sdk = MockedClientFactory::makeSdk(
             200,
-            json_encode(include __DIR__.'/../Domain/data/contact_valid.php'),
+            json_encode(include __DIR__ . '/../Domain/data/contact_valid.php'),
             MockedClientFactory::assertRoute('GET', 'v2/customers/johndoe/contacts/test', $this)
         );
 

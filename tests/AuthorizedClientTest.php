@@ -2,10 +2,6 @@
 
 namespace SandwaveIo\RealtimeRegister\Tests;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use SandwaveIo\RealtimeRegister\Exceptions\NotFoundException;
@@ -64,7 +60,7 @@ class AuthorizedClientTest extends TestCase
     {
         $client = MockedClientFactory::makeAuthorizedClient(201, 'test');
         $response = $client->get('test', [], 201);
-        $this->assertEquals('test', $response->text());
+        $this->assertSame('test', $response->text());
     }
 
     public function test_get_with_specific_return_code_mismatch(): void
