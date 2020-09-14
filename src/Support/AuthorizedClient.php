@@ -19,7 +19,6 @@ class AuthorizedClient
     /** @var LoggerInterface|null */
     private $logger;
 
-
     public function __construct(string $baseUrl, string $apiKey, array $guzzleOptions = [], ?LoggerInterface $logger = null)
     {
         $this->apiKey = $apiKey;
