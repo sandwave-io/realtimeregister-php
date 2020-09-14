@@ -4,7 +4,7 @@ namespace SandwaveIo\RealtimeRegister\Api;
 
 use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
 use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
-use SandwaveIo\RealtimeRegister\Domain\DomainAvailabilityCollection;
+use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetailsCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
@@ -58,9 +58,9 @@ final class DomainsApi extends AbstractApi
      * @param string      $domainName
      * @param string|null $languageCode
      *
-     * @return DomainAvailabilityCollection
+     * @return DomainAvailability
      */
-    public function check(string $domainName, ?string $languageCode = null): DomainAvailabilityCollection
+    public function check(string $domainName, ?string $languageCode = null): DomainAvailability
     {
         $query = [];
         if (! is_null($languageCode)) {
@@ -68,7 +68,7 @@ final class DomainsApi extends AbstractApi
         }
 
         $response = $this->client->get("v2/domains/{$domainName}/check", $query);
-        return DomainAvailabilityCollection::fromArray($response->json());
+        return DomainAvailability::fromArray($response->json());
     }
 
     public function register(
