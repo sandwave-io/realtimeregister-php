@@ -17,6 +17,7 @@ use SandwaveIo\RealtimeRegister\Domain\KeyData;
 use SandwaveIo\RealtimeRegister\Domain\Price;
 use SandwaveIo\RealtimeRegister\Domain\Zone;
 use TypeError;
+use Exception;
 
 /**
  * This TestCase is used to test all single Domain Objects.
@@ -127,7 +128,7 @@ class DomainObjectTest extends TestCase
             'invalid domain registration (expire)' => [
                 DomainRegistration::class,
                 include __DIR__ . '/data/domain_registration_invalid_date.php',
-                InvalidArgumentException::class,
+                Exception::class,
             ],
 
             'valid ds data (all fields)' => [
