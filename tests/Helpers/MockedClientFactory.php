@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
+use Psr\Log\LoggerInterface;
 use SandwaveIo\RealtimeRegister\RealtimeRegister;
 use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
 
@@ -31,9 +32,9 @@ class MockedClientFactory
         return $sdk;
     }
 
-    public static function makeAuthorizedClient(int $responseCode, string $responseBody, ?callable $assertClosure = null): AuthorizedClient
+    public static function makeAuthorizedClient(int $responseCode, string $responseBody, ?callable $assertClosure = null, ?LoggerInterface $logger = null): AuthorizedClient
     {
-        $fakeClient = new AuthorizedClient('https://example.com/api/v2/', 'bigseretdonttellanyone');
+        $fakeClient = new AuthorizedClient('https://example.com/api/v2/', 'bigseretdonttellanyone', [], $logger);
 
         $handlerStack = HandlerStack::create(new MockHandler([
             new Response($responseCode, [], $responseBody),

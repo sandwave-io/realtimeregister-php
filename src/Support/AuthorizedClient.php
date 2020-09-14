@@ -16,7 +16,7 @@ class AuthorizedClient
     /** @var Client */
     private $client;
 
-    /** @var LoggerInterface */
+    /** @var LoggerInterface|null */
     private $logger;
 
 
