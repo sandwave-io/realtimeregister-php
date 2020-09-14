@@ -2,6 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Tests\Domain;
 
+use Exception;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\Account;
@@ -17,7 +18,6 @@ use SandwaveIo\RealtimeRegister\Domain\KeyData;
 use SandwaveIo\RealtimeRegister\Domain\Price;
 use SandwaveIo\RealtimeRegister\Domain\Zone;
 use TypeError;
-use Exception;
 
 /**
  * This TestCase is used to test all single Domain Objects.
