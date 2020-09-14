@@ -2,6 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister;
 
+use Psr\Log\LoggerInterface;
 use SandwaveIo\RealtimeRegister\Api\ContactsApi;
 use SandwaveIo\RealtimeRegister\Api\CustomersApi;
 use SandwaveIo\RealtimeRegister\Api\DomainsApi;
@@ -20,10 +21,10 @@ final class RealtimeRegister
     /** @var DomainsApi */
     public $domains;
 
-    public function __construct(string $apiKey, ?string $baseUrl = null)
+    public function __construct(string $apiKey, ?string $baseUrl = null, ?LoggerInterface $logger = null)
     {
         $url = $baseUrl ?: RealtimeRegister::BASE_URL;
-        $this->setClient(new AuthorizedClient($url, $apiKey));
+        $this->setClient(new AuthorizedClient($url, $apiKey, [], $logger));
     }
 
     public function setClient(AuthorizedClient $client): void
