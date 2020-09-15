@@ -3,7 +3,7 @@
 namespace SandwaveIo\RealtimeRegister\Domain;
 
 use Carbon\Carbon;
-use Webmozart\Assert\Assert;
+use InvalidArgumentException;
 
 final class DomainDetails implements DomainObjectInterface
 {
@@ -146,7 +146,7 @@ final class DomainDetails implements DomainObjectInterface
 
     public static function fromArray(array $json): DomainDetails
     {
-        Assert::inArray($json['status'], [
+        if (! in_array($json['status'], [
             DomainDetails::STATUS_OK,
             DomainDetails::STATUS_INACTIVE,
             DomainDetails::STATUS_PENDING_TRANSFER,
@@ -179,7 +179,10 @@ final class DomainDetails implements DomainObjectInterface
             DomainDetails::STATUS_PRIVACY_PROTECT_PROHIBITED,
             DomainDetails::STATUS_EXPIRED,
             DomainDetails::STATUS_IRTPC_TRANSFER_PROHIBITED,
-        ]);
+        ])) {
+            throw new InvalidArgumentException("Provided status not in array: {$json['status']} DomainDetails");
+        }
+
         return new DomainDetails(
             $json['domainName'],
             $json['registry'],

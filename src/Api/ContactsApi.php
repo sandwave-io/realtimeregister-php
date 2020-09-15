@@ -2,11 +2,11 @@
 
 namespace SandwaveIo\RealtimeRegister\Api;
 
+use InvalidArgumentException;
 use SandwaveIo\RealtimeRegister\Domain\Contact;
 use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\Country;
 use SandwaveIo\RealtimeRegister\Domain\CountryCollection;
-use Webmozart\Assert\Assert;
 
 final class ContactsApi extends AbstractApi
 {
@@ -179,8 +179,14 @@ final class ContactsApi extends AbstractApi
     public function validate(string $customer, string $handle, array $categories): void
     {
         foreach ($categories as $category) {
-            Assert::inArray($category, ['General', 'IisNu', 'IisSe', 'Nominet', 'DkHostmaster']);
+            $categoriesAllowed = ['General', 'IisNu', 'IisSe', 'Nominet', 'DkHostmaster'];
+
+            if (! in_array($category, $categoriesAllowed)) {
+                $imploded = implode(',', $categoriesAllowed);
+                throw new InvalidArgumentException("Provided Category not in array: {$category} Valid options: {$imploded}");
+            }
         }
+
         $this->client->post("v2/customers/{$customer}/contacts/{$handle}/validate", [
             'categories' => $categories,
         ]);
@@ -229,7 +235,13 @@ final class ContactsApi extends AbstractApi
     {
         $payload = ['properties' => $properties];
         if ($intendedUsage) {
-            Assert::inArray($intendedUsage, ['REGISTRANT', 'ADMIN', 'BILLING', 'TECH']);
+            $usages = ['REGISTRANT', 'ADMIN', 'BILLING', 'TECH'];
+
+            if (! in_array($intendedUsage, $usages)) {
+                $imploded = implode(',', $usages);
+                throw new InvalidArgumentException("Provided Category not in array: {$intendedUsage} Valid options: {$imploded}");
+            }
+
             $payload['intendedUsage'] = $intendedUsage;
         }
         $this->client->post("v2/customers/{$customer}/contacts/{$handle}/{$registry}", $payload);

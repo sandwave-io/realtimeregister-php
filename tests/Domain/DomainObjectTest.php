@@ -43,7 +43,6 @@ class DomainObjectTest extends TestCase
                 include __DIR__ . '/data/account_invalid_balance.php',
                 TypeError::class,
             ],
-
             'valid billable' => [
                 Billable::class,
                 include __DIR__ . '/data/billable_valid.php',
@@ -53,7 +52,6 @@ class DomainObjectTest extends TestCase
                 include __DIR__ . '/data/billable_invalid_action.php',
                 InvalidArgumentException::class,
             ],
-
             'valid contact (all fields)' => [
                 Contact::class,
                 include __DIR__ . '/data/contact_valid.php',
@@ -67,7 +65,6 @@ class DomainObjectTest extends TestCase
                 include __DIR__ . '/data/contact_invalid_name.php',
                 TypeError::class,
             ],
-
             'valid country (all fields)' => [
                 Country::class,
                 include __DIR__ . '/data/country_valid.php',
@@ -81,7 +78,6 @@ class DomainObjectTest extends TestCase
                 include __DIR__ . '/data/country_invalid_code.php',
                 TypeError::class,
             ],
-
             'valid domain availability (all fields)' => [
                 DomainAvailability::class,
                 include __DIR__ . '/data/domain_availability_valid.php',
@@ -91,7 +87,6 @@ class DomainObjectTest extends TestCase
                 include __DIR__ . '/data/domain_availability_invalid_price.php',
                 TypeError::class,
             ],
-
             'valid domain contact (all fields)' => [
                 DomainContact::class,
                 include __DIR__ . '/data/domain_contact_valid.php',
@@ -106,7 +101,6 @@ class DomainObjectTest extends TestCase
                 include __DIR__ . '/data/domain_contact_invalid_role.php',
                 InvalidArgumentException::class,
             ],
-
             'valid domain details (all fields)' => [
                 DomainDetails::class,
                 include __DIR__ . '/data/domain_details_valid.php',
@@ -115,7 +109,11 @@ class DomainObjectTest extends TestCase
                 DomainDetails::class,
                 include __DIR__ . '/data/domain_details_valid_only_required.php',
             ],
-
+            'invalid domain details' => [
+                DomainDetails::class,
+                include __DIR__ . '/data/domain_details_invalid.php',
+                InvalidArgumentException::class,
+            ],
             'valid domain registration (all fields)' => [
                 DomainRegistration::class,
                 include __DIR__ . '/data/domain_registration_valid.php',
@@ -130,22 +128,43 @@ class DomainObjectTest extends TestCase
                 include __DIR__ . '/data/domain_registration_invalid_date.php',
                 Exception::class,
             ],
-
             'valid ds data (all fields)' => [
                 DsData::class,
                 include __DIR__ . '/data/ds_data_valid.php',
             ],
-
+            'invalid ds data algorithm (all fields)' => [
+                DsData::class,
+                include __DIR__ . '/data/ds_data_invalid_algorithm.php',
+                InvalidArgumentException::class,
+            ],
+            'invalid ds data digest (all fields)' => [
+                DsData::class,
+                include __DIR__ . '/data/ds_data_invalid_digest.php',
+                InvalidArgumentException::class,
+            ],
             'valid key data (all fields)' => [
                 KeyData::class,
                 include __DIR__ . '/data/key_data_valid.php',
             ],
-
+            'invalid key data (all fields)' => [
+                KeyData::class,
+                include __DIR__ . '/data/key_data_invalid.php',
+                InvalidArgumentException::class,
+            ],
+            'invalid key data flags (all fields)' => [
+                KeyData::class,
+                include __DIR__ . '/data/key_data_invalid_flag.php',
+                InvalidArgumentException::class,
+            ],
+            'invalid key data protocol (all fields)' => [
+                KeyData::class,
+                include __DIR__ . '/data/key_data_invalid_protocol.php',
+                InvalidArgumentException::class,
+            ],
             'valid price (all fields)' => [
                 Price::class,
                 include __DIR__ . '/data/price_valid.php',
             ],
-
             'valid zone (all fields)' => [
                 Zone::class,
                 include __DIR__ . '/data/zone_valid.php',
