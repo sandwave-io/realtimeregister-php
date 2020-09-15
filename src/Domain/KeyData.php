@@ -2,8 +2,8 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Webmozart\Assert\Assert;
 use InvalidArgumentException;
+use Webmozart\Assert\Assert;
 
 final class KeyData implements DomainObjectInterface
 {

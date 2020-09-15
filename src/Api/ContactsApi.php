@@ -2,13 +2,11 @@
 
 namespace SandwaveIo\RealtimeRegister\Api;
 
+use InvalidArgumentException;
 use SandwaveIo\RealtimeRegister\Domain\Contact;
 use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\Country;
 use SandwaveIo\RealtimeRegister\Domain\CountryCollection;
-use SandwaveIo\RealtimeRegister\Domain\DomainContact;
-use Webmozart\Assert\Assert;
-use InvalidArgumentException;
 
 final class ContactsApi extends AbstractApi
 {

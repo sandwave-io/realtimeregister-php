@@ -2,7 +2,6 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Webmozart\Assert\Assert;
 use InvalidArgumentException;
 
 final class DsData implements DomainObjectInterface
