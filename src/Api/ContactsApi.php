@@ -182,7 +182,7 @@ final class ContactsApi extends AbstractApi
             $categoriesAllowed = ['General', 'IisNu', 'IisSe', 'Nominet', 'DkHostmaster'];
 
             if (! in_array($category, $categoriesAllowed)) {
-                $imploded = implode($categoriesAllowed, ',');
+                $imploded = implode(',', $categoriesAllowed);
                 throw new InvalidArgumentException("Provided Category not in array: {$category} Valid options: {$imploded}");
             }
         }
@@ -238,7 +238,7 @@ final class ContactsApi extends AbstractApi
             $usages = ['REGISTRANT', 'ADMIN', 'BILLING', 'TECH'];
 
             if (! in_array($intendedUsage, $usages)) {
-                $imploded = implode($usages, ',');
+                $imploded = implode(',', $usages);
                 throw new InvalidArgumentException("Provided Category not in array: {$intendedUsage} Valid options: {$imploded}");
             }
 
