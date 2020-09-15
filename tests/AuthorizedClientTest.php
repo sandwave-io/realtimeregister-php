@@ -4,6 +4,7 @@ namespace SandwaveIo\RealtimeRegister\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
+use Psr\Log\LoggerInterface;
 use SandwaveIo\RealtimeRegister\Exceptions\NotFoundException;
 use SandwaveIo\RealtimeRegister\Exceptions\RealtimeRegisterClientException;
 use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
@@ -40,11 +41,14 @@ class AuthorizedClientTest extends TestCase
     /** @dataProvider requestVariants */
     public function test_http_methods(string $method, int $response, ?string $exception): void
     {
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger->method('debug');
+
         $client = MockedClientFactory::makeAuthorizedClient($response, '', function (RequestInterface $request) use ($method) {
             $this->assertSame(strtoupper($method), strtoupper($request->getMethod()));
             $this->assertSame('test', $request->getUri()->getPath());
             $this->assertSame('ApiKey bigseretdonttellanyone', $request->getHeader('Authorization')[0]);
-        });
+        }, $logger);
 
         if ($exception) {
             $this->expectException($exception);

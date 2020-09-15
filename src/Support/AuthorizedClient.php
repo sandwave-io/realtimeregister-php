@@ -4,6 +4,7 @@ namespace SandwaveIo\RealtimeRegister\Support;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
 use SandwaveIo\RealtimeRegister\Exceptions\NotFoundException;
 use SandwaveIo\RealtimeRegister\Exceptions\RealtimeRegisterClientException;
 
@@ -15,9 +16,13 @@ class AuthorizedClient
     /** @var Client */
     private $client;
 
-    public function __construct(string $baseUrl, string $apiKey, array $guzzleOptions = [])
+    /** @var LoggerInterface|null */
+    private $logger;
+
+    public function __construct(string $baseUrl, string $apiKey, array $guzzleOptions = [], ?LoggerInterface $logger = null)
     {
         $this->apiKey = $apiKey;
+        $this->logger = $logger;
 
         $this->client = new Client(array_merge($guzzleOptions, [
             'base_uri' => $baseUrl,
@@ -51,6 +56,7 @@ class AuthorizedClient
 
     private function request(string $method, string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): RealtimeRegisterResponse
     {
+        // Build request options.
         $metaData = [
             'headers' => [
                 'Authorization' => 'ApiKey ' . $this->apiKey,
@@ -62,6 +68,25 @@ class AuthorizedClient
             $metaData['json'] = $body;
         }
 
+        // Log request.
+        $logContext = [
+            'meta_data' => $metaData,
+            'method' => $method,
+            'endpoint' => $endpoint . $this->buildQuery($query),
+            'body' => $body,
+            'expected_response' => $expectedResponse ?? 'NOT SET',
+        ];
+        $logContext['meta_data']['headers']['Authorization'] = 'ApiKey masked-api-key';
+        $this->log(
+            sprintf(
+                'RealtimeRegister.REQUEST: %s %s',
+                strtoupper($method),
+                $endpoint . $this->buildQuery($query)
+            ),
+            $logContext
+        );
+
+        // Send request.
         $response = $this->client->request($method, $endpoint . $this->buildQuery($query), $metaData);
 
         return $this->handleResponse($response, $expectedResponse);
@@ -69,6 +94,22 @@ class AuthorizedClient
 
     private function handleResponse(ResponseInterface $response, ?int $expectedResponse = null): RealtimeRegisterResponse
     {
+        // Log response
+        $this->log(
+            sprintf(
+                'RealtimeRegister.RESPONSE: %s - BODY: %s',
+                $response->getStatusCode(),
+                (string) $response->getBody()
+            ),
+            [
+                'response_code' => $response->getStatusCode(),
+                'response_body' => (string) $response->getBody(),
+                'expected_response' => $expectedResponse ?? 'NOT SET',
+                'headers' => $response->getHeaders(),
+            ]
+        );
+
+        // Parse response
         if ($this->isResponseValid($response, $expectedResponse)) {
             return RealtimeRegisterResponse::fromString((string) $response->getBody());
         } elseif ($response->getStatusCode() === 404) {
@@ -88,5 +129,12 @@ class AuthorizedClient
             return $response->getStatusCode() === $expectedResponse;
         }
         return $response->getStatusCode() >= 200 && $response->getStatusCode() < 300;
+    }
+
+    private function log(string $message, array $context = []): void
+    {
+        if ($this->logger instanceof LoggerInterface) {
+            $this->logger->debug($message, $context);
+        }
     }
 }
