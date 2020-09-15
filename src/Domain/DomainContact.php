@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Webmozart\Assert\Assert;
+use InvalidArgumentException;
 
 final class DomainContact implements DomainObjectInterface
 {
@@ -24,11 +24,14 @@ final class DomainContact implements DomainObjectInterface
 
     public static function fromArray(array $json): DomainContact
     {
-        Assert::inArray($json['role'], [
+        if (! in_array($json['role'], [
             DomainContact::ROLE_ADMIN,
             DomainContact::ROLE_BILLING,
             DomainContact::ROLE_TECH,
-        ]);
+        ])) {
+            throw new InvalidArgumentException("Provided role not in array: {$json['role']} DomainContact");
+        }
+
         return new DomainContact($json['role'], $json['handle']);
     }
 

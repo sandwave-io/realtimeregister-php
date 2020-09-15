@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Webmozart\Assert\Assert;
+use InvalidArgumentException;
 
 final class Billable implements DomainObjectInterface
 {
@@ -42,7 +42,7 @@ final class Billable implements DomainObjectInterface
 
     public static function fromArray(array $data): Billable
     {
-        Assert::inArray($data['action'], [
+        if (! in_array($data['action'], [
             Billable::ACTION_CREATE,
             Billable::ACTION_REQUEST,
             Billable::ACTION_TRANSFER,
@@ -57,7 +57,10 @@ final class Billable implements DomainObjectInterface
             Billable::ACTION_EXTRA_WILDCARD,
             Billable::ACTION_EXTRA_DOMAIN,
             Billable::ACTION_REGISTRY_LOCK,
-        ]);
+        ])) {
+            throw new InvalidArgumentException("Provided status not in array: {$data['action']} Billable");
+        }
+
         return new Billable(
             $data['product'],
             $data['action'],

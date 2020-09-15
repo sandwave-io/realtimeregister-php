@@ -3,6 +3,7 @@
 namespace SandwaveIo\RealtimeRegister\Domain;
 
 use Webmozart\Assert\Assert;
+use InvalidArgumentException;
 
 final class KeyData implements DomainObjectInterface
 {
@@ -43,12 +44,16 @@ final class KeyData implements DomainObjectInterface
 
     public static function fromArray(array $json): KeyData
     {
-        Assert::eq($json['protocol'], 3);
-        Assert::inArray($json['flags'], [
+        Assert::eq($json['protocol'], 3, "Provided protect in KeyData was not equal to 3 given value: {$json['protocol']}");
+
+        if (! in_array($json['flags'], [
             KeyData::FLAG_ZSK,
             KeyData::FLAG_KSK,
-        ]);
-        Assert::inArray($json['algorithm'], [
+        ])) {
+            throw new InvalidArgumentException("Provided flags not in array: {$json['flags']} KeyData");
+        }
+
+        if (! in_array($json['algorithm'], [
             KeyData::ALGORITHM_DSA_SHA1,
             KeyData::ALGORITHM_RSA_SHA_1,
             KeyData::ALGORITHM_DSA_NSEC3_SHA1,
@@ -60,7 +65,10 @@ final class KeyData implements DomainObjectInterface
             KeyData::ALGORITHM_ECDSA_Curve_P_384_with_SHA_384,
             KeyData::ALGORITHM_Ed25519,
             KeyData::ALGORITHM_Ed448,
-        ]);
+        ])) {
+            throw new InvalidArgumentException("Provided algorithm not in array: {$json['algorithm']} DsData");
+        }
+
         return new KeyData(
             $json['protocol'],
             $json['flags'],

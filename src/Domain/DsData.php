@@ -3,6 +3,7 @@
 namespace SandwaveIo\RealtimeRegister\Domain;
 
 use Webmozart\Assert\Assert;
+use InvalidArgumentException;
 
 final class DsData implements DomainObjectInterface
 {
@@ -45,7 +46,7 @@ final class DsData implements DomainObjectInterface
 
     public static function fromArray(array $json): DsData
     {
-        Assert::inArray($json['algorithm'], [
+        if (! in_array($json['algorithm'], [
             DsData::ALGORITHM_DSA_SHA1,
             DsData::ALGORITHM_RSA_SHA_1,
             DsData::ALGORITHM_DSA_NSEC3_SHA1,
@@ -57,13 +58,19 @@ final class DsData implements DomainObjectInterface
             DsData::ALGORITHM_ECDSA_Curve_P_384_with_SHA_384,
             DsData::ALGORITHM_Ed25519,
             DsData::ALGORITHM_Ed448,
-        ]);
-        Assert::inArray($json['digestType'], [
+        ])) {
+            throw new InvalidArgumentException("Provided algorithm not in array: {$json['algorithm']} DsData");
+        }
+
+        if (! in_array($json['digestType'], [
             DsData::DIGEST_TYPE_SHA1,
             DsData::DIGEST_TYPE_SHA256,
             DsData::DIGEST_TYPE_GOST_R_34_11_94,
             DsData::DIGEST_TYPE_SHA384,
-        ]);
+        ])) {
+            throw new InvalidArgumentException("Provided digestType not in array: {$json['digestType']} DsData");
+        }
+
         return new DsData(
             $json['keyTag'],
             $json['algorithm'],
