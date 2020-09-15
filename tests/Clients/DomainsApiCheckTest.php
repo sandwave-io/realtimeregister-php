@@ -3,7 +3,7 @@
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
 use PHPUnit\Framework\TestCase;
-use SandwaveIo\RealtimeRegister\Domain\DomainAvailabilityCollection;
+use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 class DomainsApiCheckTest extends TestCase
@@ -12,45 +12,23 @@ class DomainsApiCheckTest extends TestCase
     {
         $sdk = MockedClientFactory::makeSdk(
             200,
-            json_encode([
-                'entities' => [
-                    include __DIR__ . '/../Domain/data/domain_availability_valid.php',
-                    include __DIR__ . '/../Domain/data/domain_availability_valid.php',
-                    include __DIR__ . '/../Domain/data/domain_availability_valid.php',
-                ],
-                'pagination' => [
-                    'total'  => 3,
-                    'offset' => 0,
-                    'limit'  => 10,
-                ],
-            ]),
+            json_encode(include __DIR__ . '/../Domain/data/domain_availability_valid.php'),
             MockedClientFactory::assertRoute('GET', 'v2/domains/example.com/check', $this)
         );
 
         $response = $sdk->domains->check('example.com');
-        $this->assertInstanceOf(DomainAvailabilityCollection::class, $response);
+        $this->assertInstanceOf(DomainAvailability::class, $response);
     }
 
     public function test_check_with_languageCode(): void
     {
         $sdk = MockedClientFactory::makeSdk(
             200,
-            json_encode([
-                'entities' => [
-                    include __DIR__ . '/../Domain/data/domain_availability_valid.php',
-                    include __DIR__ . '/../Domain/data/domain_availability_valid.php',
-                    include __DIR__ . '/../Domain/data/domain_availability_valid.php',
-                ],
-                'pagination' => [
-                    'total'  => 3,
-                    'offset' => 0,
-                    'limit'  => 10,
-                ],
-            ]),
+            json_encode(include __DIR__ . '/../Domain/data/domain_availability_valid.php'),
             MockedClientFactory::assertRoute('GET', 'v2/domains/example.com/check', $this)
         );
 
         $response = $sdk->domains->check('example.com', 'nl');
-        $this->assertInstanceOf(DomainAvailabilityCollection::class, $response);
+        $this->assertInstanceOf(DomainAvailability::class, $response);
     }
 }
