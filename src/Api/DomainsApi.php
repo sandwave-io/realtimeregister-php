@@ -8,6 +8,7 @@ use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetailsCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
+use SandwaveIo\RealtimeRegister\Domain\DomainTransferStatus;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DomainDesignatedAgentEnum;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DomainStatusEnum;
 use SandwaveIo\RealtimeRegister\Domain\KeyDataCollection;
@@ -128,6 +129,8 @@ final class DomainsApi extends AbstractApi
     }
 
     /**
+     * @see https://dm.realtimeregister.com/docs/api/domains/update
+     *
      * @param string                  $domainName
      * @param string|null             $registrant
      * @param bool|null               $privacyProtect
@@ -167,14 +170,75 @@ final class DomainsApi extends AbstractApi
             $payload['registrant'] = $registrant;
         }
 
-        if (is_string($designatedAgent)) {
-            DomainDesignatedAgentEnum::validate($designatedAgent);
+        if (is_bool($privacyProtect)) {
+            $payload['privacyProtect'] = $privacyProtect;
+        }
+
+        if (is_int($period)) {
+            $payload['period'] = $period;
+        }
+
+        if (is_string($authcode)) {
+            $payload['authcode'] = $authcode;
+        }
+
+        if (is_string($languageCode)) {
+            $payload['languageCode'] = $languageCode;
+        }
+
+        if (is_bool($autoRenew)) {
+            $payload['autoRenew'] = $autoRenew;
+        }
+
+        if (is_array($ns)) {
+            $payload['ns'] = $ns;
         }
 
         if (is_array($statuses)) {
             foreach ($statuses as $status) {
                 DomainStatusEnum::validate($status);
             }
+            $payload['status'] = $statuses;
         }
+
+        if (is_string($designatedAgent)) {
+            DomainDesignatedAgentEnum::validate($designatedAgent);
+            $payload['designatedAgent'] = $designatedAgent;
+        }
+
+        if ($zone instanceof Zone) {
+            $payload['zone'] = $zone;
+        }
+
+        if ($contacts instanceof ContactCollection) {
+            $payload['contacts'] = $contacts;
+        }
+
+        if ($keyData instanceof KeyDataCollection) {
+            $payload['keyData'] = $keyData;
+        }
+
+        if ($billables instanceof BillableCollection) {
+            $payload['billables'] = $billables;
+        }
+
+        $this->client->post("v2/domains/{$domainName}/update", $payload, [
+            'quote' => $isQuote,
+        ]);
+    }
+
+    /** @see https://dm.realtimeregister.com/docs/api/domains/pushtransfer */
+    public function pushTransfer(string $domain, string $recepient): void
+    {
+        $this->client->post("v2/domains/{$domain}/transfer/push", [
+            'recepient' => $recepient,
+        ]);
+    }
+
+    /** @see https://dm.realtimeregister.com/docs/api/domains/transferinfo */
+    public function transferInfo(string $domain, string $processId): DomainTransferStatus
+    {
+        $response = $this->client->get("v2/domains/{$domain}/transfer/{$processId}");
+        return DomainTransferStatus::fromArray($response->json());
     }
 }
