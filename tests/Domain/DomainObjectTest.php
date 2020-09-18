@@ -3,7 +3,6 @@
 namespace SandwaveIo\RealtimeRegister\Tests\Domain;
 
 use Exception;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\Account;
 use SandwaveIo\RealtimeRegister\Domain\Billable;
@@ -17,6 +16,7 @@ use SandwaveIo\RealtimeRegister\Domain\DsData;
 use SandwaveIo\RealtimeRegister\Domain\KeyData;
 use SandwaveIo\RealtimeRegister\Domain\Price;
 use SandwaveIo\RealtimeRegister\Domain\Zone;
+use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 use TypeError;
 
 /**

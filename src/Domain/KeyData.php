@@ -2,26 +2,12 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use InvalidArgumentException;
-use Webmozart\Assert\Assert;
+use SandwaveIo\RealtimeRegister\Domain\Enum\KeyDataAlgorithmEnum;
+use SandwaveIo\RealtimeRegister\Domain\Enum\KeyDataFlagEnum;
+use SandwaveIo\RealtimeRegister\Domain\Enum\KeyDataProtocolEnum;
 
 final class KeyData implements DomainObjectInterface
 {
-    const FLAG_ZSK = 256;
-    const FLAG_KSK = 257;
-
-    const ALGORITHM_DSA_SHA1 = 3;
-    const ALGORITHM_RSA_SHA_1 = 5;
-    const ALGORITHM_DSA_NSEC3_SHA1 = 6;
-    const ALGORITHM_RSASHA1_NSEC3_SHA1 = 7;
-    const ALGORITHM_RSA_SHA_256 = 8;
-    const ALGORITHM_RSA_SHA_512 = 10;
-    const ALGORITHM_GOST_R_34_10_2001 = 12;
-    const ALGORITHM_ECDSA_Curve_P_256_with_SHA_256 = 13;
-    const ALGORITHM_ECDSA_Curve_P_384_with_SHA_384 = 14;
-    const ALGORITHM_Ed25519 = 15;
-    const ALGORITHM_Ed448 = 16;
-
     /** @var int */
     public $protocol;
 
@@ -44,30 +30,9 @@ final class KeyData implements DomainObjectInterface
 
     public static function fromArray(array $json): KeyData
     {
-        Assert::eq($json['protocol'], 3, "Provided protect in KeyData was not equal to 3 given value: {$json['protocol']}");
-
-        if (! in_array($json['flags'], [
-            KeyData::FLAG_ZSK,
-            KeyData::FLAG_KSK,
-        ])) {
-            throw new InvalidArgumentException("Provided flags not in array: {$json['flags']} KeyData");
-        }
-
-        if (! in_array($json['algorithm'], [
-            KeyData::ALGORITHM_DSA_SHA1,
-            KeyData::ALGORITHM_RSA_SHA_1,
-            KeyData::ALGORITHM_DSA_NSEC3_SHA1,
-            KeyData::ALGORITHM_RSASHA1_NSEC3_SHA1,
-            KeyData::ALGORITHM_RSA_SHA_256,
-            KeyData::ALGORITHM_RSA_SHA_512,
-            KeyData::ALGORITHM_GOST_R_34_10_2001,
-            KeyData::ALGORITHM_ECDSA_Curve_P_256_with_SHA_256,
-            KeyData::ALGORITHM_ECDSA_Curve_P_384_with_SHA_384,
-            KeyData::ALGORITHM_Ed25519,
-            KeyData::ALGORITHM_Ed448,
-        ])) {
-            throw new InvalidArgumentException("Provided algorithm not in array: {$json['algorithm']} DsData");
-        }
+        KeyDataProtocolEnum::validate($json['protocol']);
+        KeyDataFlagEnum::validate($json['flags']);
+        KeyDataAlgorithmEnum::validate($json['algorithm']);
 
         return new KeyData(
             $json['protocol'],

@@ -8,6 +8,8 @@ use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetailsCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
+use SandwaveIo\RealtimeRegister\Domain\Enum\DomainDesignatedAgentEnum;
+use SandwaveIo\RealtimeRegister\Domain\Enum\DomainStatusEnum;
 use SandwaveIo\RealtimeRegister\Domain\KeyDataCollection;
 use SandwaveIo\RealtimeRegister\Domain\Zone;
 
@@ -123,5 +125,56 @@ final class DomainsApi extends AbstractApi
         ]);
 
         return DomainRegistration::fromArray($response->json());
+    }
+
+    /**
+     * @param string                  $domainName
+     * @param string|null             $registrant
+     * @param bool|null               $privacyProtect
+     * @param int|null                $period
+     * @param string|null             $authcode
+     * @param string|null             $languageCode
+     * @param bool|null               $autoRenew
+     * @param array|null              $ns
+     * @param string[]|null           $statuses
+     * @param string|null             $designatedAgent
+     * @param Zone|null               $zone
+     * @param ContactCollection|null  $contacts
+     * @param KeyDataCollection|null  $keyData
+     * @param BillableCollection|null $billables
+     * @param bool                    $isQuote
+     */
+    public function update(
+        string $domainName,
+        ?string $registrant = null,
+        ?bool $privacyProtect = null,
+        ?int $period = null,
+        ?string $authcode = null,
+        ?string $languageCode = null,
+        ?bool $autoRenew = null,
+        ?array $ns = null,
+        ?array $statuses = null,
+        ?string $designatedAgent = null,
+        ?Zone $zone = null,
+        ?ContactCollection $contacts = null,
+        ?KeyDataCollection $keyData = null,
+        ?BillableCollection $billables = null,
+        bool $isQuote = false
+    ): void {
+        $payload = [];
+
+        if (is_string($registrant)) {
+            $payload['registrant'] = $registrant;
+        }
+
+        if (is_string($designatedAgent)) {
+            DomainDesignatedAgentEnum::validate($designatedAgent);
+        }
+
+        if (is_array($statuses)) {
+            foreach ($statuses as $status) {
+                DomainStatusEnum::validate($status);
+            }
+        }
     }
 }
