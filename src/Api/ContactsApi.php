@@ -113,15 +113,15 @@ final class ContactsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/create
      *
-     * @param string      $customer
-     * @param string      $handle
-     * @param string      $name
-     * @param string[]    $addressLine
-     * @param string      $postalCode
-     * @param string      $city
-     * @param string      $country
-     * @param string      $email
-     * @param string      $voice
+     * @param string $customer
+     * @param string $handle
+     * @param string|null $name
+     * @param string[] $addressLine
+     * @param string|null $postalCode
+     * @param string|null $city
+     * @param string|null $country
+     * @param string|null $email
+     * @param string|null $voice
      * @param string|null $brand
      * @param string|null $organization
      * @param string|null $state
@@ -130,13 +130,13 @@ final class ContactsApi extends AbstractApi
     public function update(
         string $customer,
         string $handle,
-        string $name,
-        array $addressLine,
-        string $postalCode,
-        string $city,
-        string $country,
-        string $email,
-        string $voice,
+        ?string $name = null,
+        ?array $addressLine = null,
+        ?string $postalCode = null,
+        ?string $city = null,
+        ?string $country = null,
+        ?string $email = null,
+        ?string $voice = null,
         ?string $brand = null,
         ?string $organization = null,
         ?string $state = null,
@@ -145,14 +145,29 @@ final class ContactsApi extends AbstractApi
         $payload = [
             'customer' => $customer,
             'handle' => $handle,
-            'name' => $name,
-            'addressLine' => $addressLine,
-            'postalCode' => $postalCode,
-            'city' => $city,
-            'country' => $country,
-            'email' => $email,
-            'voice' => $voice,
         ];
+
+        if ($name) {
+            $payload['name'] = $name;
+        }
+        if ($addressLine) {
+            $payload['addressLine'] = $addressLine;
+        }
+        if ($postalCode) {
+            $payload['postalCode'] = $postalCode;
+        }
+        if ($city) {
+            $payload['city'] = $city;
+        }
+        if ($country) {
+            $payload['country'] = $country;
+        }
+        if ($email) {
+            $payload['email'] = $email;
+        }
+        if ($voice) {
+            $payload['voice'] = $voice;
+        }
         if ($brand) {
             $payload['brand'] = $brand;
         }

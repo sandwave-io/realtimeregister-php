@@ -2,6 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Api;
 
+use Carbon\Carbon;
 use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
 use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
@@ -227,6 +228,77 @@ final class DomainsApi extends AbstractApi
         ]);
     }
 
+    /**
+     * @see https://dm.realtimeregister.com/docs/api/domains/update
+     */
+    public function transfer(
+        string $domainName,
+        string $customer,
+        string $registrant,
+        ?bool $privacyProtect = null,
+        ?int $period = null,
+        ?string $authcode = null,
+        ?bool $autoRenew = null,
+        ?array $ns = null,
+        ?string $transferContacts = null,
+        ?string $designatedAgent = null,
+        ?string $zone = null,
+        ?ContactCollection $contacts = null,
+        ?KeyDataCollection $keyData = null,
+        ?BillableCollection $billables = null,
+        ?bool $isQuote = null
+    ): void {
+        $payload = [
+            'customer' => $customer,
+            'registrant' => $registrant,
+        ];
+
+        if (is_bool($privacyProtect)) {
+            $payload['privacyProtect'] = $privacyProtect;
+        }
+
+        if (is_int($period)) {
+            $payload['period'] = $period;
+        }
+
+        if (is_string($authcode)) {
+            $payload['authcode'] = $authcode;
+        }
+
+        if (is_bool($autoRenew)) {
+            $payload['autoRenew'] = $autoRenew;
+        }
+
+        if (is_array($ns)) {
+            $payload['ns'] = $ns;
+        }
+
+        if (is_string($designatedAgent)) {
+            DomainDesignatedAgentEnum::validate($designatedAgent);
+            $payload['designatedAgent'] = $designatedAgent;
+        }
+
+        if (is_string($zone)) {
+            $payload['zone'] = $zone;
+        }
+
+        if ($contacts instanceof ContactCollection) {
+            $payload['contacts'] = $contacts;
+        }
+
+        if ($keyData instanceof KeyDataCollection) {
+            $payload['keyData'] = $keyData;
+        }
+
+        if ($billables instanceof BillableCollection) {
+            $payload['billables'] = $billables;
+        }
+
+        $this->client->post("v2/domains/{$domainName}/transfer", $payload, [
+            'quote' => $isQuote,
+        ]);
+    }
+
     /** @see https://dm.realtimeregister.com/docs/api/domains/pushtransfer */
     public function pushTransfer(string $domain, string $recepient): void
     {
@@ -240,5 +312,49 @@ final class DomainsApi extends AbstractApi
     {
         $response = $this->client->get("v2/domains/{$domain}/transfer/{$processId}");
         return DomainTransferStatus::fromArray($response->json());
+    }
+
+    /**
+     * @see https://dm.realtimeregister.com/docs/api/domains/transferinfo
+     */
+    public function renew($domain, int $period, ?BillableCollection $billables = null, ?bool $quote = null): Carbon
+    {
+        $payload = [
+            'period' => $period,
+        ];
+
+        if ($billables instanceof BillableCollection) {
+            $payload['billables'] = $billables;
+        }
+
+        $response = $this->client->post("v2/domains/{$domain}/renew", $payload, is_null($quote) ? [] : [
+            'quote' => $quote,
+        ]);
+
+        return new Carbon($response->json()['expiryDate']);
+    }
+
+    /** @see https://dm.realtimeregister.com/docs/api/domains/delete */
+    public function delete(string $domain): void
+    {
+        $response = $this->client->delete("v2/domains/{$domain}");
+    }
+
+    /** @see https://dm.realtimeregister.com/docs/api/domains/restore */
+    public function restore($domain, string $reason, ?BillableCollection $billables = null, ?bool $quote = null): Carbon
+    {
+        $payload = [
+            'reason' => $reason,
+        ];
+
+        if ($billables instanceof BillableCollection) {
+            $payload['billables'] = $billables;
+        }
+
+        $response = $this->client->post("v2/domains/{$domain}/restore", $payload, is_null($quote) ? [] : [
+            'quote' => $quote,
+        ]);
+
+        return new Carbon($response->json()['expiryDate']);
     }
 }
