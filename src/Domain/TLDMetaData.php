@@ -2,6 +2,15 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
+use SandwaveIo\RealtimeRegister\Domain\Enum\DomainDesignatedAgentEnum;
+use SandwaveIo\RealtimeRegister\Domain\Enum\DomainFeatureEnum;
+use SandwaveIo\RealtimeRegister\Domain\Enum\DomainPossibleClientDomainStatusEnum;
+use SandwaveIo\RealtimeRegister\Domain\Enum\GDPRCategoryEnum;
+use SandwaveIo\RealtimeRegister\Domain\Enum\KeyDataAlgorithmEnum;
+use SandwaveIo\RealtimeRegister\Domain\Enum\ValidationCategoryEnum;
+use SandwaveIo\RealtimeRegister\Domain\Enum\WhoisExposureEnum;
+use Webmozart\Assert\Assert;
+
 final class TLDMetaData implements DomainObjectInterface
 {
     /** @var array<int> */
@@ -188,6 +197,28 @@ final class TLDMetaData implements DomainObjectInterface
 
     public static function fromArray(array $data): TLDMetaData
     {
+        if (! is_null($data['possibleClientDomainStatuses'])) {
+            Assert::isArray($data['possibleClientDomainStatuses']);
+            foreach ($data['possibleClientDomainStatuses'] as $status) {
+                DomainPossibleClientDomainStatusEnum::validate($status);
+            }
+        }
+        if (! is_null($data['allowedDnssecAlgorithms'])) {
+            Assert::isArray($data['allowedDnssecAlgorithms']);
+            foreach ($data['allowedDnssecAlgorithms'] as $algo) {
+                KeyDataAlgorithmEnum::validate($algo);
+            }
+        }
+        if (! is_null($data['validationCategory'])) {
+            ValidationCategoryEnum::validate($data['validationCategory']);
+        }
+        foreach ($data['featuresAvailable'] as $feature) {
+            DomainFeatureEnum::validate($feature);
+        }
+        DomainDesignatedAgentEnum::validate($data['allowDesignatedAgent']);
+        WhoisExposureEnum::validate($data['whoisExposure']);
+        GDPRCategoryEnum::validate($data['gdprCategory']);
+
         return new TLDMetaData(
             $data['createDomainPeriods'],
             $data['renewDomainPeriods'],
@@ -233,44 +264,44 @@ final class TLDMetaData implements DomainObjectInterface
     public function toArray(): array
     {
         return array_filter([
-            $this->createDomainPeriods,
-            $this->renewDomainPeriods,
-            $this->autoRenewDomainPeriods,
-            $this->transferDomainPeriods,
-            $this->transferFOA,
-            $this->adjustableAuthCode,
-            $this->customAuthcodeSupport,
-            $this->transferSupportsAuthcode,
-            $this->transferRequiresAuthcode,
-            $this->creationRequiresPreValidation,
-            $this->zoneCheck,
-            $this->whoisExposure,
-            $this->gdprCategory,
-            $this->domainSyntax,
-            $this->nameservers,
-            $this->registrant,
-            $this->adminContacts,
-            $this->billingContacts,
-            $this->techContacts,
-            $this->contactProperties,
-            $this->launchPhases,
-            $this->redemptionPeriod,
-            $this->pendingDeletePeriod,
-            $this->addGracePeriod,
-            $this->renewGracePeriod,
-            $this->autoRenewGracePeriod,
-            $this->transferGracePeriod,
-            $this->expiryDateOffset,
-            $this->possibleClientDomainStatuses,
-            $this->allowedDnssecRecords,
-            $this->allowedDnssecAlgorithms,
-            $this->validationCategory,
-            $this->featuresAvailable,
-            $this->registrantChangeApprovalRequired,
-            $this->allowDesignatedAgent,
-            $this->jurisdiction,
-            $this->thermsOfService,
-            $this->privacyPolicy,
+            'createDomainPeriods' => $this->createDomainPeriods,
+            'renewDomainPeriods' => $this->renewDomainPeriods,
+            'autoRenewDomainPeriods' => $this->autoRenewDomainPeriods,
+            'transferDomainPeriods' => $this->transferDomainPeriods,
+            'transferFOA' => $this->transferFOA,
+            'adjustableAuthCode' => $this->adjustableAuthCode,
+            'customAuthcodeSupport' => $this->customAuthcodeSupport,
+            'transferSupportsAuthcode' => $this->transferSupportsAuthcode,
+            'transferRequiresAuthcode' => $this->transferRequiresAuthcode,
+            'creationRequiresPreValidation' => $this->creationRequiresPreValidation,
+            'zoneCheck' => $this->zoneCheck,
+            'whoisExposure' => $this->whoisExposure,
+            'gdprCategory' => $this->gdprCategory,
+            'domainSyntax' => $this->domainSyntax,
+            'nameservers' => $this->nameservers,
+            'registrant' => $this->registrant,
+            'adminContacts' => $this->adminContacts,
+            'billingContacts' => $this->billingContacts,
+            'techContacts' => $this->techContacts,
+            'contactProperties' => $this->contactProperties,
+            'launchPhases' => $this->launchPhases,
+            'redemptionPeriod' => $this->redemptionPeriod,
+            'pendingDeletePeriod' => $this->pendingDeletePeriod,
+            'addGracePeriod' => $this->addGracePeriod,
+            'renewGracePeriod' => $this->renewGracePeriod,
+            'autoRenewGracePeriod' => $this->autoRenewGracePeriod,
+            'transferGracePeriod' => $this->transferGracePeriod,
+            'expiryDateOffset' => $this->expiryDateOffset,
+            'possibleClientDomainStatuses' => $this->possibleClientDomainStatuses,
+            'allowedDnssecRecords' => $this->allowedDnssecRecords,
+            'allowedDnssecAlgorithms' => $this->allowedDnssecAlgorithms,
+            'validationCategory' => $this->validationCategory,
+            'featuresAvailable' => $this->featuresAvailable,
+            'registrantChangeApprovalRequired' => $this->registrantChangeApprovalRequired,
+            'allowDesignatedAgent' => $this->allowDesignatedAgent,
+            'jurisdiction' => $this->jurisdiction,
+            'thermsOfService' => $this->thermsOfService,
+            'privacyPolicy' => $this->privacyPolicy,
         ], function ($x) {
             return ! is_null($x);
         });
