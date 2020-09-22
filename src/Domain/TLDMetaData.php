@@ -100,21 +100,34 @@ final class TLDMetaData implements DomainObjectInterface
     public $adminContacts;
     public $billingContacts;
     public $techContacts;
+    public $contactProperties;
     public $launchPhases;
 
 
 
-
-
-
-    /** @var TldMetaData */
-    public $metadata;
 
     private function __construct(
         array $createDomainPeriods,
         array $renewDomainPeriods,
         array $autoRenewDomainPeriods,
         array $transferDomainPeriods,
+        bool $transferFOA,
+        bool $adjustableAuthCode,
+        bool $customAuthcodeSupport,
+        bool $transferSupportsAuthcode,
+        bool $transferRequiresAuthcode,
+        bool $creationRequiresPreValidation,
+        string $zoneCheck,
+        string $whoisExposure,
+        string $gdprCategory,
+        $domainSyntax,
+        $nameservers,
+        $registrant,
+        $adminContacts,
+        $billingContacts,
+        $techContacts,
+        $contactProperties,
+        $launchPhases,
         ?int $redemptionPeriod = null,
         ?int $pendingDeletePeriod = null,
         ?int $addGracePeriod = null,
@@ -122,31 +135,21 @@ final class TLDMetaData implements DomainObjectInterface
         ?int $autoRenewGracePeriod = null,
         ?int $transferGracePeriod = null,
         ?int $expiryDateOffset = null,
-        bool $transferFOA = null,
-        bool $adjustableAuthCode = null,
-        bool $customAuthcodeSupport = null,
-        bool $transferSupportsAuthcode = null,
-        bool $transferRequiresAuthcode = null,
-        bool $creationRequiresPreValidation = null,
-        string $zoneCheck,
         ?array $possibleClientDomainStatuses = null,
-
-
-
-
-        int $metadata
+        ?int $allowedDnssecRecords = null,
+        ?array $allowedDnssecAlgorithms = null,
+        ?string $validationCategory = null,
+        ?array $featuresAvailable = null,
+        bool $registrantChangeApprovalRequired,
+        ?string $allowDesignatedAgent = null,
+        ?string $jurisdiction = null,
+        ?string $thermsOfService = null,
+        ?string $privacyPolicy = null
     ) {
         $this->createDomainPeriods = $createDomainPeriods;
         $this->renewDomainPeriods = $renewDomainPeriods;
         $this->autoRenewDomainPeriods = $autoRenewDomainPeriods;
         $this->transferDomainPeriods = $transferDomainPeriods;
-        $this->redemptionPeriod = $redemptionPeriod;
-        $this->pendingDeletePeriod = $pendingDeletePeriod;
-        $this->addGracePeriod = $addGracePeriod;
-        $this->renewGracePeriod = $renewGracePeriod;
-        $this->autoRenewGracePeriod = $autoRenewGracePeriod;
-        $this->transferGracePeriod = $transferGracePeriod;
-        $this->expiryDateOffset = $expiryDateOffset;
         $this->transferFOA = $transferFOA;
         $this->adjustableAuthCode = $adjustableAuthCode;
         $this->customAuthcodeSupport = $customAuthcodeSupport;
@@ -154,14 +157,33 @@ final class TLDMetaData implements DomainObjectInterface
         $this->transferRequiresAuthcode = $transferRequiresAuthcode;
         $this->creationRequiresPreValidation = $creationRequiresPreValidation;
         $this->zoneCheck = $zoneCheck;
-
-
-
-
-
-
-
-        $this->metadata = $metadata;
+        $this->whoisExposure = $whoisExposure;
+        $this->gdprCategory = $gdprCategory;
+        $this->domainSyntax = $domainSyntax;
+        $this->nameservers = $nameservers;
+        $this->registrant = $registrant;
+        $this->adminContacts = $adminContacts;
+        $this->billingContacts = $billingContacts;
+        $this->techContacts = $techContacts;
+        $this->contactProperties = $contactProperties;
+        $this->launchPhases = $launchPhases;
+        $this->redemptionPeriod = $redemptionPeriod;
+        $this->pendingDeletePeriod = $pendingDeletePeriod;
+        $this->addGracePeriod = $addGracePeriod;
+        $this->renewGracePeriod = $renewGracePeriod;
+        $this->autoRenewGracePeriod = $autoRenewGracePeriod;
+        $this->transferGracePeriod = $transferGracePeriod;
+        $this->expiryDateOffset = $expiryDateOffset;
+        $this->possibleClientDomainStatuses = $possibleClientDomainStatuses;
+        $this->allowedDnssecRecords = $allowedDnssecRecords;
+        $this->allowedDnssecAlgorithms = $allowedDnssecAlgorithms;
+        $this->validationCategory = $validationCategory;
+        $this->featuresAvailable = $featuresAvailable;
+        $this->registrantChangeApprovalRequired = $registrantChangeApprovalRequired;
+        $this->allowDesignatedAgent = $allowDesignatedAgent;
+        $this->jurisdiction = $jurisdiction;
+        $this->thermsOfService = $thermsOfService;
+        $this->privacyPolicy = $privacyPolicy;
     }
 
     public static function fromArray(array $data): TLDMetaData
@@ -171,13 +193,6 @@ final class TLDMetaData implements DomainObjectInterface
             $data['renewDomainPeriods'],
             $data['autoRenewDomainPeriods'],
             $data['transferDomainPeriods'],
-            $data['redemptionPeriod'] ?? null,
-            $data['pendingDeletePeriod'] ?? null,
-            $data['addGracePeriod'] ?? null,
-            $data['renewGracePeriod'] ?? null,
-            $data['autoRenewGracePeriod'] ?? null,
-            $data['transferGracePeriod'] ?? null,
-            $data['expiryDateOffset'] ?? null,
             $data['transferFOA'],
             $data['adjustableAuthCode'],
             $data['customAuthcodeSupport'],
@@ -185,46 +200,79 @@ final class TLDMetaData implements DomainObjectInterface
             $data['transferRequiresAuthcode'],
             $data['creationRequiresPreValidation'],
             $data['zoneCheck'],
-
-
-
-
-
-
-            $data['metadata']
+            $data['whoisExposure'],
+            $data['gdprCategory'],
+            $data['domainSyntax'],
+            $data['nameservers'],
+            $data['registrant'],
+            $data['adminContacts'],
+            $data['billingContacts'],
+            $data['techContacts'],
+            $data['contactProperties'],
+            $data['launchPhases'],
+            $data['redemptionPeriod'] ?? null,
+            $data['pendingDeletePeriod'] ?? null,
+            $data['addGracePeriod'] ?? null,
+            $data['renewGracePeriod'] ?? null,
+            $data['autoRenewGracePeriod'] ?? null,
+            $data['transferGracePeriod'] ?? null,
+            $data['expiryDateOffset'] ?? null,
+            $data['possibleClientDomainStatuses'] ?? null,
+            $data['allowedDnssecRecords'] ?? null,
+            $data['allowedDnssecAlgorithms'] ?? null,
+            $data['validationCategory'] ?? null,
+            $data['featuresAvailable'] ?? null,
+            $data['registrantChangeApprovalRequired'] ?? null,
+            $data['allowDesignatedAgent'] ?? null,
+            $data['jurisdiction'] ?? null,
+            $data['thermsOfService'] ?? null,
+            $data['privacyPolicy'] ?? null
         );
     }
 
     public function toArray(): array
     {
-        return [
-            'createDomainPeriods' => $this->createDomainPeriods,
-            'renewDomainPeriods' => $this->renewDomainPeriods,
-            'autoRenewDomainPeriods' => $this->autoRenewDomainPeriods,
-            'transferDomainPeriods' => $this->transferDomainPeriods,
-            'redemptionPeriod' => $this->redemptionPeriod,
-            'pendingDeletePeriod' => $this->pendingDeletePeriod,
-            'addGracePeriod' => $this->addGracePeriod,
-            'renewGracePeriod' => $this->renewGracePeriod,
-            'autoRenewGracePeriod' => $this->autoRenewGracePeriod,
-            'transferGracePeriod' => $this->transferGracePeriod,
-            'expiryDateOffset' => $this->expiryDateOffset,
-            'transferFOA' => $this->transferFOA,
-            'adjustableAuthCode' => $this->adjustableAuthCode,
-            'customAuthcodeSupport' => $this->customAuthcodeSupport,
-            'transferSupportsAuthcode' => $this->transferSupportsAuthcode,
-            'transferRequiresAuthcode' => $this->transferRequiresAuthcode,
-            'zoneCheck' => $this->zoneCheck,
-
-
-
-
-
-
-
-
-
-            'metadata' => $this->metadata,
-        ];
+        return array_filter([
+            $this->createDomainPeriods,
+            $this->renewDomainPeriods,
+            $this->autoRenewDomainPeriods,
+            $this->transferDomainPeriods,
+            $this->transferFOA,
+            $this->adjustableAuthCode,
+            $this->customAuthcodeSupport,
+            $this->transferSupportsAuthcode,
+            $this->transferRequiresAuthcode,
+            $this->creationRequiresPreValidation,
+            $this->zoneCheck,
+            $this->whoisExposure,
+            $this->gdprCategory,
+            $this->domainSyntax,
+            $this->nameservers,
+            $this->registrant,
+            $this->adminContacts,
+            $this->billingContacts,
+            $this->techContacts,
+            $this->contactProperties,
+            $this->launchPhases,
+            $this->redemptionPeriod,
+            $this->pendingDeletePeriod,
+            $this->addGracePeriod,
+            $this->renewGracePeriod,
+            $this->autoRenewGracePeriod,
+            $this->transferGracePeriod,
+            $this->expiryDateOffset,
+            $this->possibleClientDomainStatuses,
+            $this->allowedDnssecRecords,
+            $this->allowedDnssecAlgorithms,
+            $this->validationCategory,
+            $this->featuresAvailable,
+            $this->registrantChangeApprovalRequired,
+            $this->allowDesignatedAgent,
+            $this->jurisdiction,
+            $this->thermsOfService,
+            $this->privacyPolicy,
+        ], function ($x) {
+            return ! is_null($x);
+        });
     }
 }
