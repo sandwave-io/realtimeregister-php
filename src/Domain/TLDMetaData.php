@@ -109,6 +109,8 @@ final class TLDMetaData implements DomainObjectInterface
     public $adminContacts;
     public $billingContacts;
     public $techContacts;
+
+    /** @var ContactPropertyCollection|null */
     public $contactProperties;
     public $launchPhases;
 
@@ -135,7 +137,7 @@ final class TLDMetaData implements DomainObjectInterface
         $adminContacts,
         $billingContacts,
         $techContacts,
-        $contactProperties,
+        ?ContactPropertyCollection $contactProperties = null,
         $launchPhases,
         ?int $redemptionPeriod = null,
         ?int $pendingDeletePeriod = null,
@@ -239,7 +241,7 @@ final class TLDMetaData implements DomainObjectInterface
             $data['adminContacts'],
             $data['billingContacts'],
             $data['techContacts'],
-            $data['contactProperties'],
+            $data['contactProperties'] ? ContactPropertyCollection::fromArray($data['contactProperties']) : null,
             $data['launchPhases'],
             $data['redemptionPeriod'] ?? null,
             $data['pendingDeletePeriod'] ?? null,
@@ -283,7 +285,7 @@ final class TLDMetaData implements DomainObjectInterface
             'adminContacts' => $this->adminContacts,
             'billingContacts' => $this->billingContacts,
             'techContacts' => $this->techContacts,
-            'contactProperties' => $this->contactProperties,
+            'contactProperties' => $this->contactProperties ? $this->contactProperties->toArray() : null,
             'launchPhases' => $this->launchPhases,
             'redemptionPeriod' => $this->redemptionPeriod,
             'pendingDeletePeriod' => $this->pendingDeletePeriod,
