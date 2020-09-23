@@ -1,8 +1,6 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SandwaveIo\RealtimeRegister\Tests\Helpers;
-
 
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Support\IsProxyConnection;
