@@ -36,13 +36,11 @@ final class DomainSyntax implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'minLength' =>$this->minLength,
             'maxLength' =>$this->maxLength,
             'idnSupport' =>$this->idnSupport,
             'allowedCharacters' =>$this->allowedCharacters,
-        ], function ($x) {
-            return ! is_null($x);
-        });
+        ];
     }
 }

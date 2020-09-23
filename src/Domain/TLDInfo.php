@@ -16,7 +16,7 @@ final class TLDInfo implements DomainObjectInterface
     private function __construct(
         string $provider,
         array $applicableFor,
-        int $metadata
+        TLDMetaData $metadata
     ) {
         $this->provider = $provider;
         $this->applicableFor = $applicableFor;

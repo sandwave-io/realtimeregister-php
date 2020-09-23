@@ -160,7 +160,7 @@ final class TLDMetaData implements DomainObjectInterface
         ?int $allowedDnssecRecords,
         ?array $allowedDnssecAlgorithms,
         ?string $validationCategory,
-        ?array $featuresAvailable,
+        array $featuresAvailable,
         bool $registrantChangeApprovalRequired,
         ?string $allowDesignatedAgent = null,
         ?string $jurisdiction = null,

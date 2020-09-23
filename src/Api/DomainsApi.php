@@ -317,7 +317,7 @@ final class DomainsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/domains/transferinfo
      */
-    public function renew($domain, int $period, ?BillableCollection $billables = null, ?bool $quote = null): Carbon
+    public function renew(string $domain, int $period, ?BillableCollection $billables = null, ?bool $quote = null): Carbon
     {
         $payload = [
             'period' => $period,
@@ -341,7 +341,7 @@ final class DomainsApi extends AbstractApi
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/domains/restore */
-    public function restore($domain, string $reason, ?BillableCollection $billables = null, ?bool $quote = null): Carbon
+    public function restore(string $domain, string $reason, ?BillableCollection $billables = null, ?bool $quote = null): Carbon
     {
         $payload = [
             'reason' => $reason,

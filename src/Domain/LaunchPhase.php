@@ -35,8 +35,8 @@ final class LaunchPhase implements DomainObjectInterface
     {
         return array_filter([
             'phase' => $this->phase,
-            'startDate' => $this->startDate ?? $this->startDate->toDateTimeString(),
-            'endDate' => $this->endDate ?? $this->endDate->toDateTimeString(),
+            'startDate' => $this->startDate ? $this->startDate->toDateTimeString() : null,
+            'endDate' => $this->endDate ? $this->endDate->toDateTimeString() : null,
         ], function ($x) {
             return ! is_null($x);
         });

@@ -31,12 +31,10 @@ final class Nameservers implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'min' =>$this->min,
             'max' =>$this->max,
             'required' =>$this->required,
-        ], function ($x) {
-            return ! is_null($x);
-        });
+        ];
     }
 }
