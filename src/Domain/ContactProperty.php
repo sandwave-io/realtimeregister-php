@@ -49,13 +49,15 @@ final class ContactProperty implements DomainObjectInterface
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'name' => $this->name,
             'label' => $this->label,
             'description' => $this->description,
             'type' => $this->type,
             'mandatory' => $this->mandatory,
             'values' => $this->values ?? null,
-        ];
+        ], function ($x) {
+            return ! is_null($x);
+        });
     }
 }

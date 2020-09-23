@@ -92,7 +92,7 @@ final class TLDMetaData implements DomainObjectInterface
     public $jurisdiction;
 
     /** @var string|null */
-    public $thermsOfService;
+    public $termsOfService;
 
     /** @var string|null */
     public $privacyPolicy;
@@ -164,7 +164,7 @@ final class TLDMetaData implements DomainObjectInterface
         bool $registrantChangeApprovalRequired,
         ?string $allowDesignatedAgent = null,
         ?string $jurisdiction = null,
-        ?string $thermsOfService = null,
+        ?string $termsOfService = null,
         ?string $privacyPolicy = null
     ) {
         $this->createDomainPeriods = $createDomainPeriods;
@@ -203,7 +203,7 @@ final class TLDMetaData implements DomainObjectInterface
         $this->registrantChangeApprovalRequired = $registrantChangeApprovalRequired;
         $this->allowDesignatedAgent = $allowDesignatedAgent;
         $this->jurisdiction = $jurisdiction;
-        $this->thermsOfService = $thermsOfService;
+        $this->termsOfService = $termsOfService;
         $this->privacyPolicy = $privacyPolicy;
     }
 
@@ -268,7 +268,7 @@ final class TLDMetaData implements DomainObjectInterface
             $data['registrantChangeApprovalRequired'] ?? null,
             $data['allowDesignatedAgent'] ?? null,
             $data['jurisdiction'] ?? null,
-            $data['thermsOfService'] ?? null,
+            $data['termsOfService'] ?? null,
             $data['privacyPolicy'] ?? null
         );
     }
@@ -280,6 +280,13 @@ final class TLDMetaData implements DomainObjectInterface
             'renewDomainPeriods' => $this->renewDomainPeriods,
             'autoRenewDomainPeriods' => $this->autoRenewDomainPeriods,
             'transferDomainPeriods' => $this->transferDomainPeriods,
+            'redemptionPeriod' => $this->redemptionPeriod,
+            'pendingDeletePeriod' => $this->pendingDeletePeriod,
+            'addGracePeriod' => $this->addGracePeriod,
+            'renewGracePeriod' => $this->renewGracePeriod,
+            'autoRenewGracePeriod' => $this->autoRenewGracePeriod,
+            'transferGracePeriod' => $this->transferGracePeriod,
+            'expiryDateOffset' => $this->expiryDateOffset,
             'transferFOA' => $this->transferFOA,
             'adjustableAuthCode' => $this->adjustableAuthCode,
             'customAuthcodeSupport' => $this->customAuthcodeSupport,
@@ -287,6 +294,16 @@ final class TLDMetaData implements DomainObjectInterface
             'transferRequiresAuthcode' => $this->transferRequiresAuthcode,
             'creationRequiresPreValidation' => $this->creationRequiresPreValidation,
             'zoneCheck' => $this->zoneCheck,
+            'possibleClientDomainStatuses' => $this->possibleClientDomainStatuses,
+            'allowedDnssecRecords' => $this->allowedDnssecRecords,
+            'allowedDnssecAlgorithms' => $this->allowedDnssecAlgorithms,
+            'validationCategory' => $this->validationCategory,
+            'featuresAvailable' => $this->featuresAvailable,
+            'registrantChangeApprovalRequired' => $this->registrantChangeApprovalRequired,
+            'allowDesignatedAgent' => $this->allowDesignatedAgent,
+            'jurisdiction' => $this->jurisdiction,
+            'termsOfService' => $this->termsOfService,
+            'privacyPolicy' => $this->privacyPolicy,
             'whoisExposure' => $this->whoisExposure,
             'gdprCategory' => $this->gdprCategory,
             'domainSyntax' => $this->domainSyntax->toArray(),
@@ -297,23 +314,6 @@ final class TLDMetaData implements DomainObjectInterface
             'techContacts' => $this->techContacts->toArray(),
             'contactProperties' => $this->contactProperties ? $this->contactProperties->toArray() : null,
             'launchPhases' => $this->launchPhases ? $this->launchPhases->toArray() : null,
-            'redemptionPeriod' => $this->redemptionPeriod,
-            'pendingDeletePeriod' => $this->pendingDeletePeriod,
-            'addGracePeriod' => $this->addGracePeriod,
-            'renewGracePeriod' => $this->renewGracePeriod,
-            'autoRenewGracePeriod' => $this->autoRenewGracePeriod,
-            'transferGracePeriod' => $this->transferGracePeriod,
-            'expiryDateOffset' => $this->expiryDateOffset,
-            'possibleClientDomainStatuses' => $this->possibleClientDomainStatuses,
-            'allowedDnssecRecords' => $this->allowedDnssecRecords,
-            'allowedDnssecAlgorithms' => $this->allowedDnssecAlgorithms,
-            'validationCategory' => $this->validationCategory,
-            'featuresAvailable' => $this->featuresAvailable,
-            'registrantChangeApprovalRequired' => $this->registrantChangeApprovalRequired,
-            'allowDesignatedAgent' => $this->allowDesignatedAgent,
-            'jurisdiction' => $this->jurisdiction,
-            'thermsOfService' => $this->thermsOfService,
-            'privacyPolicy' => $this->privacyPolicy,
         ], function ($x) {
             return ! is_null($x);
         });

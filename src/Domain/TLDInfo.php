@@ -28,16 +28,16 @@ final class TLDInfo implements DomainObjectInterface
         return new TLDInfo(
             $data['provider'],
             $data['applicableFor'],
-            $data['metadata']
+            TLDMetaData::fromArray($data['metadata'])
         );
     }
 
     public function toArray(): array
     {
         return [
-            'provider' =>$this->provider,
-            'applicableFor' =>$this->applicableFor,
-            'metadata' =>$this->metadata,
+            'provider' => $this->provider,
+            'applicableFor' => $this->applicableFor,
+            'metadata' => $this->metadata->toArray(),
         ];
     }
 }

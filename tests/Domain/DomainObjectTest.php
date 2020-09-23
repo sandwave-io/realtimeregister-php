@@ -7,14 +7,21 @@ use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\Account;
 use SandwaveIo\RealtimeRegister\Domain\Billable;
 use SandwaveIo\RealtimeRegister\Domain\Contact;
+use SandwaveIo\RealtimeRegister\Domain\ContactProperty;
+use SandwaveIo\RealtimeRegister\Domain\ContactsConstraint;
 use SandwaveIo\RealtimeRegister\Domain\Country;
 use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
 use SandwaveIo\RealtimeRegister\Domain\DomainContact;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
 use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
+use SandwaveIo\RealtimeRegister\Domain\DomainSyntax;
 use SandwaveIo\RealtimeRegister\Domain\DsData;
 use SandwaveIo\RealtimeRegister\Domain\KeyData;
+use SandwaveIo\RealtimeRegister\Domain\LaunchPhase;
+use SandwaveIo\RealtimeRegister\Domain\Nameservers;
 use SandwaveIo\RealtimeRegister\Domain\Price;
+use SandwaveIo\RealtimeRegister\Domain\Registrant;
+use SandwaveIo\RealtimeRegister\Domain\TLDInfo;
 use SandwaveIo\RealtimeRegister\Domain\Zone;
 use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 use TypeError;
@@ -168,6 +175,34 @@ class DomainObjectTest extends TestCase
             'valid zone (all fields)' => [
                 Zone::class,
                 include __DIR__ . '/data/zone_valid.php',
+            ],
+            'valid contact property' => [
+                ContactProperty::class,
+                include __DIR__ . '/data/contact_property_valid.php',
+            ],
+            'valid contact constraint' => [
+                ContactsConstraint::class,
+                include __DIR__ . '/data/contacts_constraint.php',
+            ],
+            'valid domain syntax' => [
+                DomainSyntax::class,
+                include __DIR__ . '/data/domain_syntax.php',
+            ],
+            'valid launch phase' => [
+                LaunchPhase::class,
+                include __DIR__ . '/data/launch_phase.php',
+            ],
+            'valid nameservers' => [
+                Nameservers::class,
+                include __DIR__ . '/data/nameservers.php',
+            ],
+            'valid registrant' => [
+                Registrant::class,
+                include __DIR__ . '/data/registrant.php',
+            ],
+            'valid tld info' => [
+                TLDInfo::class,
+                include __DIR__ . '/data/tldinfo.php',
             ],
         ];
     }

@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\AccountCollection;
 use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
 use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
+use SandwaveIo\RealtimeRegister\Domain\ContactPropertyCollection;
 use SandwaveIo\RealtimeRegister\Domain\CountryCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainAvailabilityCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainContactCollection;
@@ -13,6 +14,7 @@ use SandwaveIo\RealtimeRegister\Domain\DomainDetailsCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainObjectInterface;
 use SandwaveIo\RealtimeRegister\Domain\DsDataCollection;
 use SandwaveIo\RealtimeRegister\Domain\KeyDataCollection;
+use SandwaveIo\RealtimeRegister\Domain\LaunchPhaseCollection;
 use SandwaveIo\RealtimeRegister\Domain\PriceCollection;
 
 /**
@@ -40,6 +42,8 @@ class DomainCollectionTest extends TestCase
             'ds data collection' => [DsDataCollection::class, include __DIR__ . '/data/ds_data_valid.php'],
             'key data collection' => [KeyDataCollection::class, include __DIR__ . '/data/key_data_valid.php'],
             'price collection' => [PriceCollection::class, include __DIR__ . '/data/price_valid.php'],
+            'contact property collection' => [ContactPropertyCollection::class, include __DIR__ . '/data/contact_property_valid.php'],
+            'launch phase collection' => [LaunchPhaseCollection::class, include __DIR__ . '/data/launch_phase.php'],
         ];
         // For each type, create a flat and a pagination scenario.
         $dataset = [];
