@@ -33,7 +33,7 @@ final class IsProxyDomain
 
     public function isAvailable(): bool
     {
-        return $this->status === self::STATUS_ERROR;
+        return $this->status === self::STATUS_AVAILABLE;
     }
 
     public function isError(): bool

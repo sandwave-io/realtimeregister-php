@@ -50,10 +50,8 @@ final class IsProxy
 
     private function sendCheckRequest(string $domain, string $tld): ?IsProxyDomain
     {
-        $this->connection->connect();
         $this->connection->write("IS {$domain}.{$tld}");
         $response = $this->connection->read();
-        $this->connection->disconnect();
 
         if (! preg_match('#^([\-\w.]+)\s(available|not\savailable|invalid\sdomain|error)#', $response, $matches)) {
             return null;

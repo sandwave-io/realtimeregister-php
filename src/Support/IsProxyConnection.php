@@ -3,19 +3,19 @@
 namespace SandwaveIo\RealtimeRegister\Support;
 
 /** @codeCoverageIgnore */
-final class IsProxyConnection
+class IsProxyConnection
 {
     /** @var string */
-    private $apiKey;
+    protected $apiKey;
 
     /** @var string */
-    private $host;
+    protected $host;
 
     /** @var int */
-    private $port;
+    protected $port;
 
     /** @var resource */
-    private $socket;
+    protected $socket;
 
     public function __construct(string $apiKey, string $host = 'is.yoursrs.com', int $port = 2001)
     {
@@ -69,7 +69,7 @@ final class IsProxyConnection
         return trim($response);
     }
 
-    private function login(): bool
+    protected function login(): bool
     {
         if (! $this->write('LOGIN ' . $this->apiKey)) {
             return false;
@@ -83,7 +83,7 @@ final class IsProxyConnection
         return (bool) preg_match('#^100\sLogin\sok#', $response);
     }
 
-    private function isConnected(): bool
+    protected function isConnected(): bool
     {
         return is_resource($this->socket);
     }
