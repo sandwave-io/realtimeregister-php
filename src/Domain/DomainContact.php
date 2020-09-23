@@ -2,14 +2,10 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use InvalidArgumentException;
+use SandwaveIo\RealtimeRegister\Domain\Enum\DomainContactRoleEnum;
 
 final class DomainContact implements DomainObjectInterface
 {
-    const ROLE_ADMIN = 'ADMIN';
-    const ROLE_BILLING = 'BILLING';
-    const ROLE_TECH = 'TECH';
-
     /** @var string */
     public $role;
 
@@ -24,13 +20,7 @@ final class DomainContact implements DomainObjectInterface
 
     public static function fromArray(array $json): DomainContact
     {
-        if (! in_array($json['role'], [
-            DomainContact::ROLE_ADMIN,
-            DomainContact::ROLE_BILLING,
-            DomainContact::ROLE_TECH,
-        ])) {
-            throw new InvalidArgumentException("Provided role not in array: {$json['role']} DomainContact");
-        }
+        DomainContactRoleEnum::validate($json['role']);
 
         return new DomainContact($json['role'], $json['handle']);
     }

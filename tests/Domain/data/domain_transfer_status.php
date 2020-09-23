@@ -1,0 +1,17 @@
+<?php declare(strict_types = 1);
+
+return [
+    'domainName' => 'example.nl',
+    'registrar' => 'SIDN',
+    'status' => 'INITIATED',
+    'requestedDate' => '2020-03-04 12:34:56',
+    'actionDate' => '2020-04-04 12:34:56',
+    'expiryDate' => '2020-05-04 12:34:56',
+    'type' => 'IN',
+    'processId' => 5,
+    'log' => [
+        include __DIR__ . '/log.php',
+        include __DIR__ . '/log.php',
+        include __DIR__ . '/log.php',
+    ],
+];
