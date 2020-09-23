@@ -113,10 +113,10 @@ final class ContactsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/create
      *
-     * @param string $customer
-     * @param string $handle
+     * @param string      $customer
+     * @param string      $handle
      * @param string|null $name
-     * @param string[] $addressLine
+     * @param string[]    $addressLine
      * @param string|null $postalCode
      * @param string|null $city
      * @param string|null $country

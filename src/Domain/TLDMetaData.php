@@ -103,19 +103,29 @@ final class TLDMetaData implements DomainObjectInterface
     /** @var string */
     public $gdprCategory;
 
+    /** @var DomainSyntax */
     public $domainSyntax;
+
+    /** @var Nameservers */
     public $nameservers;
+
+    /** @var Registrant */
     public $registrant;
+
+    /** @var ContactsConstraint */
     public $adminContacts;
+
+    /** @var ContactsConstraint */
     public $billingContacts;
+
+    /** @var ContactsConstraint */
     public $techContacts;
 
     /** @var ContactPropertyCollection|null */
     public $contactProperties;
+
+    /** @var LaunchPhaseCollection|null */
     public $launchPhases;
-
-
-
 
     private function __construct(
         array $createDomainPeriods,
@@ -131,26 +141,26 @@ final class TLDMetaData implements DomainObjectInterface
         string $zoneCheck,
         string $whoisExposure,
         string $gdprCategory,
-        $domainSyntax,
-        $nameservers,
-        $registrant,
-        $adminContacts,
-        $billingContacts,
-        $techContacts,
-        ?ContactPropertyCollection $contactProperties = null,
-        $launchPhases,
-        ?int $redemptionPeriod = null,
-        ?int $pendingDeletePeriod = null,
-        ?int $addGracePeriod = null,
-        ?int $renewGracePeriod = null,
-        ?int $autoRenewGracePeriod = null,
-        ?int $transferGracePeriod = null,
-        ?int $expiryDateOffset = null,
-        ?array $possibleClientDomainStatuses = null,
-        ?int $allowedDnssecRecords = null,
-        ?array $allowedDnssecAlgorithms = null,
-        ?string $validationCategory = null,
-        ?array $featuresAvailable = null,
+        DomainSyntax $domainSyntax,
+        Nameservers $nameservers,
+        Registrant $registrant,
+        ContactsConstraint $adminContacts,
+        ContactsConstraint $billingContacts,
+        ContactsConstraint $techContacts,
+        ?ContactPropertyCollection $contactProperties,
+        ?LaunchPhaseCollection $launchPhases,
+        ?int $redemptionPeriod,
+        ?int $pendingDeletePeriod,
+        ?int $addGracePeriod,
+        ?int $renewGracePeriod,
+        ?int $autoRenewGracePeriod,
+        ?int $transferGracePeriod,
+        ?int $expiryDateOffset,
+        ?array $possibleClientDomainStatuses,
+        ?int $allowedDnssecRecords,
+        ?array $allowedDnssecAlgorithms,
+        ?string $validationCategory,
+        ?array $featuresAvailable,
         bool $registrantChangeApprovalRequired,
         ?string $allowDesignatedAgent = null,
         ?string $jurisdiction = null,
@@ -235,14 +245,14 @@ final class TLDMetaData implements DomainObjectInterface
             $data['zoneCheck'],
             $data['whoisExposure'],
             $data['gdprCategory'],
-            $data['domainSyntax'],
-            $data['nameservers'],
-            $data['registrant'],
-            $data['adminContacts'],
-            $data['billingContacts'],
-            $data['techContacts'],
+            DomainSyntax::fromArray($data['domainSyntax']),
+            Nameservers::fromArray($data['nameservers']),
+            Registrant::fromArray($data['registrant']),
+            ContactsConstraint ::fromArray($data['adminContacts']),
+            ContactsConstraint ::fromArray($data['billingContacts']),
+            ContactsConstraint ::fromArray($data['techContacts']),
             $data['contactProperties'] ? ContactPropertyCollection::fromArray($data['contactProperties']) : null,
-            $data['launchPhases'],
+            $data['launchPhases'] ? LaunchPhaseCollection::fromArray($data['launchPhases']) : null,
             $data['redemptionPeriod'] ?? null,
             $data['pendingDeletePeriod'] ?? null,
             $data['addGracePeriod'] ?? null,
@@ -279,14 +289,14 @@ final class TLDMetaData implements DomainObjectInterface
             'zoneCheck' => $this->zoneCheck,
             'whoisExposure' => $this->whoisExposure,
             'gdprCategory' => $this->gdprCategory,
-            'domainSyntax' => $this->domainSyntax,
-            'nameservers' => $this->nameservers,
-            'registrant' => $this->registrant,
-            'adminContacts' => $this->adminContacts,
-            'billingContacts' => $this->billingContacts,
-            'techContacts' => $this->techContacts,
+            'domainSyntax' => $this->domainSyntax->toArray(),
+            'nameservers' => $this->nameservers->toArray(),
+            'registrant' => $this->registrant->toArray(),
+            'adminContacts' => $this->adminContacts->toArray(),
+            'billingContacts' => $this->billingContacts->toArray(),
+            'techContacts' => $this->techContacts->toArray(),
             'contactProperties' => $this->contactProperties ? $this->contactProperties->toArray() : null,
-            'launchPhases' => $this->launchPhases,
+            'launchPhases' => $this->launchPhases ? $this->launchPhases->toArray() : null,
             'redemptionPeriod' => $this->redemptionPeriod,
             'pendingDeletePeriod' => $this->pendingDeletePeriod,
             'addGracePeriod' => $this->addGracePeriod,
