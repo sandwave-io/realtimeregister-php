@@ -63,7 +63,7 @@ final class IsProxy
             return null;
         }
 
-        [$_, $domain, $result] = $matches;
+        [$matchedText, $domain, $result] = $matches;
 
         return new IsProxyDomain($domain, $result);
     }
