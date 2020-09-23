@@ -15,9 +15,11 @@ use SandwaveIo\RealtimeRegister\Domain\DomainContact;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
 use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
 use SandwaveIo\RealtimeRegister\Domain\DomainSyntax;
+use SandwaveIo\RealtimeRegister\Domain\DomainTransferStatus;
 use SandwaveIo\RealtimeRegister\Domain\DsData;
 use SandwaveIo\RealtimeRegister\Domain\KeyData;
 use SandwaveIo\RealtimeRegister\Domain\LaunchPhase;
+use SandwaveIo\RealtimeRegister\Domain\Log;
 use SandwaveIo\RealtimeRegister\Domain\Nameservers;
 use SandwaveIo\RealtimeRegister\Domain\Price;
 use SandwaveIo\RealtimeRegister\Domain\Registrant;
@@ -203,6 +205,14 @@ class DomainObjectTest extends TestCase
             'valid tld info' => [
                 TLDInfo::class,
                 include __DIR__ . '/data/tldinfo.php',
+            ],
+            'valid log' => [
+                Log::class,
+                include __DIR__ . '/data/log.php',
+            ],
+            'domain transfer status' => [
+                DomainTransferStatus::class,
+                include __DIR__ . '/data/domain_transfer_status.php',
             ],
         ];
     }

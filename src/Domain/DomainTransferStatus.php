@@ -3,6 +3,7 @@
 namespace SandwaveIo\RealtimeRegister\Domain;
 
 use Carbon\Carbon;
+use SandwaveIo\RealtimeRegister\Domain\Enum\DomainTransferTypeEnum;
 
 final class DomainTransferStatus implements DomainObjectInterface
 {
@@ -30,7 +31,7 @@ final class DomainTransferStatus implements DomainObjectInterface
     /** @var int */
     public $processId;
 
-    /** @var string[]|null */
+    /** @var LogCollection|null */
     public $log;
 
     private function __construct(
@@ -42,7 +43,7 @@ final class DomainTransferStatus implements DomainObjectInterface
         Carbon $expiryDate,
         string $type,
         int $processId,
-        ?array $log = null
+        ?LogCollection $log = null
     ) {
         $this->domainName = $domainName;
         $this->registrar = $registrar;
@@ -57,6 +58,7 @@ final class DomainTransferStatus implements DomainObjectInterface
 
     public static function fromArray(array $json): DomainTransferStatus
     {
+        DomainTransferTypeEnum::validate($json['type']);
         return new DomainTransferStatus(
             $json['domainName'],
             $json['registrar'],
@@ -66,7 +68,7 @@ final class DomainTransferStatus implements DomainObjectInterface
             new Carbon($json['expiryDate']),
             $json['type'],
             $json['processId'],
-            $json['log'] ?? null
+            $json['log'] ? LogCollection::fromArray($json['log']) : null
         );
     }
 
@@ -81,7 +83,7 @@ final class DomainTransferStatus implements DomainObjectInterface
             'expiryDate' => $this->expiryDate->toDateTimeString(),
             'type' => $this->type,
             'processId' => $this->processId,
-            'log' => $this->log,
+            'log' => $this->log ? $this->log->toArray() : null,
         ], function ($x) {
             return ! is_null($x);
         });
