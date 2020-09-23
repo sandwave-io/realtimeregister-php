@@ -6,7 +6,7 @@ namespace SandwaveIo\RealtimeRegister\Exceptions;
 
 use RuntimeException;
 
-class IsProxyAuthenticationException extends RuntimeException
+class IsProxyConnectionException extends RuntimeException
 {
 
 }
