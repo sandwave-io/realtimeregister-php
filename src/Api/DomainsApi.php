@@ -242,7 +242,7 @@ final class DomainsApi extends AbstractApi
         ?array $ns = null,
         ?string $transferContacts = null,
         ?string $designatedAgent = null,
-        ?string $zone = null,
+        ?Zone $zone = null,
         ?ContactCollection $contacts = null,
         ?KeyDataCollection $keyData = null,
         ?BillableCollection $billables = null,
@@ -278,7 +278,7 @@ final class DomainsApi extends AbstractApi
             $payload['designatedAgent'] = $designatedAgent;
         }
 
-        if (is_string($zone)) {
+        if ($zone instanceof Zone) {
             $payload['zone'] = $zone;
         }
 
