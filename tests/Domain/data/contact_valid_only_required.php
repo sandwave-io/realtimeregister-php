@@ -3,6 +3,7 @@
 return [
     'customer' => 'johndoe',
     'handle' => 'jdoe',
+    'brand' => 'sandwave',
     'name' => 'John Doe',
     'addressLine' => [
         'Edisonweg 51D',

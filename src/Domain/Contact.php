@@ -12,7 +12,7 @@ final class Contact implements DomainObjectInterface
     /** @var string */
     public $handle;
 
-    /** @var string|null */
+    /** @var string */
     public $brand;
 
     /** @var string */
@@ -40,6 +40,9 @@ final class Contact implements DomainObjectInterface
     public $voice;
 
     /** @var string|null */
+    public $organization;
+
+    /** @var string|null */
     public $fax;
 
     /** @var string[]|null */
@@ -57,7 +60,8 @@ final class Contact implements DomainObjectInterface
     private function __construct(
         string $customer,
         string $handle,
-        ?string $brand,
+        string $brand,
+        ?string $organization,
         string $name,
         array $addressLine,
         string $postalCode,
@@ -75,6 +79,7 @@ final class Contact implements DomainObjectInterface
         $this->customer = $customer;
         $this->handle = $handle;
         $this->brand = $brand;
+        $this->organization = $organization;
         $this->name = $name;
         $this->addressLine = $addressLine;
         $this->postalCode = $postalCode;
@@ -96,7 +101,8 @@ final class Contact implements DomainObjectInterface
         return new Contact(
             $data['customer'],
             $data['handle'],
-            $data['brand'] ?? null,
+            $data['brand'],
+            $data['organization'] ?? null,
             $data['name'],
             $data['addressLine'],
             $data['postalCode'],
@@ -119,6 +125,7 @@ final class Contact implements DomainObjectInterface
             'customer' =>$this->customer,
             'handle' =>$this->handle,
             'brand' =>$this->brand,
+            'organization' =>$this->organization,
             'name' =>$this->name,
             'addressLine' =>$this->addressLine,
             'postalCode' =>$this->postalCode,
