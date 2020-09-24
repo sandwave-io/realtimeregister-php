@@ -4,5 +4,5 @@ return [
     'protocol' => 333,
     'flags' => 256,
     'algorithm' => 10,
-    'publicKey' => '---RSA--- asdfasdfasdfasdfasdf',
+    'publicKey' => 'LS0tUlNBLS0tIGFzZGZhc2RmYXNkZmFzZGZhc2Rm',
 ];

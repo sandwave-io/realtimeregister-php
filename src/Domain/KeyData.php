@@ -5,6 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 use SandwaveIo\RealtimeRegister\Domain\Enum\KeyDataAlgorithmEnum;
 use SandwaveIo\RealtimeRegister\Domain\Enum\KeyDataFlagEnum;
 use SandwaveIo\RealtimeRegister\Domain\Enum\KeyDataProtocolEnum;
+use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 
 final class KeyData implements DomainObjectInterface
 {
@@ -34,11 +35,17 @@ final class KeyData implements DomainObjectInterface
         KeyDataFlagEnum::validate($json['flags']);
         KeyDataAlgorithmEnum::validate($json['algorithm']);
 
+        $decodedKey = base64_decode($json['publicKey']);
+
+        if (base64_encode($decodedKey) !== $json['publicKey']) {
+            throw new InvalidArgumentException('Key is not base64 encoded.');
+        }
+
         return new KeyData(
             $json['protocol'],
             $json['flags'],
             $json['algorithm'],
-            $json['publicKey']
+            $decodedKey
         );
     }
 
@@ -48,7 +55,7 @@ final class KeyData implements DomainObjectInterface
             'protocol' => $this->protocol,
             'flags' => $this->flags,
             'algorithm' => $this->algorithm,
-            'publicKey' => $this->publicKey,
+            'publicKey' => base64_encode($this->publicKey),
         ];
     }
 }
