@@ -170,6 +170,11 @@ class DomainObjectTest extends TestCase
                 include __DIR__ . '/data/key_data_invalid_protocol.php',
                 InvalidArgumentException::class,
             ],
+            'invalid key (all fields)' => [
+                KeyData::class,
+                include __DIR__ . '/data/key_data_invalid_key.php',
+                InvalidArgumentException::class,
+            ],
             'valid price (all fields)' => [
                 Price::class,
                 include __DIR__ . '/data/price_valid.php',
