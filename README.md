@@ -11,9 +11,11 @@
 ## Supported APIs
 
 This SDK currently supports these APIs:
+
 * [Domains API](https://dm.realtimeregister.com/docs/api/domains)
 * [Customers API](https://dm.realtimeregister.com/docs/api/customers)
 * [Contacts API](https://dm.realtimeregister.com/docs/api/contacts)
+* [Notifications API](https://dm.realtimeregister.com/docs/api/notifications)
 
 Are you missing functionality? Feel free to create an issue, or hit us up with a pull request.
 
@@ -38,17 +40,15 @@ $realtimeRegister->contacts->list('johndoe');
 Feel free to create a PR if you have any ideas for improvements. Or create an issue.
 
 * When adding code, make sure to add tests for it (phpunit).
-* Make sure the code adheres to our coding standards (use php-cs-fixer to check/fix). 
+* Make sure the code adheres to our coding standards (use php-cs-fixer to check/fix).
 * Also make sure PHPStan does not find any bugs.
 
 ```bash
-
 vendor/bin/php-cs-fixer fix
 
 vendor/bin/phpstan analyze
 
 vendor/bin/phpunit --coverage-text
-
 ```
 
 These tools will also run in GitHub actions on PR's and pushes on master.

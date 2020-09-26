@@ -16,6 +16,7 @@ use SandwaveIo\RealtimeRegister\Domain\DsDataCollection;
 use SandwaveIo\RealtimeRegister\Domain\KeyDataCollection;
 use SandwaveIo\RealtimeRegister\Domain\LaunchPhaseCollection;
 use SandwaveIo\RealtimeRegister\Domain\LogCollection;
+use SandwaveIo\RealtimeRegister\Domain\NotificationCollection;
 use SandwaveIo\RealtimeRegister\Domain\PriceCollection;
 
 /**
@@ -46,6 +47,7 @@ class DomainCollectionTest extends TestCase
             'contact property collection' => [ContactPropertyCollection::class, include __DIR__ . '/data/contact_property_valid.php'],
             'launch phase collection' => [LaunchPhaseCollection::class, include __DIR__ . '/data/launch_phase.php'],
             'log collection' => [LogCollection::class, include __DIR__ . '/data/log.php'],
+            'notification collection' => [NotificationCollection::class, include __DIR__ . '/data/notification_valid.php'],
         ];
         // For each type, create a flat and a pagination scenario.
         $dataset = [];
