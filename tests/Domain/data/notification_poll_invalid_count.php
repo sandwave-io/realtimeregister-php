@@ -2,5 +2,5 @@
 
 return [
     'count' => 1,
-    'notification' => [''],
+    'notification' => include __DIR__ . '/notification_valid.php',
 ];

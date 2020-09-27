@@ -7,10 +7,10 @@ final class NotificationPoll implements DomainObjectInterface
     /** @var string */
     public $count;
 
-    /** @var array<string>|null */
+    /** @var Notification|null */
     public $notification;
 
-    private function __construct(string $count, ?array $notification)
+    private function __construct(string $count, ?Notification $notification)
     {
         $this->count = $count;
         $this->notification = $notification;
@@ -20,7 +20,7 @@ final class NotificationPoll implements DomainObjectInterface
     {
         return new NotificationPoll(
             $json['count'],
-            $json['notification'] ?? ''
+            isset($json['notification']) ? Notification::fromArray($json['notification']) : null
         );
     }
 
@@ -28,7 +28,7 @@ final class NotificationPoll implements DomainObjectInterface
     {
         return array_filter([
             'count' => $this->count,
-            'notification' => $this->notification,
+            'notification' => $this->notification ? $this->notification->toArray() : null,
         ], function ($x) {
             return ! is_null($x);
         });

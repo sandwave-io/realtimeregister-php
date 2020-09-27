@@ -234,9 +234,13 @@ class DomainObjectTest extends TestCase
                 include __DIR__ . '/data/notification_invalid_id.php',
                 TypeError::class,
             ],
-            'valid notification poll' => [
+            'valid notification poll (all fields)' => [
                 NotificationPoll::class,
                 include __DIR__ . '/data/notification_poll_valid.php',
+            ],
+            'valid notification poll (only required)' => [
+                NotificationPoll::class,
+                include __DIR__ . '/data/notification_poll_valid_only_required.php',
             ],
             'invalid notification poll (count)' => [
                 NotificationPoll::class,
