@@ -26,8 +26,8 @@ final class LaunchPhase implements DomainObjectInterface
     {
         return new LaunchPhase(
             $json['phase'],
-            $json['startDate'] ? new Carbon($json['startDate']) : null,
-            $json['endDate'] ? new Carbon($json['endDate']) : null
+            isset($json['startDate']) ? new Carbon($json['startDate']) : null,
+            isset($json['endDate']) ? new Carbon($json['endDate']) : null
         );
     }
 

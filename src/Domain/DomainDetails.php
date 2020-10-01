@@ -129,7 +129,7 @@ final class DomainDetails implements DomainObjectInterface
             $json['ns'] ?? [],
             $json['childHosts'] ?? [],
             new Carbon($json['createdDate']),
-            $json['updatedDate'] ? new Carbon($json['updatedDate']) : null,
+            isset($json['updatedDate']) ? new Carbon($json['updatedDate']) : null,
             new Carbon($json['expiryDate']),
             $json['premium'],
             isset($json['zone']) ? Zone::fromArray($json['zone']) : null,

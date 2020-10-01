@@ -21,6 +21,8 @@ use SandwaveIo\RealtimeRegister\Domain\KeyData;
 use SandwaveIo\RealtimeRegister\Domain\LaunchPhase;
 use SandwaveIo\RealtimeRegister\Domain\Log;
 use SandwaveIo\RealtimeRegister\Domain\Nameservers;
+use SandwaveIo\RealtimeRegister\Domain\Notification;
+use SandwaveIo\RealtimeRegister\Domain\NotificationPoll;
 use SandwaveIo\RealtimeRegister\Domain\Price;
 use SandwaveIo\RealtimeRegister\Domain\Registrant;
 use SandwaveIo\RealtimeRegister\Domain\TLDInfo;
@@ -218,6 +220,32 @@ class DomainObjectTest extends TestCase
             'domain transfer status' => [
                 DomainTransferStatus::class,
                 include __DIR__ . '/data/domain_transfer_status.php',
+            ],
+            'valid notification (all fields)' => [
+                Notification::class,
+                include __DIR__ . '/data/notification_valid.php',
+            ],
+            'valid notification (only required)' => [
+                Notification::class,
+                include __DIR__ . '/data/notification_valid_only_required.php',
+            ],
+            'invalid notification (id)' => [
+                Notification::class,
+                include __DIR__ . '/data/notification_invalid_id.php',
+                TypeError::class,
+            ],
+            'valid notification poll (all fields)' => [
+                NotificationPoll::class,
+                include __DIR__ . '/data/notification_poll_valid.php',
+            ],
+            'valid notification poll (only required)' => [
+                NotificationPoll::class,
+                include __DIR__ . '/data/notification_poll_valid_only_required.php',
+            ],
+            'invalid notification poll (count)' => [
+                NotificationPoll::class,
+                include __DIR__ . '/data/notification_poll_invalid_count.php',
+                TypeError::class,
             ],
         ];
     }

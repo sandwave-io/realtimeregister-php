@@ -20,7 +20,7 @@ final class Zone implements DomainObjectInterface
     {
         return new Zone(
             $data['template'],
-            $data['link'] ?: null
+            $data['link'] ?? null
         );
     }
 

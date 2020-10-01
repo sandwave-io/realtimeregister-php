@@ -97,7 +97,7 @@ final class Contact implements DomainObjectInterface
 
     public static function fromArray(array $data): Contact
     {
-        $updatedDate = ($data['updatedDate'] ?? null) ? new Carbon($data['updatedDate']) : null;
+        $updatedDate = isset($data['updatedDate']) ? new Carbon($data['updatedDate']) : null;
         return new Contact(
             $data['customer'],
             $data['handle'],
