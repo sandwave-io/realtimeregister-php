@@ -68,7 +68,7 @@ final class DomainTransferStatus implements DomainObjectInterface
             new Carbon($json['expiryDate']),
             $json['type'],
             $json['processId'],
-            $json['log'] ? LogCollection::fromArray($json['log']) : null
+            isset($json['log']) ? LogCollection::fromArray($json['log']) : null
         );
     }
 

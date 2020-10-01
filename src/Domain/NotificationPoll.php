@@ -20,7 +20,7 @@ final class NotificationPoll implements DomainObjectInterface
     {
         return new NotificationPoll(
             $json['count'],
-            $json['notification'] ? Notification::fromArray($json['notification']) : null
+            isset($json['notification']) ? Notification::fromArray($json['notification']) : null
         );
     }
 
