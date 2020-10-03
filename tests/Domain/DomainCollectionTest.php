@@ -12,12 +12,14 @@ use SandwaveIo\RealtimeRegister\Domain\DomainAvailabilityCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetailsCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainObjectInterface;
+use SandwaveIo\RealtimeRegister\Domain\DowntimeCollection;
 use SandwaveIo\RealtimeRegister\Domain\DsDataCollection;
 use SandwaveIo\RealtimeRegister\Domain\KeyDataCollection;
 use SandwaveIo\RealtimeRegister\Domain\LaunchPhaseCollection;
 use SandwaveIo\RealtimeRegister\Domain\LogCollection;
 use SandwaveIo\RealtimeRegister\Domain\NotificationCollection;
 use SandwaveIo\RealtimeRegister\Domain\PriceCollection;
+use SandwaveIo\RealtimeRegister\Domain\ProviderCollection;
 
 /**
  * This TestCase is used to test all Domain Object Collections.
@@ -48,6 +50,8 @@ class DomainCollectionTest extends TestCase
             'launch phase collection' => [LaunchPhaseCollection::class, include __DIR__ . '/data/launch_phase.php'],
             'log collection' => [LogCollection::class, include __DIR__ . '/data/log.php'],
             'notification collection' => [NotificationCollection::class, include __DIR__ . '/data/notification_valid.php'],
+            'provider collection' => [ProviderCollection::class, include __DIR__ . '/data/provider_valid.php'],
+            'downtime collection' => [DowntimeCollection::class, include __DIR__ . '/data/downtime_valid.php'],
         ];
         // For each type, create a flat and a pagination scenario.
         $dataset = [];

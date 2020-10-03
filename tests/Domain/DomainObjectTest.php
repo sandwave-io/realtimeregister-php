@@ -16,6 +16,7 @@ use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
 use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
 use SandwaveIo\RealtimeRegister\Domain\DomainSyntax;
 use SandwaveIo\RealtimeRegister\Domain\DomainTransferStatus;
+use SandwaveIo\RealtimeRegister\Domain\Downtime;
 use SandwaveIo\RealtimeRegister\Domain\DsData;
 use SandwaveIo\RealtimeRegister\Domain\KeyData;
 use SandwaveIo\RealtimeRegister\Domain\LaunchPhase;
@@ -24,6 +25,7 @@ use SandwaveIo\RealtimeRegister\Domain\Nameservers;
 use SandwaveIo\RealtimeRegister\Domain\Notification;
 use SandwaveIo\RealtimeRegister\Domain\NotificationPoll;
 use SandwaveIo\RealtimeRegister\Domain\Price;
+use SandwaveIo\RealtimeRegister\Domain\Provider;
 use SandwaveIo\RealtimeRegister\Domain\Registrant;
 use SandwaveIo\RealtimeRegister\Domain\TLDInfo;
 use SandwaveIo\RealtimeRegister\Domain\Zone;
@@ -246,6 +248,14 @@ class DomainObjectTest extends TestCase
                 NotificationPoll::class,
                 include __DIR__ . '/data/notification_poll_invalid_count.php',
                 TypeError::class,
+            ],
+            'valid provider' => [
+                Provider::class,
+                include __DIR__ . '/data/provider_valid.php',
+            ],
+            'valid downtime' => [
+                Downtime::class,
+                include __DIR__ . '/data/downtime_valid.php',
             ],
         ];
     }

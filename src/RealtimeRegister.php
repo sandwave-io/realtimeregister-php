@@ -7,6 +7,7 @@ use SandwaveIo\RealtimeRegister\Api\ContactsApi;
 use SandwaveIo\RealtimeRegister\Api\CustomersApi;
 use SandwaveIo\RealtimeRegister\Api\DomainsApi;
 use SandwaveIo\RealtimeRegister\Api\NotificationsApi;
+use SandwaveIo\RealtimeRegister\Api\ProvidersApi;
 use SandwaveIo\RealtimeRegister\Api\TLDsApi;
 use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
 
@@ -29,6 +30,9 @@ final class RealtimeRegister
     /** @var NotificationsApi */
     public $notifications;
 
+    /** @var ProvidersApi */
+    public $providers;
+
     public function __construct(string $apiKey, ?string $baseUrl = null, ?LoggerInterface $logger = null)
     {
         $url = $baseUrl ?: RealtimeRegister::BASE_URL;
@@ -42,5 +46,6 @@ final class RealtimeRegister
         $this->domains   = new DomainsApi($client);
         $this->tlds      = new TLDsApi($client);
         $this->notifications  = new NotificationsApi($client);
+        $this->providers = new ProvidersApi($client);
     }
 }
