@@ -2,5 +2,4 @@
 
 return [
     'name' => 'Provider Name Test',
-    'tlds' => ['com', 'net'],
 ];

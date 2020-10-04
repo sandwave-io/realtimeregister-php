@@ -249,13 +249,46 @@ class DomainObjectTest extends TestCase
                 include __DIR__ . '/data/notification_poll_invalid_count.php',
                 TypeError::class,
             ],
-            'valid provider' => [
+            'valid provider (all fields)' => [
                 Provider::class,
                 include __DIR__ . '/data/provider_valid.php',
             ],
-            'valid downtime' => [
+            'valid provider (only required)' => [
+                Provider::class,
+                include __DIR__ . '/data/provider_valid_only_required.php',
+            ],
+            'invalid provider (name)' => [
+                Provider::class,
+                include __DIR__ . '/data/provider_invalid_name.php',
+                TypeError::class,
+            ],
+            'valid downtime (all fields)' => [
                 Downtime::class,
                 include __DIR__ . '/data/downtime_valid.php',
+            ],
+            'valid downtime (only required)' => [
+                Downtime::class,
+                include __DIR__ . '/data/downtime_valid_only_required.php',
+            ],
+            'invalid downtime (id)' => [
+                Downtime::class,
+                include __DIR__ . '/data/downtime_invalid_id.php',
+                TypeError::class,
+            ],
+            'invalid downtime (start date)' => [
+                Downtime::class,
+                include __DIR__ . '/data/downtime_invalid_start_date.php',
+                TypeError::class,
+            ],
+            'invalid downtime (end date)' => [
+                Downtime::class,
+                include __DIR__ . '/data/downtime_invalid_end_date.php',
+                TypeError::class,
+            ],
+            'invalid downtime (provider)' => [
+                Downtime::class,
+                include __DIR__ . '/data/downtime_invalid_provider.php',
+                TypeError::class,
             ],
         ];
     }

@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
 return [
-    'name' => 'Provider Name Test',
+    'name' => 123,
     'tlds' => ['com', 'net'],
 ];
