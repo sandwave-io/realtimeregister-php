@@ -81,7 +81,7 @@ final class ProvidersApi extends AbstractApi
             $query['offset'] = $offset;
         }
         if (! is_null($search)) {
-            $query['search'] = $search;
+            $query['q'] = $search;
         }
 
         $response = $this->client->get('v2/providers/downtime', $query);
