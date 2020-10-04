@@ -22,7 +22,7 @@ final class Provider implements DomainObjectInterface
     {
         return new Provider(
             $json['name'],
-            $json['tlds'] ?? []
+            $json['tlds'] ?? null
         );
     }
 
