@@ -13,7 +13,7 @@
         "php": "^7.2",
         "ext-json": "*",
         "guzzlehttp/guzzle": "~6.2",
-        "nesbot/carbon": "~1.38",
+        "nesbot/carbon": "^2.0.0",
         "psr/log": "^1.1",
         "webmozart/assert": "~1.3.0"
     },
