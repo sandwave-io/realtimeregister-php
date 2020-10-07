@@ -3,6 +3,7 @@
 namespace SandwaveIo\RealtimeRegister;
 
 use Psr\Log\LoggerInterface;
+use SandwaveIo\RealtimeRegister\Api\BrandsApi;
 use SandwaveIo\RealtimeRegister\Api\ContactsApi;
 use SandwaveIo\RealtimeRegister\Api\CustomersApi;
 use SandwaveIo\RealtimeRegister\Api\DomainsApi;
@@ -33,6 +34,9 @@ final class RealtimeRegister
     /** @var ProvidersApi */
     public $providers;
 
+    /** @var BrandsApi */
+    public $brands;
+
     public function __construct(string $apiKey, ?string $baseUrl = null, ?LoggerInterface $logger = null)
     {
         $url = $baseUrl ?: RealtimeRegister::BASE_URL;
@@ -47,5 +51,6 @@ final class RealtimeRegister
         $this->tlds      = new TLDsApi($client);
         $this->notifications  = new NotificationsApi($client);
         $this->providers = new ProvidersApi($client);
+        $this->brands = new BrandsApi($client);
     }
 }

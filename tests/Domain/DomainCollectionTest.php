@@ -5,6 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Tests\Domain;
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\AccountCollection;
 use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
+use SandwaveIo\RealtimeRegister\Domain\BrandCollection;
 use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\ContactPropertyCollection;
 use SandwaveIo\RealtimeRegister\Domain\CountryCollection;
@@ -20,6 +21,7 @@ use SandwaveIo\RealtimeRegister\Domain\LogCollection;
 use SandwaveIo\RealtimeRegister\Domain\NotificationCollection;
 use SandwaveIo\RealtimeRegister\Domain\PriceCollection;
 use SandwaveIo\RealtimeRegister\Domain\ProviderCollection;
+use SandwaveIo\RealtimeRegister\Domain\TemplateCollection;
 
 /**
  * This TestCase is used to test all Domain Object Collections.
@@ -52,6 +54,8 @@ class DomainCollectionTest extends TestCase
             'notification collection' => [NotificationCollection::class, include __DIR__ . '/data/notification_valid.php'],
             'provider collection' => [ProviderCollection::class, include __DIR__ . '/data/provider_valid.php'],
             'downtime collection' => [DowntimeCollection::class, include __DIR__ . '/data/downtime_valid.php'],
+            'brand collection' => [BrandCollection::class, include __DIR__ . '/data/brand_valid.php'],
+            'template collection' => [TemplateCollection::class, include __DIR__ . '/data/template_valid.php'],
         ];
         // For each type, create a flat and a pagination scenario.
         $dataset = [];

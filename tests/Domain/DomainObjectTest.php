@@ -6,6 +6,7 @@ use Exception;
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\Account;
 use SandwaveIo\RealtimeRegister\Domain\Billable;
+use SandwaveIo\RealtimeRegister\Domain\Brand;
 use SandwaveIo\RealtimeRegister\Domain\Contact;
 use SandwaveIo\RealtimeRegister\Domain\ContactProperty;
 use SandwaveIo\RealtimeRegister\Domain\ContactsConstraint;
@@ -27,6 +28,8 @@ use SandwaveIo\RealtimeRegister\Domain\NotificationPoll;
 use SandwaveIo\RealtimeRegister\Domain\Price;
 use SandwaveIo\RealtimeRegister\Domain\Provider;
 use SandwaveIo\RealtimeRegister\Domain\Registrant;
+use SandwaveIo\RealtimeRegister\Domain\Template;
+use SandwaveIo\RealtimeRegister\Domain\TemplatePreview;
 use SandwaveIo\RealtimeRegister\Domain\TLDInfo;
 use SandwaveIo\RealtimeRegister\Domain\Zone;
 use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
@@ -289,6 +292,36 @@ class DomainObjectTest extends TestCase
                 Downtime::class,
                 include __DIR__ . '/data/downtime_invalid_provider.php',
                 TypeError::class,
+            ],
+            'valid brand (all fields)' => [
+                Brand::class,
+                include __DIR__ . '/data/brand_valid.php',
+            ],
+            'valid brand (only required)' => [
+                Brand::class,
+                include __DIR__ . '/data/brand_valid_only_required.php',
+            ],
+            'invalid brand (name)' => [
+                Brand::class,
+                include __DIR__ . '/data/brand_invalid_name.php',
+                TypeError::class,
+            ],
+            'valid template (all fields)' => [
+                Template::class,
+                include __DIR__ . '/data/template_valid.php',
+            ],
+            'valid template (only required)' => [
+                Template::class,
+                include __DIR__ . '/data/template_valid_only_required.php',
+            ],
+            'invalid template (name)' => [
+                Template::class,
+                include __DIR__ . '/data/template_invalid_name.php',
+                InvalidArgumentException::class,
+            ],
+            'valid template preview' => [
+                TemplatePreview::class,
+                include __DIR__ . '/data/template_preview_valid.php',
             ],
         ];
     }
