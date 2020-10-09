@@ -245,6 +245,8 @@ final class BrandsApi extends AbstractApi
      */
     public function getTemplate(string $customer, string $brand, string $name): Template
     {
+        TemplateNameEnum::validate($name);
+
         return Template::fromArray($this->client->get("/v2/customers/{$customer}/brands/{$brand}/templates/{$name}")->json());
     }
 
