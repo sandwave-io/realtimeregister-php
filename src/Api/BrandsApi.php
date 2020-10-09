@@ -3,13 +3,13 @@
 namespace SandwaveIo\RealtimeRegister\Api;
 
 use Carbon\Carbon;
-use InvalidArgumentException;
 use SandwaveIo\RealtimeRegister\Domain\Brand;
 use SandwaveIo\RealtimeRegister\Domain\BrandCollection;
 use SandwaveIo\RealtimeRegister\Domain\Enum\TemplateNameEnum;
 use SandwaveIo\RealtimeRegister\Domain\Template;
 use SandwaveIo\RealtimeRegister\Domain\TemplateCollection;
 use SandwaveIo\RealtimeRegister\Domain\TemplatePreview;
+use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 
 final class BrandsApi extends AbstractApi
 {
