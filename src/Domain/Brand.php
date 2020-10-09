@@ -19,7 +19,7 @@ final class Brand implements DomainObjectInterface
     /** @var string */
     public $organization;
 
-    /** @var string[]|null */
+    /** @var string[] */
     public $addressLine;
 
     /** @var string */
@@ -49,7 +49,7 @@ final class Brand implements DomainObjectInterface
     /** @var string|null */
     public $privacyContact;
 
-    /** @var string */
+    /** @var string|null */
     public $abuseContact;
 
     /** @var Carbon */
@@ -63,7 +63,7 @@ final class Brand implements DomainObjectInterface
         string $handle,
         string $locale,
         string $organization,
-        ?array $addressLine,
+        array $addressLine,
         string $postalCode,
         string $city,
         ?string $state,
@@ -73,7 +73,7 @@ final class Brand implements DomainObjectInterface
         string $voice,
         ?string $fax,
         ?string $privacyContact,
-        string $abuseContact,
+        ?string $abuseContact,
         Carbon $createdDate,
         ?Carbon $updatedDate
     ) {
@@ -106,7 +106,7 @@ final class Brand implements DomainObjectInterface
             $json['handle'],
             $json['locale'],
             $json['organization'],
-            $json['addressLine'] ?? null,
+            $json['addressLine'],
             $json['postalCode'],
             $json['city'],
             $json['state'] ?? null,
@@ -116,7 +116,7 @@ final class Brand implements DomainObjectInterface
             $json['voice'],
             $json['fax'] ?? null,
             $json['privacyContact'] ?? null,
-            $json['abuseContact'],
+            $json['abuseContact'] ?? null,
             new Carbon($json['createdDate']),
             $updatedDate
         );

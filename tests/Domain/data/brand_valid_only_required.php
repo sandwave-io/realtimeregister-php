@@ -7,11 +7,11 @@ return [
     'handle' => 'brandtestname',
     'locale' => LocaleEnum::LOCALE_EN_US,
     'organization' => 'organizationtestname',
+    'addressLine' => ['addresslinetest_1', 'addresslinetest_2'],
     'postalCode' => 'postcodetest',
     'city' => 'citytest',
     'country' => 'countrytest',
     'email' => 'email@test.com',
     'voice' => 'voicetest',
-    'abuseContact' => 'abusecontacttest',
     'createdDate' => '2020-08-30 01:02:03',
 ];

@@ -61,30 +61,30 @@ final class BrandsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/brands/create
      *
-     * @param string        $customer;
-     * @param string        $handle;
-     * @param string        $locale;
-     * @param string        $organization;
-     * @param string[]|null $addressLine;
-     * @param string        $postalCode;
-     * @param string        $city;
-     * @param string|null   $state;
-     * @param string        $country;
-     * @param string        $email;
-     * @param string|null   $url;
-     * @param string        $voice;
-     * @param string|null   $fax;
-     * @param string|null   $privacyContact;
-     * @param string        $abuseContact;
-     * @param Carbon        $createdDate;
-     * @param Carbon|null   $updatedDate;
+     * @param string      $customer;
+     * @param string      $handle;
+     * @param string      $locale;
+     * @param string      $organization;
+     * @param string[]    $addressLine;
+     * @param string      $postalCode;
+     * @param string      $city;
+     * @param string|null $state;
+     * @param string      $country;
+     * @param string      $email;
+     * @param string|null $url;
+     * @param string      $voice;
+     * @param string|null $fax;
+     * @param string|null $privacyContact;
+     * @param string|null $abuseContact;
+     * @param Carbon      $createdDate;
+     * @param Carbon|null $updatedDate;
      */
     public function create(
         string $customer,
         string $handle,
         string $locale,
         string $organization,
-        ?array $addressLine,
+        array $addressLine,
         string $postalCode,
         string $city,
         ?string $state,
@@ -94,25 +94,22 @@ final class BrandsApi extends AbstractApi
         string $voice,
         ?string $fax,
         ?string $privacyContact,
-        string $abuseContact,
+        ?string $abuseContact,
         Carbon $createdDate,
         ?Carbon $updatedDate
     ): void {
         $payload = [
             'locale' => $locale,
             'organization' => $organization,
+            'addressLine' =>  $addressLine,
             'postalCode' => $postalCode,
             'city' =>  $city,
             'country' =>  $country,
             'email' =>  $email,
             'voice' =>  $voice,
-            'abuseContact' =>  $abuseContact,
             'createdDate' =>  $createdDate,
         ];
 
-        if ($addressLine) {
-            $payload['addressLine'] = $addressLine;
-        }
         if ($state) {
             $payload['state'] = $state;
         }
@@ -124,6 +121,9 @@ final class BrandsApi extends AbstractApi
         }
         if ($privacyContact) {
             $payload['privacyContact'] = $privacyContact;
+        }
+        if ($abuseContact) {
+            $payload['abuseContact'] = $abuseContact;
         }
         if ($updatedDate) {
             $payload['updatedDate'] = $updatedDate;
@@ -137,20 +137,20 @@ final class BrandsApi extends AbstractApi
      *
      * @param string        $customer;
      * @param string        $handle;
-     * @param string        $locale;
-     * @param string        $organization;
+     * @param string|null   $locale;
+     * @param string|null   $organization;
      * @param string[]|null $addressLine;
-     * @param string        $postalCode;
-     * @param string        $city;
+     * @param string|null   $postalCode;
+     * @param string|null   $city;
      * @param string|null   $state;
-     * @param string        $country;
-     * @param string        $email;
+     * @param string|null   $country;
+     * @param string|null   $email;
      * @param string|null   $url;
-     * @param string        $voice;
+     * @param string|null   $voice;
      * @param string|null   $fax;
      * @param string|null   $privacyContact;
-     * @param string        $abuseContact;
-     * @param Carbon        $createdDate;
+     * @param string|null   $abuseContact;
+     * @param Carbon|null   $createdDate;
      * @param Carbon|null   $updatedDate;
      */
     public function update(
