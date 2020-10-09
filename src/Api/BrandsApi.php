@@ -337,7 +337,11 @@ final class BrandsApi extends AbstractApi
             TemplateNameEnum::TEMPLATE_NAME_WEB_FOOTER,
         ];
         if (in_array($name, $invalidTemplateNamesForPreview)) {
-            throw new InvalidArgumentException('Template not available for preview.');
+            throw new InvalidArgumentException(sprintf(
+                'Template name %s not available for preview. Not available names: (%s)',
+                $name,
+                implode(', ', $invalidTemplateNamesForPreview)
+            ));
         }
 
         $payload = [];
