@@ -2,20 +2,20 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Carbon\Carbon;
+use DateTime;
 
 final class Notification implements DomainObjectInterface
 {
     /** @var int */
     public $id;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $fireDate;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $readDate;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $acknowledgedDate;
 
     /** @var string */
@@ -41,9 +41,9 @@ final class Notification implements DomainObjectInterface
 
     private function __construct(
         int $id,
-        Carbon $fireDate,
-        Carbon $readDate,
-        Carbon $acknowledgedDate,
+        DateTime $fireDate,
+        DateTime $readDate,
+        DateTime $acknowledgedDate,
         string $message,
         ?string $reason,
         ?string $customer,
@@ -69,9 +69,9 @@ final class Notification implements DomainObjectInterface
     {
         return new Notification(
             $json['id'],
-            new Carbon($json['fireDate']),
-            new Carbon($json['readDate']),
-            new Carbon($json['acknowledgedDate']),
+            new DateTime($json['fireDate']),
+            new DateTime($json['readDate']),
+            new DateTime($json['acknowledgedDate']),
             $json['message'],
             $json['reason'] ?? null,
             $json['customer'] ?? null,
@@ -86,9 +86,9 @@ final class Notification implements DomainObjectInterface
     {
         return array_filter([
             'id' => $this->id,
-            'fireDate' => $this->fireDate->toDateTimeString(),
-            'readDate' => $this->readDate->toDateTimeString(),
-            'acknowledgedDate' => $this->acknowledgedDate->toDateTimeString(),
+            'fireDate' => $this->fireDate->format('Y-m-d H:i:s'),
+            'readDate' => $this->readDate->format('Y-m-d H:i:s'),
+            'acknowledgedDate' => $this->acknowledgedDate->format('Y-m-d H:i:s'),
             'message' => $this->message,
             'reason' => $this->reason,
             'customer' => $this->customer,

@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Api;
 
-use Carbon\Carbon;
+use DateTime;
 use SandwaveIo\RealtimeRegister\Domain\Brand;
 use SandwaveIo\RealtimeRegister\Domain\BrandCollection;
 use SandwaveIo\RealtimeRegister\Domain\Enum\TemplateNameEnum;
@@ -61,23 +61,23 @@ final class BrandsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/brands/create
      *
-     * @param string      $customer;
-     * @param string      $handle;
-     * @param string      $locale;
-     * @param string      $organization;
-     * @param string[]    $addressLine;
-     * @param string      $postalCode;
-     * @param string      $city;
-     * @param string|null $state;
-     * @param string      $country;
-     * @param string      $email;
-     * @param string|null $url;
-     * @param string      $voice;
-     * @param string|null $fax;
-     * @param string|null $privacyContact;
-     * @param string|null $abuseContact;
-     * @param Carbon      $createdDate;
-     * @param Carbon|null $updatedDate;
+     * @param string        $customer;
+     * @param string        $handle;
+     * @param string        $locale;
+     * @param string        $organization;
+     * @param string[]      $addressLine;
+     * @param string        $postalCode;
+     * @param string        $city;
+     * @param string|null   $state;
+     * @param string        $country;
+     * @param string        $email;
+     * @param string|null   $url;
+     * @param string        $voice;
+     * @param string|null   $fax;
+     * @param string|null   $privacyContact;
+     * @param string|null   $abuseContact;
+     * @param DateTime      $createdDate;
+     * @param DateTime|null $updatedDate;
      */
     public function create(
         string $customer,
@@ -95,8 +95,8 @@ final class BrandsApi extends AbstractApi
         ?string $fax,
         ?string $privacyContact,
         ?string $abuseContact,
-        Carbon $createdDate,
-        ?Carbon $updatedDate
+        DateTime $createdDate,
+        ?DateTime $updatedDate
     ): void {
         $payload = [
             'locale' => $locale,
@@ -150,8 +150,8 @@ final class BrandsApi extends AbstractApi
      * @param string|null   $fax;
      * @param string|null   $privacyContact;
      * @param string|null   $abuseContact;
-     * @param Carbon|null   $createdDate;
-     * @param Carbon|null   $updatedDate;
+     * @param DateTime|null $createdDate;
+     * @param DateTime|null $updatedDate;
      */
     public function update(
         string $customer,
@@ -169,8 +169,8 @@ final class BrandsApi extends AbstractApi
         ?string $fax,
         ?string $privacyContact,
         ?string $abuseContact,
-        ?Carbon $createdDate,
-        ?Carbon $updatedDate
+        ?DateTime $createdDate,
+        ?DateTime $updatedDate
     ): void {
         $payload = [];
 

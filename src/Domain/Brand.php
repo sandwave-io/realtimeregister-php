@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Carbon\Carbon;
+use DateTime;
 use SandwaveIo\RealtimeRegister\Domain\Enum\LocaleEnum;
 
 final class Brand implements DomainObjectInterface
@@ -52,10 +52,10 @@ final class Brand implements DomainObjectInterface
     /** @var string|null */
     public $abuseContact;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $createdDate;
 
-    /** @var Carbon|null */
+    /** @var DateTime|null */
     public $updatedDate;
 
     private function __construct(
@@ -74,8 +74,8 @@ final class Brand implements DomainObjectInterface
         ?string $fax,
         ?string $privacyContact,
         ?string $abuseContact,
-        Carbon $createdDate,
-        ?Carbon $updatedDate
+        DateTime $createdDate,
+        ?DateTime $updatedDate
     ) {
         $this->customer = $customer;
         $this->handle = $handle;
@@ -99,7 +99,7 @@ final class Brand implements DomainObjectInterface
     public static function fromArray(array $json): Brand
     {
         LocaleEnum::validate($json['locale']);
-        $updatedDate = isset($json['updatedDate']) ? new Carbon($json['updatedDate']) : null;
+        $updatedDate = isset($json['updatedDate']) ? new DateTime($json['updatedDate']) : null;
 
         return new Brand(
             $json['customer'],
@@ -117,7 +117,7 @@ final class Brand implements DomainObjectInterface
             $json['fax'] ?? null,
             $json['privacyContact'] ?? null,
             $json['abuseContact'] ?? null,
-            new Carbon($json['createdDate']),
+            new DateTime($json['createdDate']),
             $updatedDate
         );
     }
@@ -140,8 +140,8 @@ final class Brand implements DomainObjectInterface
             'fax' => $this->fax,
             'privacyContact' => $this->privacyContact,
             'abuseContact' => $this->abuseContact,
-            'createdDate' => $this->createdDate->toDateTimeString(),
-            'updatedDate' => $this->updatedDate ? $this->updatedDate->toDateTimeString() : null,
+            'createdDate' => $this->createdDate->format('Y-m-d H:i:s'),
+            'updatedDate' => $this->updatedDate ? $this->updatedDate->format('Y-m-d H:i:s') : null,
         ], function ($x) {
             return ! is_null($x);
         });

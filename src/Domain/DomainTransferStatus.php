@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Carbon\Carbon;
+use DateTime;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DomainTransferTypeEnum;
 
 final class DomainTransferStatus implements DomainObjectInterface
@@ -16,13 +16,13 @@ final class DomainTransferStatus implements DomainObjectInterface
     /** @var string */
     public $status;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $requestedDate;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $actionDate;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $expiryDate;
 
     /** @var string */
@@ -38,9 +38,9 @@ final class DomainTransferStatus implements DomainObjectInterface
         string $domainName,
         string $registrar,
         string $status,
-        Carbon $requestedDate,
-        Carbon $actionDate,
-        Carbon $expiryDate,
+        DateTime $requestedDate,
+        DateTime $actionDate,
+        DateTime $expiryDate,
         string $type,
         int $processId,
         ?LogCollection $log = null
@@ -63,9 +63,9 @@ final class DomainTransferStatus implements DomainObjectInterface
             $json['domainName'],
             $json['registrar'],
             $json['status'],
-            new Carbon($json['requestedDate']),
-            new Carbon($json['actionDate']),
-            new Carbon($json['expiryDate']),
+            new DateTime($json['requestedDate']),
+            new DateTime($json['actionDate']),
+            new DateTime($json['expiryDate']),
             $json['type'],
             $json['processId'],
             isset($json['log']) ? LogCollection::fromArray($json['log']) : null
@@ -78,9 +78,9 @@ final class DomainTransferStatus implements DomainObjectInterface
             'domainName' => $this->domainName,
             'registrar' => $this->registrar,
             'status' => $this->status,
-            'requestedDate' => $this->requestedDate->toDateTimeString(),
-            'actionDate' => $this->actionDate->toDateTimeString(),
-            'expiryDate' => $this->expiryDate->toDateTimeString(),
+            'requestedDate' => $this->requestedDate->format('Y-m-d H:i:s'),
+            'actionDate' => $this->actionDate->format('Y-m-d H:i:s'),
+            'expiryDate' => $this->expiryDate->format('Y-m-d H:i:s'),
             'type' => $this->type,
             'processId' => $this->processId,
             'log' => $this->log ? $this->log->toArray() : null,
