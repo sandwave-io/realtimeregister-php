@@ -32,10 +32,10 @@ final class DomainAvailability implements DomainObjectInterface
     {
         return new DomainAvailability(
             $json['available'],
-            $json['reason'],
-            $json['premium'],
-            $json['price'],
-            $json['currency']
+            $json['reason'] ?? null,
+            $json['premium'] ?? null,
+            $json['price'] ?? null,
+            $json['currency'] ?? null
         );
     }
 
