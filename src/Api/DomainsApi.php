@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Api;
 
-use Carbon\Carbon;
+use DateTime;
 use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
 use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
@@ -317,7 +317,7 @@ final class DomainsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/domains/transferinfo
      */
-    public function renew(string $domain, int $period, ?BillableCollection $billables = null, ?bool $quote = null): Carbon
+    public function renew(string $domain, int $period, ?BillableCollection $billables = null, ?bool $quote = null): DateTime
     {
         $payload = [
             'period' => $period,
@@ -331,7 +331,7 @@ final class DomainsApi extends AbstractApi
             'quote' => $quote,
         ]);
 
-        return new Carbon($response->json()['expiryDate']);
+        return new DateTime($response->json()['expiryDate']);
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/domains/delete */
@@ -341,7 +341,7 @@ final class DomainsApi extends AbstractApi
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/domains/restore */
-    public function restore(string $domain, string $reason, ?BillableCollection $billables = null, ?bool $quote = null): Carbon
+    public function restore(string $domain, string $reason, ?BillableCollection $billables = null, ?bool $quote = null): DateTime
     {
         $payload = [
             'reason' => $reason,
@@ -355,6 +355,6 @@ final class DomainsApi extends AbstractApi
             'quote' => $quote,
         ]);
 
-        return new Carbon($response->json()['expiryDate']);
+        return new DateTime($response->json()['expiryDate']);
     }
 }

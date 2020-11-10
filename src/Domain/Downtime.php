@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Carbon\Carbon;
+use DateTime;
 use TypeError;
 
 final class Downtime implements DomainObjectInterface
@@ -10,10 +10,10 @@ final class Downtime implements DomainObjectInterface
     /** @var int */
     public $id;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $startDate;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $endDate;
 
     /** @var string|null */
@@ -24,8 +24,8 @@ final class Downtime implements DomainObjectInterface
 
     private function __construct(
         int $id,
-        Carbon $startDate,
-        Carbon $endDate,
+        DateTime $startDate,
+        DateTime $endDate,
         ?string $reason,
         Provider $provider
     ) {
@@ -39,12 +39,12 @@ final class Downtime implements DomainObjectInterface
     public static function fromArray(array $json): Downtime
     {
         try {
-            $startDate = new Carbon($json['startDate']);
+            $startDate = new DateTime($json['startDate']);
         } catch (\Throwable $th) {
             throw new TypeError('Invalid start date received');
         }
         try {
-            $endDate = new Carbon($json['endDate']);
+            $endDate = new DateTime($json['endDate']);
         } catch (\Throwable $th) {
             throw new TypeError('Invalid end date received');
         }
@@ -62,8 +62,8 @@ final class Downtime implements DomainObjectInterface
     {
         return array_filter([
             'id' => $this->id,
-            'startDate' => $this->startDate->toDateTimeString(),
-            'endDate' => $this->endDate->toDateTimeString(),
+            'startDate' => $this->startDate->format('Y-m-d H:i:s'),
+            'endDate' => $this->endDate->format('Y-m-d H:i:s'),
             'reason' => $this->reason,
             'provider' => $this->provider->toArray(),
         ], function ($x) {

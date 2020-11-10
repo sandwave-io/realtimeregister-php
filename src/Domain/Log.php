@@ -2,12 +2,12 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Carbon\Carbon;
+use DateTime;
 use SandwaveIo\RealtimeRegister\Domain\Enum\LogStatusEnum;
 
 final class Log implements DomainObjectInterface
 {
-    /** @var Carbon */
+    /** @var DateTime */
     public $date;
 
     /** @var string */
@@ -16,7 +16,7 @@ final class Log implements DomainObjectInterface
     /** @var string */
     public $message;
 
-    private function __construct(Carbon $date, string $status, string $message)
+    private function __construct(DateTime $date, string $status, string $message)
     {
         $this->date = $date;
         $this->status = $status;
@@ -27,7 +27,7 @@ final class Log implements DomainObjectInterface
     {
         LogStatusEnum::validate($json['status']);
         return new Log(
-            new Carbon($json['date']),
+            new DateTime($json['date']),
             $json['status'],
             $json['message']
         );
@@ -36,7 +36,7 @@ final class Log implements DomainObjectInterface
     public function toArray(): array
     {
         return [
-            'date' =>$this->date->toDateTimeString(),
+            'date' =>$this->date->format('Y-m-d H:i:s'),
             'status' =>$this->status,
             'message' =>$this->message,
         ];

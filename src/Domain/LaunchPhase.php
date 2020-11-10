@@ -2,20 +2,20 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Carbon\Carbon;
+use DateTime;
 
 final class LaunchPhase implements DomainObjectInterface
 {
     /** @var string */
     public $phase;
 
-    /** @var Carbon|null */
+    /** @var DateTime|null */
     public $startDate;
 
-    /** @var Carbon|null */
+    /** @var DateTime|null */
     public $endDate;
 
-    private function __construct(string $phase, ?Carbon $startDate = null, ?Carbon $endDate = null)
+    private function __construct(string $phase, ?DateTime $startDate = null, ?DateTime $endDate = null)
     {
         $this->phase = $phase;
         $this->startDate = $startDate;
@@ -26,8 +26,8 @@ final class LaunchPhase implements DomainObjectInterface
     {
         return new LaunchPhase(
             $json['phase'],
-            isset($json['startDate']) ? new Carbon($json['startDate']) : null,
-            isset($json['endDate']) ? new Carbon($json['endDate']) : null
+            isset($json['startDate']) ? new DateTime($json['startDate']) : null,
+            isset($json['endDate']) ? new DateTime($json['endDate']) : null
         );
     }
 
@@ -35,8 +35,8 @@ final class LaunchPhase implements DomainObjectInterface
     {
         return array_filter([
             'phase' => $this->phase,
-            'startDate' => $this->startDate ? $this->startDate->toDateTimeString() : null,
-            'endDate' => $this->endDate ? $this->endDate->toDateTimeString() : null,
+            'startDate' => $this->startDate ? $this->startDate->format('Y-m-d H:i:s') : null,
+            'endDate' => $this->endDate ? $this->endDate->format('Y-m-d H:i:s') : null,
         ], function ($x) {
             return ! is_null($x);
         });
