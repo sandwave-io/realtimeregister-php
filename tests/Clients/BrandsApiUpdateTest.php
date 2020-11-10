@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
-use Carbon\Carbon;
+use DateTime;
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\Enum\LocaleEnum;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
@@ -36,8 +36,8 @@ class BrandsApiUpdateTest extends TestCase
             'faxtest',
             'privacycontacttest',
             'abusecontacttest',
-            new Carbon('2020-08-30 01:02:03'),
-            new Carbon('2020-09-05 11:02:03')
+            new DateTime('2020-08-30 01:02:03'),
+            new DateTime('2020-09-05 11:02:03')
         );
     }
 }

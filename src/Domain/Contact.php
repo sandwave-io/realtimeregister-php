@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Carbon\Carbon;
+use DateTime;
 
 final class Contact implements DomainObjectInterface
 {
@@ -51,10 +51,10 @@ final class Contact implements DomainObjectInterface
     /** @var array<string, array<string, string>>|null */
     public $properties;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $createdDate;
 
-    /** @var Carbon|null */
+    /** @var DateTime|null */
     public $updatedDate;
 
     private function __construct(
@@ -73,8 +73,8 @@ final class Contact implements DomainObjectInterface
         ?string $fax,
         ?array $registries,
         ?array $properties,
-        Carbon $createdDate,
-        ?Carbon $updatedDate
+        DateTime $createdDate,
+        ?DateTime $updatedDate
     ) {
         $this->customer = $customer;
         $this->handle = $handle;
@@ -97,7 +97,7 @@ final class Contact implements DomainObjectInterface
 
     public static function fromArray(array $data): Contact
     {
-        $updatedDate = isset($data['updatedDate']) ? new Carbon($data['updatedDate']) : null;
+        $updatedDate = isset($data['updatedDate']) ? new DateTime($data['updatedDate']) : null;
         return new Contact(
             $data['customer'],
             $data['handle'],
@@ -114,7 +114,7 @@ final class Contact implements DomainObjectInterface
             $data['fax'] ?? null,
             $data['registries'] ?? null,
             $data['properties'] ?? null,
-            new Carbon($data['createdDate']),
+            new DateTime($data['createdDate']),
             $updatedDate
         );
     }
@@ -137,8 +137,8 @@ final class Contact implements DomainObjectInterface
             'fax' =>$this->fax,
             'registries' =>$this->registries,
             'properties' =>$this->properties,
-            'createdDate' =>$this->createdDate->toDateTimeString(),
-            'updatedDate' =>$this->updatedDate ? $this->updatedDate->toDateTimeString() : null,
+            'createdDate' =>$this->createdDate->format('Y-m-d H:i:s'),
+            'updatedDate' =>$this->updatedDate ? $this->updatedDate->format('Y-m-d H:i:s') : null,
         ], function ($x) {
             return ! is_null($x);
         });

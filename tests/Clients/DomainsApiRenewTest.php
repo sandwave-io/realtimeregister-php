@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
-use Carbon\Carbon;
+use DateTime;
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
@@ -22,7 +22,7 @@ class DomainsApiRenewTest extends TestCase
             include __DIR__ . '/../Domain/data/billable_valid.php',
         ]));
 
-        $this->assertInstanceOf(Carbon::class, $expiry);
-        $this->assertSame('2020-03-04 12:34:56', $expiry->toDateTimeString());
+        $this->assertInstanceOf(DateTime::class, $expiry);
+        $this->assertSame('2020-03-04 12:34:56', $expiry->format('Y-m-d H:i:s'));
     }
 }

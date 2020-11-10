@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Carbon\Carbon;
+use DateTime;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DomainStatusEnum;
 
 final class DomainDetails implements DomainObjectInterface
@@ -43,13 +43,13 @@ final class DomainDetails implements DomainObjectInterface
     /** @var string[] */
     public $childHosts;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $createdDate;
 
-    /** @var Carbon|null */
+    /** @var DateTime|null */
     public $updatedDate;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $expiryDate;
 
     /** @var bool */
@@ -80,9 +80,9 @@ final class DomainDetails implements DomainObjectInterface
         int $autoRenewPeriod,
         array $ns,
         array $childHosts,
-        Carbon $createdDate,
-        ?Carbon $updatedDate,
-        Carbon $expiryDate,
+        DateTime $createdDate,
+        ?DateTime $updatedDate,
+        DateTime $expiryDate,
         bool $premium,
         ?Zone $zone,
         ?DomainContactCollection $contacts,
@@ -128,9 +128,9 @@ final class DomainDetails implements DomainObjectInterface
             $json['autoRenewPeriod'],
             $json['ns'] ?? [],
             $json['childHosts'] ?? [],
-            new Carbon($json['createdDate']),
-            isset($json['updatedDate']) ? new Carbon($json['updatedDate']) : null,
-            new Carbon($json['expiryDate']),
+            new DateTime($json['createdDate']),
+            isset($json['updatedDate']) ? new DateTime($json['updatedDate']) : null,
+            new DateTime($json['expiryDate']),
             $json['premium'],
             isset($json['zone']) ? Zone::fromArray($json['zone']) : null,
             isset($json['contacts']) ? DomainContactCollection::fromArray($json['contacts']) : null,
@@ -154,9 +154,9 @@ final class DomainDetails implements DomainObjectInterface
             'autoRenewPeriod' => $this->autoRenewPeriod,
             'ns' => $this->ns,
             'childHosts' => $this->childHosts,
-            'createdDate' => $this->createdDate->toDateTimeString(),
-            'updatedDate' => $this->updatedDate ? $this->updatedDate->toDateTimeString() : null,
-            'expiryDate' => $this->expiryDate->toDateTimeString(),
+            'createdDate' => $this->createdDate->format('Y-m-d H:i:s'),
+            'updatedDate' => $this->updatedDate ? $this->updatedDate->format('Y-m-d H:i:s') : null,
+            'expiryDate' => $this->expiryDate->format('Y-m-d H:i:s'),
             'premium' => $this->premium,
             'zone' => $this->zone ? $this->zone->toArray() : null,
             'contacts' => $this->contacts ? $this->contacts->toArray() : null,

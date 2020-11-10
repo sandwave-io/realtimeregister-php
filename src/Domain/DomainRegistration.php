@@ -2,17 +2,17 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use Carbon\Carbon;
+use DateTime;
 
 class DomainRegistration implements DomainObjectInterface
 {
     /** @var string */
     public $domainName;
 
-    /** @var Carbon */
+    /** @var DateTime */
     public $expiryDate;
 
-    private function __construct(string $domainName, Carbon $expiryDate)
+    private function __construct(string $domainName, DateTime $expiryDate)
     {
         $this->domainName = $domainName;
         $this->expiryDate = $expiryDate;
@@ -22,7 +22,7 @@ class DomainRegistration implements DomainObjectInterface
     {
         return new DomainRegistration(
             $json['domainName'],
-            new Carbon($json['expiryDate'])
+            new DateTime($json['expiryDate'])
         );
     }
 
@@ -30,7 +30,7 @@ class DomainRegistration implements DomainObjectInterface
     {
         return [
             'domainName' => $this->domainName,
-            'expiryDate' => $this->expiryDate->toDateTimeString(),
+            'expiryDate' => $this->expiryDate->format('Y-m-d H:i:s'),
         ];
     }
 }
