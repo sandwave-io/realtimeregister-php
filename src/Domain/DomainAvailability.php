@@ -7,19 +7,19 @@ final class DomainAvailability implements DomainObjectInterface
     /** @var bool */
     public $available;
 
-    /** @var string */
+    /** @var string|null */
     public $reason;
 
-    /** @var bool */
+    /** @var bool|null */
     public $premium;
 
-    /** @var int */
+    /** @var int|null */
     public $price;
 
-    /** @var string */
+    /** @var string|null */
     public $currency;
 
-    private function __construct(bool $available, string $reason, bool $premium, int $price, string $currency)
+    private function __construct(bool $available, ?string $reason, ?bool $premium, ?int $price, ?string $currency)
     {
         $this->available = $available;
         $this->reason = $reason;
