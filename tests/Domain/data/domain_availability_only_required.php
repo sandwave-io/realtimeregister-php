@@ -4,6 +4,6 @@ return [
     'available' => true,
     'reason' => null,
     'premium' => false,
-    'price' => '499',
+    'price' => 0,
     'currency' => null,
 ];
