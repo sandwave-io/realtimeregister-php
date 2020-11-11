@@ -22,7 +22,7 @@ final class DomainDetails implements DomainObjectInterface
     /** @var bool */
     public $privacyProtect;
 
-    /** @var string */
+    /** @var string[] */
     public $status;
 
     /** @var string|null */
@@ -73,7 +73,7 @@ final class DomainDetails implements DomainObjectInterface
         string $customer,
         string $registrant,
         bool $privacyProtect,
-        string $status,
+        array $status,
         ?string $authcode,
         ?string $languageCode,
         bool $autoRenew,
@@ -113,7 +113,7 @@ final class DomainDetails implements DomainObjectInterface
 
     public static function fromArray(array $json): DomainDetails
     {
-        DomainStatusEnum::validate($json['status']);
+        DomainStatusEnum::validate($json['status'][0]);
 
         return new DomainDetails(
             $json['domainName'],

@@ -6,7 +6,9 @@ return [
     'customer' => 'johndoe',
     'registrant' => 'johndoe',
     'privacyProtect' => false,
-    'status' => 'PENDING_RENEWasdfasdfasdf',
+    'status' => [
+            0 =>'PENDING_RENEWasdfasdfasdf',
+        ],
     'authcode' => '294759302',
     'languageCode' => 'nl',
     'autoRenew' => true,
