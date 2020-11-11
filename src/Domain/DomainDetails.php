@@ -4,6 +4,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 use DateTime;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DomainStatusEnum;
+use Webmozart\Assert\Assert;
 
 final class DomainDetails implements DomainObjectInterface
 {
@@ -22,7 +23,7 @@ final class DomainDetails implements DomainObjectInterface
     /** @var bool */
     public $privacyProtect;
 
-    /** @var string */
+    /** @var string[] */
     public $status;
 
     /** @var string|null */
@@ -73,7 +74,7 @@ final class DomainDetails implements DomainObjectInterface
         string $customer,
         string $registrant,
         bool $privacyProtect,
-        string $status,
+        array $status,
         ?string $authcode,
         ?string $languageCode,
         bool $autoRenew,
@@ -113,7 +114,11 @@ final class DomainDetails implements DomainObjectInterface
 
     public static function fromArray(array $json): DomainDetails
     {
-        DomainStatusEnum::validate($json['status']);
+        Assert::isArray($json['status']);
+
+        foreach ($json['status'] as $status) {
+            DomainStatusEnum::validate($status);
+        }
 
         return new DomainDetails(
             $json['domainName'],
