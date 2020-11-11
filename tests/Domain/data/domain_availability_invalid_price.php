@@ -3,7 +3,7 @@
 return [
     'available' => true,
     'reason' => null,
-    'premium' => false,
+    'premium' => null,
     'price' => '499',
     'currency' => null,
 ];
