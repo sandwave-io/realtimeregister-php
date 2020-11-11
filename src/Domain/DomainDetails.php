@@ -113,7 +113,9 @@ final class DomainDetails implements DomainObjectInterface
 
     public static function fromArray(array $json): DomainDetails
     {
-        DomainStatusEnum::validate($json['status'][0]);
+        foreach ($json['status'] as $status) {
+            DomainStatusEnum::validate($status);
+        }
 
         return new DomainDetails(
             $json['domainName'],
