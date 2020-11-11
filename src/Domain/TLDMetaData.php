@@ -209,25 +209,27 @@ final class TLDMetaData implements DomainObjectInterface
 
     public static function fromArray(array $data): TLDMetaData
     {
-        if (! is_null($data['possibleClientDomainStatuses'])) {
+        if (isset($data['possibleClientDomainStatuses'])) {
             Assert::isArray($data['possibleClientDomainStatuses']);
             foreach ($data['possibleClientDomainStatuses'] as $status) {
                 DomainPossibleClientDomainStatusEnum::validate($status);
             }
         }
-        if (! is_null($data['allowedDnssecAlgorithms'])) {
+        if (isset($data['allowedDnssecAlgorithms'])) {
             Assert::isArray($data['allowedDnssecAlgorithms']);
             foreach ($data['allowedDnssecAlgorithms'] as $algo) {
                 KeyDataAlgorithmEnum::validate($algo);
             }
         }
-        if (! is_null($data['validationCategory'])) {
+        if (isset($data['validationCategory'])) {
             ValidationCategoryEnum::validate($data['validationCategory']);
         }
         foreach ($data['featuresAvailable'] as $feature) {
             DomainFeatureEnum::validate($feature);
         }
-        DomainDesignatedAgentEnum::validate($data['allowDesignatedAgent']);
+        if (isset($data['allowDesignatedAgent'])) {
+            DomainDesignatedAgentEnum::validate($data['allowDesignatedAgent']);
+        }
         WhoisExposureEnum::validate($data['whoisExposure']);
         GDPRCategoryEnum::validate($data['gdprCategory']);
 
