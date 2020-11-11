@@ -5,4 +5,5 @@ return [
     'maxLength' => 20,
     'idnSupport' => true,
     'allowedCharacters' => 'abcdefghijklmnopqrstuvwxyz',
+    'languageCodes' => include __DIR__ . '/language_codes.php',
 ];

@@ -16,12 +16,16 @@ final class DomainSyntax implements DomainObjectInterface
     /** @var string */
     public $allowedCharacters;
 
-    private function __construct(int $minLength, int $maxLength, bool $idnSupport, string $allowedCharacters)
+    /** @var LanguageCodes|null */
+    public $languageCodes;
+
+    private function __construct(int $minLength, int $maxLength, bool $idnSupport, string $allowedCharacters, ?LanguageCodes $languageCodes = null)
     {
         $this->minLength = $minLength;
         $this->maxLength = $maxLength;
         $this->idnSupport = $idnSupport;
         $this->allowedCharacters = $allowedCharacters;
+        $this->languageCodes = $languageCodes;
     }
 
     public static function fromArray(array $json): DomainSyntax
@@ -29,18 +33,22 @@ final class DomainSyntax implements DomainObjectInterface
         return new DomainSyntax(
             $json['minLength'],
             $json['maxLength'],
-            $json['idnSupport'] ?? null,
-            $json['allowedCharacters'] ?? null
+            $json['idnSupport'],
+            $json['allowedCharacters'],
+            isset($json['languageCodes']) ? LanguageCodes::fromArray($json['languageCodes']) : null
         );
     }
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'minLength' =>$this->minLength,
             'maxLength' =>$this->maxLength,
             'idnSupport' =>$this->idnSupport,
             'allowedCharacters' =>$this->allowedCharacters,
-        ];
+            'languageCodes' => $this->languageCodes ? $this->languageCodes->toArray() : null,
+        ], function ($x) {
+            return ! is_null($x);
+        });
     }
 }
