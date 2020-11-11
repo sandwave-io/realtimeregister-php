@@ -19,7 +19,7 @@ final class DomainSyntax implements DomainObjectInterface
     /** @var LanguageCodes|null */
     public $languageCodes;
 
-    private function __construct(int $minLength, int $maxLength, bool $idnSupport, string $allowedCharacters, ?LanguageCodes $languageCodes)
+    private function __construct(int $minLength, int $maxLength, bool $idnSupport, string $allowedCharacters, ?LanguageCodes $languageCodes = null)
     {
         $this->minLength = $minLength;
         $this->maxLength = $maxLength;
