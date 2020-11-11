@@ -2,5 +2,4 @@
 
 return [
     'available' => true,
-    'price' => '499',
 ];

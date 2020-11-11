@@ -7,19 +7,19 @@ final class DomainAvailability implements DomainObjectInterface
     /** @var bool */
     public $available;
 
-    /** @var string */
+    /** @var string|null */
     public $reason;
 
-    /** @var bool */
+    /** @var bool|null */
     public $premium;
 
-    /** @var int */
+    /** @var int|null */
     public $price;
 
-    /** @var string */
+    /** @var string|null */
     public $currency;
 
-    private function __construct(bool $available, string $reason, bool $premium, int $price, string $currency)
+    private function __construct(bool $available, ?string $reason = null, ?bool $premium = null, ?int $price = null, ?string $currency = null)
     {
         $this->available = $available;
         $this->reason = $reason;
@@ -32,21 +32,26 @@ final class DomainAvailability implements DomainObjectInterface
     {
         return new DomainAvailability(
             $json['available'],
-            $json['reason'],
-            $json['premium'],
-            $json['price'],
-            $json['currency']
+            $json['reason'] ?? null,
+            $json['premium'] ?? null,
+            $json['price'] ?? null,
+            $json['currency'] ?? null
         );
     }
 
     public function toArray(): array
     {
-        return [
-            'available' =>$this->available,
-            'reason' =>$this->reason,
-            'premium' =>$this->premium,
-            'price' =>$this->price,
-            'currency' =>$this->currency,
-        ];
+        return array_filter(
+            [
+            'available' => $this->available,
+            'reason'    => $this->reason,
+            'premium'   => $this->premium,
+            'price'     => $this->price,
+            'currency'  => $this->currency,
+        ],
+            function ($x) {
+            return ! is_null($x);
+        }
+        );
     }
 }

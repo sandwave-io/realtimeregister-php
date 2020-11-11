@@ -98,6 +98,10 @@ class DomainObjectTest extends TestCase
                 DomainAvailability::class,
                 include __DIR__ . '/data/domain_availability_valid.php',
             ],
+            'valid domain availability (only required)' => [
+                DomainAvailability::class,
+                include __DIR__ . '/data/domain_availability_only_required.php',
+            ],
             'invalid domain availability (name)' => [
                 DomainAvailability::class,
                 include __DIR__ . '/data/domain_availability_invalid_price.php',
