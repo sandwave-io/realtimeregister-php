@@ -22,7 +22,7 @@ final class TLDMetaData implements DomainObjectInterface
     /** @var array<int> */
     public $autoRenewDomainPeriods;
 
-    /** @var array<int> */
+    /** @var array<int>|null */
     public $transferDomainPeriods;
 
     /** @var int|null */
@@ -131,7 +131,6 @@ final class TLDMetaData implements DomainObjectInterface
         array $createDomainPeriods,
         array $renewDomainPeriods,
         array $autoRenewDomainPeriods,
-        array $transferDomainPeriods,
         bool $transferFOA,
         bool $adjustableAuthCode,
         bool $customAuthcodeSupport,
@@ -156,6 +155,7 @@ final class TLDMetaData implements DomainObjectInterface
         ?int $autoRenewGracePeriod,
         ?int $transferGracePeriod,
         ?int $expiryDateOffset,
+        ?array $transferDomainPeriods,
         ?array $possibleClientDomainStatuses,
         ?int $allowedDnssecRecords,
         ?array $allowedDnssecAlgorithms,
@@ -170,7 +170,6 @@ final class TLDMetaData implements DomainObjectInterface
         $this->createDomainPeriods = $createDomainPeriods;
         $this->renewDomainPeriods = $renewDomainPeriods;
         $this->autoRenewDomainPeriods = $autoRenewDomainPeriods;
-        $this->transferDomainPeriods = $transferDomainPeriods;
         $this->transferFOA = $transferFOA;
         $this->adjustableAuthCode = $adjustableAuthCode;
         $this->customAuthcodeSupport = $customAuthcodeSupport;
@@ -195,6 +194,7 @@ final class TLDMetaData implements DomainObjectInterface
         $this->autoRenewGracePeriod = $autoRenewGracePeriod;
         $this->transferGracePeriod = $transferGracePeriod;
         $this->expiryDateOffset = $expiryDateOffset;
+        $this->transferDomainPeriods = $transferDomainPeriods;
         $this->possibleClientDomainStatuses = $possibleClientDomainStatuses;
         $this->allowedDnssecRecords = $allowedDnssecRecords;
         $this->allowedDnssecAlgorithms = $allowedDnssecAlgorithms;
@@ -237,7 +237,6 @@ final class TLDMetaData implements DomainObjectInterface
             $data['createDomainPeriods'],
             $data['renewDomainPeriods'],
             $data['autoRenewDomainPeriods'],
-            $data['transferDomainPeriods'],
             $data['transferFOA'],
             $data['adjustableAuthCode'],
             $data['customAuthcodeSupport'],
@@ -262,6 +261,7 @@ final class TLDMetaData implements DomainObjectInterface
             $data['autoRenewGracePeriod'] ?? null,
             $data['transferGracePeriod'] ?? null,
             $data['expiryDateOffset'] ?? null,
+            $data['transferDomainPeriods'] ?? null,
             $data['possibleClientDomainStatuses'] ?? null,
             $data['allowedDnssecRecords'] ?? null,
             $data['allowedDnssecAlgorithms'] ?? null,
