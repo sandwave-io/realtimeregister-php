@@ -24,7 +24,7 @@ final class ContactProperty implements DomainObjectInterface
     /** @var array<string,string>|null */
     public $values;
 
-    private function __construct(string $name, string $label, string $description, string $type, bool $mandatory, ?array $values = null)
+    private function __construct(string $name, string $label, string $description, string $type, bool $mandatory, ?array $values)
     {
         $this->name = $name;
         $this->label = $label;

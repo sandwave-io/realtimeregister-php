@@ -64,7 +64,7 @@ final class TLDMetaData implements DomainObjectInterface
     /** @var bool */
     public $creationRequiresPreValidation;
 
-    /** @var string */
+    /** @var string|null */
     public $zoneCheck;
 
     /** @var array|null */
@@ -137,7 +137,8 @@ final class TLDMetaData implements DomainObjectInterface
         bool $transferSupportsAuthcode,
         bool $transferRequiresAuthcode,
         bool $creationRequiresPreValidation,
-        string $zoneCheck,
+        array $featuresAvailable,
+        bool $registrantChangeApprovalRequired,
         string $whoisExposure,
         string $gdprCategory,
         DomainSyntax $domainSyntax,
@@ -160,12 +161,11 @@ final class TLDMetaData implements DomainObjectInterface
         ?int $allowedDnssecRecords,
         ?array $allowedDnssecAlgorithms,
         ?string $validationCategory,
-        array $featuresAvailable,
-        bool $registrantChangeApprovalRequired,
-        ?string $allowDesignatedAgent = null,
-        ?string $jurisdiction = null,
-        ?string $termsOfService = null,
-        ?string $privacyPolicy = null
+        ?string $zoneCheck,
+        ?string $allowDesignatedAgent,
+        ?string $jurisdiction,
+        ?string $termsOfService,
+        ?string $privacyPolicy
     ) {
         $this->createDomainPeriods = $createDomainPeriods;
         $this->renewDomainPeriods = $renewDomainPeriods;
@@ -176,7 +176,8 @@ final class TLDMetaData implements DomainObjectInterface
         $this->transferSupportsAuthcode = $transferSupportsAuthcode;
         $this->transferRequiresAuthcode = $transferRequiresAuthcode;
         $this->creationRequiresPreValidation = $creationRequiresPreValidation;
-        $this->zoneCheck = $zoneCheck;
+        $this->featuresAvailable = $featuresAvailable;
+        $this->registrantChangeApprovalRequired = $registrantChangeApprovalRequired;
         $this->whoisExposure = $whoisExposure;
         $this->gdprCategory = $gdprCategory;
         $this->domainSyntax = $domainSyntax;
@@ -199,8 +200,7 @@ final class TLDMetaData implements DomainObjectInterface
         $this->allowedDnssecRecords = $allowedDnssecRecords;
         $this->allowedDnssecAlgorithms = $allowedDnssecAlgorithms;
         $this->validationCategory = $validationCategory;
-        $this->featuresAvailable = $featuresAvailable;
-        $this->registrantChangeApprovalRequired = $registrantChangeApprovalRequired;
+        $this->zoneCheck = $zoneCheck;
         $this->allowDesignatedAgent = $allowDesignatedAgent;
         $this->jurisdiction = $jurisdiction;
         $this->termsOfService = $termsOfService;
@@ -243,7 +243,8 @@ final class TLDMetaData implements DomainObjectInterface
             $data['transferSupportsAuthcode'],
             $data['transferRequiresAuthcode'],
             $data['creationRequiresPreValidation'],
-            $data['zoneCheck'],
+            $data['featuresAvailable'],
+            $data['registrantChangeApprovalRequired'],
             $data['whoisExposure'],
             $data['gdprCategory'],
             DomainSyntax::fromArray($data['domainSyntax']),
@@ -266,8 +267,7 @@ final class TLDMetaData implements DomainObjectInterface
             $data['allowedDnssecRecords'] ?? null,
             $data['allowedDnssecAlgorithms'] ?? null,
             $data['validationCategory'] ?? null,
-            $data['featuresAvailable'] ?? null,
-            $data['registrantChangeApprovalRequired'] ?? null,
+            $data['zoneCheck'] ?? null,
             $data['allowDesignatedAgent'] ?? null,
             $data['jurisdiction'] ?? null,
             $data['termsOfService'] ?? null,
