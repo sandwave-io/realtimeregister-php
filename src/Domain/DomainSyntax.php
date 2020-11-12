@@ -13,13 +13,13 @@ final class DomainSyntax implements DomainObjectInterface
     /** @var bool */
     public $idnSupport;
 
-    /** @var string */
+    /** @var string|null */
     public $allowedCharacters;
 
     /** @var LanguageCodes|null */
     public $languageCodes;
 
-    private function __construct(int $minLength, int $maxLength, bool $idnSupport, string $allowedCharacters, ?LanguageCodes $languageCodes)
+    private function __construct(int $minLength, int $maxLength, bool $idnSupport, ?string $allowedCharacters, ?LanguageCodes $languageCodes)
     {
         $this->minLength = $minLength;
         $this->maxLength = $maxLength;
@@ -34,7 +34,7 @@ final class DomainSyntax implements DomainObjectInterface
             $json['minLength'],
             $json['maxLength'],
             $json['idnSupport'],
-            $json['allowedCharacters'],
+            $json['allowedCharacters'] ?? null,
             isset($json['languageCodes']) ? LanguageCodes::fromArray($json['languageCodes']) : null
         );
     }
