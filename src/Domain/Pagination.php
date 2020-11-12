@@ -13,7 +13,7 @@ final class Pagination
     /** @var int|null */
     public $total;
 
-    private function __construct(int $limit, int $offset, ?int $total = null)
+    private function __construct(int $limit, int $offset, ?int $total)
     {
         $this->limit = $limit;
         $this->offset = $offset;
