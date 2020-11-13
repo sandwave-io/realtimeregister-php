@@ -6,6 +6,7 @@ use DateTime;
 use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
 use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
+use SandwaveIo\RealtimeRegister\Domain\DomainContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetailsCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
@@ -88,7 +89,7 @@ final class DomainsApi extends AbstractApi
         ?bool $skipValidation = null,
         ?string $launchPhase = null,
         ?Zone $zone = null,
-        ?ContactCollection $contacts = null,
+        ?DomainContactCollection $contacts = null,
         ?KeyDataCollection $keyData = null,
         ?BillableCollection $billables = null,
         bool $isQuote = false

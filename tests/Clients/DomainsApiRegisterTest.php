@@ -4,7 +4,7 @@ namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
-use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
+use SandwaveIo\RealtimeRegister\Domain\DomainContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
 use SandwaveIo\RealtimeRegister\Domain\KeyDataCollection;
 use SandwaveIo\RealtimeRegister\Domain\Zone;
@@ -50,7 +50,7 @@ class DomainsApiRegisterTest extends TestCase
             false,
             null,
             Zone::fromArray(include __DIR__ . '/../Domain/data/zone_valid.php'),
-            ContactCollection::fromArray([include __DIR__ . '/../Domain/data/contact_valid.php']),
+            DomainContactCollection::fromArray([include __DIR__ . '/../Domain/data/domain_contact_valid.php']),
             KeyDataCollection::fromArray([include __DIR__ . '/../Domain/data/key_data_valid.php']),
             BillableCollection::fromArray([include __DIR__ . '/../Domain/data/billable_valid.php'])
         );
