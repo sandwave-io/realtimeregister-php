@@ -2,6 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Exceptions;
 
-class NotFoundException extends RealtimeRegisterClientException
+/** @deprecated Use BadRequestException instead. */
+class NotFoundException extends BadRequestException
 {
 }

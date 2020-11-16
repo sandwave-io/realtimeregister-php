@@ -5,8 +5,14 @@ namespace SandwaveIo\RealtimeRegister\Support;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use SandwaveIo\RealtimeRegister\Exceptions\BadGatewayException;
+use SandwaveIo\RealtimeRegister\Exceptions\BadRequestException;
+use SandwaveIo\RealtimeRegister\Exceptions\ForbiddenException;
+use SandwaveIo\RealtimeRegister\Exceptions\InternalServerErrorException;
 use SandwaveIo\RealtimeRegister\Exceptions\NotFoundException;
 use SandwaveIo\RealtimeRegister\Exceptions\RealtimeRegisterClientException;
+use SandwaveIo\RealtimeRegister\Exceptions\ServiceUnavailableException;
+use SandwaveIo\RealtimeRegister\Exceptions\UnauthorizedException;
 
 class AuthorizedClient
 {
@@ -112,6 +118,12 @@ class AuthorizedClient
         // Parse response
         if ($this->isResponseValid($response, $expectedResponse)) {
             return RealtimeRegisterResponse::fromString((string) $response->getBody());
+        } elseif ($response->getStatusCode() === 400) {
+            throw new BadRequestException('Bad Request: ' . $response->getBody());
+        } elseif ($response->getStatusCode() === 401) {
+            throw new UnauthorizedException('Unauthorzied: ' . $response->getBody());
+        } elseif ($response->getStatusCode() === 403) {
+            throw new ForbiddenException('Forbidden:' . $response->getBody());
         } elseif ($response->getStatusCode() === 404) {
             throw new NotFoundException('Not found.');
         }
