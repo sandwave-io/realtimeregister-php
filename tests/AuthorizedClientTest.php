@@ -5,8 +5,11 @@ namespace SandwaveIo\RealtimeRegister\Tests;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
+use SandwaveIo\RealtimeRegister\Exceptions\BadRequestException;
+use SandwaveIo\RealtimeRegister\Exceptions\ForbiddenException;
 use SandwaveIo\RealtimeRegister\Exceptions\NotFoundException;
 use SandwaveIo\RealtimeRegister\Exceptions\RealtimeRegisterClientException;
+use SandwaveIo\RealtimeRegister\Exceptions\UnauthorizedException;
 use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
@@ -23,18 +26,45 @@ class AuthorizedClientTest extends TestCase
     {
         return [
             'GET request: success'  => ['get', 200, null],
-            'GET request: not found'  => ['get', 404, NotFoundException::class],
+            'GET request: bad request'  => ['get', 400, BadRequestException::class],
+            'GET request: unauthorized'  => ['get', 401, UnauthorizedException::class],
+            'GET request: forbidden'  => ['get', 403, ForbiddenException::class],
+            'GET request: not found'  => ['get', 404, BadRequestException::class],
+            'GET request: not found (deprecated)'  => ['get', 404, NotFoundException::class],
             'GET request: error'  => ['get', 500, RealtimeRegisterClientException::class],
+            'GET request: bad gateway'  => ['get', 502, RealtimeRegisterClientException::class],
+            'GET request: service unavailable'  => ['get', 503, RealtimeRegisterClientException::class],
+
             'POST request: success'  => ['post', 201, null],
-            'POST request: not found'  => ['post', 404, NotFoundException::class],
+            'POST request: bad request'  => ['post', 400, BadRequestException::class],
+            'POST request: unauthorized'  => ['post', 401, UnauthorizedException::class],
+            'POST request: forbidden'  => ['post', 403, ForbiddenException::class],
+            'POST request: not found'  => ['post', 404, BadRequestException::class],
+            'POST request: not found (deprecated)'  => ['post', 404, NotFoundException::class],
             'POST request: error'  => ['post', 500, RealtimeRegisterClientException::class],
+            'POST request: bad gateway'  => ['post', 502, RealtimeRegisterClientException::class],
+            'POST request: service unavailable'  => ['post', 503, RealtimeRegisterClientException::class],
+
             'PUT request: success'  => ['put', 200, null],
             'PUT request: success (204)'  => ['put', 204, null],
-            'PUT request: not found'  => ['put', 404, NotFoundException::class],
+            'PUT request: bad request'  => ['put', 400, BadRequestException::class],
+            'PUT request: unauthorized'  => ['put', 401, UnauthorizedException::class],
+            'PUT request: forbidden'  => ['put', 403, ForbiddenException::class],
+            'PUT request: not found'  => ['put', 404, BadRequestException::class],
+            'PUT request: not found (deprecated)'  => ['put', 404, NotFoundException::class],
             'PUT request: error'  => ['put', 500, RealtimeRegisterClientException::class],
+            'PUT request: bad gateway'  => ['put', 502, RealtimeRegisterClientException::class],
+            'PUT request: service unavailable'  => ['put', 503, RealtimeRegisterClientException::class],
+
             'DELETE request: success'  => ['delete', 200, null],
-            'DELETE request: not found'  => ['delete', 404, NotFoundException::class],
+            'DELETE request: bad request'  => ['delete', 400, BadRequestException::class],
+            'DELETE request: unauthorized'  => ['delete', 401, UnauthorizedException::class],
+            'DELETE request: forbidden'  => ['delete', 403, ForbiddenException::class],
+            'DELETE request: not found'  => ['delete', 404, BadRequestException::class],
+            'DELETE request: not found (deprecated)'  => ['delete', 404, NotFoundException::class],
             'DELETE request: error'  => ['delete', 500, RealtimeRegisterClientException::class],
+            'DELETE request: bad gateway'  => ['delete', 502, RealtimeRegisterClientException::class],
+            'DELETE request: service unavailable'  => ['delete', 503, RealtimeRegisterClientException::class],
         ];
     }
 
