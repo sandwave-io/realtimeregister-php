@@ -274,6 +274,10 @@ final class DomainsApi extends AbstractApi
             $payload['ns'] = $ns;
         }
 
+        if (is_string($transferContacts)) {
+           $payload['transferContacts'] = $transferContacts;
+        }
+
         if (is_string($designatedAgent)) {
             DomainDesignatedAgentEnum::validate($designatedAgent);
             $payload['designatedAgent'] = $designatedAgent;
@@ -284,15 +288,15 @@ final class DomainsApi extends AbstractApi
         }
 
         if ($contacts instanceof DomainContactCollection) {
-            $payload['contacts'] = $contacts;
+            $payload['contacts'] = $contacts->toArray();
         }
 
         if ($keyData instanceof KeyDataCollection) {
-            $payload['keyData'] = $keyData;
+            $payload['keyData'] = $keyData->toArray();
         }
 
         if ($billables instanceof BillableCollection) {
-            $payload['billables'] = $billables;
+            $payload['billables'] = $billables->toArray();
         }
 
         $this->client->post("v2/domains/{$domainName}/transfer", $payload, [
