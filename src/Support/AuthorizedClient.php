@@ -5,13 +5,10 @@ namespace SandwaveIo\RealtimeRegister\Support;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
-use SandwaveIo\RealtimeRegister\Exceptions\BadGatewayException;
 use SandwaveIo\RealtimeRegister\Exceptions\BadRequestException;
 use SandwaveIo\RealtimeRegister\Exceptions\ForbiddenException;
-use SandwaveIo\RealtimeRegister\Exceptions\InternalServerErrorException;
 use SandwaveIo\RealtimeRegister\Exceptions\NotFoundException;
 use SandwaveIo\RealtimeRegister\Exceptions\RealtimeRegisterClientException;
-use SandwaveIo\RealtimeRegister\Exceptions\ServiceUnavailableException;
 use SandwaveIo\RealtimeRegister\Exceptions\UnauthorizedException;
 
 class AuthorizedClient

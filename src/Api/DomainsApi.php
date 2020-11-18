@@ -244,7 +244,7 @@ final class DomainsApi extends AbstractApi
         ?string $transferContacts = null,
         ?string $designatedAgent = null,
         ?Zone $zone = null,
-        ?ContactCollection $contacts = null,
+        ?DomainContactCollection $contacts = null,
         ?KeyDataCollection $keyData = null,
         ?BillableCollection $billables = null,
         ?bool $isQuote = null
@@ -283,7 +283,7 @@ final class DomainsApi extends AbstractApi
             $payload['zone'] = $zone;
         }
 
-        if ($contacts instanceof ContactCollection) {
+        if ($contacts instanceof DomainContactCollection) {
             $payload['contacts'] = $contacts;
         }
 
