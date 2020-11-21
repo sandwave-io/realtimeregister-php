@@ -244,7 +244,7 @@ final class DomainsApi extends AbstractApi
         ?string $transferContacts = null,
         ?string $designatedAgent = null,
         ?Zone $zone = null,
-        ?ContactCollection $contacts = null,
+        ?DomainContactCollection $contacts = null,
         ?KeyDataCollection $keyData = null,
         ?BillableCollection $billables = null,
         ?bool $isQuote = null
@@ -274,6 +274,10 @@ final class DomainsApi extends AbstractApi
             $payload['ns'] = $ns;
         }
 
+        if (is_string($transferContacts)) {
+           $payload['transferContacts'] = $transferContacts;
+        }
+
         if (is_string($designatedAgent)) {
             DomainDesignatedAgentEnum::validate($designatedAgent);
             $payload['designatedAgent'] = $designatedAgent;
@@ -283,16 +287,16 @@ final class DomainsApi extends AbstractApi
             $payload['zone'] = $zone;
         }
 
-        if ($contacts instanceof ContactCollection) {
-            $payload['contacts'] = $contacts;
+        if ($contacts instanceof DomainContactCollection) {
+            $payload['contacts'] = $contacts->toArray();
         }
 
         if ($keyData instanceof KeyDataCollection) {
-            $payload['keyData'] = $keyData;
+            $payload['keyData'] = $keyData->toArray();
         }
 
         if ($billables instanceof BillableCollection) {
-            $payload['billables'] = $billables;
+            $payload['billables'] = $billables->toArray();
         }
 
         $this->client->post("v2/domains/{$domainName}/transfer", $payload, [
