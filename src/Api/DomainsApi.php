@@ -275,7 +275,7 @@ final class DomainsApi extends AbstractApi
         }
 
         if (is_string($transferContacts)) {
-           $payload['transferContacts'] = $transferContacts;
+            $payload['transferContacts'] = $transferContacts;
         }
 
         if (is_string($designatedAgent)) {
