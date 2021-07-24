@@ -37,6 +37,7 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/create
+     *
      * @param string[] $addressLine
      */
     public function create(
@@ -83,6 +84,7 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/create
+     *
      * @param string[] $addressLine
      */
     public function update(
@@ -144,6 +146,7 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/validate
+     *
      * @param array<string> $categories Must be one of ("General", "IisNu", "IisSe", "Nominet", "DkHostmaster")
      */
     public function validate(string $customer, string $handle, array $categories): void
@@ -164,6 +167,7 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/split
+     *
      * @param array<string>|null $registries
      */
     public function split(string $customer, string $handle, string $newHandle, ?array $registries = null): void
@@ -187,6 +191,7 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/properties/add
+     *
      * @param array<string, string> $properties
      * @param string|null           $intendedUsage Must be one of ("REGISTRANT","ADMIN","BILLING","TECH").
      */
@@ -208,6 +213,7 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/properties/update
+     *
      * @param array<string, string> $properties
      */
     public function updateProperties(string $customer, string $handle, string $registry, array $properties): void

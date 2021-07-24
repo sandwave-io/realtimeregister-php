@@ -54,8 +54,10 @@ final class DomainsApi extends AbstractApi
         $response = $this->client->get("v2/domains/{$domainName}/check", $query);
         return DomainAvailability::fromArray($response->json());
     }
+
     /**
      * @see https://dm.realtimeregister.com/docs/api/domains/create
+     *
      * @param string[] $ns
      */
     public function register(
@@ -114,7 +116,8 @@ final class DomainsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/domains/update
-     * @param string[]|null  $ns
+     *
+     * @param string[]|null $ns
      * @param string[]|null $statuses
      */
     public function update(

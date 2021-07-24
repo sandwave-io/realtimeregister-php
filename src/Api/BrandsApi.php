@@ -44,6 +44,7 @@ final class BrandsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/brands/create
+     *
      * @param string[] $addressLine;
      */
     public function create(
@@ -101,6 +102,7 @@ final class BrandsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/brands/update
+     *
      * @param string[]|null $addressLine;
      */
     public function update(
@@ -236,6 +238,7 @@ final class BrandsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/brands/templates/preview
+     *
      * @throws InvalidArgumentException
      */
     public function previewTemplate(string $customer, string $brand, string $name, ?string $contexts = null): TemplatePreview
