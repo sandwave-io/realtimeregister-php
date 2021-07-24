@@ -8,27 +8,14 @@ use SandwaveIo\RealtimeRegister\Domain\NotificationPoll;
 
 final class NotificationsApi extends AbstractApi
 {
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/notifications/get
-     *
-     * @param string $customer
-     * @param int    $notificationId
-     *
-     * @return Notification
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/notifications/get */
     public function get(string $customer, int $notificationId): Notification
     {
         $response = $this->client->get("v2/customers/{$customer}/notifications/{$notificationId}");
         return Notification::fromArray($response->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/notifications/list
-     *
-     * @param string $customer
-     *
-     * @return NotificationCollection
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/notifications/list */
     public function list(
         string $customer,
         ?int $limit = null,
@@ -50,25 +37,14 @@ final class NotificationsApi extends AbstractApi
         return NotificationCollection::fromArray($response->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/notifications/poll
-     *
-     * @param string $customer
-     *
-     * @return NotificationPoll
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/notifications/poll */
     public function poll(string $customer): NotificationPoll
     {
         $response = $this->client->get("v2/customers/{$customer}/notifications/poll");
         return NotificationPoll::fromArray($response->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/notifications/ack
-     *
-     * @param string $customer
-     * @param int    $notificationId
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/notifications/ack */
     public function ack(string $customer, int $notificationId): void
     {
         $this->client->post("v2/customers/{$customer}/notifications/{$notificationId}/ack");

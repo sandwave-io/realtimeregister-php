@@ -10,16 +10,7 @@ use SandwaveIo\RealtimeRegister\Domain\CountryCollection;
 
 final class ContactsApi extends AbstractApi
 {
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/contacts/list
-     *
-     * @param string      $customer
-     * @param int|null    $limit
-     * @param int|null    $offset
-     * @param string|null $search
-     *
-     * @return ContactCollection
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/contacts/list */
     public function list(string $customer, ?int $limit = null, ?int $offset = null, ?string $search = null): ContactCollection
     {
         $query = [];
@@ -37,14 +28,7 @@ final class ContactsApi extends AbstractApi
         return ContactCollection::fromArray($response->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/contacts/get
-     *
-     * @param string $customer
-     * @param string $handle
-     *
-     * @return Contact
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/contacts/get */
     public function get(string $customer, string $handle): Contact
     {
         $response = $this->client->get("v2/customers/{$customer}/contacts/{$handle}");
@@ -53,20 +37,7 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/create
-     *
-     * @param string      $customer
-     * @param string      $handle
-     * @param string      $name
-     * @param string[]    $addressLine
-     * @param string      $postalCode
-     * @param string      $city
-     * @param string      $country
-     * @param string      $email
-     * @param string      $voice
-     * @param string|null $brand
-     * @param string|null $organization
-     * @param string|null $state
-     * @param string|null $fax
+     * @param string[] $addressLine
      */
     public function create(
         string $customer,
@@ -112,20 +83,7 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/create
-     *
-     * @param string      $customer
-     * @param string      $handle
-     * @param string|null $name
-     * @param string[]    $addressLine
-     * @param string|null $postalCode
-     * @param string|null $city
-     * @param string|null $country
-     * @param string|null $email
-     * @param string|null $voice
-     * @param string|null $brand
-     * @param string|null $organization
-     * @param string|null $state
-     * @param string|null $fax
+     * @param string[] $addressLine
      */
     public function update(
         string $customer,
@@ -186,9 +144,6 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/validate
-     *
-     * @param string        $customer
-     * @param string        $handle
      * @param array<string> $categories Must be one of ("General", "IisNu", "IisSe", "Nominet", "DkHostmaster")
      */
     public function validate(string $customer, string $handle, array $categories): void
@@ -209,10 +164,6 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/split
-     *
-     * @param string             $customer
-     * @param string             $handle
-     * @param string             $newHandle
      * @param array<string>|null $registries
      */
     public function split(string $customer, string $handle, string $newHandle, ?array $registries = null): void
@@ -228,9 +179,6 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/delete
-     *
-     * @param string $customer
-     * @param string $handle
      */
     public function delete(string $customer, string $handle): void
     {
@@ -239,10 +187,6 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/properties/add
-     *
-     * @param string                $customer
-     * @param string                $handle
-     * @param string                $registry
      * @param array<string, string> $properties
      * @param string|null           $intendedUsage Must be one of ("REGISTRANT","ADMIN","BILLING","TECH").
      */
@@ -264,10 +208,6 @@ final class ContactsApi extends AbstractApi
 
     /**
      * @see https://dm.realtimeregister.com/docs/api/contacts/properties/update
-     *
-     * @param string                $customer
-     * @param string                $handle
-     * @param string                $registry
      * @param array<string, string> $properties
      */
     public function updateProperties(string $customer, string $handle, string $registry, array $properties): void
@@ -277,27 +217,13 @@ final class ContactsApi extends AbstractApi
         ]);
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/countries/get
-     *
-     * @param string $country
-     *
-     * @return Country
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/countries/get */
     public function getCountry(string $country): Country
     {
         return Country::fromArray($this->client->get("v2/countries/{$country}")->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/contacts/list
-     *
-     * @param int|null    $limit
-     * @param int|null    $offset
-     * @param string|null $search
-     *
-     * @return CountryCollection
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/contacts/list */
     public function listCountries(?int $limit = null, ?int $offset = null, ?string $search = null): CountryCollection
     {
         $query = [];

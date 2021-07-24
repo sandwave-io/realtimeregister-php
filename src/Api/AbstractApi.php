@@ -6,8 +6,7 @@ use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
 
 abstract class AbstractApi
 {
-    /** @var AuthorizedClient */
-    protected $client;
+    protected AuthorizedClient $client;
 
     public function __construct(AuthorizedClient $client)
     {
