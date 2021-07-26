@@ -9,7 +9,7 @@ class DsDataDigestTypeEnum extends AbstractEnum
     const DIGEST_TYPE_GOST_R_34_11_94 = 3;
     const DIGEST_TYPE_SHA384 = 4;
 
-    protected static $values = [
+    protected static array $values = [
         DsDataDigestTypeEnum::DIGEST_TYPE_SHA1,
         DsDataDigestTypeEnum::DIGEST_TYPE_SHA256,
         DsDataDigestTypeEnum::DIGEST_TYPE_GOST_R_34_11_94,

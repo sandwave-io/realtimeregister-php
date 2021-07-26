@@ -9,17 +9,10 @@ use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 
 final class KeyData implements DomainObjectInterface
 {
-    /** @var int */
-    public $protocol;
-
-    /** @var int */
-    public $flags;
-
-    /** @var int */
-    public $algorithm;
-
-    /** @var string */
-    public $publicKey;
+    public int $protocol;
+    public int $flags;
+    public int $algorithm;
+    public string $publicKey;
 
     private function __construct(int $protocol, int $flags, int $algorithm, string $publicKey)
     {

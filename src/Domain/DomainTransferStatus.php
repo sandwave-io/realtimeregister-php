@@ -7,32 +7,15 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\DomainTransferTypeEnum;
 
 final class DomainTransferStatus implements DomainObjectInterface
 {
-    /** @var string */
-    public $domainName;
-
-    /** @var string */
-    public $registrar;
-
-    /** @var string */
-    public $status;
-
-    /** @var DateTime */
-    public $requestedDate;
-
-    /** @var DateTime */
-    public $actionDate;
-
-    /** @var DateTime */
-    public $expiryDate;
-
-    /** @var string */
-    public $type;
-
-    /** @var int */
-    public $processId;
-
-    /** @var LogCollection|null */
-    public $log;
+    public string $domainName;
+    public string $registrar;
+    public string $status;
+    public DateTime $requestedDate;
+    public DateTime $actionDate;
+    public DateTime $expiryDate;
+    public string $type;
+    public int $processId;
+    public ?LogCollection $log;
 
     private function __construct(
         string $domainName,

@@ -4,11 +4,8 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 final class NotificationPoll implements DomainObjectInterface
 {
-    /** @var string */
-    public $count;
-
-    /** @var Notification|null */
-    public $notification;
+    public string $count;
+    public ?Notification $notification;
 
     private function __construct(string $count, ?Notification $notification)
     {

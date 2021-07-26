@@ -7,7 +7,7 @@ class DomainTransferTypeEnum extends AbstractEnum
     const TYPE_IN = 'IN';
     const TYPE_OUT = 'OUT';
 
-    protected static $values = [
+    protected static array $values = [
         DomainTransferTypeEnum::TYPE_IN,
         DomainTransferTypeEnum::TYPE_OUT,
     ];

@@ -12,7 +12,7 @@ class DomainFeatureEnum extends AbstractEnum
     const FEATURE_PRIVACY_PROTECT = 'PRIVACY_PROTECT';
     const FEATURE_PUSH_TRANSFER = 'PUSH_TRANSFER';
 
-    protected static $values = [
+    protected static array $values = [
         DomainFeatureEnum::FEATURE_CREATE,
         DomainFeatureEnum::FEATURE_RENEW,
         DomainFeatureEnum::FEATURE_TRANSFER,

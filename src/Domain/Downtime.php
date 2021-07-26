@@ -7,20 +7,11 @@ use TypeError;
 
 final class Downtime implements DomainObjectInterface
 {
-    /** @var int */
-    public $id;
-
-    /** @var DateTime */
-    public $startDate;
-
-    /** @var DateTime */
-    public $endDate;
-
-    /** @var string|null */
-    public $reason;
-
-    /** @var Provider */
-    public $provider;
+    public int $id;
+    public DateTime $startDate;
+    public DateTime $endDate;
+    public ?string $reason;
+    public Provider $provider;
 
     private function __construct(
         int $id,

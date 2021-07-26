@@ -9,7 +9,7 @@ class DomainContactRoleEnum extends AbstractEnum
     const ROLE_TECH = 'TECH';
     const ROLE_REGISTRANT = 'REGISTRANT';
 
-    protected static $values = [
+    protected static array $values = [
         DomainContactRoleEnum::ROLE_ADMIN,
         DomainContactRoleEnum::ROLE_BILLING,
         DomainContactRoleEnum::ROLE_TECH,

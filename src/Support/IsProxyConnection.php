@@ -5,14 +5,9 @@ namespace SandwaveIo\RealtimeRegister\Support;
 /** @codeCoverageIgnore */
 class IsProxyConnection
 {
-    /** @var string */
-    protected $apiKey;
-
-    /** @var string */
-    protected $host;
-
-    /** @var int */
-    protected $port;
+    protected string $apiKey;
+    protected string $host;
+    protected int $port;
 
     /** @var resource */
     protected $socket;

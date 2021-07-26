@@ -5,7 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class DowntimeCollection extends AbstractCollection
 {
     /** @var Downtime[] */
-    public $entities;
+    public array $entities;
 
     public static function fromArray(array $json): DowntimeCollection
     {
@@ -14,7 +14,7 @@ final class DowntimeCollection extends AbstractCollection
 
     public function offsetGet($offset): ?Downtime
     {
-        return isset($this->entities[$offset]) ? $this->entities[$offset] : null;
+        return $this->entities[$offset] ?? null;
     }
 
     public static function parseChild(array $json): Downtime

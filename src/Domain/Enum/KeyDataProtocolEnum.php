@@ -6,7 +6,7 @@ class KeyDataProtocolEnum extends AbstractEnum
 {
     const PROTOCOL_3 = 3;
 
-    protected static $values = [
+    protected static array $values = [
         KeyDataProtocolEnum::PROTOCOL_3,
     ];
 

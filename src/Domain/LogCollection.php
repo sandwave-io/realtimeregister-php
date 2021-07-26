@@ -5,7 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class LogCollection extends AbstractCollection
 {
     /** @var Log[] */
-    public $entities;
+    public array $entities;
 
     public static function fromArray(array $json): LogCollection
     {
@@ -14,7 +14,7 @@ final class LogCollection extends AbstractCollection
 
     public function offsetGet($offset): ?Log
     {
-        return isset($this->entities[$offset]) ? $this->entities[$offset] : null;
+        return $this->entities[$offset] ?? null;
     }
 
     public static function parseChild(array $json): Log

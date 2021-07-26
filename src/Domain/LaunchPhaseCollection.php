@@ -5,7 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class LaunchPhaseCollection extends AbstractCollection
 {
     /** @var LaunchPhase[] */
-    public $entities;
+    public array $entities;
 
     public static function fromArray(array $json): LaunchPhaseCollection
     {
@@ -14,7 +14,7 @@ final class LaunchPhaseCollection extends AbstractCollection
 
     public function offsetGet($offset): ?LaunchPhase
     {
-        return isset($this->entities[$offset]) ? $this->entities[$offset] : null;
+        return $this->entities[$offset] ?? null;
     }
 
     public static function parseChild(array $json): LaunchPhase

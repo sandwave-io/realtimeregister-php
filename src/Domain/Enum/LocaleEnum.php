@@ -7,7 +7,7 @@ class LocaleEnum extends AbstractEnum
     const LOCALE_EN_US = 'en-US';
     const LOCALE_NL_NL = 'nl-NL';
 
-    protected static $values = [
+    protected static array $values = [
         LocaleEnum::LOCALE_EN_US,
         LocaleEnum::LOCALE_NL_NL,
     ];

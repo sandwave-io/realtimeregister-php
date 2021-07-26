@@ -9,7 +9,7 @@ class WhoisExposureEnum extends AbstractEnum
     const EXPOSURE_FULL = 'FULL';
     const EXPOSURE_UNKNOWN = 'UNKNOWN';
 
-    protected static $values = [
+    protected static array $values = [
         WhoisExposureEnum::EXPOSURE_NONE,
         WhoisExposureEnum::EXPOSURE_LIMITED,
         WhoisExposureEnum::EXPOSURE_FULL,

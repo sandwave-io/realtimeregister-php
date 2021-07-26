@@ -9,7 +9,7 @@ class GDPRCategoryEnum extends AbstractEnum
     const CATEGORY_DATA_EXPORT = 'DATA_EXPORT';
     const CATEGORY_UNKNOWN = 'UNKNOWN';
 
-    protected static $values = [
+    protected static array $values = [
         GDPRCategoryEnum::CATEGORY_EU_BASED,
         GDPRCategoryEnum::CATEGORY_ADEQUACY,
         GDPRCategoryEnum::CATEGORY_DATA_EXPORT,

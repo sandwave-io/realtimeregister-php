@@ -4,11 +4,8 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 final class LanguageCodes implements DomainObjectInterface
 {
-    /** @var string */
-    public $name;
-
-    /** @var string|null */
-    public $allowedCharacters;
+    public string $name;
+    public ?string $allowedCharacters;
 
     private function __construct(string $name, ?string $allowedCharacters)
     {

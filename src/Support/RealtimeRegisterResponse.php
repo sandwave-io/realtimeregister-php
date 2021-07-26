@@ -6,8 +6,7 @@ use SandwaveIo\RealtimeRegister\Exceptions\UnexpectedValueException;
 
 class RealtimeRegisterResponse
 {
-    /** @var string */
-    private $response;
+    private string $response;
 
     public function __construct(string $response)
     {

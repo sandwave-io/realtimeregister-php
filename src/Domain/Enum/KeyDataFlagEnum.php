@@ -7,7 +7,7 @@ class KeyDataFlagEnum extends AbstractEnum
     const FLAG_ZSK = 256;
     const FLAG_KSK = 257;
 
-    protected static $values = [
+    protected static array $values = [
         KeyDataFlagEnum::FLAG_ZSK,
         KeyDataFlagEnum::FLAG_KSK,
     ];

@@ -10,7 +10,7 @@ class ValidationCategoryEnum extends AbstractEnum
     const VALIDATION_CATEGORY_NOMINET = 'Nominet';
     const VALIDATION_CATEGORY_DK_HOSTMASTER = 'DkHostmaster';
 
-    protected static $values = [
+    protected static array $values = [
         ValidationCategoryEnum::VALIDATION_CATEGORY_GENERAL,
         ValidationCategoryEnum::VALIDATION_CATEGORY_ISI_NU,
         ValidationCategoryEnum::VALIDATION_CATEGORY_ISI_SE,

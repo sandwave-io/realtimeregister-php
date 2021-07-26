@@ -7,7 +7,7 @@ use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 abstract class AbstractEnum
 {
     /** @var array */
-    protected static $values = [];
+    protected static array $values = [];
 
     /** @param mixed $value */
     abstract public static function validate($value): void;

@@ -6,14 +6,9 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\BillableActionEnum;
 
 final class Billable implements DomainObjectInterface
 {
-    /** @var string */
-    public $product;
-
-    /** @var string */
-    public $action;
-
-    /** @var int */
-    public $quantity;
+    public string $product;
+    public string $action;
+    public int $quantity;
 
     private function __construct(
         string $product,

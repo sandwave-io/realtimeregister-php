@@ -9,11 +9,8 @@ final class IsProxyDomain
     const STATUS_NOT_AVAILABLE  = 'not available';
     const STATUS_INVALID_DOMAIN = 'invalid domain';
 
-    /** @var string */
-    private $domain;
-
-    /** @var string */
-    private $status;
+    private string $domain;
+    private string $status;
 
     public function __construct(string $domain, string $status)
     {

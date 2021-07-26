@@ -4,14 +4,9 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 final class TemplatePreview implements DomainObjectInterface
 {
-    /** @var string|null */
-    public $subject;
-
-    /** @var string|null */
-    public $text;
-
-    /** @var string|null */
-    public $html;
+    public ?string $subject;
+    public ?string $text;
+    public ?string $html;
 
     private function __construct(
         ?string $subject,

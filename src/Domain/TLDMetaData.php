@@ -14,118 +14,47 @@ use Webmozart\Assert\Assert;
 final class TLDMetaData implements DomainObjectInterface
 {
     /** @var array<int> */
-    public $createDomainPeriods;
-
+    public array $createDomainPeriods;
     /** @var array<int> */
-    public $renewDomainPeriods;
-
+    public array $renewDomainPeriods;
     /** @var array<int> */
-    public $autoRenewDomainPeriods;
-
+    public array $autoRenewDomainPeriods;
     /** @var array<int>|null */
-    public $transferDomainPeriods;
-
-    /** @var int|null */
-    public $redemptionPeriod;
-
-    /** @var int|null */
-    public $pendingDeletePeriod;
-
-    /** @var int|null */
-    public $addGracePeriod;
-
-    /** @var int|null */
-    public $renewGracePeriod;
-
-    /** @var int|null */
-    public $autoRenewGracePeriod;
-
-    /** @var int|null */
-    public $transferGracePeriod;
-
-    /** @var int|null */
-    public $expiryDateOffset;
-
-    /** @var bool */
-    public $transferFOA;
-
-    /** @var bool */
-    public $adjustableAuthCode;
-
-    /** @var bool */
-    public $customAuthcodeSupport;
-
-    /** @var bool */
-    public $transferSupportsAuthcode;
-
-    /** @var bool */
-    public $transferRequiresAuthcode;
-
-    /** @var bool */
-    public $creationRequiresPreValidation;
-
-    /** @var string|null */
-    public $zoneCheck;
-
-    /** @var array|null */
-    public $possibleClientDomainStatuses;
-
-    /** @var int|null */
-    public $allowedDnssecRecords;
-
-    /** @var array|null */
-    public $allowedDnssecAlgorithms;
-
-    /** @var string|null */
-    public $validationCategory;
-
-    /** @var array */
-    public $featuresAvailable;
-
-    /** @var bool */
-    public $registrantChangeApprovalRequired;
-
-    /** @var string|null */
-    public $allowDesignatedAgent;
-
-    /** @var string|null */
-    public $jurisdiction;
-
-    /** @var string|null */
-    public $termsOfService;
-
-    /** @var string|null */
-    public $privacyPolicy;
-
-    /** @var string */
-    public $whoisExposure;
-
-    /** @var string */
-    public $gdprCategory;
-
-    /** @var DomainSyntax */
-    public $domainSyntax;
-
-    /** @var Nameservers */
-    public $nameservers;
-
-    /** @var Registrant */
-    public $registrant;
-
-    /** @var ContactsConstraint */
-    public $adminContacts;
-
-    /** @var ContactsConstraint */
-    public $billingContacts;
-
-    /** @var ContactsConstraint */
-    public $techContacts;
-
-    /** @var ContactPropertyCollection|null */
-    public $contactProperties;
-
-    /** @var LaunchPhaseCollection|null */
-    public $launchPhases;
+    public ?array $transferDomainPeriods;
+    public ?int $redemptionPeriod;
+    public ?int $pendingDeletePeriod;
+    public ?int $addGracePeriod;
+    public ?int $renewGracePeriod;
+    public ?int $autoRenewGracePeriod;
+    public ?int $transferGracePeriod;
+    public ?int $expiryDateOffset;
+    public bool $transferFOA;
+    public bool $adjustableAuthCode;
+    public bool $customAuthcodeSupport;
+    public bool $transferSupportsAuthcode;
+    public bool $transferRequiresAuthcode;
+    public bool $creationRequiresPreValidation;
+    public ?string $zoneCheck;
+    public ?array $possibleClientDomainStatuses;
+    public ?int $allowedDnssecRecords;
+    public ?array $allowedDnssecAlgorithms;
+    public ?string $validationCategory;
+    public array $featuresAvailable;
+    public bool $registrantChangeApprovalRequired;
+    public ?string $allowDesignatedAgent;
+    public ?string $jurisdiction;
+    public ?string $termsOfService;
+    public ?string $privacyPolicy;
+    public string $whoisExposure;
+    public string $gdprCategory;
+    public DomainSyntax $domainSyntax;
+    public Nameservers $nameservers;
+    public Registrant $registrant;
+    public ContactsConstraint $adminContacts;
+    public ContactsConstraint $billingContacts;
+    public ContactsConstraint $techContacts;
+    public ?ContactPropertyCollection $contactProperties;
+    public ?LaunchPhaseCollection $launchPhases;
 
     private function __construct(
         array $createDomainPeriods,

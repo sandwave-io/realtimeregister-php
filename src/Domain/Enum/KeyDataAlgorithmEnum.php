@@ -18,7 +18,7 @@ class KeyDataAlgorithmEnum extends AbstractEnum
     const ALGORITHM_Ed25519 = 15;
     const ALGORITHM_Ed448 = 16;
 
-    protected static $values = [
+    protected static array $values = [
         KeyDataAlgorithmEnum::ALGORITHM_DSA_SHA1,
         KeyDataAlgorithmEnum::ALGORITHM_RSA_SHA_1,
         KeyDataAlgorithmEnum::ALGORITHM_DSA_NSEC3_SHA1,

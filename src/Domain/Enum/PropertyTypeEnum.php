@@ -8,7 +8,7 @@ class PropertyTypeEnum extends AbstractEnum
     const TYPE_DATE = 'Date';
     const TYPE_INTEGER = 'Integer';
 
-    protected static $values = [
+    protected static array $values = [
         PropertyTypeEnum::TYPE_STRING,
         PropertyTypeEnum::TYPE_DATE,
         PropertyTypeEnum::TYPE_INTEGER,

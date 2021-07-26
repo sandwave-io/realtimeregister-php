@@ -4,14 +4,11 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 final class Registrant implements DomainObjectInterface
 {
-    /** @var bool */
-    public $organizationRequired;
-
-    /** @var bool */
-    public $organizationAllowed;
+    public bool $organizationRequired;
+    public bool $organizationAllowed;
 
     /** @var array<string>|null */
-    public $allowedCountries;
+    public ?array $allowedCountries;
 
     private function __construct(bool $organizationRequired, bool $organizationAllowed, ?array $allowedCountries)
     {

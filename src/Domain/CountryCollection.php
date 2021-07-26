@@ -5,7 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class CountryCollection extends AbstractCollection
 {
     /** @var Country[] */
-    public $entities;
+    public array $entities;
 
     public static function fromArray(array $json): CountryCollection
     {
@@ -14,7 +14,7 @@ final class CountryCollection extends AbstractCollection
 
     public function offsetGet($offset): ?Country
     {
-        return isset($this->entities[$offset]) ? $this->entities[$offset] : null;
+        return $this->entities[$offset] ?? null;
     }
 
     public static function parseChild(array $json): Country

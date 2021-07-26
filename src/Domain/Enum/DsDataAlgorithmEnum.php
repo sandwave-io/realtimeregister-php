@@ -16,7 +16,7 @@ class DsDataAlgorithmEnum extends AbstractEnum
     const ALGORITHM_Ed25519 = 15;
     const ALGORITHM_Ed448 = 16;
 
-    protected static $values = [
+    protected static array $values = [
         DsDataAlgorithmEnum::ALGORITHM_DSA_SHA1,
         DsDataAlgorithmEnum::ALGORITHM_RSA_SHA_1,
         DsDataAlgorithmEnum::ALGORITHM_DSA_NSEC3_SHA1,

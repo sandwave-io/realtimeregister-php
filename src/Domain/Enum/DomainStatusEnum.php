@@ -37,7 +37,7 @@ class DomainStatusEnum extends AbstractEnum
     const STATUS_EXPIRED = 'EXPIRED';
     const STATUS_IRTPC_TRANSFER_PROHIBITED = 'IRTPC_TRANSFER_PROHIBITED';
 
-    protected static $values = [
+    protected static array $values = [
         DomainStatusEnum::STATUS_OK,
         DomainStatusEnum::STATUS_INACTIVE,
         DomainStatusEnum::STATUS_PENDING_TRANSFER,

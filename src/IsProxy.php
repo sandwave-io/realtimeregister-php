@@ -8,8 +8,7 @@ use SandwaveIo\RealtimeRegister\Support\IsProxyConnection;
 
 final class IsProxy
 {
-    /** @var IsProxyConnection */
-    private $connection;
+    private IsProxyConnection $connection;
 
     public function __construct(string $apiKey, string $host = 'is.yoursrs.com', int $port = 2001)
     {

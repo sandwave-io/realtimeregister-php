@@ -19,7 +19,7 @@ class BillableActionEnum extends AbstractEnum
     const ACTION_EXTRA_DOMAIN = 'EXTRA_DOMAIN';
     const ACTION_REGISTRY_LOCK = 'REGISTRY_LOCK';
 
-    protected static $values = [
+    protected static array $values = [
         BillableActionEnum::ACTION_CREATE,
         BillableActionEnum::ACTION_REQUEST,
         BillableActionEnum::ACTION_TRANSFER,

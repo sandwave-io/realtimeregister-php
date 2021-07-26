@@ -16,26 +16,13 @@ final class RealtimeRegister
 {
     const BASE_URL = 'https://api.yoursrs.com/';
 
-    /** @var ContactsApi */
-    public $contacts;
-
-    /** @var CustomersApi */
-    public $customers;
-
-    /** @var DomainsApi */
-    public $domains;
-
-    /** @var TLDsApi */
-    public $tlds;
-
-    /** @var NotificationsApi */
-    public $notifications;
-
-    /** @var ProvidersApi */
-    public $providers;
-
-    /** @var BrandsApi */
-    public $brands;
+    public ContactsApi $contacts;
+    public CustomersApi $customers;
+    public DomainsApi $domains;
+    public TLDsApi $tlds;
+    public NotificationsApi $notifications;
+    public ProvidersApi $providers;
+    public BrandsApi $brands;
 
     public function __construct(string $apiKey, ?string $baseUrl = null, ?LoggerInterface $logger = null)
     {

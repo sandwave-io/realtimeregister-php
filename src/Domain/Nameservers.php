@@ -4,14 +4,9 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 final class Nameservers implements DomainObjectInterface
 {
-    /** @var int */
-    public $min;
-
-    /** @var int */
-    public $max;
-
-    /** @var bool */
-    public $required;
+    public int $min;
+    public int $max;
+    public bool $required;
 
     private function __construct(int $min, int $max, bool $required)
     {
