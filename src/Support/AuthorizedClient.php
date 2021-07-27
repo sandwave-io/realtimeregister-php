@@ -13,14 +13,9 @@ use SandwaveIo\RealtimeRegister\Exceptions\UnauthorizedException;
 
 class AuthorizedClient
 {
-    /** @var string */
-    private $apiKey;
-
-    /** @var Client */
-    private $client;
-
-    /** @var LoggerInterface|null */
-    private $logger;
+    private string $apiKey;
+    private Client $client;
+    private ?LoggerInterface $logger;
 
     public function __construct(string $baseUrl, string $apiKey, array $guzzleOptions = [], ?LoggerInterface $logger = null)
     {

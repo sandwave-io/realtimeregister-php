@@ -6,11 +6,8 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\DomainContactRoleEnum;
 
 final class DomainContact implements DomainObjectInterface
 {
-    /** @var string */
-    public $role;
-
-    /** @var string */
-    public $handle;
+    public string $role;
+    public string $handle;
 
     private function __construct(string $role, string $handle)
     {

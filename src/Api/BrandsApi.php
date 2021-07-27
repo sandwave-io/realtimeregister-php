@@ -13,30 +13,14 @@ use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 
 final class BrandsApi extends AbstractApi
 {
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/brands/get
-     *
-     * @param string $customer
-     * @param string $handle
-     *
-     * @return Brand
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/brands/get */
     public function get(string $customer, string $handle): Brand
     {
         $response = $this->client->get("/v2/customers/{$customer}/brands/{$handle}");
         return Brand::fromArray($response->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/brands/list
-     *
-     * @param string      $customer
-     * @param int|null    $limit
-     * @param int|null    $offset
-     * @param string|null $search
-     *
-     * @return BrandCollection
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/brands/list */
     public function list(
         string $customer,
         ?int $limit = null,
@@ -61,23 +45,7 @@ final class BrandsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/brands/create
      *
-     * @param string        $customer;
-     * @param string        $handle;
-     * @param string        $locale;
-     * @param string        $organization;
-     * @param string[]      $addressLine;
-     * @param string        $postalCode;
-     * @param string        $city;
-     * @param string|null   $state;
-     * @param string        $country;
-     * @param string        $email;
-     * @param string|null   $url;
-     * @param string        $voice;
-     * @param string|null   $fax;
-     * @param string|null   $privacyContact;
-     * @param string|null   $abuseContact;
-     * @param DateTime      $createdDate;
-     * @param DateTime|null $updatedDate;
+     * @param string[] $addressLine;
      */
     public function create(
         string $customer,
@@ -135,23 +103,7 @@ final class BrandsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/brands/update
      *
-     * @param string        $customer;
-     * @param string        $handle;
-     * @param string|null   $locale;
-     * @param string|null   $organization;
      * @param string[]|null $addressLine;
-     * @param string|null   $postalCode;
-     * @param string|null   $city;
-     * @param string|null   $state;
-     * @param string|null   $country;
-     * @param string|null   $email;
-     * @param string|null   $url;
-     * @param string|null   $voice;
-     * @param string|null   $fax;
-     * @param string|null   $privacyContact;
-     * @param string|null   $abuseContact;
-     * @param DateTime|null $createdDate;
-     * @param DateTime|null $updatedDate;
      */
     public function update(
         string $customer,
@@ -223,26 +175,13 @@ final class BrandsApi extends AbstractApi
         $this->client->post("/v2/customers/{$customer}/brands/{$handle}/update", $payload);
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/brands/delete
-     *
-     * @param string $customer
-     * @param string $handle
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/brands/delete */
     public function delete(string $customer, string $handle): void
     {
         $this->client->delete("/v2/customers/{$customer}/brands/{$handle}");
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/brands/templates/get
-     *
-     * @param string $customer
-     * @param string $brand
-     * @param string $name
-     *
-     * @return Template
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/brands/templates/get */
     public function getTemplate(string $customer, string $brand, string $name): Template
     {
         TemplateNameEnum::validate($name);
@@ -250,17 +189,7 @@ final class BrandsApi extends AbstractApi
         return Template::fromArray($this->client->get("/v2/customers/{$customer}/brands/{$brand}/templates/{$name}")->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/brands/templates/list
-     *
-     * @param string      $customer
-     * @param string      $brand
-     * @param int|null    $limit
-     * @param int|null    $offset
-     * @param string|null $search
-     *
-     * @return TemplateCollection
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/brands/templates/list */
     public function listTemplates(
         string $customer,
         string $brand,
@@ -283,16 +212,7 @@ final class BrandsApi extends AbstractApi
         return TemplateCollection::fromArray($response->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/brands/templates/update
-     *
-     * @param string      $customer
-     * @param string      $brand
-     * @param string      $name
-     * @param string|null $subject
-     * @param string|null $text
-     * @param string|null $html
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/brands/templates/update */
     public function updateTemplate(
         string $customer,
         string $brand,
@@ -319,14 +239,7 @@ final class BrandsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/brands/templates/preview
      *
-     * @param string      $customer
-     * @param string      $brand
-     * @param string      $name
-     * @param string|null $contexts
-     *
      * @throws InvalidArgumentException
-     *
-     * @return TemplatePreview
      */
     public function previewTemplate(string $customer, string $brand, string $name, ?string $contexts = null): TemplatePreview
     {

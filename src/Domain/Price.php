@@ -4,17 +4,10 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 final class Price implements DomainObjectInterface
 {
-    /** @var string */
-    public $product;
-
-    /** @var string */
-    public $action;
-
-    /** @var string */
-    public $currency;
-
-    /** @var int */
-    public $price;
+    public string $product;
+    public string $action;
+    public string $currency;
+    public int $price;
 
     private function __construct(string $product, string $action, string $currency, int $price)
     {

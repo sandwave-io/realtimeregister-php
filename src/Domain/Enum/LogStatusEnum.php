@@ -14,7 +14,7 @@ class LogStatusEnum extends AbstractEnum
     const STATUS_FAILED = 'failed';
     const STATUS_COMPLETED = 'completed';
 
-    protected static $values = [
+    protected static array $values = [
         LogStatusEnum::STATUS_PENDINGWHOIS,
         LogStatusEnum::STATUS_PENDINGFOA,
         LogStatusEnum::STATUS_PENDINGVALIDATION,

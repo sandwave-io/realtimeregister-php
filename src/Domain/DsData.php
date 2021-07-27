@@ -7,17 +7,10 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\DsDataDigestTypeEnum;
 
 final class DsData implements DomainObjectInterface
 {
-    /** @var int */
-    public $keyTag;
-
-    /** @var int */
-    public $algorithm;
-
-    /** @var int */
-    public $digestType;
-
-    /** @var string */
-    public $digest;
+    public int $keyTag;
+    public int $algorithm;
+    public int $digestType;
+    public string $digest;
 
     private function __construct(int $keyTag, int $algorithm, int $digestType, string $digest)
     {

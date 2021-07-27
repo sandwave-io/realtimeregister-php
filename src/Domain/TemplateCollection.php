@@ -5,7 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class TemplateCollection extends AbstractCollection
 {
     /** @var Template[] */
-    public $entities;
+    public array $entities;
 
     public static function fromArray(array $json): TemplateCollection
     {
@@ -14,7 +14,7 @@ final class TemplateCollection extends AbstractCollection
 
     public function offsetGet($offset): ?Template
     {
-        return isset($this->entities[$offset]) ? $this->entities[$offset] : null;
+        return $this->entities[$offset] ?? null;
     }
 
     public static function parseChild(array $json): Template

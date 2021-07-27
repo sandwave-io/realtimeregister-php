@@ -9,24 +9,14 @@ use SandwaveIo\RealtimeRegister\Domain\ProviderCollection;
 
 final class ProvidersApi extends AbstractApi
 {
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/providers/get
-     *
-     * @param string $name
-     *
-     * @return Provider
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/providers/get */
     public function get(string $name): Provider
     {
         $response = $this->client->get("/v2/providers/REGISTRY/{$name}");
         return Provider::fromArray($response->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/providers/list
-     *
-     * @return ProviderCollection
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/providers/list */
     public function list(
         ?int $limit = null,
         ?int $offset = null,
@@ -47,27 +37,13 @@ final class ProvidersApi extends AbstractApi
         return ProviderCollection::fromArray($response->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/providers/downtime/get
-     *
-     * @param int $id
-     *
-     * @return Downtime
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/providers/downtime/get */
     public function getDowntime(int $id): Downtime
     {
         return Downtime::fromArray($this->client->get("/v2/providers/downtime/{$id}")->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/providers/downtime/list
-     *
-     * @param int|null    $limit
-     * @param int|null    $offset
-     * @param string|null $search
-     *
-     * @return DowntimeCollection
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/providers/downtime/list */
     public function listDowntimes(
         ?int $limit = null,
         ?int $offset = null,

@@ -8,65 +8,29 @@ use Webmozart\Assert\Assert;
 
 final class DomainDetails implements DomainObjectInterface
 {
-    /** @var string */
-    public $domainName;
-
-    /** @var string */
-    public $registry;
-
-    /** @var string */
-    public $customer;
-
-    /** @var string */
-    public $registrant;
-
-    /** @var bool */
-    public $privacyProtect;
-
+    public string $domainName;
+    public string $registry;
+    public string $customer;
+    public string $registrant;
+    public bool $privacyProtect;
     /** @var string[] */
-    public $status;
-
-    /** @var string|null */
-    public $authcode;
-
-    /** @var string|null */
-    public $languageCode;
-
-    /** @var bool */
-    public $autoRenew;
-
-    /** @var int */
-    public $autoRenewPeriod;
-
+    public array $status;
+    public ?string $authcode;
+    public ?string $languageCode;
+    public bool $autoRenew;
+    public int $autoRenewPeriod;
     /** @var string[] */
-    public $ns;
-
+    public array $ns;
     /** @var string[] */
-    public $childHosts;
-
-    /** @var DateTime */
-    public $createdDate;
-
-    /** @var DateTime|null */
-    public $updatedDate;
-
-    /** @var DateTime */
-    public $expiryDate;
-
-    /** @var bool */
-    public $premium;
-
-    /** @var Zone|null */
-    public $zone;
-
-    /** @var DomainContactCollection|null */
-    public $contacts;
-
-    /** @var KeyDataCollection|null */
-    public $keyData;
-
-    /** @var DsDataCollection|null */
-    public $dsData;
+    public array $childHosts;
+    public DateTime $createdDate;
+    public ?DateTime $updatedDate;
+    public DateTime $expiryDate;
+    public bool $premium;
+    public ?Zone $zone;
+    public ?DomainContactCollection $contacts;
+    public ?KeyDataCollection $keyData;
+    public ?DsDataCollection $dsData;
 
     private function __construct(
         string $domainName,

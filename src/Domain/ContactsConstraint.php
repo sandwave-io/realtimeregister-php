@@ -4,23 +4,13 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 final class ContactsConstraint implements DomainObjectInterface
 {
-    /** @var int */
-    public $min;
-
-    /** @var int */
-    public $max;
-
-    /** @var bool */
-    public $required;
-
-    /** @var bool */
-    public $organizationRequired;
-
-    /** @var bool */
-    public $organizationAllowed;
-
+    public int $min;
+    public int $max;
+    public bool $required;
+    public bool $organizationRequired;
+    public bool $organizationAllowed;
     /** @var array<string>|null */
-    public $allowedCountries;
+    public ?array $allowedCountries;
 
     private function __construct(int $min, int $max, bool $required, bool $organizationRequired, bool $organizationAllowed, ?array $allowedCountries)
     {

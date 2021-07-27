@@ -11,7 +11,7 @@ class DomainPossibleClientDomainStatusEnum extends AbstractEnum
     const STATUS_CLIENT_TRANSFER_PROHIBITED = 'CLIENT_TRANSFER_PROHIBITED';
     const STATUS_IRTPC_TRANSFER_PROHIBITED = 'IRTPC_TRANSFER_PROHIBITED';
 
-    protected static $values = [
+    protected static array $values = [
         DomainPossibleClientDomainStatusEnum::STATUS_CLIENT_HOLD,
         DomainPossibleClientDomainStatusEnum::STATUS_CLIENT_DELETE_PROHIBITED,
         DomainPossibleClientDomainStatusEnum::STATUS_CLIENT_UPDATE_PROHIBITED,

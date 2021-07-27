@@ -9,7 +9,7 @@ class DomainDesignatedAgentEnum extends AbstractEnum
     const AGENT_NEW = 'NEW';
     const AGENT_BOTH = 'BOTH';
 
-    protected static $values = [
+    protected static array $values = [
         DomainDesignatedAgentEnum::AGENT_NONE,
         DomainDesignatedAgentEnum::AGENT_OLD,
         DomainDesignatedAgentEnum::AGENT_NEW,

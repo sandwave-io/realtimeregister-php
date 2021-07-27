@@ -11,15 +11,11 @@ use Webmozart\Assert\Assert;
 abstract class AbstractCollection implements ArrayAccess, IteratorAggregate, Countable
 {
     /** @var array<DomainObjectInterface> */
-    public $entities;
+    public array $entities;
 
-    /** @var Pagination */
-    public $pagination;
+    public Pagination $pagination;
 
-    /**
-     * @param Billable[] $entities
-     * @param Pagination $pagination
-     */
+    /** @param Billable[] $entities */
     private function __construct(array $entities, Pagination $pagination)
     {
         $this->entities = $entities;

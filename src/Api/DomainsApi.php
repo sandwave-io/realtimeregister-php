@@ -18,28 +18,14 @@ use SandwaveIo\RealtimeRegister\Domain\Zone;
 
 final class DomainsApi extends AbstractApi
 {
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/domains/get
-     *
-     * @param string $domainName
-     *
-     * @return DomainDetails
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/domains/get */
     public function get(string $domainName): DomainDetails
     {
         $response = $this->client->get("v2/domains/{$domainName}");
         return DomainDetails::fromArray($response->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/domains/list
-     *
-     * @param int|null    $limit
-     * @param int|null    $offset
-     * @param string|null $search
-     *
-     * @return DomainDetailsCollection
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/domains/list */
     public function list(?int $limit = null, ?int $offset = null, ?string $search = null): DomainDetailsCollection
     {
         $query = [];
@@ -57,14 +43,7 @@ final class DomainsApi extends AbstractApi
         return DomainDetailsCollection::fromArray($response->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/domains/check
-     *
-     * @param string      $domainName
-     * @param string|null $languageCode
-     *
-     * @return DomainAvailability
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/domains/check */
     public function check(string $domainName, ?string $languageCode = null): DomainAvailability
     {
         $query = [];
@@ -76,6 +55,11 @@ final class DomainsApi extends AbstractApi
         return DomainAvailability::fromArray($response->json());
     }
 
+    /**
+     * @see https://dm.realtimeregister.com/docs/api/domains/create
+     *
+     * @param string[] $ns
+     */
     public function register(
         string $domainName,
         string $customer,
@@ -133,21 +117,8 @@ final class DomainsApi extends AbstractApi
     /**
      * @see https://dm.realtimeregister.com/docs/api/domains/update
      *
-     * @param string                  $domainName
-     * @param string|null             $registrant
-     * @param bool|null               $privacyProtect
-     * @param int|null                $period
-     * @param string|null             $authcode
-     * @param string|null             $languageCode
-     * @param bool|null               $autoRenew
-     * @param array|null              $ns
-     * @param string[]|null           $statuses
-     * @param string|null             $designatedAgent
-     * @param Zone|null               $zone
-     * @param ContactCollection|null  $contacts
-     * @param KeyDataCollection|null  $keyData
-     * @param BillableCollection|null $billables
-     * @param bool                    $isQuote
+     * @param string[]|null $ns
+     * @param string[]|null $statuses
      */
     public function update(
         string $domainName,
@@ -229,9 +200,7 @@ final class DomainsApi extends AbstractApi
         ]);
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/domains/update
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/domains/update */
     public function transfer(
         string $domainName,
         string $customer,
@@ -305,10 +274,10 @@ final class DomainsApi extends AbstractApi
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/domains/pushtransfer */
-    public function pushTransfer(string $domain, string $recepient): void
+    public function pushTransfer(string $domain, string $recipient): void
     {
         $this->client->post("v2/domains/{$domain}/transfer/push", [
-            'recepient' => $recepient,
+            'recipient' => $recipient,
         ]);
     }
 
@@ -319,9 +288,7 @@ final class DomainsApi extends AbstractApi
         return DomainTransferStatus::fromArray($response->json());
     }
 
-    /**
-     * @see https://dm.realtimeregister.com/docs/api/domains/transferinfo
-     */
+    /* @see https://dm.realtimeregister.com/docs/api/domains/transferinfo */
     public function renew(string $domain, int $period, ?BillableCollection $billables = null, ?bool $quote = null): DateTime
     {
         $payload = [
@@ -342,7 +309,7 @@ final class DomainsApi extends AbstractApi
     /** @see https://dm.realtimeregister.com/docs/api/domains/delete */
     public function delete(string $domain): void
     {
-        $response = $this->client->delete("v2/domains/{$domain}");
+        $this->client->delete("v2/domains/{$domain}");
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/domains/restore */

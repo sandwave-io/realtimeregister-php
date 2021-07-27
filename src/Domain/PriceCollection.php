@@ -5,7 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class PriceCollection extends AbstractCollection
 {
     /** @var Price[] */
-    public $entities;
+    public array $entities;
 
     public static function fromArray(array $json): PriceCollection
     {
@@ -14,7 +14,7 @@ final class PriceCollection extends AbstractCollection
 
     public function offsetGet($offset): ?Price
     {
-        return isset($this->entities[$offset]) ? $this->entities[$offset] : null;
+        return $this->entities[$offset] ?? null;
     }
 
     public static function parseChild(array $json): Price

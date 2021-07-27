@@ -5,7 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class BrandCollection extends AbstractCollection
 {
     /** @var Brand[] */
-    public $entities;
+    public array $entities;
 
     public static function fromArray(array $json): BrandCollection
     {
@@ -14,7 +14,7 @@ final class BrandCollection extends AbstractCollection
 
     public function offsetGet($offset): ?Brand
     {
-        return isset($this->entities[$offset]) ? $this->entities[$offset] : null;
+        return $this->entities[$offset] ?? null;
     }
 
     public static function parseChild(array $json): Brand

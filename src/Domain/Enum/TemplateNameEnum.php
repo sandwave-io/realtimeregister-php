@@ -51,7 +51,7 @@ class TemplateNameEnum extends AbstractEnum
     const TEMPLATE_NAME_UPDATE_DOMAIN = 'UPDATE_DOMAIN:';
     const TEMPLATE_NAME_OUTGOING_TRANSFER_PRIVACY_PROTECT = 'OUTGOING_TRANSFER_PRIVACY_PROTECT:';
 
-    protected static $values = [
+    protected static array $values = [
         TemplateNameEnum::TEMPLATE_NAME_EMAIL_HEADER,
         TemplateNameEnum::TEMPLATE_NAME_EMAIL_FOOTER,
         TemplateNameEnum::TEMPLATE_NAME_ERRP_WEEK,

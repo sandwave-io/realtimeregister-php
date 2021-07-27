@@ -6,23 +6,13 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\PropertyTypeEnum;
 
 final class ContactProperty implements DomainObjectInterface
 {
-    /** @var string */
-    public $name;
-
-    /** @var string */
-    public $label;
-
-    /** @var string */
-    public $description;
-
-    /** @var string */
-    public $type;
-
-    /** @var bool */
-    public $mandatory;
-
+    public string $name;
+    public string $label;
+    public string $description;
+    public string $type;
+    public bool $mandatory;
     /** @var array<string,string>|null */
-    public $values;
+    public ?array $values;
 
     private function __construct(string $name, string $label, string $description, string $type, bool $mandatory, ?array $values)
     {

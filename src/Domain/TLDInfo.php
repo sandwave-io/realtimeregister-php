@@ -4,14 +4,10 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 final class TLDInfo implements DomainObjectInterface
 {
-    /** @var string */
-    public $provider;
-
+    public string $provider;
     /** @var array<string> */
-    public $applicableFor;
-
-    /** @var TLDMetaData */
-    public $metadata;
+    public array $applicableFor;
+    public TLDMetaData $metadata;
 
     private function __construct(
         string $provider,

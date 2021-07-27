@@ -5,7 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class DsDataCollection extends AbstractCollection
 {
     /** @var DsData[] */
-    public $entities;
+    public array $entities;
 
     public static function fromArray(array $json): DsDataCollection
     {
@@ -14,7 +14,7 @@ final class DsDataCollection extends AbstractCollection
 
     public function offsetGet($offset): ?DsData
     {
-        return isset($this->entities[$offset]) ? $this->entities[$offset] : null;
+        return $this->entities[$offset] ?? null;
     }
 
     public static function parseChild(array $json): DsData

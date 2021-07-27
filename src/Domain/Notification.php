@@ -6,38 +6,18 @@ use DateTime;
 
 final class Notification implements DomainObjectInterface
 {
-    /** @var int */
-    public $id;
-
-    /** @var DateTime */
-    public $fireDate;
-
-    /** @var DateTime */
-    public $readDate;
-
-    /** @var DateTime */
-    public $acknowledgedDate;
-
-    /** @var string */
-    public $message;
-
-    /** @var string|null */
-    public $reason;
-
-    /** @var string|null */
-    public $customer;
-
-    /** @var int|null */
-    public $process;
-
-    /** @var string */
-    public $eventType;
-
-    /** @var string */
-    public $notificationType;
-
+    public int $id;
+    public DateTime $fireDate;
+    public DateTime $readDate;
+    public DateTime $acknowledgedDate;
+    public string $message;
+    public ?string $reason;
+    public ?string $customer;
+    public ?int $process;
+    public string $eventType;
+    public string $notificationType;
     /** @var array<string>|null */
-    public $payload;
+    public ?array $payload;
 
     private function __construct(
         int $id,

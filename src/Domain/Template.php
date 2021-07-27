@@ -6,20 +6,11 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\TemplateNameEnum;
 
 final class Template implements DomainObjectInterface
 {
-    /** @var string */
-    public $name;
-
-    /** @var string|null */
-    public $subject;
-
-    /** @var string|null */
-    public $text;
-
-    /** @var string|null */
-    public $html;
-
-    /** @var string[] */
-    public $contexts;
+    public string $name;
+    public ?string $subject;
+    public ?string $text;
+    public ?string $html;
+    public array $contexts;
 
     private function __construct(
         string $name,

@@ -4,11 +4,8 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 final class Provider implements DomainObjectInterface
 {
-    /** @var string */
-    public $name;
-
-    /** @var string[]|null */
-    public $tlds;
+    public string $name;
+    public ?array $tlds;
 
     private function __construct(
         string $name,

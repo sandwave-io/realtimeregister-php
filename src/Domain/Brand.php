@@ -7,56 +7,24 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\LocaleEnum;
 
 final class Brand implements DomainObjectInterface
 {
-    /** @var string */
-    public $customer;
-
-    /** @var string */
-    public $handle;
-
-    /** @var string */
-    public $locale;
-
-    /** @var string */
-    public $organization;
-
+    public string $customer;
+    public string $handle;
+    public string $locale;
+    public string $organization;
     /** @var string[] */
-    public $addressLine;
-
-    /** @var string */
-    public $postalCode;
-
-    /** @var string */
-    public $city;
-
-    /** @var string|null */
-    public $state;
-
-    /** @var string */
-    public $country;
-
-    /** @var string */
-    public $email;
-
-    /** @var string|null */
-    public $url;
-
-    /** @var string */
-    public $voice;
-
-    /** @var string|null */
-    public $fax;
-
-    /** @var string|null */
-    public $privacyContact;
-
-    /** @var string|null */
-    public $abuseContact;
-
-    /** @var DateTime */
-    public $createdDate;
-
-    /** @var DateTime|null */
-    public $updatedDate;
+    public array $addressLine;
+    public string $postalCode;
+    public string $city;
+    public ?string $state;
+    public string $country;
+    public string $email;
+    public ?string $url;
+    public string $voice;
+    public ?string $fax;
+    public ?string $privacyContact;
+    public ?string $abuseContact;
+    public DateTime $createdDate;
+    public ?DateTime $updatedDate;
 
     private function __construct(
         string $customer,
