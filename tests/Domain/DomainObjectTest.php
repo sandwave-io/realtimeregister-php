@@ -27,6 +27,7 @@ use SandwaveIo\RealtimeRegister\Domain\Nameservers;
 use SandwaveIo\RealtimeRegister\Domain\Notification;
 use SandwaveIo\RealtimeRegister\Domain\NotificationPoll;
 use SandwaveIo\RealtimeRegister\Domain\Price;
+use SandwaveIo\RealtimeRegister\Domain\Process;
 use SandwaveIo\RealtimeRegister\Domain\Provider;
 use SandwaveIo\RealtimeRegister\Domain\Registrant;
 use SandwaveIo\RealtimeRegister\Domain\Template;
@@ -264,6 +265,19 @@ class DomainObjectTest extends TestCase
                 NotificationPoll::class,
                 include __DIR__ . '/data/notification_poll_invalid_count.php',
                 TypeError::class,
+            ],
+            'valid process (all fields)' => [
+                Process::class,
+                include __DIR__ . '/data/process_valid.php',
+            ],
+            'valid process (only required)' => [
+                Process::class,
+                include __DIR__ . '/data/process_valid_only_required.php',
+            ],
+            'valid process (status)' => [
+                Process::class,
+                include __DIR__ . '/data/process_invalid_status.php',
+                InvalidArgumentException::class,
             ],
             'valid provider (all fields)' => [
                 Provider::class,

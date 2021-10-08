@@ -8,13 +8,14 @@ use SandwaveIo\RealtimeRegister\Api\ContactsApi;
 use SandwaveIo\RealtimeRegister\Api\CustomersApi;
 use SandwaveIo\RealtimeRegister\Api\DomainsApi;
 use SandwaveIo\RealtimeRegister\Api\NotificationsApi;
+use SandwaveIo\RealtimeRegister\Api\ProcessesApi;
 use SandwaveIo\RealtimeRegister\Api\ProvidersApi;
 use SandwaveIo\RealtimeRegister\Api\TLDsApi;
 use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
 
 final class RealtimeRegister
 {
-    const BASE_URL = 'https://api.yoursrs.com/';
+    private const BASE_URL = 'https://api.yoursrs.com/';
 
     public ContactsApi $contacts;
     public CustomersApi $customers;
@@ -23,10 +24,11 @@ final class RealtimeRegister
     public NotificationsApi $notifications;
     public ProvidersApi $providers;
     public BrandsApi $brands;
+    public ProcessesApi $processes;
 
     public function __construct(string $apiKey, ?string $baseUrl = null, ?LoggerInterface $logger = null)
     {
-        $url = $baseUrl ?: RealtimeRegister::BASE_URL;
+        $url = $baseUrl ?: self::BASE_URL;
         $this->setClient(new AuthorizedClient($url, $apiKey, [], $logger));
     }
 
@@ -39,5 +41,6 @@ final class RealtimeRegister
         $this->notifications  = new NotificationsApi($client);
         $this->providers = new ProvidersApi($client);
         $this->brands = new BrandsApi($client);
+        $this->processes = new ProcessesApi($client);
     }
 }
