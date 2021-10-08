@@ -9,7 +9,7 @@ use Exception;
 class ProcessCollection extends AbstractCollection
 {
     /** @var Process[] */
-    public $entities;
+    public array $entities;
 
     public static function fromArray(array $json): ProcessCollection
     {
