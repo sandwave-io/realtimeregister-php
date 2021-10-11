@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SandwaveIo\RealtimeRegister\Api;
 
@@ -15,8 +15,9 @@ final class ProcessesApi extends AbstractApi
      *
      * @param int $processId
      *
-     * @return Process
      * @throws Exception
+     *
+     * @return Process
      */
     public function get(int $processId): Process
     {
@@ -27,8 +28,8 @@ final class ProcessesApi extends AbstractApi
     /**
      * @see https://dm.yoursrs-ote.com/docs/api/processes/list
      *
-     * @param int|null $limit
-     * @param int|null $offset
+     * @param int|null    $limit
+     * @param int|null    $offset
      * @param string|null $search
      *
      * @return ProcessCollection

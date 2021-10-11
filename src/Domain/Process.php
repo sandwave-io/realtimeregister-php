@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
@@ -103,7 +103,7 @@ final class Process implements DomainObjectInterface
                 'billables' => $this->billables ? $this->billables->toArray() : null,
             ],
             static function ($x) {
-                return !is_null($x);
+                return ! is_null($x);
             }
         );
     }

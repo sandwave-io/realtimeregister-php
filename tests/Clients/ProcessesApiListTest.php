@@ -1,10 +1,9 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
 use PHPUnit\Framework\TestCase;
-use SandwaveIo\RealtimeRegister\Domain\ProcessCollection;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 use Webmozart\Assert\Assert;
 
