@@ -217,7 +217,7 @@ final class DomainsApi extends AbstractApi
         ?KeyDataCollection $keyData = null,
         ?BillableCollection $billables = null,
         ?bool $isQuote = null
-    ): void {
+    ): DomainTransferStatus {
         $payload = [
             'customer' => $customer,
             'registrant' => $registrant,
@@ -268,9 +268,10 @@ final class DomainsApi extends AbstractApi
             $payload['billables'] = $billables->toArray();
         }
 
-        $this->client->post("v2/domains/{$domainName}/transfer", $payload, [
+        $response = $this->client->post("v2/domains/{$domainName}/transfer", $payload, [
             'quote' => $isQuote,
         ]);
+        return DomainTransferStatus::fromArray($response->json());
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/domains/pushtransfer */
@@ -282,9 +283,14 @@ final class DomainsApi extends AbstractApi
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/domains/transferinfo */
-    public function transferInfo(string $domain, string $processId): DomainTransferStatus
+    public function transferInfo(string $domain, ?string $processId = null): DomainTransferStatus
     {
-        $response = $this->client->get("v2/domains/{$domain}/transfer/{$processId}");
+        if (null === $processId) {
+            $endpoint = sprintf('v2/domains/%s/transfer', $domain);
+        } else {
+            $endpoint = sprintf('v2/domains/%s/transfer/%s', $domain, $processId);
+        }
+        $response = $this->client->get($endpoint);
         return DomainTransferStatus::fromArray($response->json());
     }
 
