@@ -4,7 +4,6 @@ namespace SandwaveIo\RealtimeRegister\Api;
 
 use DateTime;
 use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
-use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
 use SandwaveIo\RealtimeRegister\Domain\DomainContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
@@ -132,7 +131,7 @@ final class DomainsApi extends AbstractApi
         ?array $statuses = null,
         ?string $designatedAgent = null,
         ?Zone $zone = null,
-        ?ContactCollection $contacts = null,
+        ?DomainContactCollection $contacts = null,
         ?KeyDataCollection $keyData = null,
         ?BillableCollection $billables = null,
         bool $isQuote = false
@@ -183,16 +182,16 @@ final class DomainsApi extends AbstractApi
             $payload['zone'] = $zone;
         }
 
-        if ($contacts instanceof ContactCollection) {
-            $payload['contacts'] = $contacts;
+        if ($contacts instanceof DomainContactCollection) {
+            $payload['contacts'] = $contacts->toArray();
         }
 
         if ($keyData instanceof KeyDataCollection) {
-            $payload['keyData'] = $keyData;
+            $payload['keyData'] = $keyData->toArray();
         }
 
         if ($billables instanceof BillableCollection) {
-            $payload['billables'] = $billables;
+            $payload['billables'] = $billables->toArray();
         }
 
         $this->client->post("v2/domains/{$domainName}/update", $payload, [
