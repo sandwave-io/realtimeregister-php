@@ -4,7 +4,6 @@ namespace SandwaveIo\RealtimeRegister\Api;
 
 use DateTime;
 use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
-use SandwaveIo\RealtimeRegister\Domain\ContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
 use SandwaveIo\RealtimeRegister\Domain\DomainContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
@@ -132,7 +131,7 @@ final class DomainsApi extends AbstractApi
         ?array $statuses = null,
         ?string $designatedAgent = null,
         ?Zone $zone = null,
-        ?ContactCollection $contacts = null,
+        ?DomainContactCollection $contacts = null,
         ?KeyDataCollection $keyData = null,
         ?BillableCollection $billables = null,
         bool $isQuote = false
@@ -183,16 +182,16 @@ final class DomainsApi extends AbstractApi
             $payload['zone'] = $zone;
         }
 
-        if ($contacts instanceof ContactCollection) {
-            $payload['contacts'] = $contacts;
+        if ($contacts instanceof DomainContactCollection) {
+            $payload['contacts'] = $contacts->toArray();
         }
 
         if ($keyData instanceof KeyDataCollection) {
-            $payload['keyData'] = $keyData;
+            $payload['keyData'] = $keyData->toArray();
         }
 
         if ($billables instanceof BillableCollection) {
-            $payload['billables'] = $billables;
+            $payload['billables'] = $billables->toArray();
         }
 
         $this->client->post("v2/domains/{$domainName}/update", $payload, [
@@ -217,7 +216,7 @@ final class DomainsApi extends AbstractApi
         ?KeyDataCollection $keyData = null,
         ?BillableCollection $billables = null,
         ?bool $isQuote = null
-    ): void {
+    ): DomainTransferStatus {
         $payload = [
             'customer' => $customer,
             'registrant' => $registrant,
@@ -268,9 +267,10 @@ final class DomainsApi extends AbstractApi
             $payload['billables'] = $billables->toArray();
         }
 
-        $this->client->post("v2/domains/{$domainName}/transfer", $payload, [
+        $response = $this->client->post("v2/domains/{$domainName}/transfer", $payload, [
             'quote' => $isQuote,
         ]);
+        return DomainTransferStatus::fromArray($response->json());
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/domains/pushtransfer */
@@ -282,9 +282,14 @@ final class DomainsApi extends AbstractApi
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/domains/transferinfo */
-    public function transferInfo(string $domain, string $processId): DomainTransferStatus
+    public function transferInfo(string $domain, ?string $processId = null): DomainTransferStatus
     {
-        $response = $this->client->get("v2/domains/{$domain}/transfer/{$processId}");
+        if (null === $processId) {
+            $endpoint = sprintf('v2/domains/%s/transfer', $domain);
+        } else {
+            $endpoint = sprintf('v2/domains/%s/transfer/%s', $domain, $processId);
+        }
+        $response = $this->client->get($endpoint);
         return DomainTransferStatus::fromArray($response->json());
     }
 
