@@ -18,6 +18,7 @@ This SDK currently supports these APIs:
 * [Notifications API](https://dm.realtimeregister.com/docs/api/notifications)
 * [Providers API](https://dm.realtimeregister.com/docs/api/providers)
 * [TLDs API](https://dm.realtimeregister.com/docs/api/tlds)
+* [Processes API](https://dm.realtimeregister.com/docs/api/processes)
 
 Are you missing functionality? Feel free to create an issue, or hit us up with a pull request.
 

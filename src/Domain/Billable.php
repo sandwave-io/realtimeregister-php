@@ -9,15 +9,21 @@ final class Billable implements DomainObjectInterface
     public string $product;
     public string $action;
     public int $quantity;
+    public int $amount;
+    public string $providerName;
 
     private function __construct(
         string $product,
         string $action,
-        int $quantity
+        int $quantity,
+        int $amount,
+        string $providerName
     ) {
         $this->product = $product;
         $this->action = $action;
         $this->quantity = $quantity;
+        $this->amount = $amount;
+        $this->providerName = $providerName;
     }
 
     public static function fromArray(array $data): Billable
@@ -27,7 +33,9 @@ final class Billable implements DomainObjectInterface
         return new Billable(
             $data['product'],
             $data['action'],
-            $data['quantity']
+            $data['quantity'],
+            $data['amount'],
+            $data['providerName']
         );
     }
 
@@ -37,6 +45,8 @@ final class Billable implements DomainObjectInterface
             'product' =>$this->product,
             'action' =>$this->action,
             'quantity' =>$this->quantity,
+            'amount' =>$this->amount,
+            'providerName' =>$this->providerName,
         ];
     }
 }

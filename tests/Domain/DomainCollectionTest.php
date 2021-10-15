@@ -20,6 +20,7 @@ use SandwaveIo\RealtimeRegister\Domain\LaunchPhaseCollection;
 use SandwaveIo\RealtimeRegister\Domain\LogCollection;
 use SandwaveIo\RealtimeRegister\Domain\NotificationCollection;
 use SandwaveIo\RealtimeRegister\Domain\PriceCollection;
+use SandwaveIo\RealtimeRegister\Domain\ProcessCollection;
 use SandwaveIo\RealtimeRegister\Domain\ProviderCollection;
 use SandwaveIo\RealtimeRegister\Domain\TemplateCollection;
 
@@ -52,6 +53,7 @@ class DomainCollectionTest extends TestCase
             'launch phase collection' => [LaunchPhaseCollection::class, include __DIR__ . '/data/launch_phase.php'],
             'log collection' => [LogCollection::class, include __DIR__ . '/data/log.php'],
             'notification collection' => [NotificationCollection::class, include __DIR__ . '/data/notification_valid.php'],
+            'process collection' => [ProcessCollection::class, include __DIR__ . '/data/process_valid_only_required.php'],
             'provider collection' => [ProviderCollection::class, include __DIR__ . '/data/provider_valid.php'],
             'downtime collection' => [DowntimeCollection::class, include __DIR__ . '/data/downtime_valid.php'],
             'brand collection' => [BrandCollection::class, include __DIR__ . '/data/brand_valid.php'],
