@@ -60,7 +60,7 @@ final class DomainTransferStatus implements DomainObjectInterface
             $json['processId'] ?? null,
             isset($json['actionDate']) ? new DateTimeImmutable($json['actionDate']) : null,
             isset($json['expiryDate']) ? new DateTimeImmutable($json['expiryDate']) : null,
-            $json['registrar'],
+            $json['registrar'] ?? null,
             isset($json['log']) ? LogCollection::fromArray($json['log']) : null
         );
     }

@@ -19,7 +19,7 @@ class DomainsApiTransferTest extends TestCase
     {
         $sdk = MockedClientFactory::makeSdk(
             200,
-            json_encode(include __DIR__ . '/../Domain/data/domain_transfer_status.php', JSON_THROW_ON_ERROR),
+            json_encode(include __DIR__ . '/../Domain/data/domain_transfer_valid.php', JSON_THROW_ON_ERROR),
             MockedClientFactory::assertRoute('POST', 'v2/domains/example.com/transfer', $this)
         );
 
