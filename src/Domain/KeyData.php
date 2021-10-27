@@ -38,7 +38,7 @@ final class KeyData implements DomainObjectInterface
             $json['protocol'],
             $json['flags'],
             $json['algorithm'],
-            $decodedKey
+            $json['publicKey']
         );
     }
 
@@ -48,7 +48,7 @@ final class KeyData implements DomainObjectInterface
             'protocol' => $this->protocol,
             'flags' => $this->flags,
             'algorithm' => $this->algorithm,
-            'publicKey' => base64_encode($this->publicKey),
+            'publicKey' => $this->publicKey,
         ];
     }
 }
