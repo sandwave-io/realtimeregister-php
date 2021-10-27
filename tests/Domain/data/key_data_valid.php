@@ -4,5 +4,5 @@ return [
     'protocol' => 3,
     'flags' => 256,
     'algorithm' => 10,
-    'publicKey' => 'LS0tUlNBLS0tIGFzZGZhc2RmYXNkZmFzZGZhc2Rm',
+    'publicKey' => 'TFMwdFVsTkJMUzB0SUdGelpHWmhjMlJtWVhOa1ptRnpaR1poYzJSbQ==',
 ];
