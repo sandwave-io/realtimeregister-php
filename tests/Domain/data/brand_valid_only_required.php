@@ -13,5 +13,5 @@ return [
     'country' => 'countrytest',
     'email' => 'email@test.com',
     'voice' => 'voicetest',
-    'createdDate' => '2020-08-30 01:02:03',
+    'createdDate' => '2020-08-30T01:02:03Z',
 ];

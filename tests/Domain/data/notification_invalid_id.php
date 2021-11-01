@@ -2,9 +2,9 @@
 
 return [
     'id' => 'one',
-    'fireDate' => '2020-08-30 01:02:03',
-    'readDate' => '2020-08-30 01:02:03',
-    'acknowledgedDate' => '2020-08-30 01:02:03',
+    'fireDate' => '2020-08-30T01:02:03Z',
+    'readDate' => '2020-08-30T01:02:03Z',
+    'acknowledgedDate' => '2020-08-30T01:02:03Z',
     'message' => 'FAKE_MESSAGE',
     'reason' => 'FAKE_REASON',
     'customer' => 'johndoe',

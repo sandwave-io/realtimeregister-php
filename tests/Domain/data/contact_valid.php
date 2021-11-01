@@ -23,6 +23,6 @@ return [
             'is_verified' => 'true',
         ],
     ],
-    'createdDate' => '2020-08-30 01:02:03',
-    'updatedDate' => '2020-08-30 01:02:03',
+    'createdDate' => '2020-08-30T01:02:03Z',
+    'updatedDate' => '2020-08-30T01:02:03Z',
 ];

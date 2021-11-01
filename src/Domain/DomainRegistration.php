@@ -27,7 +27,7 @@ class DomainRegistration implements DomainObjectInterface
     {
         return [
             'domainName' => $this->domainName,
-            'expiryDate' => $this->expiryDate->format('Y-m-d H:i:s'),
+            'expiryDate' => $this->expiryDate->format('Y-m-d\TH:i:s\Z'),
         ];
     }
 }

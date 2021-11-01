@@ -37,12 +37,12 @@ final class ContactsConstraint implements DomainObjectInterface
     public function toArray(): array
     {
         return array_filter([
-            'min' =>$this->min,
-            'max' =>$this->max,
-            'required' =>$this->required,
-            'organizationRequired' =>$this->organizationRequired,
-            'organizationAllowed' =>$this->organizationAllowed,
-            'allowedCountries' =>$this->allowedCountries,
+            'min' => $this->min,
+            'max' => $this->max,
+            'required' => $this->required,
+            'organizationRequired' => $this->organizationRequired,
+            'organizationAllowed' => $this->organizationAllowed,
+            'allowedCountries' => $this->allowedCountries,
         ], function ($x) {
             return ! is_null($x);
         });

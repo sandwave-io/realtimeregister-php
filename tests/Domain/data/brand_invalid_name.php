@@ -18,6 +18,6 @@ return [
     'fax' => 'faxtest',
     'privacyContact' => 'privacycontacttest',
     'abuseContact' => 'abusecontacttest',
-    'createdDate' => '2020-08-30 01:02:03',
-    'updatedDate' => '2020-09-05 11:02:03',
+    'createdDate' => '2020-08-30T01:02:03Z',
+    'updatedDate' => '2020-09-05T11:02:03Z',
 ];

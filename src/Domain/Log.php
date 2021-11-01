@@ -31,9 +31,9 @@ final class Log implements DomainObjectInterface
     public function toArray(): array
     {
         return [
-            'date' =>$this->date->format('Y-m-d H:i:s'),
-            'status' =>$this->status,
-            'message' =>$this->message,
+            'date' => $this->date->format('Y-m-d\TH:i:s\Z'),
+            'status' => $this->status,
+            'message' => $this->message,
         ];
     }
 }

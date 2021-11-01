@@ -3,8 +3,8 @@
 return [
     'domainName' => 'example.nl',
     'status' => 'pending',
-    'requestedDate' => '2020-10-20 12:34:56',
-    'expiryDate' => '2021-10-20 12:34:56',
+    'requestedDate' => '2020-03-04T12:34:56Z',
+    'expiryDate' => '2020-05-04T12:34:56Z',
     'type' => 'IN',
     'processId' => 5,
 ];
