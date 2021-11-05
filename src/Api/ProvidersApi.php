@@ -20,7 +20,8 @@ final class ProvidersApi extends AbstractApi
     public function list(
         ?int $limit = null,
         ?int $offset = null,
-        ?string $search = null
+        ?string $search = null,
+        ?array $parameters = null
     ): ProviderCollection {
         $query = [];
         if (! is_null($limit)) {
@@ -31,6 +32,9 @@ final class ProvidersApi extends AbstractApi
         }
         if (! is_null($search)) {
             $query['q'] = $search;
+        }
+        if (! is_null($parameters)) {
+            $query = array_merge($parameters, $query);
         }
 
         $response = $this->client->get('v2/providers', $query);
@@ -47,7 +51,8 @@ final class ProvidersApi extends AbstractApi
     public function listDowntimes(
         ?int $limit = null,
         ?int $offset = null,
-        ?string $search = null
+        ?string $search = null,
+        ?array $parameters = null
     ): DowntimeCollection {
         $query = [];
         if (! is_null($limit)) {
@@ -58,6 +63,9 @@ final class ProvidersApi extends AbstractApi
         }
         if (! is_null($search)) {
             $query['q'] = $search;
+        }
+        if (! is_null($parameters)) {
+            $query = array_merge($parameters, $query);
         }
 
         $response = $this->client->get('v2/providers/downtime', $query);

@@ -28,14 +28,19 @@ final class ProcessesApi extends AbstractApi
     /**
      * @see https://dm.yoursrs-ote.com/docs/api/processes/list
      *
-     * @param int|null    $limit
-     * @param int|null    $offset
-     * @param string|null $search
+     * @param int|null              $limit
+     * @param int|null              $offset
+     * @param string|null           $search
+     * @param array<string, string> $parameters
      *
      * @return ProcessCollection
      */
-    public function list(?int $limit = null, ?int $offset = null, ?string $search = null): ProcessCollection
-    {
+    public function list(
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $search = null,
+        ?array $parameters = null
+    ): ProcessCollection {
         $query = [];
         if (! is_null($limit)) {
             $query['limit'] = $limit;
@@ -45,6 +50,9 @@ final class ProcessesApi extends AbstractApi
         }
         if (! is_null($search)) {
             $query['q'] = $search;
+        }
+        if (! is_null($parameters)) {
+            $query = array_merge($parameters, $query);
         }
 
         $response = $this->client->get('v2/processes', $query);

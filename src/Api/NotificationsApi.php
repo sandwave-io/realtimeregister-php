@@ -20,7 +20,8 @@ final class NotificationsApi extends AbstractApi
         string $customer,
         ?int $limit = null,
         ?int $offset = null,
-        ?string $search = null
+        ?string $search = null,
+        ?array $parameters = null
     ): NotificationCollection {
         $query = [];
         if (! is_null($limit)) {
@@ -31,6 +32,9 @@ final class NotificationsApi extends AbstractApi
         }
         if (! is_null($search)) {
             $query['q'] = $search;
+        }
+        if (! is_null($parameters)) {
+            $query = array_merge($parameters, $query);
         }
 
         $response = $this->client->get("v2/customers/{$customer}/notifications", $query);

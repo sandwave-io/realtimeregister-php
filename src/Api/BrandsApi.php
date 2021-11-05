@@ -25,7 +25,8 @@ final class BrandsApi extends AbstractApi
         string $customer,
         ?int $limit = null,
         ?int $offset = null,
-        ?string $search = null
+        ?string $search = null,
+        ?array $parameters = null
     ): BrandCollection {
         $query = [];
         if (! is_null($limit)) {
@@ -36,6 +37,9 @@ final class BrandsApi extends AbstractApi
         }
         if (! is_null($search)) {
             $query['q'] = $search;
+        }
+        if (! is_null($parameters)) {
+            $query = array_merge($parameters, $query);
         }
 
         $response = $this->client->get("/v2/customers/{$customer}/brands", $query);
@@ -195,7 +199,8 @@ final class BrandsApi extends AbstractApi
         string $brand,
         ?int $limit = null,
         ?int $offset = null,
-        ?string $search = null
+        ?string $search = null,
+        ?array $parameters = null
     ): TemplateCollection {
         $query = [];
         if (! is_null($limit)) {
@@ -206,6 +211,9 @@ final class BrandsApi extends AbstractApi
         }
         if (! is_null($search)) {
             $query['q'] = $search;
+        }
+        if (! is_null($parameters)) {
+            $query = array_merge($parameters, $query);
         }
 
         $response = $this->client->get("/v2/customers/{$customer}/brands/{$brand}/templates", $query);
