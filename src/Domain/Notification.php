@@ -66,9 +66,9 @@ final class Notification implements DomainObjectInterface
     {
         return array_filter([
             'id' => $this->id,
-            'fireDate' => $this->fireDate->format('Y-m-d H:i:s'),
-            'readDate' => $this->readDate->format('Y-m-d H:i:s'),
-            'acknowledgedDate' => $this->acknowledgedDate->format('Y-m-d H:i:s'),
+            'fireDate' => $this->fireDate->format('Y-m-d\TH:i:s\Z'),
+            'readDate' => $this->readDate->format('Y-m-d\TH:i:s\Z'),
+            'acknowledgedDate' => $this->acknowledgedDate->format('Y-m-d\TH:i:s\Z'),
             'message' => $this->message,
             'reason' => $this->reason,
             'customer' => $this->customer,

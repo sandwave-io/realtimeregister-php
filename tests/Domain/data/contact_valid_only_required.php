@@ -13,5 +13,5 @@ return [
     'country' => 'Netherlands',
     'email' => 'test@example.com',
     'voice' => '(350) 507-3602',
-    'createdDate' => '2020-08-30 01:02:03',
+    'createdDate' => '2020-08-30T01:02:03Z',
 ];

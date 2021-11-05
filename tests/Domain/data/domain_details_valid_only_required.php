@@ -18,8 +18,8 @@ return [
     'childHosts' => [
         'example.com',
     ],
-    'createdDate' => '2020-08-30 01:02:03',
-    'updatedDate' => '2020-08-30 01:02:03',
-    'expiryDate' => '2020-11-30 01:02:03',
+    'createdDate' => '2020-08-30T01:02:03Z',
+    'updatedDate' => '2020-08-30T01:02:03Z',
+    'expiryDate' => '2020-11-30T01:02:03Z',
     'premium' => false,
 ];

@@ -29,9 +29,9 @@ final class Registrant implements DomainObjectInterface
     public function toArray(): array
     {
         return array_filter([
-            'organizationRequired' =>$this->organizationRequired,
-            'organizationAllowed' =>$this->organizationAllowed,
-            'allowedCountries' =>$this->allowedCountries,
+            'organizationRequired' => $this->organizationRequired,
+            'organizationAllowed' => $this->organizationAllowed,
+            'allowedCountries' => $this->allowedCountries,
         ], function ($x) {
             return ! is_null($x);
         });

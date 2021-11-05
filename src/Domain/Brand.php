@@ -108,8 +108,8 @@ final class Brand implements DomainObjectInterface
             'fax' => $this->fax,
             'privacyContact' => $this->privacyContact,
             'abuseContact' => $this->abuseContact,
-            'createdDate' => $this->createdDate->format('Y-m-d H:i:s'),
-            'updatedDate' => $this->updatedDate ? $this->updatedDate->format('Y-m-d H:i:s') : null,
+            'createdDate' => $this->createdDate->format('Y-m-d\TH:i:s\Z'),
+            'updatedDate' => $this->updatedDate ? $this->updatedDate->format('Y-m-d\TH:i:s\Z') : null,
         ], function ($x) {
             return ! is_null($x);
         });

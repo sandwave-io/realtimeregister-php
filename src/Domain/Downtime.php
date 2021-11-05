@@ -53,8 +53,8 @@ final class Downtime implements DomainObjectInterface
     {
         return array_filter([
             'id' => $this->id,
-            'startDate' => $this->startDate->format('Y-m-d H:i:s'),
-            'endDate' => $this->endDate->format('Y-m-d H:i:s'),
+            'startDate' => $this->startDate->format('Y-m-d\TH:i:s\Z'),
+            'endDate' => $this->endDate->format('Y-m-d\TH:i:s\Z'),
             'reason' => $this->reason,
             'provider' => $this->provider->toArray(),
         ], function ($x) {

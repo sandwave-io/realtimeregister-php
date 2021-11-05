@@ -27,9 +27,9 @@ final class Nameservers implements DomainObjectInterface
     public function toArray(): array
     {
         return [
-            'min' =>$this->min,
-            'max' =>$this->max,
-            'required' =>$this->required,
+            'min' => $this->min,
+            'max' => $this->max,
+            'required' => $this->required,
         ];
     }
 }
