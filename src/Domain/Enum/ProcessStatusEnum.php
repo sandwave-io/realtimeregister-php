@@ -5,16 +5,16 @@ namespace SandwaveIo\RealtimeRegister\Domain\Enum;
 
 class ProcessStatusEnum extends AbstractEnum
 {
-    private const STATUS_NEW = 'NEW';
-    private const STATUS_VALIDATED = 'VALIDATED';
-    private const STATUS_RUNNING = 'RUNNING';
-    private const STATUS_COMPLETED = 'COMPLETED';
-    private const STATUS_INVALID = 'INVALID';
-    private const STATUS_CANCELLED = 'CANCELLED';
-    private const STATUS_FAILED = 'FAILED';
-    private const STATUS_IN_DOUBT = 'IN_DOUBT';
-    private const STATUS_SCHEDULED = 'SCHEDULED';
-    private const STATUS_SUSPENDED = 'SUSPENDED';
+    const STATUS_NEW = 'NEW';
+    const STATUS_VALIDATED = 'VALIDATED';
+    const STATUS_RUNNING = 'RUNNING';
+    const STATUS_COMPLETED = 'COMPLETED';
+    const STATUS_INVALID = 'INVALID';
+    const STATUS_CANCELLED = 'CANCELLED';
+    const STATUS_FAILED = 'FAILED';
+    const STATUS_IN_DOUBT = 'IN_DOUBT';
+    const STATUS_SCHEDULED = 'SCHEDULED';
+    const STATUS_SUSPENDED = 'SUSPENDED';
 
     protected static array $values = [
       ProcessStatusEnum::STATUS_NEW,
