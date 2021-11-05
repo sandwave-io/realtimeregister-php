@@ -34,7 +34,7 @@ final class Billable implements DomainObjectInterface
             $data['product'],
             $data['action'],
             $data['quantity'],
-            $data['amount'],
+            $data['amount'] ?? 0,
             $data['providerName']
         );
     }

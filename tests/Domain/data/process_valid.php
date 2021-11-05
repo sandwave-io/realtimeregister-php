@@ -40,6 +40,6 @@ return  [
     ],
     'billables' => [
         include __DIR__ . '/billable_valid.php',
-        include __DIR__ . '/billable_valid.php',
+        include __DIR__ . '/billable_valid_no_amount.php',
     ],
 ];
