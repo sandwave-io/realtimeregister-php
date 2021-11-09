@@ -62,4 +62,43 @@ class ProcessesApiListTest extends TestCase
 
         $sdk->processes->list(2, 0, 'identifier:eq=something');
     }
+
+    public function test_list_with_search_and_parameters(): void
+    {
+        $parameters = [
+            'type' => 'incomingTransfer',
+            'status' => 'completed',
+            'order' => '-updatedDate'
+        ];
+
+        /** @var string $responseBody */
+        $responseBody = json_encode(
+            [
+                'entities' => [
+                    include __DIR__ . '/../Domain/data/process_valid.php',
+                    include __DIR__ . '/../Domain/data/process_valid.php',
+                ],
+                'pagination' => [
+                    'total' => 2,
+                    'offset' => 0,
+                    'limit' => 2,
+                ],
+            ]
+        );
+
+        $sdk = MockedClientFactory::makeSdk(
+            200,
+            $responseBody,
+            MockedClientFactory::assertRoute('GET', 'v2/processes', $this, [
+                'type' => 'incomingTransfer',
+                'status' => 'completed',
+                'order' => '-updatedDate',
+                'limit' => '2',
+                'offset' => '0',
+                'q' => 'search'
+            ])
+        );
+
+        $sdk->processes->list(2, 0, 'search', $parameters);
+    }
 }

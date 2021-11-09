@@ -53,4 +53,36 @@ class ContactsApiListCountriesTest extends TestCase
         $response = $sdk->contacts->listCountries(10, 0, 'nl');
         $this->assertInstanceOf(CountryCollection::class, $response);
     }
+
+    public function test_list_with_search_and_parameters(): void
+    {
+        $parameters = [
+            'code' => 'NL'
+        ];
+
+        $sdk = MockedClientFactory::makeSdk(
+            200,
+            json_encode([
+                'entities' => [
+                    include __DIR__ . '/../Domain/data/country_valid.php',
+                    include __DIR__ . '/../Domain/data/country_valid.php',
+                    include __DIR__ . '/../Domain/data/country_valid.php',
+                ],
+                'pagination' => [
+                    'total'  => 3,
+                    'offset' => 0,
+                    'limit'  => 10,
+                ],
+            ]),
+            MockedClientFactory::assertRoute('GET', 'v2/countries', $this, [
+                'code' => 'NL',
+                'limit' => '10',
+                'offset' => '0',
+                'q' => 'nl'
+            ])
+        );
+
+        $response = $sdk->contacts->listCountries(10, 0, 'nl', $parameters);
+        $this->assertInstanceOf(CountryCollection::class, $response);
+    }
 }
