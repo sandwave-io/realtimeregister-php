@@ -64,7 +64,7 @@ class BrandsApiListTest extends TestCase
         $customerHandle = 'customertestname';
         $parameters = [
             'city' => 'testcity',
-            'country:in' => 'NL,BE'
+            'country:in' => 'NL,BE',
         ];
         $search = 'search';
 
@@ -87,7 +87,7 @@ class BrandsApiListTest extends TestCase
                 'country:in' => 'NL,BE',
                 'limit' => '3',
                 'offset' => '0',
-                'q' => 'search'
+                'q' => 'search',
             ])
         );
 

@@ -57,7 +57,7 @@ class NotificationsApiListTest extends TestCase
     public function test_list_with_search_and_parameters(): void
     {
         $parameters = [
-            'notificationType' => 'test'
+            'notificationType' => 'test',
         ];
 
         $sdk = MockedClientFactory::makeSdk(
@@ -78,7 +78,7 @@ class NotificationsApiListTest extends TestCase
                 'notificationType' => 'test',
                 'limit' => '3',
                 'offset' => '0',
-                'q' => 'john'
+                'q' => 'john',
             ])
         );
 

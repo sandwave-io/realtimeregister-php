@@ -57,7 +57,7 @@ class ProvidersApiListTest extends TestCase
     public function test_list_with_search_and_parameters(): void
     {
         $parameters = [
-            'name:like' => 'testname'
+            'name:like' => 'testname',
         ];
 
         $sdk = MockedClientFactory::makeSdk(
@@ -78,7 +78,7 @@ class ProvidersApiListTest extends TestCase
                 'name:like' => 'testname',
                 'limit' => '3',
                 'offset' => '0',
-                'q' => 'providername'
+                'q' => 'providername',
             ])
         );
 

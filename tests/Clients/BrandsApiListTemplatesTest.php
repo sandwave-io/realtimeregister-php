@@ -68,7 +68,7 @@ class BrandsApiListTemplatesTest extends TestCase
         $searchTextOnFields = 'search';
 
         $parameters = [
-            'name' => 'EMAIL_HEADER'
+            'name' => 'EMAIL_HEADER',
         ];
 
         $sdk = MockedClientFactory::makeSdk(
@@ -89,7 +89,7 @@ class BrandsApiListTemplatesTest extends TestCase
                 'name' => 'EMAIL_HEADER',
                 'limit' => '10',
                 'offset' => '0',
-                'q' => 'search'
+                'q' => 'search',
             ])
         );
 

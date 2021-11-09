@@ -57,7 +57,7 @@ class ContactsApiListTest extends TestCase
     public function test_list_with_search_and_parameters(): void
     {
         $parameters = [
-            'organization' => 'testorg'
+            'organization' => 'testorg',
         ];
 
         $sdk = MockedClientFactory::makeSdk(
@@ -78,7 +78,7 @@ class ContactsApiListTest extends TestCase
                 'organization' => 'testorg',
                 'limit' => '3',
                 'offset' => '0',
-                'q' => 'john'
+                'q' => 'john',
             ])
         );
 

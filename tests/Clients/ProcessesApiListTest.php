@@ -68,7 +68,7 @@ class ProcessesApiListTest extends TestCase
         $parameters = [
             'type' => 'incomingTransfer',
             'status' => 'completed',
-            'order' => '-updatedDate'
+            'order' => '-updatedDate',
         ];
 
         /** @var string $responseBody */
@@ -95,7 +95,7 @@ class ProcessesApiListTest extends TestCase
                 'order' => '-updatedDate',
                 'limit' => '2',
                 'offset' => '0',
-                'q' => 'search'
+                'q' => 'search',
             ])
         );
 

@@ -57,7 +57,7 @@ class ProvidersApiListDowntimesTest extends TestCase
     public function test_list_with_search_and_parameters(): void
     {
         $parameters = [
-            'name' => 'test'
+            'name' => 'test',
         ];
 
         $sdk = MockedClientFactory::makeSdk(
@@ -78,7 +78,7 @@ class ProvidersApiListDowntimesTest extends TestCase
                 'name' => 'test',
                 'limit' => '10',
                 'offset' => '0',
-                'q' => 'test'
+                'q' => 'test',
             ])
         );
 

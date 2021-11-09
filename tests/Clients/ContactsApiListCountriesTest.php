@@ -57,7 +57,7 @@ class ContactsApiListCountriesTest extends TestCase
     public function test_list_with_search_and_parameters(): void
     {
         $parameters = [
-            'code' => 'NL'
+            'code' => 'NL',
         ];
 
         $sdk = MockedClientFactory::makeSdk(
@@ -78,7 +78,7 @@ class ContactsApiListCountriesTest extends TestCase
                 'code' => 'NL',
                 'limit' => '10',
                 'offset' => '0',
-                'q' => 'nl'
+                'q' => 'nl',
             ])
         );
 
