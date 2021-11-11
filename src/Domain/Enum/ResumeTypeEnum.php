@@ -6,12 +6,12 @@ namespace SandwaveIo\RealtimeRegister\Domain\Enum;
 
 class ResumeTypeEnum extends AbstractEnum
 {
-    private const TYPE_PROVIDER = 'PROVIDER';
-    private const TYPE_TIMER = 'TIMER';
-    private const TYPE_MANUAL = 'MANUAL';
-    private const TYPE_INTERNAL = 'INTERNAL';
-    private const TYPE_RESEND = 'RESEND';
-    private const TYPE_CANCEL = 'CANCEL';
+    const TYPE_PROVIDER = 'PROVIDER';
+    const TYPE_TIMER = 'TIMER';
+    const TYPE_MANUAL = 'MANUAL';
+    const TYPE_INTERNAL = 'INTERNAL';
+    const TYPE_RESEND = 'RESEND';
+    const TYPE_CANCEL = 'CANCEL';
 
     protected static array $values = [
         ResumeTypeEnum::TYPE_PROVIDER,
