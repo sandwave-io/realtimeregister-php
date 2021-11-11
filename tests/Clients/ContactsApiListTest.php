@@ -53,4 +53,36 @@ class ContactsApiListTest extends TestCase
         $response = $sdk->contacts->list('johndoe', 3, 0, 'john');
         $this->assertInstanceOf(ContactCollection::class, $response);
     }
+
+    public function test_list_with_search_and_parameters(): void
+    {
+        $parameters = [
+            'organization' => 'testorg',
+        ];
+
+        $sdk = MockedClientFactory::makeSdk(
+            200,
+            json_encode([
+                'entities' => [
+                    include __DIR__ . '/../Domain/data/contact_valid.php',
+                    include __DIR__ . '/../Domain/data/contact_valid.php',
+                    include __DIR__ . '/../Domain/data/contact_valid.php',
+                ],
+                'pagination' => [
+                    'total'  => 3,
+                    'offset' => 0,
+                    'limit'  => 3,
+                ],
+            ]),
+            MockedClientFactory::assertRoute('GET', 'v2/customers/johndoe/contacts', $this, [
+                'organization' => 'testorg',
+                'limit' => '3',
+                'offset' => '0',
+                'q' => 'john',
+            ])
+        );
+
+        $response = $sdk->contacts->list('johndoe', 3, 0, 'john', $parameters);
+        $this->assertInstanceOf(ContactCollection::class, $response);
+    }
 }

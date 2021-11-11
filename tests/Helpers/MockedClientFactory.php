@@ -16,12 +16,17 @@ class MockedClientFactory
 {
     const API_KEY = 'bigseretdonttellanyone';
 
-    public static function assertRoute(string $method, string $route, TestCase $testCase): callable
+    public static function assertRoute(string $method, string $route, TestCase $testCase, ?array $expectedParameters = null): callable
     {
-        return function (RequestInterface $request) use ($method, $route, $testCase) {
+        return function (RequestInterface $request) use ($method, $route, $testCase, $expectedParameters) {
             $testCase->assertSame(strtoupper($method), strtoupper($request->getMethod()));
             $testCase->assertSame($route, $request->getUri()->getPath());
             $testCase->assertSame('ApiKey ' . static::API_KEY, $request->getHeader('Authorization')[0]);
+
+            if (null !== $expectedParameters) {
+                parse_str($request->getUri()->getQuery(), $parameters);
+                $testCase->assertSame($expectedParameters, $parameters);
+            }
         };
     }
 

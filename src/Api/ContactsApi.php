@@ -11,8 +11,13 @@ use SandwaveIo\RealtimeRegister\Domain\CountryCollection;
 final class ContactsApi extends AbstractApi
 {
     /* @see https://dm.realtimeregister.com/docs/api/contacts/list */
-    public function list(string $customer, ?int $limit = null, ?int $offset = null, ?string $search = null): ContactCollection
-    {
+    public function list(
+        string $customer,
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $search = null,
+        ?array $parameters = null
+    ): ContactCollection {
         $query = [];
         if (! is_null($limit)) {
             $query['limit'] = $limit;
@@ -22,6 +27,9 @@ final class ContactsApi extends AbstractApi
         }
         if (! is_null($search)) {
             $query['q'] = $search;
+        }
+        if (! is_null($parameters)) {
+            $query = array_merge($parameters, $query);
         }
 
         $response = $this->client->get("v2/customers/{$customer}/contacts", $query);
@@ -230,8 +238,12 @@ final class ContactsApi extends AbstractApi
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/contacts/list */
-    public function listCountries(?int $limit = null, ?int $offset = null, ?string $search = null): CountryCollection
-    {
+    public function listCountries(
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $search = null,
+        ?array $parameters = null
+    ): CountryCollection {
         $query = [];
         if (! is_null($limit)) {
             $query['limit'] = $limit;
@@ -241,6 +253,9 @@ final class ContactsApi extends AbstractApi
         }
         if (! is_null($search)) {
             $query['q'] = $search;
+        }
+        if (! is_null($parameters)) {
+            $query = array_merge($parameters, $query);
         }
 
         $response = $this->client->get('v2/countries', $query);

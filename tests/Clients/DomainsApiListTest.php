@@ -53,4 +53,36 @@ class DomainsApiListTest extends TestCase
         $response = $sdk->domains->list(3, 0, 'john');
         $this->assertInstanceOf(DomainDetailsCollection::class, $response);
     }
+
+    public function test_list_with_search_and_parameters(): void
+    {
+        $parameters = [
+            'registrant' => 'testregistrant',
+        ];
+
+        $sdk = MockedClientFactory::makeSdk(
+            200,
+            json_encode([
+                'entities' => [
+                    include __DIR__ . '/../Domain/data/domain_details_valid.php',
+                    include __DIR__ . '/../Domain/data/domain_details_valid.php',
+                    include __DIR__ . '/../Domain/data/domain_details_valid.php',
+                ],
+                'pagination' => [
+                    'total'  => 3,
+                    'offset' => 0,
+                    'limit'  => 3,
+                ],
+            ]),
+            MockedClientFactory::assertRoute('GET', 'v2/domains', $this, [
+                'registrant' => 'testregistrant',
+                'limit' => '3',
+                'offset' => '0',
+                'q' => 'john',
+            ])
+        );
+
+        $response = $sdk->domains->list(3, 0, 'john', $parameters);
+        $this->assertInstanceOf(DomainDetailsCollection::class, $response);
+    }
 }

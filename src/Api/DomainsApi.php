@@ -25,8 +25,12 @@ final class DomainsApi extends AbstractApi
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/domains/list */
-    public function list(?int $limit = null, ?int $offset = null, ?string $search = null): DomainDetailsCollection
-    {
+    public function list(
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $search = null,
+        ?array $parameters = null
+    ): DomainDetailsCollection {
         $query = [];
         if (! is_null($limit)) {
             $query['limit'] = $limit;
@@ -36,6 +40,9 @@ final class DomainsApi extends AbstractApi
         }
         if (! is_null($search)) {
             $query['q'] = $search;
+        }
+        if (! is_null($parameters)) {
+            $query = array_merge($parameters, $query);
         }
 
         $response = $this->client->get('v2/domains', $query);
