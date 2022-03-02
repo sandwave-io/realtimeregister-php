@@ -42,4 +42,27 @@ final class LanguageCodesTest extends TestCase
 
         Assert::assertSame($languageCodeData, $languageCodes->toArray());
     }
+
+    public function test_set_unset(): void
+    {
+        $languageCodeData = include __DIR__ . '/data/language_codes.php';
+
+        $languageCodes = LanguageCodes::fromArray($languageCodeData);
+        $languageCodes->offsetSet(
+            'GER',
+            LanguageCode::fromArray([
+                'name' => 'Germany',
+            ])
+        );
+
+        $languageCodeGermany = $languageCodes->offsetGet('GER');
+
+        assert($languageCodeGermany !== null);
+
+        Assert::assertSame('Germany', $languageCodeGermany->name);
+
+        $languageCodes->offsetUnset('GER');
+
+        Assert::assertNull($languageCodes->offsetGet('GER'));
+    }
 }

@@ -26,11 +26,6 @@ final class LanguageCodes implements ArrayAccess, Countable
         return new self($entities);
     }
 
-    public static function parseChild(array $json): LanguageCode
-    {
-        return LanguageCode::fromArray($json);
-    }
-
     public function toArray(): array
     {
         $languageCodesArray = [];
