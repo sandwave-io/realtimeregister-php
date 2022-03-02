@@ -3,7 +3,7 @@
 return [
     'DUT' => [
         'name' => 'Dutch',
-        'allowedCharacters' => 'abcdefghijklmnopqrstuvwxyz'
+        'allowedCharacters' => 'abcdefghijklmnopqrstuvwxyz',
     ],
     'ENG' => [
         'name' => 'English',

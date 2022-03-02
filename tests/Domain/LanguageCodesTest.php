@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace SandwaveIo\RealtimeRegister\Tests\Domain;
 
@@ -32,7 +32,6 @@ final class LanguageCodesTest extends TestCase
         Assert::assertInstanceOf(LanguageCode::class, $languageCodeEnglish);
         Assert::assertSame('English', $languageCodeEnglish->name);
         Assert::assertNull($languageCodeEnglish->allowedCharacters);
-
     }
 
     public function test_from_and_to_array(): void
