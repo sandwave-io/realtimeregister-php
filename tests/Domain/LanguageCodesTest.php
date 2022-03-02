@@ -43,7 +43,7 @@ final class LanguageCodesTest extends TestCase
         Assert::assertSame($languageCodeData, $languageCodes->toArray());
     }
 
-    public function test_set_unset(): void
+    public function test_set_unset_exists(): void
     {
         $languageCodeData = include __DIR__ . '/data/language_codes.php';
 
@@ -55,6 +55,8 @@ final class LanguageCodesTest extends TestCase
             ])
         );
 
+        Assert::assertTrue($languageCodes->offsetExists('GER'));
+
         $languageCodeGermany = $languageCodes->offsetGet('GER');
 
         assert($languageCodeGermany !== null);
@@ -64,5 +66,6 @@ final class LanguageCodesTest extends TestCase
         $languageCodes->offsetUnset('GER');
 
         Assert::assertNull($languageCodes->offsetGet('GER'));
+        Assert::assertFalse($languageCodes->offsetExists('GER'));
     }
 }
