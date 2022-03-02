@@ -1,0 +1,473 @@
+{
+    "metadata": {
+        "renewDomainPeriods": [
+            12,
+            24,
+            36,
+            48,
+            60,
+            72,
+            84,
+            96,
+            108,
+            120
+        ],
+        "whoisExposure": "FULL",
+        "gdprCategory": "UNKNOWN",
+        "createDomainPeriods": [
+            12,
+            24,
+            36,
+            48,
+            60,
+            72,
+            84,
+            96,
+            108,
+            120
+        ],
+        "autoRenewDomainPeriods": [
+            12
+        ],
+        "registrant": {
+            "organizationRequired": false,
+            "organizationAllowed": true
+        },
+        "expiryDateOffset": 0,
+        "adjustableAuthCode": true,
+        "redemptionPeriod": 30,
+        "pendingDeletePeriod": 5,
+        "addGracePeriod": 5,
+        "autoRenewGracePeriod": 42,
+        "renewGracePeriod": 5,
+        "transferGracePeriod": 5,
+        "creationRequiresPreValidation": false,
+        "transferFOA": true,
+        "featuresAvailable": [
+            "RESTORE",
+            "CREATE",
+            "PRIVACY_PROTECT",
+            "RENEW",
+            "TRANSFER",
+            "UPDATE"
+        ],
+        "customAuthcodeSupport": true,
+        "adminContacts": {
+            "min": 1,
+            "max": 10,
+            "required": true,
+            "organizationRequired": false,
+            "organizationAllowed": true
+        },
+        "billingContacts": {
+            "min": 0,
+            "max": 10,
+            "required": false,
+            "organizationRequired": false,
+            "organizationAllowed": true
+        },
+        "techContacts": {
+            "min": 1,
+            "max": 10,
+            "required": true,
+            "organizationRequired": false,
+            "organizationAllowed": true
+        },
+        "nameservers": {
+            "min": 0,
+            "max": 10,
+            "required": false
+        },
+        "possibleClientDomainStatuses": [
+            "CLIENT_RENEW_PROHIBITED",
+            "CLIENT_TRANSFER_PROHIBITED",
+            "CLIENT_UPDATE_PROHIBITED",
+            "CLIENT_HOLD",
+            "CLIENT_DELETE_PROHIBITED"
+        ],
+        "domainSyntax": {
+            "minLength": 3,
+            "maxLength": 63,
+            "idnType": "UTS46",
+            "languageCodes": {
+                "AFR": {
+                    "name": "Afrikaans"
+                },
+                "ALB": {
+                    "name": "Albanian"
+                },
+                "ARA": {
+                    "name": "Arabic"
+                },
+                "ARG": {
+                    "name": "Aragonese"
+                },
+                "ARM": {
+                    "name": "Armenian"
+                },
+                "ASM": {
+                    "name": "Assamese"
+                },
+                "AST": {
+                    "name": "Asturian"
+                },
+                "AVE": {
+                    "name": "Avestan"
+                },
+                "AWA": {
+                    "name": "Awadhi"
+                },
+                "AZE": {
+                    "name": "Azerbaijani",
+                    "allowedCharacters": "-0123456789абвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџѡѣѥѧѩѫѭѯѱѳѵѷѹѻѽѿҁ҃҄҅҆҇ҋҍҏґғҕҗҙқҝҟҡңҥҧҩҫҭүұҳҵҷҹһҽҿӂӄӆӈӊӌӎӏӑӓӕӗәӛӝӟӡӣӥӧөӫӭӯӱӳӵӷӹӻӽӿԁԃԅԇԉԋԍԏԑԓԕԗԙԛԝԟԡԣԥԧ"
+                },
+                "BAK": {
+                    "name": "Bashkir"
+                },
+                "BAL": {
+                    "name": "Baluchi"
+                },
+                "BAN": {
+                    "name": "Balinese"
+                },
+                "BAQ": {
+                    "name": "Basque"
+                },
+                "BAS": {
+                    "name": "Basaa"
+                },
+                "BEL": {
+                    "name": "Belarusian",
+                    "allowedCharacters": "-0123456789абвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџѡѣѥѧѩѫѭѯѱѳѵѷѹѻѽѿҁ҃҄҅҆҇ҋҍҏґғҕҗҙқҝҟҡңҥҧҩҫҭүұҳҵҷҹһҽҿӂӄӆӈӊӌӎӏӑӓӕӗәӛӝӟӡӣӥӧөӫӭӯӱӳӵӷӹӻӽӿԁԃԅԇԉԋԍԏԑԓԕԗԙԛԝԟԡԣԥԧ"
+                },
+                "BEN": {
+                    "name": "Bengali"
+                },
+                "BHO": {
+                    "name": "Bhojpuri"
+                },
+                "BOS": {
+                    "name": "Bosnian"
+                },
+                "BUL": {
+                    "name": "Bulgarian",
+                    "allowedCharacters": "-0123456789абвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџѡѣѥѧѩѫѭѯѱѳѵѷѹѻѽѿҁ҃҄҅҆҇ҋҍҏґғҕҗҙқҝҟҡңҥҧҩҫҭүұҳҵҷҹһҽҿӂӄӆӈӊӌӎӏӑӓӕӗәӛӝӟӡӣӥӧөӫӭӯӱӳӵӷӹӻӽӿԁԃԅԇԉԋԍԏԑԓԕԗԙԛԝԟԡԣԥԧ"
+                },
+                "BUR": {
+                    "name": "Burmese"
+                },
+                "CAR": {
+                    "name": "Carib"
+                },
+                "CAT": {
+                    "name": "Catalan"
+                },
+                "CHE": {
+                    "name": "Chechen"
+                },
+                "CHI": {
+                    "name": "Chinese"
+                },
+                "CHV": {
+                    "name": "Chuvash"
+                },
+                "COP": {
+                    "name": "Coptic"
+                },
+                "COS": {
+                    "name": "Corsican"
+                },
+                "CZE": {
+                    "name": "Czech"
+                },
+                "DAN": {
+                    "name": "Danish"
+                },
+                "DIV": {
+                    "name": "Divehi"
+                },
+                "DOI": {
+                    "name": "Dogri"
+                },
+                "DUT": {
+                    "name": "Dutch"
+                },
+                "ENG": {
+                    "name": "English"
+                },
+                "EST": {
+                    "name": "Estonian"
+                },
+                "FAO": {
+                    "name": "Faroese"
+                },
+                "FIJ": {
+                    "name": "Fijian"
+                },
+                "FIN": {
+                    "name": "Finnish"
+                },
+                "FRE": {
+                    "name": "French"
+                },
+                "FRY": {
+                    "name": "Western Frisian"
+                },
+                "GEO": {
+                    "name": "Georgian"
+                },
+                "GER": {
+                    "name": "German"
+                },
+                "GLA": {
+                    "name": "Gaelic"
+                },
+                "GLE": {
+                    "name": "Irish"
+                },
+                "GON": {
+                    "name": "Gondi"
+                },
+                "GRE": {
+                    "name": "Greek, Modern (1453-)",
+                    "allowedCharacters": "-0123456789ͱͳ͵ͷͻͼͽΐάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώϗϙϛϝϟϡϣϥϧϩϫϭϯϳϸϻϼ"
+                },
+                "GUJ": {
+                    "name": "Gujarati"
+                },
+                "HEB": {
+                    "name": "Hebrew"
+                },
+                "HIN": {
+                    "name": "Hindi"
+                },
+                "HUN": {
+                    "name": "Hungarian"
+                },
+                "ICE": {
+                    "name": "Icelandic"
+                },
+                "INC": {
+                    "name": "Indic"
+                },
+                "IND": {
+                    "name": "Indonesian"
+                },
+                "INH": {
+                    "name": "Ingush"
+                },
+                "ITA": {
+                    "name": "Italian"
+                },
+                "JAV": {
+                    "name": "Javanese"
+                },
+                "JPN": {
+                    "name": "Japanese"
+                },
+                "KAS": {
+                    "name": "Kashmiri"
+                },
+                "KAZ": {
+                    "name": "Kazakh"
+                },
+                "KHM": {
+                    "name": "Central Khmer"
+                },
+                "KIR": {
+                    "name": "Kirghiz"
+                },
+                "KOR": {
+                    "name": "Korean"
+                },
+                "KUR": {
+                    "name": "Kurdish",
+                    "allowedCharacters": "-0123456789абвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџѡѣѥѧѩѫѭѯѱѳѵѷѹѻѽѿҁ҃҄҅҆҇ҋҍҏґғҕҗҙқҝҟҡңҥҧҩҫҭүұҳҵҷҹһҽҿӂӄӆӈӊӌӎӏӑӓӕӗәӛӝӟӡӣӥӧөӫӭӯӱӳӵӷӹӻӽӿԁԃԅԇԉԋԍԏԑԓԕԗԙԛԝԟԡԣԥԧ"
+                },
+                "LAO": {
+                    "name": "Lao"
+                },
+                "LAV": {
+                    "name": "Latvian"
+                },
+                "LIT": {
+                    "name": "Lithuanian"
+                },
+                "LTZ": {
+                    "name": "Luxembourgish"
+                },
+                "MAC": {
+                    "name": "Macedonian",
+                    "allowedCharacters": "-0123456789абвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџѡѣѥѧѩѫѭѯѱѳѵѷѹѻѽѿҁ҃҄҅҆҇ҋҍҏґғҕҗҙқҝҟҡңҥҧҩҫҭүұҳҵҷҹһҽҿӂӄӆӈӊӌӎӏӑӓӕӗәӛӝӟӡӣӥӧөӫӭӯӱӳӵӷӹӻӽӿԁԃԅԇԉԋԍԏԑԓԕԗԙԛԝԟԡԣԥԧ"
+                },
+                "MAL": {
+                    "name": "Malayalam"
+                },
+                "MAO": {
+                    "name": "Maori"
+                },
+                "MAY": {
+                    "name": "Malay"
+                },
+                "MLT": {
+                    "name": "Maltese"
+                },
+                "MOL": {
+                    "name": "Moldavian",
+                    "allowedCharacters": "-0123456789абвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџѡѣѥѧѩѫѭѯѱѳѵѷѹѻѽѿҁ҃҄҅҆҇ҋҍҏґғҕҗҙқҝҟҡңҥҧҩҫҭүұҳҵҷҹһҽҿӂӄӆӈӊӌӎӏӑӓӕӗәӛӝӟӡӣӥӧөӫӭӯӱӳӵӷӹӻӽӿԁԃԅԇԉԋԍԏԑԓԕԗԙԛԝԟԡԣԥԧ"
+                },
+                "MON": {
+                    "name": "Mongolian"
+                },
+                "NEP": {
+                    "name": "Nepali"
+                },
+                "NOR": {
+                    "name": "Norwegian"
+                },
+                "ORI": {
+                    "name": "Oriya"
+                },
+                "OSS": {
+                    "name": "Ossetian"
+                },
+                "PAN": {
+                    "name": "Panjabi"
+                },
+                "PER": {
+                    "name": "Persian"
+                },
+                "POL": {
+                    "name": "Polish",
+                    "allowedCharacters": "-0123456789abcdefghijklmnopqrstuvwxyzóąćęłńśźż"
+                },
+                "POR": {
+                    "name": "Portuguese"
+                },
+                "PUS": {
+                    "name": "Pushto; Pashto"
+                },
+                "RAJ": {
+                    "name": "Rajasthani"
+                },
+                "RUM": {
+                    "name": "Romanian"
+                },
+                "RUS": {
+                    "name": "Russian",
+                    "allowedCharacters": "-0123456789абвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџѡѣѥѧѩѫѭѯѱѳѵѷѹѻѽѿҁ҃҄҅҆҇ҋҍҏґғҕҗҙқҝҟҡңҥҧҩҫҭүұҳҵҷҹһҽҿӂӄӆӈӊӌӎӏӑӓӕӗәӛӝӟӡӣӥӧөӫӭӯӱӳӵӷӹӻӽӿԁԃԅԇԉԋԍԏԑԓԕԗԙԛԝԟԡԣԥԧ"
+                },
+                "SAN": {
+                    "name": "Sanskrit"
+                },
+                "SCC": {
+                    "name": "Croatian/Serbian Cyrillic alphabet"
+                },
+                "SCR": {
+                    "name": "Croatian/Serbian Roman alphabet",
+                    "allowedCharacters": "-0123456789абвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџѡѣѥѧѩѫѭѯѱѳѵѷѹѻѽѿҁ҃҄҅҆҇ҋҍҏґғҕҗҙқҝҟҡңҥҧҩҫҭүұҳҵҷҹһҽҿӂӄӆӈӊӌӎӏӑӓӕӗәӛӝӟӡӣӥӧөӫӭӯӱӳӵӷӹӻӽӿԁԃԅԇԉԋԍԏԑԓԕԗԙԛԝԟԡԣԥԧ"
+                },
+                "SIN": {
+                    "name": "Sinhala"
+                },
+                "SLO": {
+                    "name": "Slovak"
+                },
+                "SLV": {
+                    "name": "Slovenian"
+                },
+                "SMO": {
+                    "name": "Samoan"
+                },
+                "SND": {
+                    "name": "Sindhi"
+                },
+                "SOM": {
+                    "name": "Somali"
+                },
+                "SPA": {
+                    "name": "Spanish"
+                },
+                "SRD": {
+                    "name": "Sardinian"
+                },
+                "SRP": {
+                    "name": "Serbian"
+                },
+                "SWA": {
+                    "name": "Swahili"
+                },
+                "SWE": {
+                    "name": "Swedish"
+                },
+                "SYR": {
+                    "name": "Syriac"
+                },
+                "TAM": {
+                    "name": "Tamil"
+                },
+                "TEL": {
+                    "name": "Telugu"
+                },
+                "TGK": {
+                    "name": "Tajik"
+                },
+                "THA": {
+                    "name": "Thai"
+                },
+                "TIB": {
+                    "name": "Tibetan"
+                },
+                "TUR": {
+                    "name": "Turkish"
+                },
+                "UKR": {
+                    "name": "Ukrainian",
+                    "allowedCharacters": "-0123456789абвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџѡѣѥѧѩѫѭѯѱѳѵѷѹѻѽѿҁ҃҄҅҆҇ҋҍҏґғҕҗҙқҝҟҡңҥҧҩҫҭүұҳҵҷҹһҽҿӂӄӆӈӊӌӎӏӑӓӕӗәӛӝӟӡӣӥӧөӫӭӯӱӳӵӷӹӻӽӿԁԃԅԇԉԋԍԏԑԓԕԗԙԛԝԟԡԣԥԧ"
+                },
+                "URD": {
+                    "name": "Urdu"
+                },
+                "UZB": {
+                    "name": "Uzbek"
+                },
+                "VIE": {
+                    "name": "Vietnamese"
+                },
+                "WEL": {
+                    "name": "Welsh"
+                },
+                "YID": {
+                    "name": "Yiddish"
+                }
+            },
+            "idnSupport": true
+        },
+        "allowedDnssecRecords": 13,
+        "allowedDnssecAlgorithms": [
+            5,
+            7,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            16
+        ],
+        "transferDomainPeriods": [
+            12
+        ],
+        "transferRequiresAuthcode": true,
+        "transferSupportsAuthcode": true,
+        "premiumSupport": "NO",
+        "registrantChangeApprovalRequired": true,
+        "allowDesignatedAgent": "BOTH",
+        "validationCategory": "General"
+    },
+    "provider": "Verisign",
+    "applicableFor": [
+        "com",
+        "net"
+    ]
+}

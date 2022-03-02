@@ -1,6 +1,11 @@
 <?php declare(strict_types = 1);
 
 return [
-    'name' => 'nl',
-    'allowedCharacters' => 'abcdefghijklmnopqrstuvwxyz',
+    'DUT' => [
+        'name' => 'Dutch',
+        'allowedCharacters' => 'abcdefghijklmnopqrstuvwxyz'
+    ],
+    'ENG' => [
+        'name' => 'English',
+    ],
 ];

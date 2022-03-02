@@ -1,0 +1,131 @@
+{
+    "metadata": {
+        "createDomainPeriods": [
+            3,
+            12
+        ],
+        "contactProperties": [
+            {
+                "name": "legalForm",
+                "label": "Legal form",
+                "description": "The legalForm",
+                "type": "String",
+                "mandatory": false,
+                "values": {
+                    "BGG": "BGG",
+                    "EESV": "EESV",
+                    "PERSOON": "PERSOON",
+                    "OWM": "OWM",
+                    "REDR": "REDR",
+                    "NV": "NV",
+                    "VOF": "VOF",
+                    "KERK": "KERK",
+                    "COOP": "COOP",
+                    "CV": "CV",
+                    "BV": "BV",
+                    "VERENIGING": "VERENIGING",
+                    "EENMANSZAAK": "EENMANSZAAK",
+                    "STICHTING": "STICHTING",
+                    "ANDERS": "ANDERS",
+                    "BRO": "BRO",
+                    "BVI/O": "BVI/O",
+                    "MAATSCHAP": "MAATSCHAP"
+                }
+            },
+            {
+                "name": "legalFormRegNo",
+                "label": "Legal form registration number",
+                "description": "The legalFormRegNo",
+                "type": "String",
+                "mandatory": false
+            }
+        ],
+        "customAuthcodeSupport": false,
+        "possibleClientDomainStatuses": [
+            "CLIENT_HOLD"
+        ],
+        "adminContacts": {
+            "min": 1,
+            "max": 1,
+            "required": true,
+            "organizationRequired": false,
+            "organizationAllowed": true
+        },
+        "billingContacts": {
+            "min": 0,
+            "max": 1,
+            "required": false,
+            "organizationRequired": false,
+            "organizationAllowed": true
+        },
+        "techContacts": {
+            "min": 1,
+            "max": 10,
+            "required": true,
+            "organizationRequired": false,
+            "organizationAllowed": true
+        },
+        "nameservers": {
+            "min": 2,
+            "max": 13,
+            "required": false
+        },
+        "domainSyntax": {
+            "minLength": 2,
+            "maxLength": 63,
+            "idnSupport": false
+        },
+        "autoRenewDomainPeriods": [
+            1,
+            3,
+            12
+        ],
+        "allowedDnssecRecords": 4,
+        "allowedDnssecAlgorithms": [
+            3,
+            5,
+            6,
+            7,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            16
+        ],
+        "transferRequiresAuthcode": true,
+        "transferSupportsAuthcode": true,
+        "premiumSupport": "NO",
+        "renewDomainPeriods": [
+            1,
+            3,
+            12
+        ],
+        "adjustableAuthCode": false,
+        "expiryDateOffset": 90000,
+        "registrantChangeApprovalRequired": false,
+        "redemptionPeriod": 40,
+        "creationRequiresPreValidation": false,
+        "transferFOA": false,
+        "featuresAvailable": [
+            "CREATE",
+            "UPDATE",
+            "RESTORE",
+            "TRANSFER"
+        ],
+        "jurisdiction": "NL",
+        "termsOfService": "https://www.sidn.nl/a/about-sidn/general-terms-and-conditions",
+        "privacyPolicy": "https://www.sidn.nl/a/nl-domain-name/sidn-and-privacy?language_id=2",
+        "whoisExposure": "NONE",
+        "gdprCategory": "EU_BASED",
+        "registrant": {
+            "organizationRequired": false,
+            "organizationAllowed": true
+        }
+    },
+    "provider": "Sidn",
+    "applicableFor": [
+        "nl"
+    ]
+}
