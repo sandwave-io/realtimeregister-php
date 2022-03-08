@@ -20,7 +20,7 @@ use SandwaveIo\RealtimeRegister\Domain\DomainTransferStatus;
 use SandwaveIo\RealtimeRegister\Domain\Downtime;
 use SandwaveIo\RealtimeRegister\Domain\DsData;
 use SandwaveIo\RealtimeRegister\Domain\KeyData;
-use SandwaveIo\RealtimeRegister\Domain\LanguageCodes;
+use SandwaveIo\RealtimeRegister\Domain\LanguageCode;
 use SandwaveIo\RealtimeRegister\Domain\LaunchPhase;
 use SandwaveIo\RealtimeRegister\Domain\Log;
 use SandwaveIo\RealtimeRegister\Domain\Nameservers;
@@ -208,13 +208,13 @@ class DomainObjectTest extends TestCase
                 DomainSyntax::class,
                 include __DIR__ . '/data/domain_syntax.php',
             ],
-            'valid language codes (all fields)' => [
-                LanguageCodes::class,
-                include __DIR__ . '/data/language_codes.php',
+            'valid language code (all fields)' => [
+                LanguageCode::class,
+                include __DIR__ . '/data/language_code_allowed_characters.php',
             ],
-            'valid language codes (required only)' => [
-                LanguageCodes::class,
-                include __DIR__ . '/data/language_codes_required.php',
+            'valid language code (required only)' => [
+                LanguageCode::class,
+                include __DIR__ . '/data/language_code_required.php',
             ],
             'valid launch phase' => [
                 LaunchPhase::class,
