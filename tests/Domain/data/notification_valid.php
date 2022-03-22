@@ -12,4 +12,5 @@ return [
     'eventType' => 'FAKE_EVENT_TYPE',
     'notificationType' => 'FAKE_NOTIFICATION_TYPE',
     'payload' => ['customer' => 'johndoe'],
+    'certificateId' => 1234567890,
 ];
