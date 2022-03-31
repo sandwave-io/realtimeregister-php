@@ -58,6 +58,7 @@ class AuthorizedClient
         $metaData = [
             'headers' => [
                 'Authorization' => 'ApiKey ' . $this->apiKey,
+                'Content-Type' => 'application/json',
             ],
             'http_errors' => false,
         ];
