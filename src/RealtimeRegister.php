@@ -26,8 +26,11 @@ final class RealtimeRegister
     public ProvidersApi $providers;
     public TLDsApi $tlds;
 
-    public function __construct(string $apiKey, ?string $baseUrl = null, ?LoggerInterface $logger = null)
-    {
+    public function __construct(
+        string $apiKey,
+        ?string $baseUrl = null,
+        ?LoggerInterface $logger = null
+    ) {
         $url = $baseUrl ?: self::BASE_URL;
         $this->setClient(new AuthorizedClient($url, $apiKey, [], $logger));
     }
