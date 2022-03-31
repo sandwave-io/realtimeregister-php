@@ -4,6 +4,7 @@ namespace SandwaveIo\RealtimeRegister;
 
 use Psr\Log\LoggerInterface;
 use SandwaveIo\RealtimeRegister\Api\BrandsApi;
+use SandwaveIo\RealtimeRegister\Api\CertificatesApi;
 use SandwaveIo\RealtimeRegister\Api\ContactsApi;
 use SandwaveIo\RealtimeRegister\Api\CustomersApi;
 use SandwaveIo\RealtimeRegister\Api\DomainsApi;
@@ -18,6 +19,7 @@ final class RealtimeRegister
     private const BASE_URL = 'https://api.yoursrs.com/';
 
     public BrandsApi $brands;
+    public CertificatesApi $certificates;
     public ContactsApi $contacts;
     public CustomersApi $customers;
     public DomainsApi $domains;
@@ -38,6 +40,7 @@ final class RealtimeRegister
     public function setClient(AuthorizedClient $client): void
     {
         $this->brands = new BrandsApi($client);
+        $this->certificates = new CertificatesApi($client);
         $this->contacts = new ContactsApi($client);
         $this->customers = new CustomersApi($client);
         $this->domains = new DomainsApi($client);
