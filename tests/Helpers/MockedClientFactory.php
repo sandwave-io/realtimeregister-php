@@ -14,7 +14,7 @@ use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
 
 class MockedClientFactory
 {
-    const API_KEY = 'bigseretdonttellanyone';
+    const API_KEY = 'bigsecretdonttellanyone';
 
     public static function assertRoute(string $method, string $route, TestCase $testCase, ?array $expectedParameters = null): callable
     {
@@ -32,14 +32,14 @@ class MockedClientFactory
 
     public static function makeSdk(int $responseCode, string $responseBody, ?callable $assertClosure = null): RealtimeRegister
     {
-        $sdk = new RealtimeRegister('bigseretdonttellanyone');
+        $sdk = new RealtimeRegister('bigsecretdonttellanyone');
         $sdk->setClient(static::makeAuthorizedClient($responseCode, $responseBody, $assertClosure));
         return $sdk;
     }
 
     public static function makeAuthorizedClient(int $responseCode, string $responseBody, ?callable $assertClosure = null, ?LoggerInterface $logger = null): AuthorizedClient
     {
-        $fakeClient = new AuthorizedClient('https://example.com/api/v2/', 'bigseretdonttellanyone', [], $logger);
+        $fakeClient = new AuthorizedClient('https://example.com/api/v2/', 'bigsecretdonttellanyone', [], $logger);
 
         $handlerStack = HandlerStack::create(new MockHandler([
             new Response($responseCode, [], $responseBody),
