@@ -47,9 +47,9 @@ class AuthorizedClient
         return $this->request('PUT', $endpoint, $body, $query, $expectedResponse);
     }
 
-    public function delete(string $endpoint, array $query = [], ?int $expectedResponse = null): RealtimeRegisterResponse
+    public function delete(string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): RealtimeRegisterResponse
     {
-        return $this->request('DELETE', $endpoint, [], $query, $expectedResponse);
+        return $this->request('DELETE', $endpoint, $body, $query, $expectedResponse);
     }
 
     private function request(string $method, string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): RealtimeRegisterResponse
