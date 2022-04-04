@@ -8,7 +8,7 @@ final class Notification implements DomainObjectInterface
 {
     public int $id;
     public DateTime $fireDate;
-    public DateTime $readDate;
+    public ?DateTime $readDate;
     public ?DateTime $acknowledgedDate;
     public string $message;
     public ?string $reason;
@@ -22,7 +22,7 @@ final class Notification implements DomainObjectInterface
     private function __construct(
         int $id,
         DateTime $fireDate,
-        DateTime $readDate,
+        ?DateTime $readDate,
         ?DateTime $acknowledgedDate,
         string $message,
         ?string $reason,
@@ -50,7 +50,7 @@ final class Notification implements DomainObjectInterface
         return new Notification(
             $json['id'],
             new DateTime($json['fireDate']),
-            new DateTime($json['readDate']),
+            isset($json['readDate']) ? new DateTime($json['readDate']) : null,
             isset($json['acknowledgedDate']) ? new DateTime($json['acknowledgedDate']) : null,
             $json['message'],
             $json['reason'] ?? null,
@@ -67,7 +67,7 @@ final class Notification implements DomainObjectInterface
         return array_filter([
             'id' => $this->id,
             'fireDate' => $this->fireDate->format('Y-m-d\TH:i:s\Z'),
-            'readDate' => $this->readDate->format('Y-m-d\TH:i:s\Z'),
+            'readDate' => $this->readDate ? $this->readDate->format('Y-m-d\TH:i:s\Z') : null,
             'acknowledgedDate' => $this->acknowledgedDate ? $this->acknowledgedDate->format('Y-m-d\TH:i:s\Z') : null,
             'message' => $this->message,
             'reason' => $this->reason,
