@@ -119,7 +119,7 @@ final class CertificatesApi extends AbstractApi
         ?string $saLanguage = null,
         ?array $approver = null,
         ?array $dcv = null
-    ): void {
+    ): ?string {
         $payload = [
             'customer' => $customer,
             'product' => $product,
@@ -171,7 +171,11 @@ final class CertificatesApi extends AbstractApi
             $payload['dcv'] = $dcv;
         }
 
-        $this->client->post('/v2/ssl/certificates', $payload);
+        $response = $this->client->post('/v2/ssl/certificates', $payload);
+
+        $headers = $response->headers();
+
+        return isset($headers['X-Process-Id']) ? $headers['X-Process-Id'][0] : null;
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/renew */
@@ -190,7 +194,7 @@ final class CertificatesApi extends AbstractApi
         ?string $saLanguage = null,
         ?array $approver = null,
         ?array $dcv = null
-    ): void {
+    ): ?string {
         $payload = [
             'period' => $period,
             'csr' => $csr,
@@ -240,7 +244,11 @@ final class CertificatesApi extends AbstractApi
             $payload['dcv'] = $dcv;
         }
 
-        $this->client->post('/v2/ssl/certificates/' . $certificateId . '/renew', $payload);
+        $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/renew', $payload);
+
+        $headers = $response->headers();
+
+        return isset($headers['X-Process-Id']) ? $headers['X-Process-Id'][0] : null;
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/ssl/reissue */
