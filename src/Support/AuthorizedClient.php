@@ -110,7 +110,7 @@ class AuthorizedClient
 
         // Parse response
         if ($this->isResponseValid($response, $expectedResponse)) {
-            return RealtimeRegisterResponse::fromString((string) $response->getBody());
+            return RealtimeRegisterResponse::fromString((string) $response->getBody(), $response->getHeaders());
         } elseif ($response->getStatusCode() === 400) {
             throw new BadRequestException('Bad Request: ' . $response->getBody());
         } elseif ($response->getStatusCode() === 401) {
