@@ -3,6 +3,24 @@
 return [
     'commonName' => 'foobar.dev',
     'requiresAttention' => false,
-    'validations' => [['some' => 'array', 'with' => 'validations info' ]],
-    'notes' => [['some' => 'array', 'with' => 'notes']],
+    'validations' => [
+        'organization' => 'ATTENTION',
+        'voice' => 'ATTENTION',
+        'whois' => 'VALIDATED',
+        'request' => 'SUSPENDED',
+        'dcv' => [
+            [
+                'commonName' => 'example.com',
+                'type' => 'DNS',
+                'status' => 'WAITING',
+            ],
+        ],
+    ],
+    'notes' => [
+        [
+            'createdDate' => '2020-09-09T09:18:57Z',
+            'type' => 'OUTGOING',
+            'message' => 'Some note message',
+        ],
+    ],
 ];
