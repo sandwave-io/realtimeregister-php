@@ -119,7 +119,7 @@ final class CertificatesApi extends AbstractApi
         ?string $saLanguage = null,
         ?array $approver = null,
         ?array $dcv = null
-    ): ?string {
+    ): ?int {
         $payload = [
             'customer' => $customer,
             'product' => $product,
@@ -194,7 +194,7 @@ final class CertificatesApi extends AbstractApi
         ?string $saLanguage = null,
         ?array $approver = null,
         ?array $dcv = null
-    ): ?string {
+    ): ?int {
         $payload = [
             'period' => $period,
             'csr' => $csr,
