@@ -7,6 +7,7 @@ namespace SandwaveIo\RealtimeRegister\Api;
 use Exception;
 use SandwaveIo\RealtimeRegister\Domain\Process;
 use SandwaveIo\RealtimeRegister\Domain\ProcessCollection;
+use SandwaveIo\RealtimeRegister\Domain\ProcessInfo;
 
 final class ProcessesApi extends AbstractApi
 {
@@ -23,6 +24,12 @@ final class ProcessesApi extends AbstractApi
     {
         $response = $this->client->get(sprintf('v2/processes/%d', $processId));
         return Process::fromArray($response->json());
+    }
+
+    public function info(int $processId): ProcessInfo
+    {
+        $response = $this->client->get(sprintf('v2/processes/%d/info', $processId));
+        return ProcessInfo::fromArray($response->json());
     }
 
     /**
