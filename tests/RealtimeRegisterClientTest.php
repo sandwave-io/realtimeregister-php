@@ -17,9 +17,9 @@ class RealtimeRegisterClientTest extends TestCase
 {
     public function test_construct(): void
     {
-        $client = new RealtimeRegister('https://example.com/api/v2/', 'bigseretdonttellanyone');
+        $client = new RealtimeRegister('https://example.com/api/v2/', 'bigsecretdonttellanyone');
 
-        $client->setClient(new AuthorizedClient('https://example.com/api/v2/', 'bigseretdonttellanyone'));
+        $client->setClient(new AuthorizedClient('https://example.com/api/v2/', 'bigsecretdonttellanyone'));
 
         $this->assertInstanceOf(RealtimeRegister::class, $client, 'The $client could not be instantiated.');
         $this->assertInstanceOf(ContactsApi::class, $client->contacts, 'The contacts could not be instantiated.');

@@ -47,9 +47,9 @@ class AuthorizedClient
         return $this->request('PUT', $endpoint, $body, $query, $expectedResponse);
     }
 
-    public function delete(string $endpoint, array $query = [], ?int $expectedResponse = null): RealtimeRegisterResponse
+    public function delete(string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): RealtimeRegisterResponse
     {
-        return $this->request('DELETE', $endpoint, [], $query, $expectedResponse);
+        return $this->request('DELETE', $endpoint, $body, $query, $expectedResponse);
     }
 
     private function request(string $method, string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): RealtimeRegisterResponse
@@ -58,6 +58,7 @@ class AuthorizedClient
         $metaData = [
             'headers' => [
                 'Authorization' => 'ApiKey ' . $this->apiKey,
+                'Content-Type' => 'application/json',
             ],
             'http_errors' => false,
         ];
@@ -109,7 +110,7 @@ class AuthorizedClient
 
         // Parse response
         if ($this->isResponseValid($response, $expectedResponse)) {
-            return RealtimeRegisterResponse::fromString((string) $response->getBody());
+            return RealtimeRegisterResponse::fromString((string) $response->getBody(), $response->getHeaders());
         } elseif ($response->getStatusCode() === 400) {
             throw new BadRequestException('Bad Request: ' . $response->getBody());
         } elseif ($response->getStatusCode() === 401) {

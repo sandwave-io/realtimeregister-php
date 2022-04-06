@@ -3,6 +3,8 @@
     "description": "A PHP SDK for the RealtimeRegister REST API.",
     "type": "library",
     "license": "MIT",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "authors": [
         {
             "name": "Jesse Kramer",
@@ -34,5 +36,32 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "scripts": {
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "@test:types",
+            "@test:style",
+            "@test:unit"
+        ],
+        "test:unit": [
+            "@php vendor/bin/phpunit"
+        ],
+        "test:unit:coverage": [
+            "@php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude=\"~vendor~\" vendor/bin/phpunit --colors=never --coverage-text"
+        ],
+        "test:unit:coverage:html": [
+            "@php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude=\"~vendor~\" vendor/bin/phpunit --coverage-html=coverage"
+        ],
+        "test:types": [
+            "@php vendor/bin/phpstan analyze --no-progress"
+        ],
+        "test:style": [
+            "@php vendor/bin/php-cs-fixer fix --dry-run --diff --show-progress=none"
+        ],
+        "test:style:fix": [
+            "@php vendor/bin/php-cs-fixer fix"
+        ]
+
     }
 }

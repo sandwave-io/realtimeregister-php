@@ -133,45 +133,59 @@ final class BrandsApi extends AbstractApi
         if ($locale) {
             $payload['locale'] = $locale;
         }
+
         if ($organization) {
             $payload['organization'] = $organization;
         }
+
         if ($addressLine) {
             $payload['addressLine'] = $addressLine;
         }
+
         if ($postalCode) {
             $payload['postalCode'] = $postalCode;
         }
+
         if ($city) {
             $payload['city'] = $city;
         }
+
         if ($state) {
             $payload['state'] = $state;
         }
+
         if ($country) {
             $payload['country'] = $country;
         }
+
         if ($email) {
             $payload['email'] = $email;
         }
+
         if ($url) {
             $payload['url'] = $url;
         }
+
         if ($voice) {
             $payload['voice'] = $voice;
         }
+
         if ($fax) {
             $payload['fax'] = $fax;
         }
+
         if ($privacyContact) {
             $payload['privacyContact'] = $privacyContact;
         }
+
         if ($abuseContact) {
             $payload['abuseContact'] = $abuseContact;
         }
+
         if ($createdDate) {
             $payload['createdDate'] = $createdDate;
         }
+
         if ($updatedDate) {
             $payload['updatedDate'] = $updatedDate;
         }

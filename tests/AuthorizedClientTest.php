@@ -18,7 +18,7 @@ class AuthorizedClientTest extends TestCase
 {
     public function test_construct(): void
     {
-        $client = new AuthorizedClient('https://example.com/api/v2/', 'bigseretdonttellanyone');
+        $client = new AuthorizedClient('https://example.com/api/v2/', 'bigsecretdonttellanyone');
         $this->assertInstanceOf(AuthorizedClient::class, $client);
     }
 
@@ -77,7 +77,7 @@ class AuthorizedClientTest extends TestCase
         $client = MockedClientFactory::makeAuthorizedClient($response, '', function (RequestInterface $request) use ($method) {
             $this->assertSame(strtoupper($method), strtoupper($request->getMethod()));
             $this->assertSame('test', $request->getUri()->getPath());
-            $this->assertSame('ApiKey bigseretdonttellanyone', $request->getHeader('Authorization')[0]);
+            $this->assertSame('ApiKey bigsecretdonttellanyone', $request->getHeader('Authorization')[0]);
         }, $logger);
 
         if ($exception) {
