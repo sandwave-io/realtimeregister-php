@@ -30,7 +30,7 @@ class ProcessInfo implements DomainObjectInterface
             'requiresAttention' => $this->requiresAttention,
             'validations' => $this->validations,
             'notes' => $this->notes,
-        ]);
+        ], fn ($v) => ! is_null($v));
     }
 
     public static function fromArray(array $json): self

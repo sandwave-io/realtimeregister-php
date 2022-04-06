@@ -28,6 +28,7 @@ use SandwaveIo\RealtimeRegister\Domain\Notification;
 use SandwaveIo\RealtimeRegister\Domain\NotificationPoll;
 use SandwaveIo\RealtimeRegister\Domain\Price;
 use SandwaveIo\RealtimeRegister\Domain\Process;
+use SandwaveIo\RealtimeRegister\Domain\ProcessInfo;
 use SandwaveIo\RealtimeRegister\Domain\Provider;
 use SandwaveIo\RealtimeRegister\Domain\Registrant;
 use SandwaveIo\RealtimeRegister\Domain\Template;
@@ -278,6 +279,10 @@ class DomainObjectTest extends TestCase
                 Process::class,
                 include __DIR__ . '/data/process_invalid_status.php',
                 InvalidArgumentException::class,
+            ],
+            'valid process info' => [
+                ProcessInfo::class,
+                include __DIR__ . '/data/process_info_valid.php',
             ],
             'valid provider (all fields)' => [
                 Provider::class,
