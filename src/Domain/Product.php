@@ -3,7 +3,6 @@
 namespace SandwaveIo\RealtimeRegister\Domain;
 
 use SandwaveIo\RealtimeRegister\Domain\Enum\CertificateTypeEnum;
-use SandwaveIo\RealtimeRegister\Domain\Enum\FeatureEnum;
 use SandwaveIo\RealtimeRegister\Domain\Enum\ValidationTypeEnum;
 
 final class Product implements DomainObjectInterface
@@ -62,7 +61,6 @@ final class Product implements DomainObjectInterface
     public static function fromArray(array $json): Product
     {
         CertificateTypeEnum::validate($json['certificateType']);
-        // FeatureEnum::validate($json['status']);
         ValidationTypeEnum::validate($json['validationType']);
 
         return new Product(
