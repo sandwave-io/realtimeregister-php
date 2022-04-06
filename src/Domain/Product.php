@@ -14,18 +14,18 @@ final class Product implements DomainObjectInterface
     public string $validationType;
     public string $certificateType;
     /** @var string[] */
-    public array $features;
+    public ?array $features;
     /** @var int[] */
     public array $periods;
     public int $warranty;
     public string $issueTime;
     public int $renewalWindow;
-    public int $includedDomains;
-    public int $maxDomains;
+    public ?int $includedDomains;
+    public ?int $maxDomains;
     /** @var string[] */
-    public array $requiredFields;
+    public ?array $requiredFields;
     /** @var string[] */
-    public array $optionalFields;
+    public ?array $optionalFields;
 
     private function __construct(
         string $product,
@@ -33,15 +33,15 @@ final class Product implements DomainObjectInterface
         string $name,
         string $validationType,
         string $certificateType,
-        array $features,
+        ?array $features,
         array $periods,
         int $warranty,
         string $issueTime,
         int $renewalWindow,
-        int $includedDomains,
-        int $maxDomains,
-        array $requiredFields,
-        array $optionalFields
+        ?int $includedDomains,
+        ?int $maxDomains,
+        ?array $requiredFields,
+        ?array $optionalFields
     ) {
         $this->product = $product;
         $this->brand = $brand;
@@ -71,15 +71,15 @@ final class Product implements DomainObjectInterface
             $json['name'],
             $json['validationType'],
             $json['certificateType'],
-            $json['features'],
+            $json['features'] ?? null,
             $json['periods'],
             $json['warranty'],
             $json['issueTime'],
             $json['renewalWindow'],
-            $json['includedDomains'],
-            $json['maxDomains'],
-            $json['requiredFields'],
-            $json['optionalFields']
+            $json['includedDomains'] ?? null,
+            $json['maxDomains'] ?? null,
+            $json['requiredFields'] ?? null,
+            $json['optionalFields'] ?? null
         );
     }
 
