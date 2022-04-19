@@ -262,7 +262,8 @@ final class CertificatesApi extends AbstractApi
         ?string $postalCode = null,
         ?string $city = null,
         ?string $coc = null,
-        ?array $approver = null
+        ?array $approver = null,
+        ?array $dcv = null
     ): void {
         $payload = [
             'csr' => $csr,
@@ -298,6 +299,10 @@ final class CertificatesApi extends AbstractApi
 
         if (! is_null($approver)) {
             $payload['approver'] = $approver;
+        }
+
+        if (! is_null($dcv)) {
+            $payload['dcv'] = $dcv;
         }
 
         $this->client->post('/v2/ssl/certificates/' . $certificateId . '/reissue', $payload);

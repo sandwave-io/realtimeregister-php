@@ -3,6 +3,7 @@
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
 use PHPUnit\Framework\TestCase;
+use SandwaveIo\RealtimeRegister\Domain\Enum\DcvTypeEnum;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 class CertificatesApiReissueCertificateTest extends TestCase
@@ -25,6 +26,11 @@ class CertificatesApiReissueCertificateTest extends TestCase
             '1234AB',
             'Amsterdam',
             '12345678',
+            null,
+            [
+                'commonName' => 'www.example.com',
+                'type' => DcvTypeEnum::LOCALE_DNS,
+            ]
         );
     }
 }
