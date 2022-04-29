@@ -173,7 +173,7 @@ final class CertificatesApi extends AbstractApi
 
         $response = $this->client->post('/v2/ssl/certificates', $payload);
 
-        return $response->headers()['X-Process-Id'];
+        return $response->headers()['X-Process-Id'][0];
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/renew */
@@ -244,7 +244,7 @@ final class CertificatesApi extends AbstractApi
 
         $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/renew', $payload);
 
-        return $response->headers()['X-Process-Id'];
+        return $response->headers()['X-Process-Id'][0];
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/ssl/reissue */
@@ -303,7 +303,7 @@ final class CertificatesApi extends AbstractApi
 
         $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/reissue', $payload);
 
-        return $response->headers()['X-Process-Id'];
+        return $response->headers()['X-Process-Id'][0];
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/revoke */
