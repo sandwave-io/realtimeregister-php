@@ -2,7 +2,6 @@
 
 namespace SandwaveIo\RealtimeRegister\Api;
 
-use AssertionError;
 use DateTimeImmutable;
 use SandwaveIo\RealtimeRegister\Domain\Certificate;
 use SandwaveIo\RealtimeRegister\Domain\CertificateCollection;
@@ -176,9 +175,7 @@ final class CertificatesApi extends AbstractApi
 
         $headers = $response->headers();
 
-        if (! isset($headers['X-Process-Id'])) {
-            throw new AssertionError('X-Process-Id is not present in the response');
-        }
+        assert(isset($headers['X-Process-Id']));
 
         return $headers['X-Process-Id'][0];
     }
@@ -253,9 +250,7 @@ final class CertificatesApi extends AbstractApi
 
         $headers = $response->headers();
 
-        if (! isset($headers['X-Process-Id'])) {
-            throw new AssertionError('X-Process-Id is not present in the response');
-        }
+        assert(isset($headers['X-Process-Id']));
 
         return $headers['X-Process-Id'][0];
     }
@@ -318,9 +313,7 @@ final class CertificatesApi extends AbstractApi
 
         $headers = $response->headers();
 
-        if (! isset($headers['X-Process-Id'])) {
-            throw new AssertionError('X-Process-Id is not present in the response');
-        }
+        assert(isset($headers['X-Process-Id']));
 
         return $headers['X-Process-Id'][0];
     }
