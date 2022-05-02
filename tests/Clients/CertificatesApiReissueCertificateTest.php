@@ -12,7 +12,7 @@ class CertificatesApiReissueCertificateTest extends TestCase
     public function test_reissue(): void
     {
         $sdk = MockedClientFactory::makeMockedSdk(
-            function (): Response {
+            static function (): Response {
                 return new Response(
                     202,
                     [

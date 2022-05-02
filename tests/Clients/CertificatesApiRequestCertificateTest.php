@@ -27,7 +27,7 @@ class CertificatesApiRequestCertificateTest extends TestCase
             MockedClientFactory::assertRoute('POST', '/v2/ssl/certificates', $this)
         );
 
-        $processId = $sdk->certificates->requestCertificate(
+        $sdk->certificates->requestCertificate(
             'customer',
             'ssl',
             6,
@@ -48,7 +48,5 @@ class CertificatesApiRequestCertificateTest extends TestCase
                 'email' => 'dcv@mail.com',
             ]
         );
-
-        self::assertSame(1, $processId);
     }
 }
