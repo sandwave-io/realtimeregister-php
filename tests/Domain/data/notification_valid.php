@@ -13,4 +13,5 @@ return [
     'notificationType' => 'FAKE_NOTIFICATION_TYPE',
     'payload' => ['customer' => 'johndoe'],
     'certificateId' => 1234567890,
+    'transferType' => 'FAKE_TRANSFER_TYPE',
 ];

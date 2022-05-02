@@ -19,6 +19,7 @@ final class Notification implements DomainObjectInterface
     /** @var array<string>|null */
     public ?array $payload;
     public ?int $certificateId;
+    public ?string $transferType;
 
     private function __construct(
         int $id,
@@ -32,7 +33,8 @@ final class Notification implements DomainObjectInterface
         string $eventType,
         string $notificationType,
         ?array $payload,
-        ?int $certificateId
+        ?int $certificateId,
+        ?string $transferType
     ) {
         $this->id = $id;
         $this->fireDate = $fireDate;
@@ -46,6 +48,7 @@ final class Notification implements DomainObjectInterface
         $this->notificationType = $notificationType;
         $this->payload = $payload;
         $this->certificateId = $certificateId;
+        $this->transferType = $transferType;
     }
 
     public static function fromArray(array $json): Notification
@@ -63,6 +66,7 @@ final class Notification implements DomainObjectInterface
             $json['notificationType'],
             $json['payload'] ?? null,
             $json['certificateId'] ?? null,
+            $json['transferType'] ?? null
         );
     }
 
@@ -81,6 +85,7 @@ final class Notification implements DomainObjectInterface
             'notificationType' => $this->notificationType,
             'payload' => $this->payload,
             'certificateId' => $this->certificateId,
+            'transferType' => $this->transferType,
         ], function ($x) {
             return ! is_null($x);
         });
