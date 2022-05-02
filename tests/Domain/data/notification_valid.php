@@ -4,7 +4,7 @@ return [
     'id' => 1,
     'fireDate' => '2020-08-30T01:02:03Z',
     'readDate' => '2020-08-30T01:02:03Z',
-    'acknowledgedDate' => '2020-08-30T01:02:03Z',
+    'acknowledgeDate' => '2020-08-30T01:02:03Z',
     'message' => 'FAKE_MESSAGE',
     'reason' => 'FAKE_REASON',
     'customer' => 'johndoe',
@@ -14,4 +14,5 @@ return [
     'payload' => ['customer' => 'johndoe'],
     'certificateId' => 1234567890,
     'transferType' => 'FAKE_TRANSFER_TYPE',
+    'subjectStatus' => 'FAKE_SUBJECT_STATUS',
 ];
