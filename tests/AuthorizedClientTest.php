@@ -2,6 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Tests;
 
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
@@ -74,10 +75,12 @@ class AuthorizedClientTest extends TestCase
         $logger = $this->createMock(LoggerInterface::class);
         $logger->method('debug');
 
-        $client = MockedClientFactory::makeAuthorizedClient($response, '', function (RequestInterface $request) use ($method) {
-            $this->assertSame(strtoupper($method), strtoupper($request->getMethod()));
-            $this->assertSame('test', $request->getUri()->getPath());
-            $this->assertSame('ApiKey bigsecretdonttellanyone', $request->getHeader('Authorization')[0]);
+        $client = MockedClientFactory::makeAuthorizedClient(
+            static fn (): Response => new Response($response),
+            function (RequestInterface $request) use ($method) {
+                $this->assertSame(strtoupper($method), strtoupper($request->getMethod()));
+                $this->assertSame('test', $request->getUri()->getPath());
+                $this->assertSame('ApiKey bigsecretdonttellanyone', $request->getHeader('Authorization')[0]);
         }, $logger);
 
         if ($exception) {
@@ -92,22 +95,49 @@ class AuthorizedClientTest extends TestCase
 
     public function test_get_with_specific_return_code(): void
     {
-        $client = MockedClientFactory::makeAuthorizedClient(201, 'test');
+        $client = MockedClientFactory::makeAuthorizedClient(
+            static fn (): Response => new Response(201, [], 'test')
+        );
         $response = $client->get('test', [], 201);
         $this->assertSame('test', $response->text());
     }
 
     public function test_get_with_specific_return_code_mismatch(): void
     {
-        $client = MockedClientFactory::makeAuthorizedClient(200, 'test');
+        $client = MockedClientFactory::makeAuthorizedClient(
+            static fn (): Response => new Response(200)
+        );
         $this->expectException(RealtimeRegisterClientException::class);
         $client->get('test', [], 201);
     }
 
     public function test_get_with_specific_return_code_notfound(): void
     {
-        $client = MockedClientFactory::makeAuthorizedClient(404, 'test');
+        $client = MockedClientFactory::makeAuthorizedClient(
+            static fn (): Response => new Response(404)
+        );
         $this->expectException(NotFoundException::class);
         $client->get('test', [], 201);
+    }
+
+    public function test_get_mocked_headers(): void
+    {
+        $client = MockedClientFactory::makeAuthorizedClient(
+            static fn (): Response => new Response(
+                202,
+                [
+                    'X-Process-Id' => 1,
+                    'Content-Type' => 'application/json',
+                ]
+            )
+        );
+
+        $response = $client->get('test');
+
+        self::assertCount(2, $response->headers());
+        self::assertCount(1, $response->headers()['X-Process-Id']);
+        self::assertCount(1, $response->headers()['Content-Type']);
+        self::assertSame(1, (int) $response->headers()['X-Process-Id'][0]);
+        self::assertSame('application/json', $response->headers()['Content-Type'][0]);
     }
 }
