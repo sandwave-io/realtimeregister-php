@@ -81,7 +81,9 @@ class AuthorizedClientTest extends TestCase
                 $this->assertSame(strtoupper($method), strtoupper($request->getMethod()));
                 $this->assertSame('test', $request->getUri()->getPath());
                 $this->assertSame('ApiKey bigsecretdonttellanyone', $request->getHeader('Authorization')[0]);
-        }, $logger);
+            },
+            $logger
+        );
 
         if ($exception) {
             $this->expectException($exception);
