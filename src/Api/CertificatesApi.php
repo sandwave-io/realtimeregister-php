@@ -175,7 +175,7 @@ final class CertificatesApi extends AbstractApi
 
         $headers = $response->headers();
 
-        return isset($headers['X-Process-Id']) ? $headers['X-Process-Id'][0] : null;
+        return isset($headers['X-Process-Id']) ? (int) $headers['X-Process-Id'][0] : null;
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/renew */
@@ -248,7 +248,7 @@ final class CertificatesApi extends AbstractApi
 
         $headers = $response->headers();
 
-        return isset($headers['X-Process-Id']) ? $headers['X-Process-Id'][0] : null;
+        return isset($headers['X-Process-Id']) ? (int) $headers['X-Process-Id'][0] : null;
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/ssl/reissue */
