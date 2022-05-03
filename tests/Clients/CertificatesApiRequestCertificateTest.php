@@ -2,6 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DcvTypeEnum;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
@@ -10,9 +11,19 @@ class CertificatesApiRequestCertificateTest extends TestCase
 {
     public function test_request(): void
     {
-        $sdk = MockedClientFactory::makeSdk(
-            202,
-            '',
+        $sdk = MockedClientFactory::makeMockedSdk(
+            static function (): Response {
+                return new Response(
+                    202,
+                    [
+                        'X-Process-Id' => 1,
+                    ],
+                    json_encode([
+                        'commonName' => 'commonname.com',
+                        'requiresAttention' => false,
+                    ]),
+                );
+            },
             MockedClientFactory::assertRoute('POST', '/v2/ssl/certificates', $this)
         );
 
@@ -32,7 +43,7 @@ class CertificatesApiRequestCertificateTest extends TestCase
             'en',
             null,
             [
-                'commonName' => 'CommonName',
+                'commonName' => 'commonname.com',
                 'type' => DcvTypeEnum::LOCALE_DNS,
                 'email' => 'dcv@mail.com',
             ]

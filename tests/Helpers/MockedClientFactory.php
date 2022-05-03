@@ -33,16 +33,24 @@ class MockedClientFactory
     public static function makeSdk(int $responseCode, string $responseBody, ?callable $assertClosure = null): RealtimeRegister
     {
         $sdk = new RealtimeRegister('bigsecretdonttellanyone');
-        $sdk->setClient(static::makeAuthorizedClient($responseCode, $responseBody, $assertClosure));
+        $responseClosure = static fn () => new Response($responseCode, [], $responseBody);
+        $sdk->setClient(static::makeAuthorizedClient($responseClosure, $assertClosure));
         return $sdk;
     }
 
-    public static function makeAuthorizedClient(int $responseCode, string $responseBody, ?callable $assertClosure = null, ?LoggerInterface $logger = null): AuthorizedClient
+    public static function makeMockedSdk(callable $responseClosure, ?callable $assertClosure): RealtimeRegister
+    {
+        $sdk = new RealtimeRegister('bigsecretdonttellanyone');
+        $sdk->setClient(static::makeAuthorizedClient($responseClosure, $assertClosure));
+        return $sdk;
+    }
+
+    public static function makeAuthorizedClient(callable $responseClosure, ?callable $assertClosure = null, ?LoggerInterface $logger = null): AuthorizedClient
     {
         $fakeClient = new AuthorizedClient('https://example.com/api/v2/', 'bigsecretdonttellanyone', [], $logger);
 
         $handlerStack = HandlerStack::create(new MockHandler([
-            new Response($responseCode, [], $responseBody),
+            $responseClosure(),
         ]));
 
         if ($assertClosure !== null) {

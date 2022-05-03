@@ -2,6 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DcvTypeEnum;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
@@ -10,9 +11,15 @@ class CertificatesApiReissueCertificateTest extends TestCase
 {
     public function test_reissue(): void
     {
-        $sdk = MockedClientFactory::makeSdk(
-            202,
-            '',
+        $sdk = MockedClientFactory::makeMockedSdk(
+            static function (): Response {
+                return new Response(
+                    202,
+                    [
+                        'X-Process-Id' => 1,
+                    ],
+                );
+            },
             MockedClientFactory::assertRoute('POST', '/v2/ssl/certificates/1/reissue', $this)
         );
 
