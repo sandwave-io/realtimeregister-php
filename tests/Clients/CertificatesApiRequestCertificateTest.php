@@ -21,13 +21,13 @@ class CertificatesApiRequestCertificateTest extends TestCase
                     json_encode([
                         'commonName' => 'commonname.com',
                         'requiresAttention' => false,
-                    ]),
+                    ], JSON_THROW_ON_ERROR),
                 );
             },
             MockedClientFactory::assertRoute('POST', '/v2/ssl/certificates', $this)
         );
 
-        $sdk->certificates->requestCertificate(
+        $processId = $sdk->certificates->requestCertificate(
             'customer',
             'ssl',
             6,
@@ -48,5 +48,7 @@ class CertificatesApiRequestCertificateTest extends TestCase
                 'email' => 'dcv@mail.com',
             ]
         );
+
+        self::assertSame(1, $processId);
     }
 }

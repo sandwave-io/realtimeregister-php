@@ -119,7 +119,7 @@ final class CertificatesApi extends AbstractApi
         ?string $saLanguage = null,
         ?array $approver = null,
         ?array $dcv = null
-    ): ?int {
+    ): int {
         $payload = [
             'customer' => $customer,
             'product' => $product,
@@ -173,9 +173,7 @@ final class CertificatesApi extends AbstractApi
 
         $response = $this->client->post('/v2/ssl/certificates', $payload);
 
-        $headers = $response->headers();
-
-        return isset($headers['X-Process-Id']) ? (int) $headers['X-Process-Id'][0] : null;
+        return (int) $response->headers()['X-Process-Id'][0];
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/renew */
@@ -194,7 +192,7 @@ final class CertificatesApi extends AbstractApi
         ?string $saLanguage = null,
         ?array $approver = null,
         ?array $dcv = null
-    ): ?int {
+    ): int {
         $payload = [
             'period' => $period,
             'csr' => $csr,
@@ -246,9 +244,7 @@ final class CertificatesApi extends AbstractApi
 
         $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/renew', $payload);
 
-        $headers = $response->headers();
-
-        return isset($headers['X-Process-Id']) ? (int) $headers['X-Process-Id'][0] : null;
+        return (int) $response->headers()['X-Process-Id'][0];
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/ssl/reissue */
@@ -264,7 +260,7 @@ final class CertificatesApi extends AbstractApi
         ?string $coc = null,
         ?array $approver = null,
         ?array $dcv = null
-    ): void {
+    ): int {
         $payload = [
             'csr' => $csr,
         ];
@@ -305,7 +301,9 @@ final class CertificatesApi extends AbstractApi
             $payload['dcv'] = $dcv;
         }
 
-        $this->client->post('/v2/ssl/certificates/' . $certificateId . '/reissue', $payload);
+        $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/reissue', $payload);
+
+        return (int) $response->headers()['X-Process-Id'][0];
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/revoke */
