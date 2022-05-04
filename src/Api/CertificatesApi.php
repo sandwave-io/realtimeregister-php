@@ -7,6 +7,7 @@ use SandwaveIo\RealtimeRegister\Domain\Certificate;
 use SandwaveIo\RealtimeRegister\Domain\CertificateCollection;
 use SandwaveIo\RealtimeRegister\Domain\Product;
 use SandwaveIo\RealtimeRegister\Domain\ProductCollection;
+use SandwaveIo\RealtimeRegister\Domain\Enum\DownloadFormatEnum;
 
 final class CertificatesApi extends AbstractApi
 {
@@ -49,9 +50,11 @@ final class CertificatesApi extends AbstractApi
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/download */
-    public function downloadCertificate(int $certificateId): string
+    public function downloadCertificate(int $certificateId, string $format = 'CRT'): string
     {
-        $response = $this->client->get('/v2/ssl/certificates/' . $certificateId . '/download', ['format' => 'CRT']);
+        DownloadFormatEnum::validate($format);
+
+        $response = $this->client->get('/v2/ssl/certificates/' . $certificateId . '/download', ['format' => $format]);
 
         return $response->text();
     }
