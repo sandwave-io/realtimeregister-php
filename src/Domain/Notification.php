@@ -20,6 +20,12 @@ final class Notification implements DomainObjectInterface
     public ?array $payload;
     public ?int $certificateId;
     public ?string $transferType;
+
+    /**
+     * Can be either PENDING, OK, CANCELLED or FAILED.
+     *
+     * @var string|null
+     */
     public ?string $subjectStatus;
 
     private function __construct(
