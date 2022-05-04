@@ -2,12 +2,7 @@
 
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
-use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
-use SandwaveIo\RealtimeRegister\Domain\Enum\CertificateTypeEnum;
-use SandwaveIo\RealtimeRegister\Domain\Enum\PublicKeyAlgorithmEnum;
-use SandwaveIo\RealtimeRegister\Domain\Enum\StatusEnum;
-use SandwaveIo\RealtimeRegister\Domain\Enum\ValidationTypeEnum;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 class CertificatesApiDownloadCertificateTest extends TestCase
