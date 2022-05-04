@@ -5,9 +5,9 @@ namespace SandwaveIo\RealtimeRegister\Api;
 use DateTimeImmutable;
 use SandwaveIo\RealtimeRegister\Domain\Certificate;
 use SandwaveIo\RealtimeRegister\Domain\CertificateCollection;
+use SandwaveIo\RealtimeRegister\Domain\Enum\DownloadFormatEnum;
 use SandwaveIo\RealtimeRegister\Domain\Product;
 use SandwaveIo\RealtimeRegister\Domain\ProductCollection;
-use SandwaveIo\RealtimeRegister\Domain\Enum\DownloadFormatEnum;
 
 final class CertificatesApi extends AbstractApi
 {
