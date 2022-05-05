@@ -15,4 +15,5 @@ return [
     'certificateId' => 1234567890,
     'transferType' => 'FAKE_TRANSFER_TYPE',
     'subjectStatus' => 'FAKE_SUBJECT_STATUS',
+    'domainName' => 'fake-domain-name.com',
 ];
