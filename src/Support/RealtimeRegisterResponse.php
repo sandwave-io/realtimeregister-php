@@ -30,7 +30,7 @@ class RealtimeRegisterResponse
         $json = json_decode($this->response, true);
 
         if (json_last_error() || $json === false) {
-            throw new UnexpectedValueException("Could not parse JSON reponse body:\n" . $this->response);
+            throw new UnexpectedValueException("Could not parse JSON response body:\n" . $this->response);
         }
 
         return $json;
