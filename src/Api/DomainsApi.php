@@ -10,6 +10,8 @@ use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetailsCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
 use SandwaveIo\RealtimeRegister\Domain\DomainTransferStatus;
+use SandwaveIo\RealtimeRegister\Domain\DomainZone;
+use SandwaveIo\RealtimeRegister\Domain\DomainZoneRecord;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DomainDesignatedAgentEnum;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DomainStatusEnum;
 use SandwaveIo\RealtimeRegister\Domain\KeyDataCollection;
@@ -59,6 +61,30 @@ final class DomainsApi extends AbstractApi
 
         $response = $this->client->get("v2/domains/{$domainName}/check", $query);
         return DomainAvailability::fromArray($response->json());
+    }
+
+    /* @see https://dm.realtimeregister.com/docs/api/domains/zoneinfo */
+    public function zone(string $domainName): DomainZone
+    {
+        $response = $this->client->get("v2/domains/{$domainName}/zone");
+        return DomainZone::fromArray($response->json());
+    }
+
+    /**
+     * @see https://dm.realtimeregister.com/docs/api/domains/zoneupdate
+     *
+     * @param DomainZoneRecord[] $records
+     */
+    public function zoneUpdate(string $domainName, string $hostMaster, int $refresh, int $retry, int $expire, int $ttl, array $records): void
+    {
+        $this->client->post("v2/domains/{$domainName}/zone/update", [
+            'hostMaster' => $hostMaster,
+            'refresh' => $refresh,
+            'retry' => $retry,
+            'expire' => $expire,
+            'ttl' => $ttl,
+            'records' => $records,
+        ]);
     }
 
     /**
