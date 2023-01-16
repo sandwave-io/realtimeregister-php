@@ -11,7 +11,7 @@ final class CustomersApi extends AbstractApi
     public function priceList(string $customer): PriceCollection
     {
         $response = $this->client->get("v2/customers/{$customer}/pricelist");
-        return PriceCollection::fromArray($response->json());
+        return PriceCollection::fromArray($response->json()['prices']);
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/customers/credits */

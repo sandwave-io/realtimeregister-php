@@ -13,7 +13,7 @@ class CustomersApiListPricesTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             json_encode([
-                'entities' => [
+                'prices' => [
                     include __DIR__ . '/../Domain/data/price_valid.php',
                     include __DIR__ . '/../Domain/data/price_valid.php',
                     include __DIR__ . '/../Domain/data/price_valid.php',
