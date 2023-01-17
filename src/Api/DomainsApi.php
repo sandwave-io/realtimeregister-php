@@ -75,7 +75,7 @@ final class DomainsApi extends AbstractApi
         ?string $authcode = null,
         ?string $languageCode = null,
         bool $autoRenew = true,
-        array $ns = [],
+        ?array $ns = null,
         ?bool $skipValidation = null,
         ?string $launchPhase = null,
         ?Zone $zone = null,
@@ -92,10 +92,13 @@ final class DomainsApi extends AbstractApi
             'authcode' => $authcode,
             'languageCode' => $languageCode,
             'autoRenew' => $autoRenew,
-            'ns' => $ns,
             'skipValidation' => $skipValidation,
             'launchPhase' => $launchPhase,
         ];
+
+        if (is_array($ns)) {
+            $payload['ns'] = $ns;
+        }
 
         if ($zone) {
             $payload['zone'] = $zone->toArray();
