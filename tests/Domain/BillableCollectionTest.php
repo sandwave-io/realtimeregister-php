@@ -3,14 +3,14 @@
 namespace SandwaveIo\RealtimeRegister\Tests\Domain;
 
 use PHPUnit\Framework\TestCase;
-use SandwaveIo\RealtimeRegister\Domain\Certificate;
-use SandwaveIo\RealtimeRegister\Domain\CertificateCollection;
+use SandwaveIo\RealtimeRegister\Domain\Billable;
+use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
 
 /**
- * This TestCase is used to test all Certificate Object Collections.
- * If you want to test Certificate Objects, use the CertificateObjectTest instead.
+ * This TestCase is used to test all Billable Object Collections.
+ * If you want to test Billable Objects, use the BillableObjectTest instead.
  */
-class CertificateCollectionTest extends TestCase
+class BillableCollectionTest extends TestCase
 {
     public function parserDataSet(): array
     {
@@ -21,7 +21,7 @@ class CertificateCollectionTest extends TestCase
          *  - Entity data.
          */
         $scenarios = [
-            'certificate collection' => [CertificateCollection::class, include __DIR__ . '/data/certificate_valid.php'],
+            'billable collection' => [BillableCollection::class, include __DIR__ . '/data/billable_valid.php'],
         ];
         // For each type, create a flat and a pagination scenario.
         $dataset = [];
@@ -63,7 +63,7 @@ class CertificateCollectionTest extends TestCase
         $this->assertSame($class, get_class($collection), "{$class}::fromArray(array \$json) gave an unexpected result.");
 
         // Array access.
-        $this->assertInstanceOf(Certificate::class, $collection[0], 'Instance in collection does not implement DomainObjectInterface');
+        $this->assertInstanceOf(Billable::class, $collection[0], 'Instance in collection does not implement DomainObjectInterface');
         $this->assertTrue(isset($collection[0]), 'Cannot access property in array');
         $this->assertFalse(isset($collection[3]), 'Unexpectedly, key 3 was set on collection');
         $this->assertFalse(isset($collection[4]), 'Unexpectedly, key 4 was set on collection');
@@ -73,7 +73,7 @@ class CertificateCollectionTest extends TestCase
         $this->assertTrue(isset($collection[4]), 'Failed to push item to collection');
         $this->assertSame(5, count($collection));
         foreach ($collection as $item) {
-            $this->assertInstanceOf(Certificate::class, $item, 'Instance in collection does not implement CertificateObjectInterface');
+            $this->assertInstanceOf(Billable::class, $item, 'Instance in collection does not implement DomainObjectInterface');
         }
         unset($collection[4]);
         $this->assertSame(4, count($collection), 'Failed to unset item in collection');
