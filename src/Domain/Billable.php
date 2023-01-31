@@ -9,15 +9,15 @@ final class Billable implements DomainObjectInterface
     public string $product;
     public string $action;
     public int $quantity;
-    public int $amount;
-    public string $providerName;
+    public ?int $amount;
+    public ?string $providerName;
 
     private function __construct(
         string $product,
         string $action,
         int $quantity,
-        int $amount,
-        string $providerName
+        ?int $amount,
+        ?string $providerName
     ) {
         $this->product = $product;
         $this->action = $action;
@@ -34,19 +34,21 @@ final class Billable implements DomainObjectInterface
             $data['product'],
             $data['action'],
             $data['quantity'],
-            $data['amount'] ?? 0,
-            $data['providerName']
+            $data['amount'] ?? null,
+            $data['providerName'] ?? null
         );
     }
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'product' => $this->product,
             'action' => $this->action,
             'quantity' => $this->quantity,
             'amount' => $this->amount,
             'providerName' => $this->providerName,
-        ];
+        ], function ($x) {
+            return ! is_null($x);
+        });
     }
 }
