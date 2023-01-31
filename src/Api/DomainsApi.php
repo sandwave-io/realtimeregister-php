@@ -75,16 +75,21 @@ final class DomainsApi extends AbstractApi
      *
      * @param DomainZoneRecord[] $records
      */
-    public function zoneUpdate(string $domainName, string $hostMaster, int $refresh, int $retry, int $expire, int $ttl, array $records): void
+    public function zoneUpdate(string $domainName, string $hostMaster, int $refresh, int $retry, int $expire, int $ttl, ?array $records = null): void
     {
-        $this->client->post("v2/domains/{$domainName}/zone/update", [
+        $data = [
             'hostMaster' => $hostMaster,
             'refresh' => $refresh,
             'retry' => $retry,
             'expire' => $expire,
             'ttl' => $ttl,
-            'records' => $records,
-        ]);
+        ];
+
+        if ($records !== null) {
+            $data['records'] = $records;
+        }
+
+        $this->client->post("v2/domains/{$domainName}/zone/update", $data);
     }
 
     /**

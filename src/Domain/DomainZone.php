@@ -11,7 +11,7 @@ final class DomainZone implements DomainObjectInterface
     public int $expire;
     public int $ttl;
     public DomainZoneRecordCollection $defaultRecords;
-    public DomainZoneRecordCollection $records;
+    public ?DomainZoneRecordCollection $records = null;
 
     private function __construct(
         ?string $template,
@@ -21,7 +21,7 @@ final class DomainZone implements DomainObjectInterface
         int $expire,
         int $ttl,
         array $defaultRecords,
-        array $records
+        ?array $records
     ) {
         $this->template = $template;
         $this->hostMaster = $hostMaster;
@@ -30,7 +30,9 @@ final class DomainZone implements DomainObjectInterface
         $this->expire = $expire;
         $this->ttl = $ttl;
         $this->defaultRecords = DomainZoneRecordCollection::fromArray($defaultRecords);
-        $this->records = DomainZoneRecordCollection::fromArray($records);
+        if ($records !== null) {
+            $this->records = DomainZoneRecordCollection::fromArray($records);
+        }
     }
 
     public static function fromArray(array $json): DomainZone
@@ -43,7 +45,7 @@ final class DomainZone implements DomainObjectInterface
             $json['expire'],
             $json['ttl'],
             $json['defaultRecords'],
-            $json['records'] ?? [],
+            $json['records'] ?? null,
         );
     }
 
@@ -57,7 +59,7 @@ final class DomainZone implements DomainObjectInterface
             'expire' => $this->expire,
             'ttl' => $this->ttl,
             'defaultRecords' => $this->defaultRecords->toArray(),
-            'records' => $this->records->toArray(),
+            'records' => ($this->records !== null ? $this->records->toArray() : null),
         ], static function ($x) {
             return $x !== null;
         });
