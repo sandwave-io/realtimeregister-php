@@ -32,6 +32,7 @@ abstract class AbstractCollection implements ArrayAccess, IteratorAggregate, Cou
         return isset($this->entities[$offset]);
     }
 
+    #[\ReturnTypeWillChange]
     abstract public function offsetGet($offset);
 
     public function offsetSet($offset, $value): void
