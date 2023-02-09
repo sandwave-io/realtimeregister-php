@@ -22,6 +22,7 @@
         "friendsofphp/php-cs-fixer": "^2.16",
         "phpstan/phpstan": "^0.12.25",
         "phpunit/phpunit": "^9.5",
+        "phpunitgen/console": "^4.2",
         "uptimeproject/php-cs-fixer-config": "^1.0.0"
     },
     "autoload": {

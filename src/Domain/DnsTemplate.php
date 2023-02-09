@@ -13,7 +13,7 @@ final class DnsTemplate implements DomainObjectInterface
     public int $retry;
     public int $expire;
     public int $ttl;
-    public ?DomainZoneRecordCollection $records;
+    public ?DomainZoneRecordCollection $records = null;
 
     /* @param DomainZoneRecord[]|null $records */
     private function __construct(

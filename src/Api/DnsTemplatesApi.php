@@ -8,7 +8,7 @@ use SandwaveIo\RealtimeRegister\Domain\DnsTemplateCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainZoneRecord;
 use SandwaveIo\RealtimeRegister\Domain\DomainZoneRecordCollection;
 
-final class TemplatesApi extends AbstractApi
+final class DnsTemplatesApi extends AbstractApi
 {
     /**
      * @see https://dm.realtimeregister.com/docs/api/templates/list
@@ -119,7 +119,7 @@ final class TemplatesApi extends AbstractApi
      * @param int $retry
      * @param int $expire
      * @param int $ttl
-     * @param DomainZoneRecord[]|null $records
+     * @param ?DomainZoneRecordCollection $records
      * @return void
      * @throws InvalidArgumentException
      */
@@ -131,7 +131,7 @@ final class TemplatesApi extends AbstractApi
         int $retry,
         int $expire,
         int $ttl,
-        ?array $records = null,
+        ?DomainZoneRecordCollection $records = null,
     ): void
     {
         $this->validateCustomerHandle($customer);
@@ -144,7 +144,7 @@ final class TemplatesApi extends AbstractApi
             'ttl'        => $ttl
         ];
         if ($records) {
-            $payload['records'] = $records;
+            $payload['records'] = $records->toArray();
         }
 
         $this->client->post(
