@@ -11,6 +11,7 @@ use SandwaveIo\RealtimeRegister\Api\DomainsApi;
 use SandwaveIo\RealtimeRegister\Api\NotificationsApi;
 use SandwaveIo\RealtimeRegister\Api\ProcessesApi;
 use SandwaveIo\RealtimeRegister\Api\ProvidersApi;
+use SandwaveIo\RealtimeRegister\Api\TemplatesApi;
 use SandwaveIo\RealtimeRegister\Api\TLDsApi;
 use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
 
@@ -26,6 +27,7 @@ final class RealtimeRegister
     public NotificationsApi $notifications;
     public ProcessesApi $processes;
     public ProvidersApi $providers;
+    public TemplatesApi $templates;
     public TLDsApi $tlds;
 
     public function __construct(
@@ -47,6 +49,7 @@ final class RealtimeRegister
         $this->notifications = new NotificationsApi($client);
         $this->processes = new ProcessesApi($client);
         $this->providers = new ProvidersApi($client);
+        $this->templates = new TemplatesApi($client);
         $this->tlds = new TLDsApi($client);
     }
 }

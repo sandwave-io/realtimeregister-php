@@ -220,7 +220,7 @@ final class DomainsApi extends AbstractApi
         }
 
         if ($zone instanceof Zone) {
-            $payload['zone'] = $zone;
+            $payload['zone'] = $zone->toArray();
         }
 
         if ($contacts instanceof DomainContactCollection) {
