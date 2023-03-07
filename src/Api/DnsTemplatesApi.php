@@ -177,21 +177,8 @@ final class DnsTemplatesApi extends AbstractApi
      */
     private function validateCustomerHandle(string $customer): void
     {
-        if (strlen($customer) < 3) {
-            throw new InvalidArgumentException(
-                sprintf("Invalid customer handle '%s'. Miminum length is 3", $customer)
-            );
-        }
-        if (strlen($customer) > 40) {
-            throw new InvalidArgumentException(
-                sprintf("Invalid customer handle '%s'. Maximum length is 40", $customer)
-            );
-        }
-        if (! preg_match('/^[a-zA-Z0-9\-_@\.]+$/', $customer)) {
-            throw new InvalidArgumentException(
-                sprintf("Invalid customer handle '%s'. Allowed characters: a-z A-Z 0-9 - _ @ .", $customer)
-            );
-        }
+        Assert::lengthBetween($customer,3, 40, 'Customer handle should be between 3 and 40 characters');
+        Assert::regex($customer, '/^[a-zA-Z0-9\-_@\.]+$/', 'Invalid customer handle, allowed characters: a-z A-Z 0-9 - _ @ .');
     }
 
     /**
