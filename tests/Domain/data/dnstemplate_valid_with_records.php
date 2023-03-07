@@ -24,7 +24,7 @@ return [
         [
             'name' => '##DOMAIN##',
             'type' => 'SOA',
-            'content' => 'ns1.yoursrs.com dns@savvii.com 0 86400 10800 3600000 3600',
+            'content' => 'ns1.yoursrs.com dns.example.com 0 86400 10800 3600000 3600',
             'ttl' => 3600,
         ]
     ],
