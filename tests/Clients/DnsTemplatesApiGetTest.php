@@ -17,7 +17,7 @@ class DnsTemplatesApiGetTest extends TestCase
         );
 
         $response = $sdk->dnstemplates->get('johndoe', 'test');
-        $this->assertInstanceOf(DnsTemplate::class, $response);
+        $this->assertSame(2, $response->records->count());
     }
 
     public function test_get_invalid(): void
