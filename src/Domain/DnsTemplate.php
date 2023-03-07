@@ -22,7 +22,7 @@ final class DnsTemplate implements DomainObjectInterface
         string $hostMaster = 'hostmaster@realtimeregister.com',
         int $refresh = 3600,
         int $retry = 3600,
-        int $expire = 1209600,
+        int $expire = 14 * 24 * 60 * 60,
         int $ttl = 3600,
         ?array $records = null
     )
