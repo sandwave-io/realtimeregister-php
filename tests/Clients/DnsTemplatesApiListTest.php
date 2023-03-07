@@ -88,6 +88,6 @@ class DnsTemplatesApiListTest extends TestCase
         );
 
         $response = $sdk->dnstemplates->list('johndoe', 3, 0, 'john', $parameters);
-        $this->assertInstanceOf(DnsTemplateCollection::class, $response);
+        $this->assertSame(3, $response->count());
     }
 }
