@@ -19,7 +19,7 @@ class DnsTemplatesApiCreateTest extends TestCase
         $sdk->dnstemplates->create(
             'johndoe',
             'test',
-            'dns@savvii.com',
+            'john.doe@example.com',
             123,
             456,
             789,
@@ -38,7 +38,7 @@ class DnsTemplatesApiCreateTest extends TestCase
         $sdk->dnstemplates->create(
             'johndoe',
             'test',
-            'dns@savvii.com',
+            'john.doe@example.com',
             123,
             456,
             789,
@@ -59,6 +59,24 @@ class DnsTemplatesApiCreateTest extends TestCase
                     ]
                 ]
             )
+        );
+    }
+
+    public function test_create_invalid(): void
+    {
+        $sdk = MockedClientFactory::makeSdk(
+            200,
+            ''
+        );
+        $this->expectException('Webmozart\Assert\InvalidArgumentException');
+        $sdk->dnstemplates->create(
+            'this is not possible',
+            'test',
+            'john.doe@example.com',
+            123,
+            456,
+            789,
+            777
         );
     }
 }

@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\DnsTemplate;
 use SandwaveIo\RealtimeRegister\Domain\DnsTemplateCollection;
 
-final class DnsTemplateTest extends TestCase
+final class DnsTemplateCollectionTest extends TestCase
 {
     public function test_from_array(): void
     {
@@ -22,7 +22,7 @@ final class DnsTemplateTest extends TestCase
         assert($dnsTemplate !== null);
 
         Assert::assertInstanceOf(DnsTemplate::class, $dnsTemplate);
-        Assert::assertSame('dns@savvii.com', $dnsTemplate->hostMaster);
+        Assert::assertSame('john.doe@example.com', $dnsTemplate->hostMaster);
 
         $dnsTemplate = $dnsTemplateCollection->offsetGet(2);
 

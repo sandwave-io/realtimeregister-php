@@ -6,10 +6,6 @@ use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\DnsTemplate;
 use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 
-/**
- * This TestCase is used to test all single Billable Objects.
- * If you want to test Collections, use the BillableCollectionTest instead.
- */
 class DnsTemplateObjectTest extends TestCase
 {
     public function parserDataSet(): array
@@ -33,12 +29,8 @@ class DnsTemplateObjectTest extends TestCase
     }
 
     /** @dataProvider parserDataSet */
-    public function test_from_and_to_array(string $class, array $data, ?string $exception = null): void
+    public function test_from_and_to_array(string $class, array $data): void
     {
-        // In case of invalid data.
-        if ($exception) {
-            $this->expectException($exception);
-        }
         // Object from array
         $object = call_user_func($class . '::fromArray', $data);
         $this->assertSame($class, get_class($object), "{$class}::fromArray(array \$json) gave an unexpected result.");

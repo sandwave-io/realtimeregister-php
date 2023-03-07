@@ -19,7 +19,7 @@ class DnsTemplatesApiUpdateTest extends TestCase
         $sdk->dnstemplates->update(
             'johndoe',
             'test',
-            'dns@savvii.com',
+            'john.doe@example.com',
             123,
             456,
             789,

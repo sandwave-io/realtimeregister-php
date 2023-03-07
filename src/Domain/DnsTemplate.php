@@ -2,8 +2,6 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
-use SandwaveIo\RealtimeRegister\Domain\DomainZoneRecordCollection;
-
 final class DnsTemplate implements DomainObjectInterface
 {
     public string $customer;
@@ -13,9 +11,9 @@ final class DnsTemplate implements DomainObjectInterface
     public int $retry;
     public int $expire;
     public int $ttl;
+    public ?DomainZoneRecordCollection $defaultRecords = null;
     public ?DomainZoneRecordCollection $records = null;
 
-    /* @param DomainZoneRecord[]|null $records */
     private function __construct(
         string $customer,
         string $name,
@@ -24,6 +22,7 @@ final class DnsTemplate implements DomainObjectInterface
         int $retry = 3600,
         int $expire = 14 * 24 * 60 * 60,
         int $ttl = 3600,
+        ?array $defaultRecords = null,
         ?array $records = null
     )
     {
@@ -34,6 +33,9 @@ final class DnsTemplate implements DomainObjectInterface
         $this->retry = $retry;
         $this->expire = $expire;
         $this->ttl = $ttl;
+        if ($defaultRecords !== null) {
+            $this->defaultRecords = DomainZoneRecordCollection::fromArray($defaultRecords);
+        }
         if ($records !== null) {
             $this->records = DomainZoneRecordCollection::fromArray($records);
         }
@@ -49,6 +51,7 @@ final class DnsTemplate implements DomainObjectInterface
             $data['retry'],
             $data['expire'],
             $data['ttl'],
+            $data['defaultRecords'] ?? null,
             $data['records'] ?? null
         );
     }
@@ -56,14 +59,15 @@ final class DnsTemplate implements DomainObjectInterface
     public function toArray(): array
     {
         return array_filter([
-            'customer'   => $this->customer,
-            'name'       => $this->name,
-            'hostMaster' => $this->hostMaster,
-            'refresh'    => $this->refresh,
-            'retry'      => $this->retry,
-            'expire'     => $this->expire,
-            'ttl'        => $this->ttl,
-            'records'    => ($this->records !== null ? $this->records->toArray() : null),
+            'customer'       => $this->customer,
+            'name'           => $this->name,
+            'hostMaster'     => $this->hostMaster,
+            'refresh'        => $this->refresh,
+            'retry'          => $this->retry,
+            'expire'         => $this->expire,
+            'ttl'            => $this->ttl,
+            'defaultRecords' => ($this->defaultRecords !== null ? $this->defaultRecords->toArray() : null),
+            'records'        => ($this->records !== null ? $this->records->toArray() : null)
         ], function ($x)
         {
             return ! is_null($x);

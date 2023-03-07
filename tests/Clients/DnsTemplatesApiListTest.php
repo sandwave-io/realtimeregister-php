@@ -28,7 +28,7 @@ class DnsTemplatesApiListTest extends TestCase
         );
 
         $response = $sdk->dnstemplates->list('johndoe');
-        $this->assertInstanceOf(DnsTemplateCollection::class, $response);
+        $this->assertSame(3, $response->count());
     }
 
     public function test_list_with_queries(): void
@@ -47,11 +47,16 @@ class DnsTemplatesApiListTest extends TestCase
                     'limit'  => 3,
                 ],
             ]),
-            MockedClientFactory::assertRoute('GET', 'v2/customers/johndoe/dnstemplates', $this)
+            MockedClientFactory::assertRoute(
+                'GET',
+                'v2/customers/johndoe/dnstemplates',
+                $this,
+                ['limit'=>'3', 'offset'=>'0', 'q'=>'john']
+            )
         );
 
         $response = $sdk->dnstemplates->list('johndoe', 3, 0, 'john');
-        $this->assertInstanceOf(DnsTemplateCollection::class, $response);
+        $this->assertSame(3, $response->count());
     }
 
     public function test_list_with_search_and_parameters(): void

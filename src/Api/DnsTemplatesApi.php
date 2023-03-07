@@ -3,6 +3,7 @@
 namespace SandwaveIo\RealtimeRegister\Api;
 
 use InvalidArgumentException;
+use Webmozart\Assert\Assert;
 use SandwaveIo\RealtimeRegister\Domain\DnsTemplate;
 use SandwaveIo\RealtimeRegister\Domain\DnsTemplateCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainZoneRecord;
@@ -76,7 +77,7 @@ final class DnsTemplatesApi extends AbstractApi
      * @param int $retry
      * @param int $expire
      * @param int $ttl
-     * @param DomainZoneRecordCollection $records
+     * @param ?DomainZoneRecordCollection $records
      * @return void
      * @throws InvalidArgumentException
      */
@@ -88,7 +89,7 @@ final class DnsTemplatesApi extends AbstractApi
         int $retry,
         int $expire,
         int $ttl,
-        ?DomainZoneRecordCollection $records = null,
+        ?DomainZoneRecordCollection $records = null
     ): void
     {
         $this->validateCustomerHandle($customer);
@@ -131,7 +132,7 @@ final class DnsTemplatesApi extends AbstractApi
         int $retry,
         int $expire,
         int $ttl,
-        ?DomainZoneRecordCollection $records = null,
+        ?DomainZoneRecordCollection $records = null
     ): void
     {
         $this->validateCustomerHandle($customer);
@@ -148,7 +149,7 @@ final class DnsTemplatesApi extends AbstractApi
         }
 
         $this->client->post(
-            sprintf("v2/customers/%s/dnstemplates/%s/update", $customer, $name),
+            sprintf("v2/customers/%s/dnstemplates/%s/update", urlencode($customer), urlencode($name)),
             $payload
         );
     }
@@ -165,7 +166,7 @@ final class DnsTemplatesApi extends AbstractApi
         $this->validateCustomerHandle($customer);
         $this->validateTemplateName($name);
         $this->client->delete(
-            sprintf("v2/customers/%s/dnstemplates/%s", $customer, $name)
+            sprintf("v2/customers/%s/dnstemplates/%s", urlencode($customer), urlencode($name))
         );
     }
 
@@ -178,7 +179,7 @@ final class DnsTemplatesApi extends AbstractApi
     private function validateCustomerHandle(string $customer): void
     {
         Assert::lengthBetween($customer,3, 40, 'Customer handle should be between 3 and 40 characters');
-        Assert::regex($customer, '/^[a-zA-Z0-9\-_@\.]+$/', 'Invalid customer handle, allowed characters: a-z A-Z 0-9 - _ @ .');
+        Assert::regex($customer, '/^[a-zA-Z0-9\-_@.]+$/', 'Invalid customer handle, allowed characters: a-z A-Z 0-9 - _ @ .');
     }
 
     /**
@@ -189,20 +190,7 @@ final class DnsTemplatesApi extends AbstractApi
      */
     private function validateTemplateName(string $name): void
     {
-        if (strlen($name) < 3) {
-            throw new InvalidArgumentException(
-                sprintf("Invalid template name '%s'. Miminum length is 3", $name)
-            );
-        }
-        if (strlen($name) > 40) {
-            throw new InvalidArgumentException(
-                sprintf("Invalid template name '%s'. Maximum length is 40", $name)
-            );
-        }
-        if (! preg_match('/^[a-zA-Z0-9\-_@\.]+$/', $name)) {
-            throw new InvalidArgumentException(
-                sprintf("Invalid template name '%s'. Allowed characters: a-z A-Z 0-9 - _ @ .", $name)
-            );
-        }
+        Assert::lengthBetween($name,3, 40, 'Template name should be between 3 and 40 characters');
+        Assert::regex($name, '/^[a-zA-Z0-9\-_@.]+$/', 'Invalid template name, allowed characters: a-z A-Z 0-9 - _ @ .');
     }
 }

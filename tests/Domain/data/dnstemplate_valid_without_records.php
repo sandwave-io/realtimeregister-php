@@ -3,7 +3,7 @@
 return [
     'customer'   => 'johndoe',
     'name'       => 'test',
-    'hostMaster' => 'dns@savvii.com',
+    'hostMaster' => 'john.doe@example.com',
     'refresh'    => 123,
     'retry'      => 456,
     'expire'     => 789,
