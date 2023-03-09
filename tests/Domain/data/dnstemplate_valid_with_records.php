@@ -26,20 +26,20 @@ return [
             'type' => 'SOA',
             'content' => 'ns1.yoursrs.com dns.example.com 0 86400 10800 3600000 3600',
             'ttl' => 3600,
-        ]
+        ],
     ],
     'records'    => [
         [
             'name'    => '##DOMAIN##',
             'type'    => 'URL',
             'content' => 'http://www.donaldduck.nl/',
-            'ttl'     => 300
+            'ttl'     => 300,
         ],
         [
             'name' => 'www.##DOMAIN##',
             'type' => 'A',
             'content' => '1.1.1.1',
-            'ttl' => 300
-        ]
-    ]
+            'ttl' => 300,
+        ],
+    ],
 ];

@@ -3,7 +3,6 @@
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
 use PHPUnit\Framework\TestCase;
-use SandwaveIo\RealtimeRegister\Domain\DnsTemplate;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 class DnsTemplatesApiGetTest extends TestCase

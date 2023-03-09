@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
@@ -24,8 +24,7 @@ final class DnsTemplate implements DomainObjectInterface
         int $ttl = 3600,
         ?array $defaultRecords = null,
         ?array $records = null
-    )
-    {
+    ) {
         $this->customer = $customer;
         $this->name = $name;
         $this->hostMaster = $hostMaster;
@@ -67,9 +66,8 @@ final class DnsTemplate implements DomainObjectInterface
             'expire'         => $this->expire,
             'ttl'            => $this->ttl,
             'defaultRecords' => ($this->defaultRecords !== null ? $this->defaultRecords->toArray() : null),
-            'records'        => ($this->records !== null ? $this->records->toArray() : null)
-        ], function ($x)
-        {
+            'records'        => ($this->records !== null ? $this->records->toArray() : null),
+        ], function ($x) {
             return ! is_null($x);
         });
     }

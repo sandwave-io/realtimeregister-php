@@ -3,8 +3,8 @@
 namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
 use PHPUnit\Framework\TestCase;
-use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 use SandwaveIo\RealtimeRegister\Domain\DomainZoneRecordCollection;
+use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 class DnsTemplatesApiUpdateTest extends TestCase
 {
@@ -30,14 +30,14 @@ class DnsTemplatesApiUpdateTest extends TestCase
                         'name'    => '##DOMAIN##',
                         'type'    => 'URL',
                         'content' => 'http://www.donaldduck.nl/',
-                        'ttl'     => 300
+                        'ttl'     => 300,
                     ],
                     [
                         'name' => 'www.##DOMAIN##',
                         'type' => 'A',
                         'content' => '1.1.1.1',
-                        'ttl' => 300
-                    ]
+                        'ttl' => 300,
+                    ],
                 ]
             )
         );

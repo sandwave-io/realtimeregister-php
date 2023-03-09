@@ -7,11 +7,11 @@ use SandwaveIo\RealtimeRegister\Api\BrandsApi;
 use SandwaveIo\RealtimeRegister\Api\CertificatesApi;
 use SandwaveIo\RealtimeRegister\Api\ContactsApi;
 use SandwaveIo\RealtimeRegister\Api\CustomersApi;
+use SandwaveIo\RealtimeRegister\Api\DnsTemplatesApi;
 use SandwaveIo\RealtimeRegister\Api\DomainsApi;
 use SandwaveIo\RealtimeRegister\Api\NotificationsApi;
 use SandwaveIo\RealtimeRegister\Api\ProcessesApi;
 use SandwaveIo\RealtimeRegister\Api\ProvidersApi;
-use SandwaveIo\RealtimeRegister\Api\DnsTemplatesApi;
 use SandwaveIo\RealtimeRegister\Api\TLDsApi;
 use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
 

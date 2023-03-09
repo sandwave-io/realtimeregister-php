@@ -7,5 +7,5 @@ return [
     'refresh'    => 123,
     'retry'      => 456,
     'expire'     => 789,
-    'ttl'        => 777
+    'ttl'        => 777,
 ];

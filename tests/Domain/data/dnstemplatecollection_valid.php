@@ -10,6 +10,6 @@ return [
         'refresh'    => 1,
         'retry'      => 2,
         'expire'     => 3,
-        'ttl'        => 4
-    ]
+        'ttl'        => 4,
+    ],
 ];

@@ -4,7 +4,6 @@ namespace SandwaveIo\RealtimeRegister\Tests\Domain;
 
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\DnsTemplate;
-use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 
 class DnsTemplateObjectTest extends TestCase
 {
@@ -24,7 +23,7 @@ class DnsTemplateObjectTest extends TestCase
             'valid dnstemplate without records' => [
                 DnsTemplate::class,
                 include __DIR__ . '/data/dnstemplate_valid_without_records.php',
-            ]
+            ],
         ];
     }
 
