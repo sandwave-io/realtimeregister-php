@@ -5,13 +5,21 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class DnsTemplate implements DomainObjectInterface
 {
     public string $customer;
+
     public string $name;
+
     public string $hostMaster;
+
     public int $refresh;
+
     public int $retry;
+
     public int $expire;
+
     public int $ttl;
+
     public ?DomainZoneRecordCollection $defaultRecords = null;
+
     public ?DomainZoneRecordCollection $records = null;
 
     private function __construct(
