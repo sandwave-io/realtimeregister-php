@@ -4,10 +4,3 @@ parameters:
     level: 8
     paths:
         - src
-    ignoreErrors:
-        - '#Method [a-zA-Z0-9\\_]+::offsetGet\(\) has parameter \$offset with no typehint specified.#'
-        - '#Method [a-zA-Z0-9\\_]+::offsetSet\(\) has parameter \$offset with no typehint specified.#'
-        - '#Method [a-zA-Z0-9\\_]+::offsetSet\(\) has parameter \$value with no typehint specified.#'
-        - '#Method [a-zA-Z0-9\\_]+::offsetGet\(\) has no return typehint specified.#'
-        - '#Method [a-zA-Z0-9\\_]+::offsetUnset\(\) has parameter \$offset with no typehint specified.#'
-        - '#Method [a-zA-Z0-9\\_]+::offsetExists\(\) has parameter \$offset with no typehint specified.#'
