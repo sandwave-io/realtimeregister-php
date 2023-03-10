@@ -7,8 +7,11 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 class ProcessInfo implements DomainObjectInterface
 {
     private string $commonName;
+
     private bool $requiresAttention;
+
     private ?array $validations;
+
     private ?array $notes;
 
     public function __construct(

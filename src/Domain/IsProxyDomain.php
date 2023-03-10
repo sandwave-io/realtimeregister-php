@@ -10,6 +10,7 @@ final class IsProxyDomain
     const STATUS_INVALID_DOMAIN = 'invalid domain';
 
     private string $domain;
+
     private string $status;
 
     public function __construct(string $domain, string $status)

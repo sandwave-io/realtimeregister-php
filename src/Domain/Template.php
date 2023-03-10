@@ -7,9 +7,13 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\TemplateNameEnum;
 final class Template implements DomainObjectInterface
 {
     public string $name;
+
     public ?string $subject;
+
     public ?string $text;
+
     public ?string $html;
+
     public array $contexts;
 
     private function __construct(

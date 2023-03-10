@@ -7,18 +7,30 @@ use DateTime;
 final class Notification implements DomainObjectInterface
 {
     public int $id;
+
     public DateTime $fireDate;
+
     public ?DateTime $readDate;
+
     public ?DateTime $acknowledgeDate;
+
     public string $message;
+
     public ?string $reason;
+
     public ?string $customer;
+
     public ?int $process;
+
     public string $eventType;
+
     public string $notificationType;
+
     /** @var array<string>|null */
     public ?array $payload;
+
     public ?int $certificateId;
+
     public ?string $transferType;
 
     /**
@@ -27,6 +39,7 @@ final class Notification implements DomainObjectInterface
      * @var string|null
      */
     public ?string $subjectStatus;
+
     public ?string $domainName;
 
     private function __construct(

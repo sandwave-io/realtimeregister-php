@@ -7,10 +7,15 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\PropertyTypeEnum;
 final class ContactProperty implements DomainObjectInterface
 {
     public string $name;
+
     public string $label;
+
     public string $description;
+
     public string $type;
+
     public bool $mandatory;
+
     /** @var array<string,string>|null */
     public ?array $values;
 

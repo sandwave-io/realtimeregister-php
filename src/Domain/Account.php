@@ -5,8 +5,11 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class Account implements DomainObjectInterface
 {
     public int $balance;
+
     public int $reservation;
+
     public string $currency;
+
     public int $locked;
 
     private function __construct(int $balance, int $reservation, string $currency, int $locked)

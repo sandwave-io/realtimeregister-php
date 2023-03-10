@@ -7,24 +7,40 @@ use DateTime;
 final class Contact implements DomainObjectInterface
 {
     public string $customer;
+
     public string $handle;
+
     public string $brand;
+
     public string $name;
+
     /** @var string[] */
     public array $addressLine;
+
     public string $postalCode;
+
     public string $city;
+
     public ?string $state;
+
     public string $country;
+
     public string $email;
+
     public string $voice;
+
     public ?string $organization;
+
     public ?string $fax;
+
     /** @var string[]|null */
     public ?array $registries;
+
     /** @var array<string, array<string, string>>|null */
     public ?array $properties;
+
     public Datetime $createdDate;
+
     public ?Datetime $updatedDate;
 
     private function __construct(

@@ -9,27 +9,46 @@ use Webmozart\Assert\Assert;
 final class DomainDetails implements DomainObjectInterface
 {
     public string $domainName;
+
     public string $registry;
+
     public string $customer;
+
     public string $registrant;
+
     public bool $privacyProtect;
+
     /** @var string[] */
     public array $status;
+
     public ?string $authcode;
+
     public ?string $languageCode;
+
     public bool $autoRenew;
+
     public int $autoRenewPeriod;
+
     /** @var string[] */
     public array $ns;
+
     /** @var string[] */
     public array $childHosts;
+
     public DateTime $createdDate;
+
     public ?DateTime $updatedDate;
+
     public DateTime $expiryDate;
+
     public bool $premium;
+
     public ?Zone $zone;
+
     public ?DomainContactCollection $contacts;
+
     public ?KeyDataCollection $keyData;
+
     public ?DsDataCollection $dsData;
 
     private function __construct(

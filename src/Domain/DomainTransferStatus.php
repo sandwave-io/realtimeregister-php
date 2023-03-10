@@ -13,13 +13,21 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\LogStatusEnum;
 final class DomainTransferStatus implements DomainObjectInterface
 {
     public string $domainName;
+
     public ?string $registrar;
+
     public string $status;
+
     public DateTimeInterface $requestedDate;
+
     public ?DateTimeInterface $actionDate;
+
     public ?DateTimeInterface $expiryDate;
+
     public string $type;
+
     public ?int $processId;
+
     public ?LogCollection $log;
 
     private function __construct(

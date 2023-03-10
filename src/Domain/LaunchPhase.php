@@ -7,7 +7,9 @@ use DateTime;
 final class LaunchPhase implements DomainObjectInterface
 {
     public string $phase;
+
     public ?Datetime $startDate;
+
     public ?Datetime $endDate;
 
     private function __construct(string $phase, ?DateTime $startDate, ?DateTime $endDate)

@@ -8,7 +8,9 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\LogStatusEnum;
 final class Log implements DomainObjectInterface
 {
     public DateTime $date;
+
     public string $status;
+
     public string $message;
 
     private function __construct(DateTime $date, string $status, string $message)

@@ -8,9 +8,13 @@ use TypeError;
 final class Downtime implements DomainObjectInterface
 {
     public int $id;
+
     public DateTime $startDate;
+
     public DateTime $endDate;
+
     public ?string $reason;
+
     public Provider $provider;
 
     private function __construct(

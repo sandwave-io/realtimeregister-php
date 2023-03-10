@@ -5,9 +5,13 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class DomainAvailability implements DomainObjectInterface
 {
     public bool $available;
+
     public ?string $reason;
+
     public ?bool $premium;
+
     public ?int $price;
+
     public ?string $currency;
 
     private function __construct(bool $available, ?string $reason, ?bool $premium, ?int $price, ?string $currency)

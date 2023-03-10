@@ -5,6 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class Zone implements DomainObjectInterface
 {
     public string $template;
+
     public ?bool $link;
 
     private function __construct(string $template, ?bool $link)

@@ -20,14 +20,23 @@ final class RealtimeRegister
     private const BASE_URL = 'https://api.yoursrs.com/';
 
     public BrandsApi $brands;
+
     public CertificatesApi $certificates;
+
     public ContactsApi $contacts;
+
     public CustomersApi $customers;
+
     public DomainsApi $domains;
+
     public NotificationsApi $notifications;
+
     public ProcessesApi $processes;
+
     public ProvidersApi $providers;
+
     public DnsTemplatesApi $dnstemplates;
+
     public TLDsApi $tlds;
 
     public function __construct(

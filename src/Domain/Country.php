@@ -5,8 +5,11 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class Country implements DomainObjectInterface
 {
     public string $code;
+
     public string $name;
+
     public ?string $postalCodePattern;
+
     public ?string $postalCodeExample;
 
     private function __construct(string $code, string $name, ?string $postalCodePattern, ?string $postalCodeExample)

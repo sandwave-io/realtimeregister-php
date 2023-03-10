@@ -8,21 +8,34 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\ValidationTypeEnum;
 final class Product implements DomainObjectInterface
 {
     public string $product;
+
     public string $brand;
+
     public string $name;
+
     public string $validationType;
+
     public string $certificateType;
+
     /** @var string[] */
     public ?array $features;
+
     /** @var int[] */
     public array $periods;
+
     public int $warranty;
+
     public string $issueTime;
+
     public int $renewalWindow;
+
     public ?int $includedDomains;
+
     public ?int $maxDomains;
+
     /** @var string[] */
     public ?array $requiredFields;
+
     /** @var string[] */
     public ?array $optionalFields;
 

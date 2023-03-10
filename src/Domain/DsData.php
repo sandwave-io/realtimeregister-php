@@ -8,8 +8,11 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\DsDataDigestTypeEnum;
 final class DsData implements DomainObjectInterface
 {
     public int $keyTag;
+
     public int $algorithm;
+
     public int $digestType;
+
     public string $digest;
 
     private function __construct(int $keyTag, int $algorithm, int $digestType, string $digest)

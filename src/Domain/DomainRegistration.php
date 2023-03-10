@@ -7,6 +7,7 @@ use DateTime;
 class DomainRegistration implements DomainObjectInterface
 {
     public string $domainName;
+
     public DateTime $expiryDate;
 
     private function __construct(string $domainName, DateTime $expiryDate)

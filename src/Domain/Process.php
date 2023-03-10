@@ -14,35 +14,50 @@ use Webmozart\Assert\Assert;
 final class Process implements DomainObjectInterface
 {
     public int $id;
+
     public string $user;
+
     public string $customer;
+
     public string $status;
+
     public DateTimeInterface $createdDate;
+
     public ?DateTimeInterface $updatedDate;
+
     public ?DateTimeInterface $startedDate;
+
     public string $type;
+
     public string $identifier;
+
     public string $action;
+
     /**
      * @var array<string, int>|null
      */
     public ?array $reservation;
+
     /**
      * @var array<string, int>|null
      */
     public ?array $transaction;
+
     /**
      * @var array<string, int>|null
      */
     public ?array $refund;
+
     /**
      * @var array<string>|null
      */
     public ?array $command;
+
     /**
      * @var string[]|null
      */
     public ?array $resumeTypes;
+
     public ?BillableCollection $billables;
 
     private function __construct(

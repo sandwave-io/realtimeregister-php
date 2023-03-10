@@ -7,9 +7,13 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\DomainZoneRecordTypeEnum;
 final class DomainZoneRecord implements DomainObjectInterface
 {
     public string $name;
+
     public string $type;
+
     public string $content;
+
     public int $ttl;
+
     public ?int $prio;
 
     private function __construct(

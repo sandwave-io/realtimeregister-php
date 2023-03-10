@@ -15,45 +15,82 @@ final class TLDMetaData implements DomainObjectInterface
 {
     /** @var array<int> */
     public array $createDomainPeriods;
+
     /** @var array<int> */
     public array $renewDomainPeriods;
+
     /** @var array<int> */
     public array $autoRenewDomainPeriods;
+
     /** @var array<int>|null */
     public ?array $transferDomainPeriods;
+
     public ?int $redemptionPeriod;
+
     public ?int $pendingDeletePeriod;
+
     public ?int $addGracePeriod;
+
     public ?int $renewGracePeriod;
+
     public ?int $autoRenewGracePeriod;
+
     public ?int $transferGracePeriod;
+
     public ?int $expiryDateOffset;
+
     public bool $transferFOA;
+
     public bool $adjustableAuthCode;
+
     public bool $customAuthcodeSupport;
+
     public bool $transferSupportsAuthcode;
+
     public bool $transferRequiresAuthcode;
+
     public bool $creationRequiresPreValidation;
+
     public ?string $zoneCheck;
+
     public ?array $possibleClientDomainStatuses;
+
     public ?int $allowedDnssecRecords;
+
     public ?array $allowedDnssecAlgorithms;
+
     public ?string $validationCategory;
+
     public array $featuresAvailable;
+
     public bool $registrantChangeApprovalRequired;
+
     public ?string $allowDesignatedAgent;
+
     public ?string $jurisdiction;
+
     public ?string $termsOfService;
+
     public ?string $privacyPolicy;
+
     public string $whoisExposure;
+
     public string $gdprCategory;
+
     public DomainSyntax $domainSyntax;
+
     public Nameservers $nameservers;
+
     public Registrant $registrant;
+
     public ContactsConstraint $adminContacts;
+
     public ContactsConstraint $billingContacts;
+
     public ContactsConstraint $techContacts;
+
     public ?ContactPropertyCollection $contactProperties;
+
     public ?LaunchPhaseCollection $launchPhases;
 
     private function __construct(
@@ -179,9 +216,9 @@ final class TLDMetaData implements DomainObjectInterface
             DomainSyntax::fromArray($data['domainSyntax']),
             Nameservers::fromArray($data['nameservers']),
             Registrant::fromArray($data['registrant']),
-            ContactsConstraint ::fromArray($data['adminContacts']),
-            ContactsConstraint ::fromArray($data['billingContacts']),
-            ContactsConstraint ::fromArray($data['techContacts']),
+            ContactsConstraint::fromArray($data['adminContacts']),
+            ContactsConstraint::fromArray($data['billingContacts']),
+            ContactsConstraint::fromArray($data['techContacts']),
             isset($data['contactProperties']) ? ContactPropertyCollection::fromArray($data['contactProperties']) : null,
             isset($data['launchPhases']) ? LaunchPhaseCollection::fromArray($data['launchPhases']) : null,
             $data['redemptionPeriod'] ?? null,

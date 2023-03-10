@@ -5,10 +5,15 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class ContactsConstraint implements DomainObjectInterface
 {
     public int $min;
+
     public int $max;
+
     public bool $required;
+
     public bool $organizationRequired;
+
     public bool $organizationAllowed;
+
     /** @var array<string>|null */
     public ?array $allowedCountries;
 

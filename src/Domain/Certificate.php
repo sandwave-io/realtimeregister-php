@@ -11,29 +11,51 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\ValidationTypeEnum;
 final class Certificate implements DomainObjectInterface
 {
     public int $id;
+
     public string $product;
+
     public string $validationType;
+
     public string $certificateType;
+
     public string $domainName;
+
     public ?string $organization;
+
     public ?string $department;
+
     /** @var string[] */
     public ?array $addressLine;
+
     public ?string $city;
+
     public ?string $state;
+
     public ?string $postalCode;
+
     public ?string $country;
+
     public ?string $coc;
+
     public ?string $providerId;
+
     public DateTime $startDate;
+
     public DateTime $expiryDate;
+
     /** @var string[] */
     public ?array $san;
+
     public string $status;
+
     public ?string $publicKeyAlgorithm;
+
     public ?int $publicKeySize;
+
     public ?string $csr;
+
     public ?string $certificate;
+
     public ?string $fingerprint;
 
     private function __construct(

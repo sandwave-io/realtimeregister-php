@@ -5,9 +5,13 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class DomainSyntax implements DomainObjectInterface
 {
     public int $minLength;
+
     public int $maxLength;
+
     public bool $idnSupport;
+
     public ?string $allowedCharacters;
+
     public ?LanguageCodes $languageCodes;
 
     private function __construct(int $minLength, int $maxLength, bool $idnSupport, ?string $allowedCharacters, ?LanguageCodes $languageCodes)

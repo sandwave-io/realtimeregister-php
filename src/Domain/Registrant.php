@@ -5,6 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class Registrant implements DomainObjectInterface
 {
     public bool $organizationRequired;
+
     public bool $organizationAllowed;
 
     /** @var array<string>|null */

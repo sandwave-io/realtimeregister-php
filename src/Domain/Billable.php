@@ -7,9 +7,13 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\BillableActionEnum;
 final class Billable implements DomainObjectInterface
 {
     public string $product;
+
     public string $action;
+
     public int $quantity;
+
     public ?int $amount;
+
     public ?string $providerName;
 
     private function __construct(

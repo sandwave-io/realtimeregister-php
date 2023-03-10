@@ -5,7 +5,9 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class Pagination
 {
     public int $limit;
+
     public int $offset;
+
     public ?int $total;
 
     private function __construct(int $limit, int $offset, ?int $total)

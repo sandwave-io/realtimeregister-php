@@ -5,12 +5,19 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 final class DomainZone implements DomainObjectInterface
 {
     public ?string $template;
+
     public string $hostMaster;
+
     public int $refresh;
+
     public int $retry;
+
     public int $expire;
+
     public int $ttl;
+
     public DomainZoneRecordCollection $defaultRecords;
+
     public ?DomainZoneRecordCollection $records = null;
 
     private function __construct(
