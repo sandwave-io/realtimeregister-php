@@ -20,8 +20,8 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
-        "phpstan/phpstan": "^0.12.25",
-        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^1.10.6",
+        "phpunit/phpunit": "^10.0.15",
         "sandwave-io/php-cs-fixer-config": "^1.0"
     },
     "autoload": {
