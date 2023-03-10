@@ -8,7 +8,7 @@ use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 
 class KeyDataAlgorithmEnumTest extends TestCase
 {
-    public function data(): array
+    public static function data(): array
     {
         return [
             ['DSA', KeyDataAlgorithmEnum::ALGORITHM_DSA_SHA1],
@@ -25,15 +25,15 @@ class KeyDataAlgorithmEnumTest extends TestCase
         ];
     }
 
-    /** @dataProvider data() */
+    /** @dataProvider data */
     public function test_from_mnemonic($name, $algorithm): void
     {
-        $this->assertSame($algorithm, KeyDataAlgorithmEnum::fromMnemonic($name));
+        self::assertSame($algorithm, KeyDataAlgorithmEnum::fromMnemonic($name));
     }
 
     public function test_from_mnemonic_error(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        self::expectException(InvalidArgumentException::class);
         KeyDataAlgorithmEnum::fromMnemonic('My special algorithm that is not supported!');
     }
 }

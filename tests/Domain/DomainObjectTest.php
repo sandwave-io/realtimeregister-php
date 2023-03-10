@@ -44,7 +44,7 @@ use TypeError;
  */
 class DomainObjectTest extends TestCase
 {
-    public function parserDataSet(): array
+    public static function parserDataSet(): array
     {
         /**
          * This data provider has three fields, the last one of which is optional.
@@ -363,14 +363,14 @@ class DomainObjectTest extends TestCase
     {
         // In case of invalid data.
         if ($exception) {
-            $this->expectException($exception);
+            self::expectException($exception);
         }
         // Object from array
         $object = call_user_func($class . '::fromArray', $data);
-        $this->assertSame($class, get_class($object), "{$class}::fromArray(array \$json) gave an unexpected result.");
+        self::assertSame($class, get_class($object), "{$class}::fromArray(array \$json) gave an unexpected result.");
 
         // Object to array
         $array = $object->toArray();
-        $this->assertSame($data, $array, "{$class}::toArray() gave an unexpected result.");
+        self::assertSame($data, $array, "{$class}::toArray() gave an unexpected result.");
     }
 }

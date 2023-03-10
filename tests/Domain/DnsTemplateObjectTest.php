@@ -7,7 +7,7 @@ use SandwaveIo\RealtimeRegister\Domain\DnsTemplate;
 
 class DnsTemplateObjectTest extends TestCase
 {
-    public function parserDataSet(): array
+    public static function parserDataSet(): array
     {
         /**
          * This data provider has three fields, the last one of which is optional.
@@ -28,14 +28,14 @@ class DnsTemplateObjectTest extends TestCase
     }
 
     /** @dataProvider parserDataSet */
-    public function test_from_and_to_array(string $class, array $data): void
+    public static function test_from_and_to_array(string $class, array $data): void
     {
         // Object from array
         $object = call_user_func($class . '::fromArray', $data);
-        $this->assertSame($class, get_class($object), "{$class}::fromArray(array \$json) gave an unexpected result.");
+        self::assertSame($class, get_class($object), "{$class}::fromArray(array \$json) gave an unexpected result.");
 
         // Object to array
         $array = $object->toArray();
-        $this->assertSame($data, $array, "{$class}::toArray() gave an unexpected result.");
+        self::assertSame($data, $array, "{$class}::toArray() gave an unexpected result.");
     }
 }

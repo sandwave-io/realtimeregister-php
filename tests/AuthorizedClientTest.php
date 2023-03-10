@@ -23,7 +23,7 @@ class AuthorizedClientTest extends TestCase
         $this->assertInstanceOf(AuthorizedClient::class, $client);
     }
 
-    public function requestVariants(): array
+    public static function requestVariants(): array
     {
         return [
             'GET request: success'  => ['get', 200, null],
