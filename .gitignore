@@ -7,3 +7,4 @@ clover.xml
 infection.log
 coverage
 .phpunit.result.cache
+.phpunit.cache
