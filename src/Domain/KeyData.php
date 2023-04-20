@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
@@ -32,8 +34,9 @@ final class KeyData implements DomainObjectInterface
         KeyDataAlgorithmEnum::validate($json['algorithm']);
 
         $decodedKey = base64_decode($json['publicKey']);
+        $cleanKey = preg_replace('/\s+/', '', $json['publicKey']);
 
-        if (base64_encode($decodedKey) !== $json['publicKey']) {
+        if (base64_encode($decodedKey) !== $cleanKey) {
             throw new InvalidArgumentException('Key is not base64 encoded.');
         }
 
