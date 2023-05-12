@@ -2,33 +2,33 @@
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
+use SandwaveIo\RealtimeRegister\Domain\Enum\DomainZoneServiceEnum;
+
 final class Zone implements DomainObjectInterface
 {
-    public string $template;
-
-    public ?bool $link;
-
-    private function __construct(string $template, ?bool $link)
+    private function __construct(private string $service, private ?string $template, private ?bool $link)
     {
-        $this->template = $template;
-        $this->link = $link;
     }
 
-    public static function fromArray(array $data): Zone
+    public static function fromArray(array $json): self
     {
-        return new Zone(
-            $data['template'],
-            $data['link'] ?? null
+        DomainZoneServiceEnum::validate($json['service']);
+
+        return new self(
+            $json['service'],
+            $json['template'] ?? null,
+            $json['link'] ?? null
         );
     }
 
     public function toArray(): array
     {
         return array_filter([
+            'service' => $this->service,
             'template' => $this->template,
             'link' => $this->link,
-        ], function ($x) {
-            return ! is_null($x);
+        ], static function ($x) {
+            return $x !== null;
         });
     }
 }
