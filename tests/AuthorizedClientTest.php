@@ -128,7 +128,7 @@ class AuthorizedClientTest extends TestCase
             static fn (): Response => new Response(
                 202,
                 [
-                    'X-Process-Id' => 1,
+                    'x-process-id' => 1,
                     'Content-Type' => 'application/json',
                 ]
             )
@@ -137,9 +137,9 @@ class AuthorizedClientTest extends TestCase
         $response = $client->get('test');
 
         self::assertCount(2, $response->headers());
-        self::assertCount(1, $response->headers()['X-Process-Id']);
+        self::assertCount(1, $response->headers()['x-process-id']);
         self::assertCount(1, $response->headers()['Content-Type']);
-        self::assertSame(1, (int) $response->headers()['X-Process-Id'][0]);
+        self::assertSame(1, (int) $response->headers()['x-process-id'][0]);
         self::assertSame('application/json', $response->headers()['Content-Type'][0]);
     }
 }
