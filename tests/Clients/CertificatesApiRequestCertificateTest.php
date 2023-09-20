@@ -16,7 +16,7 @@ class CertificatesApiRequestCertificateTest extends TestCase
                 return new Response(
                     202,
                     [
-                        'X-Process-Id' => 1,
+                        'x-process-id' => 1,
                     ],
                     json_encode([
                         'commonName' => 'commonname.com',

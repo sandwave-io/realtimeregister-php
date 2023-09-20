@@ -23,7 +23,7 @@ class RealtimeRegisterResponse
 
     public static function fromString(string $response, array $headers): RealtimeRegisterResponse
     {
-        return new RealtimeRegisterResponse($response, $headers);
+        return new RealtimeRegisterResponse($response, array_change_key_case($headers));
     }
 
     public function json(): array

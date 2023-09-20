@@ -16,7 +16,7 @@ class CertificatesApiRenewCertificateTest extends TestCase
                 return new Response(
                     202,
                     [
-                        'X-Process-Id' => 1,
+                        'x-process-id' => 1,
                     ]
                 );
             },
