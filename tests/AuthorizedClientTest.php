@@ -138,8 +138,8 @@ class AuthorizedClientTest extends TestCase
 
         self::assertCount(2, $response->headers());
         self::assertCount(1, $response->headers()['x-process-id']);
-        self::assertCount(1, $response->headers()['Content-Type']);
+        self::assertCount(1, $response->headers()['content-type']);
         self::assertSame(1, (int) $response->headers()['x-process-id'][0]);
-        self::assertSame('application/json', $response->headers()['Content-Type'][0]);
+        self::assertSame('application/json', $response->headers()['content-type'][0]);
     }
 }
