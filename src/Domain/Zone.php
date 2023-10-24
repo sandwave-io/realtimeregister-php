@@ -6,7 +6,7 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\DomainZoneServiceEnum;
 
 final class Zone implements DomainObjectInterface
 {
-    private function __construct(private string $service, private ?string $template, private ?bool $link)
+    private function __construct(public string $service, public ?string $template, public ?bool $link)
     {
     }
 
