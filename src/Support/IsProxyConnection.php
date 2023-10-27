@@ -66,6 +66,11 @@ class IsProxyConnection
         return trim($response);
     }
 
+    public function isConnected(): bool
+    {
+        return is_resource($this->socket);
+    }
+
     protected function login(): bool
     {
         if (! $this->write('LOGIN ' . $this->apiKey)) {
@@ -78,10 +83,5 @@ class IsProxyConnection
         }
 
         return (bool) preg_match('#^100\sLogin\sok#', $response);
-    }
-
-    protected function isConnected(): bool
-    {
-        return is_resource($this->socket);
     }
 }

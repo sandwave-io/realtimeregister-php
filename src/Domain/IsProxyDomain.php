@@ -4,19 +4,22 @@ namespace SandwaveIo\RealtimeRegister\Domain;
 
 final class IsProxyDomain
 {
-    const STATUS_ERROR          = 'error';
-    const STATUS_AVAILABLE      = 'available';
-    const STATUS_NOT_AVAILABLE  = 'not available';
-    const STATUS_INVALID_DOMAIN = 'invalid domain';
+    public const STATUS_ERROR          = 'error';
+    public const STATUS_AVAILABLE      = 'available';
+    public const STATUS_NOT_AVAILABLE  = 'not available';
+    public const STATUS_INVALID_DOMAIN = 'invalid domain';
 
     private string $domain;
 
     private string $status;
 
-    public function __construct(string $domain, string $status)
+    private array $extras;
+
+    public function __construct(string $domain, string $status, array $extras = [])
     {
         $this->domain = $domain;
         $this->status = $status;
+        $this->extras = $extras;
     }
 
     public function getDomain(): string
@@ -27,6 +30,11 @@ final class IsProxyDomain
     public function getStatus(): string
     {
         return $this->status;
+    }
+
+    public function getExtras(): array
+    {
+        return $this->extras;
     }
 
     public function isAvailable(): bool

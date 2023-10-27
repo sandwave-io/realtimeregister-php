@@ -28,7 +28,7 @@ final class IsProxy
      */
     public function checkMany(string $domain, array $tlds): array
     {
-        if (! $this->connection->connect()) {
+        if (! $this->connection->isConnected() && ! $this->connection->connect()) {
             throw new IsProxyConnectionException('Cannot connect to IsProxy');
         }
 
@@ -43,7 +43,7 @@ final class IsProxy
 
     public function check(string $domain, string $tld): ?IsProxyDomain
     {
-        if (! $this->connection->connect()) {
+        if (! $this->connection->isConnected() && ! $this->connection->connect()) {
             throw new IsProxyConnectionException('Cannot connect to IsProxy');
         }
 
@@ -53,17 +53,40 @@ final class IsProxy
         return $response;
     }
 
+    public function enable(string $function): bool
+    {
+        if (!$this->connection->isConnected() && !$this->connection->connect()) {
+            throw new IsProxyConnectionException('Cannot connect to IsProxy');
+        }
+
+        $this->connection->write("ENABLE {$function}");
+        $response = $this->connection->read();
+
+        return (bool) preg_match('#^100\sok#', $response);
+    }
+
     private function sendCheckRequest(string $domain, string $tld): ?IsProxyDomain
     {
         $this->connection->write("IS {$domain}.{$tld}");
         $response = $this->connection->read();
 
-        if (! preg_match('#^([\-\w.]+)\s(available|not\savailable|invalid\sdomain|error)#', $response, $matches)) {
+        $regex = '#^(?<domain>[\-\w.]+)\s(?<status>available|not\savailable|invalid\sdomain|error)\s?(\((?<extra>.*)\))?#';
+
+        if (! preg_match($regex, $response, $matches)) {
             return null;
         }
 
-        [$matchedText, $domain, $result] = $matches;
+        if (! $matches['extra']) {
+            return new IsProxyDomain($matches['domain'], $matches['status']);
+        }
 
-        return new IsProxyDomain($domain, $result);
+        $extras = [];
+
+        foreach (explode(',', $matches['extra']) as $extra) {
+            [$key, $value] = explode('=', $extra, 2);
+            $extras[$key] = $value;
+        }
+
+        return new IsProxyDomain($matches['domain'], $matches['status'], $extras);
     }
 }
