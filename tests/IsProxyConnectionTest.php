@@ -154,7 +154,7 @@ class IsProxyConnectionTest extends TestCase
         $this->assertInstanceOf(IsProxyDomain::class, $premiumDomain);
         $this->assertSame(IsProxyDomain::STATUS_AVAILABLE, $premiumDomain->getStatus());
         $this->assertSame('example.com', $premiumDomain->getDomain());
-        $this->assertEquals(['type' => 'premium', 'price' => '1500', 'currency' => 'USD'], $premiumDomain->getExtras());
+        $this->assertSame(['type' => 'premium', 'price' => '1500', 'currency' => 'USD'], $premiumDomain->getExtras());
         $this->assertSame('example.com', $premiumDomain->getDomain());
         $this->assertTrue($premiumDomain->isAvailable());
 
@@ -182,5 +182,4 @@ class IsProxyConnectionTest extends TestCase
         $this->assertEmpty($availableDomain->getExtras());
         $this->assertTrue($invalidDomain->isInvalid());
     }
-
 }

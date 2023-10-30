@@ -55,7 +55,7 @@ final class IsProxy
 
     public function enable(string $function): bool
     {
-        if (!$this->connection->isConnected() && !$this->connection->connect()) {
+        if (! $this->connection->isConnected() && ! $this->connection->connect()) {
             throw new IsProxyConnectionException('Cannot connect to IsProxy');
         }
 
