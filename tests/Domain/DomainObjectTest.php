@@ -37,6 +37,7 @@ use SandwaveIo\RealtimeRegister\Domain\TLDInfo;
 use SandwaveIo\RealtimeRegister\Domain\Zone;
 use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 use TypeError;
+use ValueError;
 
 /**
  * This TestCase is used to test all single Domain Objects.
@@ -69,7 +70,7 @@ class DomainObjectTest extends TestCase
             'invalid billable (action)' => [
                 Billable::class,
                 include __DIR__ . '/data/billable_invalid_action.php',
-                InvalidArgumentException::class,
+                ValueError::class,
             ],
             'valid contact (all fields)' => [
                 Contact::class,
