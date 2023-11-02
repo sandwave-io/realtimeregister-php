@@ -4,7 +4,6 @@ namespace SandwaveIo\RealtimeRegister\Tests\Domain;
 
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\Billable;
-use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 use ValueError;
 
 /**
