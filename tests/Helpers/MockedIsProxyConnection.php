@@ -16,6 +16,9 @@ class MockedIsProxyConnection extends IsProxyConnection
     /** @var string[] */
     private $expectedWrites;
 
+    /** @var bool */
+    private $connected = false;
+
     public function __construct(string $apiKey, TestCase $testCase)
     {
         parent::__construct($apiKey);
@@ -51,6 +54,7 @@ class MockedIsProxyConnection extends IsProxyConnection
 
     public function connect(): bool
     {
+        $this->connected = true;
         return $this->login();
     }
 
@@ -73,8 +77,8 @@ class MockedIsProxyConnection extends IsProxyConnection
         return $expected;
     }
 
-    protected function isConnected(): bool
+    public function isConnected(): bool
     {
-        return true;
+        return $this->connected;
     }
 }
