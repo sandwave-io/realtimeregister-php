@@ -9,6 +9,7 @@ use SandwaveIo\RealtimeRegister\Api\ContactsApi;
 use SandwaveIo\RealtimeRegister\Api\CustomersApi;
 use SandwaveIo\RealtimeRegister\Api\DnsTemplatesApi;
 use SandwaveIo\RealtimeRegister\Api\DomainsApi;
+use SandwaveIo\RealtimeRegister\Api\FinancialApi;
 use SandwaveIo\RealtimeRegister\Api\NotificationsApi;
 use SandwaveIo\RealtimeRegister\Api\ProcessesApi;
 use SandwaveIo\RealtimeRegister\Api\ProvidersApi;
@@ -39,6 +40,8 @@ final class RealtimeRegister
 
     public TLDsApi $tlds;
 
+    public FinancialApi $financial;
+
     public function __construct(
         string $apiKey,
         ?string $baseUrl = null,
@@ -60,5 +63,6 @@ final class RealtimeRegister
         $this->providers = new ProvidersApi($client);
         $this->dnstemplates = new DnsTemplatesApi($client);
         $this->tlds = new TLDsApi($client);
+        $this->financial = new FinancialApi($client);
     }
 }
