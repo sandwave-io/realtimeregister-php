@@ -6,40 +6,27 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\BillableActionEnum;
 
 final class Billable implements DomainObjectInterface
 {
-    public string $product;
-
-    public string $action;
-
-    public int $quantity;
-
-    public ?int $amount;
-
-    public ?string $providerName;
-
-    private function __construct(
-        string $product,
-        string $action,
-        int $quantity,
-        ?int $amount,
-        ?string $providerName
+    public function __construct(
+        public readonly string $product,
+        public readonly BillableActionEnum $action,
+        public readonly int $quantity,
+        public readonly ?int $amount,
+        public readonly ?bool $refundable,
+        public readonly ?int $total,
+        public readonly ?string $providerName
     ) {
-        $this->product = $product;
-        $this->action = $action;
-        $this->quantity = $quantity;
-        $this->amount = $amount;
-        $this->providerName = $providerName;
     }
 
-    public static function fromArray(array $data): Billable
+    public static function fromArray(array $json): Billable
     {
-        BillableActionEnum::validate($data['action']);
-
         return new Billable(
-            $data['product'],
-            $data['action'],
-            $data['quantity'],
-            $data['amount'] ?? null,
-            $data['providerName'] ?? null
+            product: $json['product'],
+            action: BillableActionEnum::from($json['action']),
+            quantity: $json['quantity'],
+            amount: $json['amount'] ?? null,
+            refundable: $json['refundable'] ?? null,
+            total: $json['total'] ?? null,
+            providerName: $json['providerName'] ?? null
         );
     }
 
@@ -47,9 +34,11 @@ final class Billable implements DomainObjectInterface
     {
         return array_filter([
             'product' => $this->product,
-            'action' => $this->action,
+            'action' => $this->action->value,
             'quantity' => $this->quantity,
             'amount' => $this->amount,
+            'refundable' => $this->refundable,
+            'total' => $this->total,
             'providerName' => $this->providerName,
         ], function ($x) {
             return ! is_null($x);

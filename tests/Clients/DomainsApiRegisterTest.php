@@ -5,6 +5,7 @@ namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainContactCollection;
+use SandwaveIo\RealtimeRegister\Domain\DomainQuote;
 use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
 use SandwaveIo\RealtimeRegister\Domain\KeyDataCollection;
 use SandwaveIo\RealtimeRegister\Domain\Zone;
@@ -12,6 +13,24 @@ use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 class DomainsApiRegisterTest extends TestCase
 {
+    public function test_register_quote(): void
+    {
+        $sdk = MockedClientFactory::makeSdk(
+            200,
+            json_encode(include __DIR__ . '/../Domain/data/domain_registration_quote.php'),
+            MockedClientFactory::assertRoute('POST', 'v2/domains/example.nl', $this)
+        );
+
+        $registration = $sdk->domains->register(
+            domainName: 'example.nl',
+            customer: 'test',
+            registrant: 'John Doe',
+            isQuote: true
+        );
+
+        $this->assertInstanceOf(DomainQuote::class, $registration);
+    }
+
     public function test_register(): void
     {
         $sdk = MockedClientFactory::makeSdk(

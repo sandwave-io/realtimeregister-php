@@ -3,11 +3,13 @@
 namespace SandwaveIo\RealtimeRegister\Api;
 
 use DateTime;
+use Exception;
 use SandwaveIo\RealtimeRegister\Domain\BillableCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainAvailability;
 use SandwaveIo\RealtimeRegister\Domain\DomainContactCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetails;
 use SandwaveIo\RealtimeRegister\Domain\DomainDetailsCollection;
+use SandwaveIo\RealtimeRegister\Domain\DomainQuote;
 use SandwaveIo\RealtimeRegister\Domain\DomainRegistration;
 use SandwaveIo\RealtimeRegister\Domain\DomainTransferStatus;
 use SandwaveIo\RealtimeRegister\Domain\DomainZone;
@@ -34,6 +36,7 @@ final class DomainsApi extends AbstractApi
         ?array $parameters = null
     ): DomainDetailsCollection {
         $query = [];
+
         if (! is_null($limit)) {
             $query['limit'] = $limit;
         }
@@ -114,7 +117,7 @@ final class DomainsApi extends AbstractApi
         ?KeyDataCollection $keyData = null,
         ?BillableCollection $billables = null,
         bool $isQuote = false
-    ): DomainRegistration {
+    ): DomainRegistration|DomainQuote {
         $payload = [
             'customer' => $customer,
             'registrant' => $registrant,
@@ -151,6 +154,10 @@ final class DomainsApi extends AbstractApi
             'quote' => $isQuote,
         ]);
 
+        if ($isQuote) {
+            return DomainQuote::fromArray($response->json());
+        }
+
         return DomainRegistration::fromArray($response->json());
     }
 
@@ -176,7 +183,7 @@ final class DomainsApi extends AbstractApi
         ?KeyDataCollection $keyData = null,
         ?BillableCollection $billables = null,
         bool $isQuote = false
-    ): void {
+    ): DomainQuote|null {
         $payload = [];
 
         if (is_string($registrant)) {
@@ -235,12 +242,22 @@ final class DomainsApi extends AbstractApi
             $payload['billables'] = $billables->toArray();
         }
 
-        $this->client->post("v2/domains/{$domainName}/update", $payload, [
+        $response = $this->client->post("v2/domains/{$domainName}/update", $payload, [
             'quote' => $isQuote,
         ]);
+
+        if ($isQuote) {
+            return DomainQuote::fromArray($response->json());
+        }
+
+        return null;
     }
 
-    /* @see https://dm.realtimeregister.com/docs/api/domains/update */
+    /**
+     * @see https://dm.realtimeregister.com/docs/api/domains/update
+     *
+     * @throws Exception
+     */
     public function transfer(
         string $domainName,
         string $customer,
@@ -257,7 +274,7 @@ final class DomainsApi extends AbstractApi
         ?KeyDataCollection $keyData = null,
         ?BillableCollection $billables = null,
         ?bool $isQuote = null
-    ): DomainTransferStatus {
+    ): DomainTransferStatus|DomainQuote {
         $payload = [
             'customer' => $customer,
             'registrant' => $registrant,
@@ -311,6 +328,11 @@ final class DomainsApi extends AbstractApi
         $response = $this->client->post("v2/domains/{$domainName}/transfer", $payload, [
             'quote' => $isQuote,
         ]);
+
+        if ($isQuote) {
+            return DomainQuote::fromArray($response->json());
+        }
+
         return DomainTransferStatus::fromArray($response->json());
     }
 
@@ -322,7 +344,11 @@ final class DomainsApi extends AbstractApi
         ]);
     }
 
-    /** @see https://dm.realtimeregister.com/docs/api/domains/transferinfo */
+    /**
+     * @see https://dm.realtimeregister.com/docs/api/domains/transferinfo
+     *
+     * @throws Exception
+     */
     public function transferInfo(string $domain, ?string $processId = null): DomainTransferStatus
     {
         if (null === $processId) {
@@ -330,12 +356,18 @@ final class DomainsApi extends AbstractApi
         } else {
             $endpoint = sprintf('v2/domains/%s/transfer/%s', $domain, $processId);
         }
+
         $response = $this->client->get($endpoint);
+
         return DomainTransferStatus::fromArray($response->json());
     }
 
-    /* @see https://dm.realtimeregister.com/docs/api/domains/transferinfo */
-    public function renew(string $domain, int $period, ?BillableCollection $billables = null, ?bool $quote = null): DateTime
+    /**
+     * @see https://dm.realtimeregister.com/docs/api/domains/transferinfo
+     *
+     * @throws Exception
+     */
+    public function renew(string $domain, int $period, ?BillableCollection $billables = null, ?bool $isQuote = null): DateTime|DomainQuote
     {
         $payload = [
             'period' => $period,
@@ -345,9 +377,13 @@ final class DomainsApi extends AbstractApi
             $payload['billables'] = $billables;
         }
 
-        $response = $this->client->post("v2/domains/{$domain}/renew", $payload, is_null($quote) ? [] : [
-            'quote' => $quote,
+        $response = $this->client->post("v2/domains/{$domain}/renew", $payload, is_null($isQuote) ? [] : [
+            'quote' => $isQuote,
         ]);
+
+        if ($isQuote) {
+            return DomainQuote::fromArray($response->json());
+        }
 
         return new DateTime($response->json()['expiryDate']);
     }
@@ -358,9 +394,17 @@ final class DomainsApi extends AbstractApi
         $this->client->delete("v2/domains/{$domain}");
     }
 
-    /** @see https://dm.realtimeregister.com/docs/api/domains/restore */
-    public function restore(string $domain, string $reason, ?BillableCollection $billables = null, ?bool $quote = null): DateTime
-    {
+    /**
+     * @see https://dm.realtimeregister.com/docs/api/domains/restore
+     *
+     * @throws Exception
+     */
+    public function restore(
+        string $domain,
+        string $reason,
+        ?BillableCollection $billables = null,
+        ?bool $isQuote = null
+    ): DateTime|DomainQuote {
         $payload = [
             'reason' => $reason,
         ];
@@ -369,9 +413,13 @@ final class DomainsApi extends AbstractApi
             $payload['billables'] = $billables;
         }
 
-        $response = $this->client->post("v2/domains/{$domain}/restore", $payload, is_null($quote) ? [] : [
-            'quote' => $quote,
+        $response = $this->client->post("v2/domains/{$domain}/restore", $payload, is_null($isQuote) ? [] : [
+            'quote' => $isQuote,
         ]);
+
+        if ($isQuote) {
+            return DomainQuote::fromArray($response->json());
+        }
 
         return new DateTime($response->json()['expiryDate']);
     }
