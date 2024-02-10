@@ -76,7 +76,7 @@ final class IsProxy
             return null;
         }
 
-        if (! $matches['extra']) {
+        if (! isset($matches['extra'])) {
             return new IsProxyDomain($matches['domain'], $matches['status']);
         }
 
