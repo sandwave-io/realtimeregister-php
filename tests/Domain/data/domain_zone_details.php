@@ -1,11 +1,17 @@
 <?php declare(strict_types = 1);
 
 return [
+    'id' => 1,
+    'customer' => 'johndoe',
+    'createdDate' => '2024-03-05T10:10:10Z',
+    'managed' => true,
+    'service' => 'BASIC',
     'hostMaster' => 'hostmaster@example.com',
     'refresh' => 3600,
     'retry' => 3600,
     'expire' => 1209600,
     'ttl' => 3600,
+    'dnssec' => true,
     'defaultRecords' => [
         [
             'name' => 'example.com',

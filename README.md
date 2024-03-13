@@ -19,6 +19,7 @@ This SDK currently supports these APIs:
 * [Providers API](https://dm.realtimeregister.com/docs/api/providers)
 * [TLDs API](https://dm.realtimeregister.com/docs/api/tlds)
 * [Processes API](https://dm.realtimeregister.com/docs/api/processes)
+* [Zones API](https://dm.realtimeregister.com/docs/api/zones)
 
 Are you missing functionality? Feel free to create an issue, or hit us up with a pull request.
 
