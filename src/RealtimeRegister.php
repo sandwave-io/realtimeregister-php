@@ -14,6 +14,7 @@ use SandwaveIo\RealtimeRegister\Api\NotificationsApi;
 use SandwaveIo\RealtimeRegister\Api\ProcessesApi;
 use SandwaveIo\RealtimeRegister\Api\ProvidersApi;
 use SandwaveIo\RealtimeRegister\Api\TLDsApi;
+use SandwaveIo\RealtimeRegister\Api\ZonesApi;
 use SandwaveIo\RealtimeRegister\Support\AuthorizedClient;
 
 final class RealtimeRegister
@@ -37,6 +38,8 @@ final class RealtimeRegister
     public ProvidersApi $providers;
 
     public DnsTemplatesApi $dnstemplates;
+
+    public ZonesApi $dnszones;
 
     public TLDsApi $tlds;
 
@@ -62,6 +65,7 @@ final class RealtimeRegister
         $this->processes = new ProcessesApi($client);
         $this->providers = new ProvidersApi($client);
         $this->dnstemplates = new DnsTemplatesApi($client);
+        $this->dnszones = new ZonesApi($client);
         $this->tlds = new TLDsApi($client);
         $this->financial = new FinancialApi($client);
     }
