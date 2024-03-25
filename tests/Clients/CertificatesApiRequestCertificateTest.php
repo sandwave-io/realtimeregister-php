@@ -42,6 +42,8 @@ class CertificatesApiRequestCertificateTest extends TestCase
             'example@mail.com',
             'en',
             null,
+            'NL',
+            'en',
             [
                 'commonName' => 'commonname.com',
                 'type' => DcvTypeEnum::LOCALE_DNS,
