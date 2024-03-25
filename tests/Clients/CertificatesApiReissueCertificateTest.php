@@ -34,6 +34,8 @@ class CertificatesApiReissueCertificateTest extends TestCase
             'Amsterdam',
             '12345678',
             null,
+            'NL',
+            'en',
             [
                 'commonName' => 'www.example.com',
                 'type' => DcvTypeEnum::LOCALE_DNS,
