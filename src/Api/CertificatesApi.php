@@ -454,6 +454,14 @@ final class CertificatesApi extends AbstractApi
         $this->client->post('/v2/ssl/import', $payload);
     }
 
+    /** @see https://dm.realtimeregister.com/docs/api/ssl/decocdecsr */
+    public function decodeCsr(string $csr): array
+    {
+        $response = $this->client->post('/v2/ssl/decodecsr', ['csr' => $csr]);
+
+        return $response->json();
+    }
+
     /** @see https://dm.realtimeregister.com/docs/api/ssl/generate-authkey */
     public function generateAuthKey(string $product, string $csr): array
     {
