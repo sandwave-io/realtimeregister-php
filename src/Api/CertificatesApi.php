@@ -128,7 +128,7 @@ final class CertificatesApi extends AbstractApi
         ?string $domainName = null,
         ?string $authKey = null,
         ?string $state = null,
-    ): int {
+    ) {
         $payload = [
             'customer' => $customer,
             'product' => $product,
@@ -198,7 +198,7 @@ final class CertificatesApi extends AbstractApi
 
         $response = $this->client->post('/v2/ssl/certificates', $payload);
 
-        return (int) $response->headers()['x-process-id'][0];
+        return CertificateInfoProcess::fromArray($response->json());
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/renew */
@@ -222,7 +222,7 @@ final class CertificatesApi extends AbstractApi
         ?string $authKey = null,
         ?string $state = null,
         ?string $product = null,
-    ): int {
+    ) {
         $payload = [
             'period' => $period,
             'csr' => $csr,
@@ -294,7 +294,7 @@ final class CertificatesApi extends AbstractApi
 
         $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/renew', $payload);
 
-        return (int) $response->headers()['x-process-id'][0];
+        return CertificateInfoProcess::fromArray($response->json());
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/ssl/reissue */
@@ -315,7 +315,7 @@ final class CertificatesApi extends AbstractApi
         ?string $domainName = null,
         ?string $authKey = null,
         ?string $state = null,
-    ): int {
+    ) {
         $payload = [
             'csr' => $csr,
         ];
@@ -378,7 +378,7 @@ final class CertificatesApi extends AbstractApi
 
         $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/reissue', $payload);
 
-        return (int) $response->headers()['x-process-id'][0];
+        return CertificateInfoProcess::fromArray($response->json());
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/revoke */

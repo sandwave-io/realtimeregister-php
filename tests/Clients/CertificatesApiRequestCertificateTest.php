@@ -4,6 +4,8 @@ namespace SandwaveIo\RealtimeRegister\Tests\Clients;
 
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use SandwaveIo\RealtimeRegister\Domain\CertificateInfoProcess;
+use SandwaveIo\RealtimeRegister\Domain\Enum\DcvStatusEnum;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DcvTypeEnum;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
@@ -20,14 +22,25 @@ class CertificatesApiRequestCertificateTest extends TestCase
                     ],
                     json_encode([
                         'commonName' => 'commonname.com',
-                        'requiresAttention' => false,
+                        'requiresAttention' => true,
+                        'validations' => [
+                            'dcv' =>
+                                [
+                                    [
+                                        'commonName' => 'example.com',
+                                        'type' => DcvTypeEnum::LOCALE_EMAIL,
+                                        'email' => 'admin@example.com',
+                                        'status' => DcvStatusEnum::DCV_STATUS_ATTENTION
+                                    ]
+                                ]
+                        ]
                     ], JSON_THROW_ON_ERROR),
                 );
             },
             MockedClientFactory::assertRoute('POST', '/v2/ssl/certificates', $this)
         );
 
-        $processId = $sdk->certificates->requestCertificate(
+        $processResult = $sdk->certificates->requestCertificate(
             'customer',
             'ssl',
             6,
@@ -40,9 +53,8 @@ class CertificatesApiRequestCertificateTest extends TestCase
             'Amsterdam',
             '12345678',
             'example@mail.com',
-            'en',
-            null,
-            'NL',
+            ['test@example.com'],
+            'nl',
             'en',
             [
                 'commonName' => 'commonname.com',
@@ -51,6 +63,7 @@ class CertificatesApiRequestCertificateTest extends TestCase
             ]
         );
 
-        self::assertSame(1, $processId);
+        self::assertInstanceOf(CertificateInfoProcess::class, $processResult);
+        self::assertCount(1, $processResult->validations->dcv->toArray());
     }
 }
