@@ -5,6 +5,8 @@ namespace SandwaveIo\RealtimeRegister\Api;
 use DateTimeImmutable;
 use SandwaveIo\RealtimeRegister\Domain\Certificate;
 use SandwaveIo\RealtimeRegister\Domain\CertificateCollection;
+use SandwaveIo\RealtimeRegister\Domain\CertificateInfoProcess;
+use SandwaveIo\RealtimeRegister\Domain\DomainControlValidationCollection;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DownloadFormatEnum;
 use SandwaveIo\RealtimeRegister\Domain\Product;
 use SandwaveIo\RealtimeRegister\Domain\ProductCollection;
@@ -60,9 +62,10 @@ final class CertificatesApi extends AbstractApi
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/dcvemailaddresslist */
-    public function listDcvEmailAddresses(string $domainName): array
+    public function listDcvEmailAddresses(string $domainName, string $product = null): array
     {
-        $response = $this->client->get('/v2/ssl/dcvemailaddresslist/' . $domainName);
+
+        $response = $this->client->get('/v2/ssl/dcvemailaddresslist/' . $domainName . ($product ? '?product=' . $product : ''));
 
         return $response->json();
     }
@@ -119,10 +122,14 @@ final class CertificatesApi extends AbstractApi
         ?string $city = null,
         ?string $coc = null,
         ?string $saEmail = null,
-        ?string $saLanguage = null,
         ?array $approver = null,
-        ?array $dcv = null
-    ): int {
+        ?string $country = null,
+        ?string $language = null,
+        ?array $dcv = null,
+        ?string $domainName = null,
+        ?string $authKey = null,
+        ?string $state = null,
+    ): CertificateInfoProcess {
         $payload = [
             'customer' => $customer,
             'product' => $product,
@@ -154,6 +161,10 @@ final class CertificatesApi extends AbstractApi
             $payload['city'] = $city;
         }
 
+        if (! is_null($country)) {
+            $payload['country'] = $country;
+        }
+
         if (! is_null($coc)) {
             $payload['coc'] = $coc;
         }
@@ -162,8 +173,8 @@ final class CertificatesApi extends AbstractApi
             $payload['saEmail'] = $saEmail;
         }
 
-        if (! is_null($saLanguage)) {
-            $payload['saLanguage'] = $saLanguage;
+        if (! is_null($language)) {
+            $payload['language'] = $language;
         }
 
         if (! is_null($approver)) {
@@ -174,9 +185,21 @@ final class CertificatesApi extends AbstractApi
             $payload['dcv'] = $dcv;
         }
 
+        if (! is_null($domainName)) {
+            $payload['domainName'] = $domainName;
+        }
+
+        if (! is_null($authKey)) {
+            $payload['authKey'] = $authKey;
+        }
+
+        if (! is_null($state)) {
+            $payload['state'] = $state;
+        }
+
         $response = $this->client->post('/v2/ssl/certificates', $payload);
 
-        return (int) $response->headers()['x-process-id'][0];
+        return CertificateInfoProcess::fromArray(array_merge($response->json(), ['headers' => $response->headers()]));
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/renew */
@@ -192,10 +215,15 @@ final class CertificatesApi extends AbstractApi
         ?string $city = null,
         ?string $coc = null,
         ?string $saEmail = null,
-        ?string $saLanguage = null,
         ?array $approver = null,
-        ?array $dcv = null
-    ): int {
+        ?string $country = null,
+        ?string $language = null,
+        ?array $dcv = null,
+        ?string $domainName = null,
+        ?string $authKey = null,
+        ?string $state = null,
+        ?string $product = null,
+    ): CertificateInfoProcess {
         $payload = [
             'period' => $period,
             'csr' => $csr,
@@ -213,6 +241,10 @@ final class CertificatesApi extends AbstractApi
             $payload['department'] = $department;
         }
 
+        if (! is_null($country)) {
+            $payload['country'] = $country;
+        }
+
         if (! is_null($address)) {
             $payload['address'] = $address;
         }
@@ -233,8 +265,8 @@ final class CertificatesApi extends AbstractApi
             $payload['saEmail'] = $saEmail;
         }
 
-        if (! is_null($saLanguage)) {
-            $payload['saLanguage'] = $saLanguage;
+        if (! is_null($language)) {
+            $payload['language'] = $language;
         }
 
         if (! is_null($approver)) {
@@ -245,9 +277,25 @@ final class CertificatesApi extends AbstractApi
             $payload['dcv'] = $dcv;
         }
 
+        if (! is_null($domainName)) {
+            $payload['domainName'] = $domainName;
+        }
+
+        if (! is_null($authKey)) {
+            $payload['authKey'] = $authKey;
+        }
+
+        if (! is_null($state)) {
+            $payload['state'] = $state;
+        }
+
+        if (! is_null($product)) {
+            $payload['product'] = $product;
+        }
+
         $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/renew', $payload);
 
-        return (int) $response->headers()['x-process-id'][0];
+        return CertificateInfoProcess::fromArray(array_merge($response->json(), ['headers' => $response->headers()]));
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/ssl/reissue */
@@ -262,8 +310,13 @@ final class CertificatesApi extends AbstractApi
         ?string $city = null,
         ?string $coc = null,
         ?array $approver = null,
-        ?array $dcv = null
-    ): int {
+        ?string $country = null,
+        ?string $language = null,
+        ?array $dcv = null,
+        ?string $domainName = null,
+        ?string $authKey = null,
+        ?string $state = null,
+    ): CertificateInfoProcess {
         $payload = [
             'csr' => $csr,
         ];
@@ -278,6 +331,10 @@ final class CertificatesApi extends AbstractApi
 
         if (! is_null($department)) {
             $payload['department'] = $department;
+        }
+
+        if (! is_null($country)) {
+            $payload['country'] = $country;
         }
 
         if (! is_null($address)) {
@@ -296,6 +353,10 @@ final class CertificatesApi extends AbstractApi
             $payload['coc'] = $coc;
         }
 
+        if (! is_null($language)) {
+            $payload['language'] = $language;
+        }
+
         if (! is_null($approver)) {
             $payload['approver'] = $approver;
         }
@@ -304,9 +365,21 @@ final class CertificatesApi extends AbstractApi
             $payload['dcv'] = $dcv;
         }
 
+        if (! is_null($domainName)) {
+            $payload['domainName'] = $domainName;
+        }
+
+        if (! is_null($authKey)) {
+            $payload['authKey'] = $authKey;
+        }
+
+        if (! is_null($state)) {
+            $payload['state'] = $state;
+        }
+
         $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/reissue', $payload);
 
-        return (int) $response->headers()['x-process-id'][0];
+        return CertificateInfoProcess::fromArray(array_merge($response->json(), ['headers' => $response->headers()]));
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/revoke */
@@ -354,6 +427,15 @@ final class CertificatesApi extends AbstractApi
         $this->client->post('/v2/processes/' . $processId . '/schedule-validation-call', $payload);
     }
 
+    /** @see https://dm.realtimeregister.com/docs/api/processes/info */
+    public function info(int $processId): CertificateInfoProcess
+    {
+        $response = $this->client->get('/v2/processes/' . $processId . '/info');
+
+        return CertificateInfoProcess::fromArray(array_merge($response->json(), ['headers' => $response->headers()]));
+
+    }
+
     /** @see https://dm.realtimeregister.com/docs/api/ssl/import */
     public function importCertificate(string $customer, string $certificate, ?string $csr, ?string $coc): void
     {
@@ -371,5 +453,38 @@ final class CertificatesApi extends AbstractApi
         }
 
         $this->client->post('/v2/ssl/import', $payload);
+    }
+
+    /** @see https://dm.realtimeregister.com/docs/api/ssl/decocdecsr */
+    public function decodeCsr(string $csr): array
+    {
+        $response = $this->client->post('/v2/ssl/decodecsr', ['csr' => $csr]);
+
+        return $response->json();
+    }
+
+    /** @see https://dm.realtimeregister.com/docs/api/ssl/generate-authkey */
+    public function generateAuthKey(string $product, string $csr): array
+    {
+        $payload = [
+            'product' => $product,
+            'csr' => $csr,
+        ];
+
+        $response = $this->client->post('/v2/ssl/authkey', $payload);
+
+        return $response->json();
+    }
+
+    /** @see https://dm.yoursrs-ote.com/docs/api/ssl/resenddcv */
+    public function resendDcv(int $processId, DomainControlValidationCollection $domainControlValidationCollection): array
+    {
+        $payload = [
+            'dcv' => $domainControlValidationCollection,
+        ];
+
+        $response = $this->client->post('/v2/processes/' . $processId . '/resend', $payload);
+
+        return $response->json();
     }
 }
