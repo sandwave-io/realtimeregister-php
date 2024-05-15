@@ -6,6 +6,7 @@ use DateTimeImmutable;
 use SandwaveIo\RealtimeRegister\Domain\Certificate;
 use SandwaveIo\RealtimeRegister\Domain\CertificateCollection;
 use SandwaveIo\RealtimeRegister\Domain\CertificateInfoProcess;
+use SandwaveIo\RealtimeRegister\Domain\DomainControlValidationCollection;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DownloadFormatEnum;
 use SandwaveIo\RealtimeRegister\Domain\Product;
 use SandwaveIo\RealtimeRegister\Domain\ProductCollection;
@@ -128,7 +129,7 @@ final class CertificatesApi extends AbstractApi
         ?string $domainName = null,
         ?string $authKey = null,
         ?string $state = null,
-    ) {
+    ): CertificateInfoProcess {
         $payload = [
             'customer' => $customer,
             'product' => $product,
@@ -198,7 +199,7 @@ final class CertificatesApi extends AbstractApi
 
         $response = $this->client->post('/v2/ssl/certificates', $payload);
 
-        return CertificateInfoProcess::fromArray($response->json());
+        return CertificateInfoProcess::fromArray(array_merge($response->json(), ['headers' => $response->headers()]));
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/renew */
@@ -222,7 +223,7 @@ final class CertificatesApi extends AbstractApi
         ?string $authKey = null,
         ?string $state = null,
         ?string $product = null,
-    ) {
+    ): CertificateInfoProcess {
         $payload = [
             'period' => $period,
             'csr' => $csr,
@@ -294,7 +295,7 @@ final class CertificatesApi extends AbstractApi
 
         $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/renew', $payload);
 
-        return CertificateInfoProcess::fromArray($response->json());
+        return CertificateInfoProcess::fromArray(array_merge($response->json(), ['headers' => $response->headers()]));
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/ssl/reissue */
@@ -315,7 +316,7 @@ final class CertificatesApi extends AbstractApi
         ?string $domainName = null,
         ?string $authKey = null,
         ?string $state = null,
-    ) {
+    ): CertificateInfoProcess {
         $payload = [
             'csr' => $csr,
         ];
@@ -378,7 +379,7 @@ final class CertificatesApi extends AbstractApi
 
         $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/reissue', $payload);
 
-        return CertificateInfoProcess::fromArray($response->json());
+        return CertificateInfoProcess::fromArray(array_merge($response->json(), ['headers' => $response->headers()]));
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/ssl/revoke */
@@ -431,7 +432,7 @@ final class CertificatesApi extends AbstractApi
     {
         $response = $this->client->get('/v2/processes/' . $processId . '/info');
 
-        return CertificateInfoProcess::fromArray($response->json());
+        return CertificateInfoProcess::fromArray(array_merge($response->json(), ['headers' => $response->headers()]));
 
     }
 
@@ -471,6 +472,18 @@ final class CertificatesApi extends AbstractApi
         ];
 
         $response = $this->client->post('/v2/ssl/authkey', $payload);
+
+        return $response->json();
+    }
+
+    /** @see https://dm.yoursrs-ote.com/docs/api/ssl/resenddcv */
+    public function resendDcv(int $processId, DomainControlValidationCollection $domainControlValidationCollection): array
+    {
+        $payload = [
+            'dcv' => $domainControlValidationCollection,
+        ];
+
+        $response = $this->client->post('/v2/processes/' . $processId . '/resend', $payload);
 
         return $response->json();
     }

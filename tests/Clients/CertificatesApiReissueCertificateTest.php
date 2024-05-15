@@ -18,7 +18,7 @@ class CertificatesApiReissueCertificateTest extends TestCase
                 return new Response(
                     202,
                     [
-                        'X-Process-Id' => 1,
+                        'x-process-id' => 30,
                     ],
                     json_encode([
                         'commonName' => 'mail.com',
@@ -30,10 +30,10 @@ class CertificatesApiReissueCertificateTest extends TestCase
                                         'commonName' => 'mail.com',
                                         'type' => DcvTypeEnum::LOCALE_EMAIL,
                                         'email' => 'dcv@mail.com',
-                                        'status' => DcvStatusEnum::DCV_STATUS_ATTENTION
-                                    ]
-                                ]
-                        ]
+                                        'status' => DcvStatusEnum::DCV_STATUS_ATTENTION,
+                                    ],
+                                ],
+                        ],
                     ], JSON_THROW_ON_ERROR),
                 );
             },
@@ -61,5 +61,6 @@ class CertificatesApiReissueCertificateTest extends TestCase
 
         self::assertInstanceOf(CertificateInfoProcess::class, $processResult);
         self::assertCount(1, $processResult->validations->dcv->toArray());
+        self::assertSame(30, $processResult->processId);
     }
 }

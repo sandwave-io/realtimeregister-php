@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace SandwaveIo\RealtimeRegister\Tests\Api;
 
@@ -7,7 +7,6 @@ use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 class CertificatesApiDecodeCsrTest extends TestCase
 {
-
     public function testDecodeCsr()
     {
         $sdk = MockedClientFactory::makeSdk(
@@ -47,7 +46,7 @@ aLxDpHmk3TOZxjX0+2mLqUUaqA==
 -----END CERTIFICATE REQUEST-----',
         );
 
-        $this->assertEquals('Zwolle', $result['locality']);
-        $this->assertEquals('Realtime Register', $result['organization']);
+        $this->assertSame('Zwolle', $result['locality']);
+        $this->assertSame('Realtime Register', $result['organization']);
     }
 }

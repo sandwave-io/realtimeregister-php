@@ -18,7 +18,7 @@ class CertificatesApiRequestCertificateTest extends TestCase
                 return new Response(
                     202,
                     [
-                        'x-process-id' => 1,
+                        'x-process-id' => 20,
                     ],
                     json_encode([
                         'commonName' => 'commonname.com',
@@ -30,10 +30,10 @@ class CertificatesApiRequestCertificateTest extends TestCase
                                         'commonName' => 'example.com',
                                         'type' => DcvTypeEnum::LOCALE_EMAIL,
                                         'email' => 'admin@example.com',
-                                        'status' => DcvStatusEnum::DCV_STATUS_ATTENTION
-                                    ]
-                                ]
-                        ]
+                                        'status' => DcvStatusEnum::DCV_STATUS_ATTENTION,
+                                    ],
+                                ],
+                        ],
                     ], JSON_THROW_ON_ERROR),
                 );
             },
@@ -65,5 +65,6 @@ class CertificatesApiRequestCertificateTest extends TestCase
 
         self::assertInstanceOf(CertificateInfoProcess::class, $processResult);
         self::assertCount(1, $processResult->validations->dcv->toArray());
+        self::assertSame(20, $processResult->processId);
     }
 }

@@ -1,14 +1,17 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types = 1);
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
 class CertificateInfoProcess implements DomainObjectInterface
 {
     public function __construct(
-        public String $commonName,
+        public string $commonName,
         public bool $requiresAttention,
         public ?int $certificateId,
-        public ?CertificateValidation $validations
+        public ?CertificateValidation $validations,
+        public ?int $processId
     ) {
     }
 
@@ -18,7 +21,8 @@ class CertificateInfoProcess implements DomainObjectInterface
             'commonName' => $this->commonName,
             'requiresAttention' => $this->requiresAttention,
             'certificateId' => $this->certificateId,
-            'validations' => $this->validations ? $this->validations->toArray() : null,
+            'validations' => $this->validations?->toArray(),
+            'processId' => $this->processId,
         ], function ($x) {
             return ! is_null($x);
         });
@@ -30,7 +34,13 @@ class CertificateInfoProcess implements DomainObjectInterface
             $json['commonName'],
             $json['requiresAttention'],
             $json['certificateId'],
-            CertificateValidation::fromArray($json['validations'])
+            CertificateValidation::fromArray($json['validations']),
+            array_key_exists('headers', $json) ? self::getProcessId($json['headers']) : null
         );
+    }
+
+    private static function getProcessId(array $json): ?int
+    {
+        return array_key_exists('x-process-id', $json) ? (int) $json['x-process-id'][0] : null;
     }
 }
