@@ -4,7 +4,9 @@ namespace SandwaveIo\RealtimeRegister\Tests\Domain;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
+use SandwaveIo\RealtimeRegister\Domain\AuthKey;
 use SandwaveIo\RealtimeRegister\Domain\Certificate;
+use SandwaveIo\RealtimeRegister\Domain\CertificateInfoProcess;
 use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 
 /**
@@ -45,6 +47,14 @@ class CertificateObjectTest extends TestCase
                 Certificate::class,
                 include __DIR__ . '/data/certificate_public_key_algorithm_invalid.php',
                 InvalidArgumentException::class,
+            ],
+            'valid generate certificate request' => [
+                AuthKey::class,
+                include __DIR__ . '/data/certificate_generate_auth_request_valid.php',
+            ],
+            'info process request' => [
+                CertificateInfoProcess::class,
+                include __DIR__ . '/data/certificate_info_process_dns.php',
             ],
         ];
     }
