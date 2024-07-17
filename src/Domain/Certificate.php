@@ -42,6 +42,7 @@ final class Certificate implements DomainObjectInterface
     public DateTime $startDate;
 
     public DateTime $expiryDate;
+    public ?DateTime $subscriptionEndDate;
 
     /** @var string[] */
     public ?array $san;
@@ -75,6 +76,7 @@ final class Certificate implements DomainObjectInterface
         ?string $providerId,
         DateTime $startDate,
         DateTime $expiryDate,
+        ?DateTime $subscriptionEndDate,
         ?array $san,
         string $status,
         ?string $publicKeyAlgorithm,
@@ -99,6 +101,7 @@ final class Certificate implements DomainObjectInterface
         $this->providerId = $providerId;
         $this->startDate = $startDate;
         $this->expiryDate = $expiryDate;
+        $this->subscriptionEndDate = $subscriptionEndDate;
         $this->san = $san;
         $this->status = $status;
         $this->publicKeyAlgorithm = $publicKeyAlgorithm;
@@ -132,6 +135,7 @@ final class Certificate implements DomainObjectInterface
             $json['providerId'] ?? null,
             new DateTime($json['startDate']),
             new DateTime($json['expiryDate']),
+            isset($json['subscriptionEndDate']) ? new DateTime($json['subscriptionEndDate']) : null,
             $json['san'] ?? null,
             $json['status'],
             $json['publicKeyAlgorithm'] ?? null,
@@ -161,6 +165,7 @@ final class Certificate implements DomainObjectInterface
             'providerId' => $this->providerId,
             'startDate' => $this->startDate->format('Y-m-d\TH:i:s\Z'),
             'expiryDate' => $this->expiryDate->format('Y-m-d\TH:i:s\Z'),
+            'subscriptionEndDate' => $this->expiryDate->format('Y-m-d\TH:i:s\Z'),
             'san' => $this->san,
             'status' => $this->status,
             'publicKeyAlgorithm' => $this->publicKeyAlgorithm,

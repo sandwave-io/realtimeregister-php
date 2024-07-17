@@ -477,7 +477,7 @@ final class CertificatesApi extends AbstractApi
     }
 
     /** @see https://dm.yoursrs-ote.com/docs/api/ssl/resenddcv */
-    public function resendDcv(int $processId, DomainControlValidationCollection $domainControlValidationCollection): array
+    public function resendDcv(int $processId, array $domainControlValidationCollection): mixed
     {
         $payload = [
             'dcv' => $domainControlValidationCollection,
@@ -485,6 +485,9 @@ final class CertificatesApi extends AbstractApi
 
         $response = $this->client->post('/v2/processes/' . $processId . '/resend', $payload);
 
-        return $response->json();
+        if (str_contains($response->headers()['content-type'][0], 'application/json')) {
+            return $response->json();
+        }
+        return ["message" => "Successfully resent DCV"];
     }
 }
