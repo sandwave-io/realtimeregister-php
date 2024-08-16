@@ -151,7 +151,7 @@ final class DomainsApi extends AbstractApi
         }
 
         $response = $this->client->post("v2/domains/{$domainName}", $payload, [
-            'quote' => $isQuote,
+            'quote' => $isQuote ? 'true' : 'false',
         ]);
 
         if ($isQuote) {
