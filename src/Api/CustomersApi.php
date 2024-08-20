@@ -18,6 +18,6 @@ final class CustomersApi extends AbstractApi
     public function credits(string $customer): AccountCollection
     {
         $response = $this->client->get("v2/customers/{$customer}/credit");
-        return AccountCollection::fromArray($response->json());
+        return AccountCollection::fromArray($response->json()['accounts']);
     }
 }
