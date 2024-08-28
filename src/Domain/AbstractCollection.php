@@ -66,7 +66,7 @@ abstract class AbstractCollection implements ArrayAccess, IteratorAggregate, Cou
         }
 
         // Instantiate pagination object
-        if (array_key_exists('pagination', $json) && $json['pagination']['limit']) {
+        if (array_key_exists('pagination', $json)) {
             $pagination = Pagination::fromArray($json['pagination']);
         } else {
             $pagination = Pagination::fromArray([
