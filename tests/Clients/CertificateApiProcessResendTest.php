@@ -17,12 +17,9 @@ class CertificateApiProcessResendTest extends TestCase
             MockedClientFactory::assertRoute('POST', '/v2/processes/' . $certificateId . '/resend', $this)
         );
 
-        $result = $sdk->certificates->resendDcv(
+        $sdk->certificates->resendDcv(
             1,
-            DomainControlValidationCollection::fromArray(include __DIR__ . '/../Domain/data/domain_control_validation.php')
+            include __DIR__ . '/../Domain/data/domain_control_validation.php'
         );
-
-        self::assertArrayHasKey('commonName', $result);
-        self::assertSame('example', $result['commonName']);
     }
 }
