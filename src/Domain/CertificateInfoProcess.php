@@ -32,7 +32,7 @@ class CertificateInfoProcess implements DomainObjectInterface
     {
         return new CertificateInfoProcess(
             $json['commonName'],
-            array_key_exists('requiresAttention', $json) ? $json['requiresAttention'] : false,
+            $json['requiresAttention'] ?? false,
             $json['certificateId'],
             CertificateValidation::fromArray($json['validations']),
             array_key_exists('headers', $json) ? self::getProcessId($json['headers']) : null
