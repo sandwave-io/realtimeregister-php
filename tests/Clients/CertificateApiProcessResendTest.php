@@ -4,6 +4,7 @@ namespace Clients;
 
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\RealtimeRegister\Domain\DomainControlValidationCollection;
+use SandwaveIo\RealtimeRegister\Domain\ResendDcvCollection;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 class CertificateApiProcessResendTest extends TestCase
@@ -19,7 +20,7 @@ class CertificateApiProcessResendTest extends TestCase
 
         $sdk->certificates->resendDcv(
             1,
-            include __DIR__ . '/../Domain/data/domain_control_validation.php'
+            ResendDcvCollection::fromArray(include __DIR__ . '/../Domain/data/domain_control_validation.php')
         );
     }
 }
