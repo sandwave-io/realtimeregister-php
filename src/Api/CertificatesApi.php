@@ -481,7 +481,10 @@ final class CertificatesApi extends AbstractApi
     {
         $response = $this->client->post('/v2/processes/' . $processId . '/resend', $resendDcvCollection->toArray());
 
-        if (str_contains($response->headers()['content-type'][0], 'application/json')) {
+        if (
+            is_array($response->headers()) && array_key_exists('content-type', $response->headers())
+            && str_contains($response->headers()['content-type'][0], 'application/json')
+        ) {
             return $response->json();
         }
         return null;
