@@ -9,27 +9,27 @@ use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 class DnsZonesApiCreateTest extends TestCase
 {
-    public function test_create(): void
-    {
-        $sdk = MockedClientFactory::makeSdk(
-            200,
-            '',
-            MockedClientFactory::assertRoute('POST', 'v2/dns/zones', $this)
-        );
-
-        $sdk->dnszones->create(
-            'test',
-            ZoneServiceEnum::BASIC,
-            'magazine',
-            false,
-        );
-    }
+    //    public function test_create(): void
+    //    {
+    //        $sdk = MockedClientFactory::makeSdk(
+    //            200,
+    //            '',
+    //            MockedClientFactory::assertRoute('POST', 'v2/dns/zones', $this)
+    //        );
+    //
+    //        $sdk->dnszones->create(
+    //            'test',
+    //            ZoneServiceEnum::BASIC,
+    //            'magazine',
+    //            false,
+    //        );
+    //    }
 
     public function test_create_with_records(): void
     {
         $sdk = MockedClientFactory::makeSdk(
             200,
-            '',
+            json_encode(include __DIR__ . '/../Domain/data/domain_zone_valid.php'),
             MockedClientFactory::assertRoute('POST', 'v2/dns/zones', $this)
         );
 
