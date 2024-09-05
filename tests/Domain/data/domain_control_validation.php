@@ -6,11 +6,11 @@ return [
     [
         'commonName' => 'test.nl',
         'type' => \SandwaveIo\RealtimeRegister\Domain\Enum\DcvTypeEnum::LOCALE_EMAIL,
-        'email' => 'domainmanager@test.nl'
+        'email' => 'domainmanager@test.nl',
     ],
     [
         'commonName' => 'test2.nl',
         'type' => \SandwaveIo\RealtimeRegister\Domain\Enum\DcvTypeEnum::LOCALE_EMAIL,
-        'email' => 'domainmanager@test2.nl'
+        'email' => 'domainmanager@test2.nl',
     ],
 ];

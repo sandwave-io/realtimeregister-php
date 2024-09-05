@@ -42,6 +42,7 @@ final class Certificate implements DomainObjectInterface
     public DateTime $startDate;
 
     public DateTime $expiryDate;
+
     public ?DateTime $subscriptionEndDate;
 
     /** @var string[] */

@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-return  [
+return [
     'id' => 654563,
     'customer' => 'johndoe',
     'date' => '2021-08-11T06:17:15Z',

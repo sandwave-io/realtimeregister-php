@@ -1,11 +1,11 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
 use SandwaveIo\RealtimeRegister\Domain\Enum\DcvTypeEnum;
 
-class ResendDcv implements DomainObjectInterface {
-
+class ResendDcv implements DomainObjectInterface
+{
     public function __construct(
         public readonly string $commonName,
         public readonly string $type,
@@ -15,15 +15,17 @@ class ResendDcv implements DomainObjectInterface {
 
     public function toArray(): array
     {
-        return array_filter([
+        return array_filter(
+            [
             'commonName' => $this->commonName,
             'type' => $this->type,
-            'email' => $this->email
-        ], fn($value) => !is_null($value)
+            'email' => $this->email,
+        ],
+            fn ($value) => ! is_null($value)
         );
     }
 
-    public static function fromArray(array $json) : ResendDcv
+    public static function fromArray(array $json): ResendDcv
     {
         DcvTypeEnum::validate($json['type']);
 

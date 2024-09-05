@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-return  [
+return [
     'id' => 46069000,
     'user' => 'johndoe/died',
     'customer' => 'johndoe',

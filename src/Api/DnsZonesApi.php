@@ -101,28 +101,28 @@ final class DnsZonesApi extends AbstractApi
         if ($master !== null) {
             $payload['master'] = $master;
         }
-        if($ns !== null) {
+        if ($ns !== null) {
             $payload['ns'] = $ns;
         }
-        if($dnssec !== null) {
+        if ($dnssec !== null) {
             $payload['dnssec'] = $dnssec;
         }
-        if($hostMaster !== null) {
+        if ($hostMaster !== null) {
             $payload['hostMaster'] = $hostMaster;
         }
-        if($refresh !== null) {
+        if ($refresh !== null) {
             $payload['refresh'] = $refresh;
         }
-        if($retry !== null) {
+        if ($retry !== null) {
             $payload['retry'] = $retry;
         }
-        if($expire !== null) {
+        if ($expire !== null) {
             $payload['expire'] = $expire;
         }
-        if($ttl !== null) {
+        if ($ttl !== null) {
             $payload['ttl'] = $ttl;
         }
-        if($records !== null) {
+        if ($records !== null) {
             $payload['records'] = $records->toArray();
         }
 
@@ -167,28 +167,28 @@ final class DnsZonesApi extends AbstractApi
         if ($master !== null) {
             $payload['master'] = $master;
         }
-        if($ns !== null) {
+        if ($ns !== null) {
             $payload['ns'] = $ns;
         }
-        if($dnssec !== null) {
+        if ($dnssec !== null) {
             $payload['dnssec'] = $dnssec;
         }
-        if($hostMaster !== null) {
+        if ($hostMaster !== null) {
             $payload['hostMaster'] = $hostMaster;
         }
-        if($refresh !== null) {
+        if ($refresh !== null) {
             $payload['refresh'] = $refresh;
         }
-        if($retry !== null) {
+        if ($retry !== null) {
             $payload['retry'] = $retry;
         }
-        if($expire !== null) {
+        if ($expire !== null) {
             $payload['expire'] = $expire;
         }
-        if($ttl !== null) {
+        if ($ttl !== null) {
             $payload['ttl'] = $ttl;
         }
-        if($records !== null) {
+        if ($records !== null) {
             $payload['records'] = $records->toArray();
         }
 

@@ -25,7 +25,7 @@ class ResendDcvCollection extends AbstractCollection
     public function toArray(): array
     {
         return [
-            "dcv" => parent::toArray()
+            'dcv' => parent::toArray(),
         ];
     }
 }

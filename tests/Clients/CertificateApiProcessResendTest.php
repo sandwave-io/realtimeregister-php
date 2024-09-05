@@ -3,7 +3,6 @@
 namespace Clients;
 
 use PHPUnit\Framework\TestCase;
-use SandwaveIo\RealtimeRegister\Domain\DomainControlValidationCollection;
 use SandwaveIo\RealtimeRegister\Domain\ResendDcvCollection;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
