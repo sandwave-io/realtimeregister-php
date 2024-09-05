@@ -54,7 +54,8 @@ final class DomainsApi extends AbstractApi
         return DomainDetailsCollection::fromArray($response->json());
     }
 
-    public function export(array $parameters = []): array {
+    public function export(array $parameters = []): array
+    {
         $query = $parameters;
         $query['export'] = 'true';
         $response = $this->client->get('v2/domains', $query);

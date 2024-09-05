@@ -41,7 +41,8 @@ final class ProvidersApi extends AbstractApi
         return ProviderCollection::fromArray($response->json());
     }
 
-    public function export(array $parameters = []): array {
+    public function export(array $parameters = []): array
+    {
         $query = $parameters;
         $query['export'] = 'true';
         $response = $this->client->get('v2/providers', $query);
