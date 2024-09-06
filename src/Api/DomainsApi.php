@@ -54,6 +54,14 @@ final class DomainsApi extends AbstractApi
         return DomainDetailsCollection::fromArray($response->json());
     }
 
+    public function export(array $parameters = []): array
+    {
+        $query = $parameters;
+        $query['export'] = 'true';
+        $response = $this->client->get('v2/domains', $query);
+        return $response->json()['entities'];
+    }
+
     /* @see https://dm.realtimeregister.com/docs/api/domains/check */
     public function check(string $domainName, ?string $languageCode = null): DomainAvailability
     {
@@ -151,7 +159,7 @@ final class DomainsApi extends AbstractApi
         }
 
         $response = $this->client->post("v2/domains/{$domainName}", $payload, [
-            'quote' => $isQuote,
+            'quote' => $isQuote ? 'true' : 'false',
         ]);
 
         if ($isQuote) {
