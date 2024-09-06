@@ -46,6 +46,16 @@ final class BrandsApi extends AbstractApi
         return BrandCollection::fromArray($response->json());
     }
 
+    public function export(
+        string $customer,
+        array $parameters = []
+    ): array {
+        $query = $parameters;
+        $query['export'] = 'true';
+        $response = $this->client->get("/v2/customers/{$customer}/brands", $query);
+        return $response->json()['entities'];
+    }
+
     /**
      * @see https://dm.realtimeregister.com/docs/api/brands/create
      *

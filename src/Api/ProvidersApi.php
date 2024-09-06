@@ -41,6 +41,14 @@ final class ProvidersApi extends AbstractApi
         return ProviderCollection::fromArray($response->json());
     }
 
+    public function export(array $parameters = []): array
+    {
+        $query = $parameters;
+        $query['export'] = 'true';
+        $response = $this->client->get('v2/providers', $query);
+        return $response->json()['entities'];
+    }
+
     /* @see https://dm.realtimeregister.com/docs/api/providers/downtime/get */
     public function getDowntime(int $id): Downtime
     {
