@@ -91,7 +91,7 @@ final class HostsApi extends AbstractApi
         ];
 
         if ($addresses instanceof DnsHostAddressCollection) {
-            $payload['billables'] = $addresses->toArray();
+            $payload['addresses'] = $addresses->toArray();
         }
 
         $this->client->post(sprintf('v2/hosts/%s/update', $hostName), $payload);
