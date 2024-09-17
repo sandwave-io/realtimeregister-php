@@ -32,5 +32,7 @@ test_job:
     paths:
       - build/logs/clover.xml
     reports:
-      cobertura: build/logs/clover.xml
+      coverage_report:
+        coverage_format: clover
+        path: build/logs/clover.xml
   coverage: '/<metrics[^>]*?statements[^>]*?covered="([^"]+)"/'
