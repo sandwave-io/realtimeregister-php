@@ -29,10 +29,6 @@ test_job:
     - vendor/bin/php-cs-fixer fix --dry-run --show-progress=none -vvv
     - vendor/bin/phpstan analyze
     - XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover clover.xml
-    - pwd
-    - ls -la
-    - ls /vendor/bin/phpunit
-    - php -v
 
   artifacts:
     paths:
