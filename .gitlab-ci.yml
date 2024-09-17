@@ -12,7 +12,8 @@ before_script:
   - apt-get install -y curl git unzip
   - composer --version || curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
   - composer install --prefer-dist --no-progress --no-suggest
-  - apt install php-xdebug
+  - pecl install xdebug
+  - docker-php-ext-enable xdebug  
 
 build_job:
   stage: build
@@ -27,9 +28,9 @@ test_job:
   script:
     - vendor/bin/php-cs-fixer fix --dry-run --show-progress=none -vvv
     - vendor/bin/phpstan analyze
-    - vendor/bin/phpunit --coverage-clover clover.xml
+    - XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover clover.xml
     - pwd
-    - ls
+    - ls -la
     - ls /vendor/bin/phpunit
     - php -v
 
