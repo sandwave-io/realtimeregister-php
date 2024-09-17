@@ -12,6 +12,7 @@ before_script:
   - apt-get install -y curl git unzip
   - composer --version || curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
   - composer install --prefer-dist --no-progress --no-suggest
+  - apt install php-xdebug
 
 build_job:
   stage: build
@@ -27,6 +28,10 @@ test_job:
     - vendor/bin/php-cs-fixer fix --dry-run --show-progress=none -vvv
     - vendor/bin/phpstan analyze
     - vendor/bin/phpunit --coverage-clover clover.xml
+    - pwd
+    - ls
+    - ls /vendor/bin/phpunit
+    - php -v
 
   artifacts:
     paths:
