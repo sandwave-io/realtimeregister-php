@@ -26,13 +26,13 @@ test_job:
   script:
     - vendor/bin/php-cs-fixer fix --dry-run --show-progress=none -vvv
     - vendor/bin/phpstan analyze
-    - vendor/bin/phpunit --coverage-clover /builds/sandwave/packages/realtimeregister-php/clover.xml
+    - vendor/bin/phpunit --coverage-clover clover.xml
 
   artifacts:
     paths:
-      - /builds/sandwave/packages/realtimeregister-php/clover.xml
+      - clover.xml
     reports:
       coverage_report:
         coverage_format: cobertura
-        path: /builds/sandwave/packages/realtimeregister-php/clover.xml
+        path: clover.xml
   coverage: '/<metrics[^>]*?statements[^>]*?covered="([^"]+)"/'
