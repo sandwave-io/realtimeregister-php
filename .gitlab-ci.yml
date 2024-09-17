@@ -26,8 +26,11 @@ test_job:
   script:
     - vendor/bin/php-cs-fixer fix --dry-run --show-progress=none -vvv
     - vendor/bin/phpstan analyze
-    - vendor/bin/phpunit
-  after_script:
-    - bash <(curl -s https://codecov.io/bash)
-  variables:
-    CODECOV_TOKEN: $CODECOV_TOKEN
+    - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+  artifacts:
+    paths:
+      - build/logs/clover.xml
+    reports:
+      cobertura: build/logs/clover.xml
+  coverage: '/<metrics[^>]*?statements[^>]*?covered="([^"]+)"/'
