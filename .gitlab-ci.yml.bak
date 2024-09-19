@@ -38,3 +38,10 @@ test_job:
         coverage_format: cobertura
         path: clover.xml
   coverage: '/<metrics[^>]*?statements[^>]*?covered="([^"]+)"/'
+
+
+
+
+
+include:
+  - local: .gitlab/ci/common/default.gitlab-ci.yml
