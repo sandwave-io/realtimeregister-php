@@ -13,6 +13,7 @@
 This SDK currently supports these APIs:
 
 * [Domains API](https://dm.realtimeregister.com/docs/api/domains)
+* [Hosts API](https://dm.realtimeregister.com/docs/api/hosts)
 * [Customers API](https://dm.realtimeregister.com/docs/api/customers)
 * [Contacts API](https://dm.realtimeregister.com/docs/api/contacts)
 * [Notifications API](https://dm.realtimeregister.com/docs/api/notifications)
