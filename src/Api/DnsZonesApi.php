@@ -6,7 +6,10 @@ use InvalidArgumentException;
 use SandwaveIo\RealtimeRegister\Domain\DnsZone;
 use SandwaveIo\RealtimeRegister\Domain\DnsZoneCollection;
 use SandwaveIo\RealtimeRegister\Domain\DomainZoneRecordCollection;
+use SandwaveIo\RealtimeRegister\Domain\DomainZoneStatistics;
+use SandwaveIo\RealtimeRegister\Domain\DomainZoneUpdate;
 use SandwaveIo\RealtimeRegister\Domain\Enum\ZoneServiceEnum;
+use SandwaveIo\RealtimeRegister\Domain\Zone;
 use Webmozart\Assert\Assert;
 
 final class DnsZonesApi extends AbstractApi
@@ -83,7 +86,7 @@ final class DnsZonesApi extends AbstractApi
         ?int $expire = null,
         ?int $ttl = null,
         ?DomainZoneRecordCollection $records = null,
-    ): void {
+    ): Zone {
         $this->validateZoneName($name);
 
         $payload = [
@@ -126,7 +129,9 @@ final class DnsZonesApi extends AbstractApi
             $payload['records'] = $records->toArray();
         }
 
-        $this->client->post('v2/dns/zones', $payload);
+        $response = $this->client->post('v2/dns/zones', $payload);
+
+        return Zone::fromArray($response->json());
     }
 
     /**
@@ -149,7 +154,7 @@ final class DnsZonesApi extends AbstractApi
         ?int $expire = null,
         ?int $ttl = null,
         ?DomainZoneRecordCollection $records = null,
-    ): void {
+    ): DomainZoneUpdate {
         $payload = [];
         if ($name !== null) {
             $this->validateZoneName($name);
@@ -192,10 +197,12 @@ final class DnsZonesApi extends AbstractApi
             $payload['records'] = $records->toArray();
         }
 
-        $this->client->post(
+        $result = $this->client->post(
             sprintf('v2/dns/zones/%s/update', $id),
             $payload,
         );
+
+        return DomainZoneUpdate::fromArray($result->json());
     }
 
     /**
@@ -208,6 +215,32 @@ final class DnsZonesApi extends AbstractApi
         $this->client->delete(
             sprintf('v2/dns/zones/%s', $id)
         );
+    }
+
+    /** @see https://dm.realtimeregister.com/docs/api/dns/zones/stats */
+    public function statistics(int $zoneId): DomainZoneStatistics
+    {
+        $result = $this->client->get("v2/dns/zones/{$zoneId}/stats");
+
+        return DomainZoneStatistics::fromArray($result->json());
+    }
+
+    /** @see https://dm.realtimeregister.com/docs/api/dns/zones/retrieve */
+    public function retrieve(int $zoneId): void
+    {
+        $this->client->post("v2/dns/zones/{$zoneId}/retrieve");
+    }
+
+    /** @see https://dm.realtimeregister.com/docs/api/dns/zones/key-rollover */
+    public function keyRollover(int $zoneId): void
+    {
+        $this->client->post("v2/dns/zones/{$zoneId}/key-rollover");
+    }
+
+    /** @see https://dm.realtimeregister.com/docs/api/dns/ack-ds-update */
+    public function ackDSUpdate(int $processId): void
+    {
+        $this->client->post("v2/processes/{$processId}/ack-ds-update");
     }
 
     /**

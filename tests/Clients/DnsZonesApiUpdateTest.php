@@ -13,7 +13,7 @@ class DnsZonesApiUpdateTest extends TestCase
     {
         $sdk = MockedClientFactory::makeSdk(
             200,
-            '',
+            json_encode(include __DIR__ . '/../Domain/data/domain_zone_valid.php'),
             MockedClientFactory::assertRoute('POST', 'v2/dns/zones/1111111111/update', $this)
         );
 
@@ -30,7 +30,7 @@ class DnsZonesApiUpdateTest extends TestCase
     {
         $sdk = MockedClientFactory::makeSdk(
             200,
-            '',
+            json_encode(include __DIR__ . '/../Domain/data/domain_zone_valid.php'),
             MockedClientFactory::assertRoute('POST', 'v2/dns/zones/1111111111/update', $this)
         );
 
