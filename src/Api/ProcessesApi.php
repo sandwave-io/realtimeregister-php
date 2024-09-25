@@ -85,4 +85,12 @@ final class ProcessesApi extends AbstractApi
     {
         $this->client->delete(sprintf('v2/processes/%d', $processId));
     }
+
+    public function export(array $parameters = []): array
+    {
+        $query = $parameters;
+        $query['export'] = 'true';
+        $response = $this->client->get('v2/processes', $query);
+        return $response->json()['entities'];
+    }
 }
