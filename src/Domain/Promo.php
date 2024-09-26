@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SandwaveIo\RealtimeRegister\Domain;
 
@@ -30,8 +30,7 @@ final class Promo implements DomainObjectInterface
         DateTime $fromDate,
         DateTime $endDate,
         bool $active
-    )
-    {
+    ) {
         $this->product = $product;
         $this->action = $action;
         $this->currency = $currency;

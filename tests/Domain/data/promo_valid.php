@@ -5,7 +5,7 @@ return [
     'action' => 'CREATE',
     'currency' => 'EUR',
     'price' => 99,
-    "fromDate" => "2024-01-01T00:00:00Z",
-    "endDate" => "2025-01-01T00:00:00Z",
-    "active" => true
+    'fromDate' => '2024-01-01T00:00:00Z',
+    'endDate' => '2025-01-01T00:00:00Z',
+    'active' => true,
 ];
