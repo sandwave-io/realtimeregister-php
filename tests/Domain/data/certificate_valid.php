@@ -22,6 +22,7 @@ return [
     'providerId' => '1029384756',
     'startDate' => '2022-03-18T13:37:20Z',
     'expiryDate' => '2023-03-18T13:37:20Z',
+    'subscriptionEndDate' => '2023-03-18T13:37:20Z',
     'san' => ['test@test.com'],
     'status' => StatusEnum::STATUS_ACTIVE,
     'publicKeyAlgorithm' => PublicKeyAlgorithmEnum::PUBLIC_KEY_ALGORITHM_RSA,
