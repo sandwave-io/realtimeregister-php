@@ -386,7 +386,7 @@ final class DomainsApi extends AbstractApi
         }
 
         $response = $this->client->post("v2/domains/{$domain}/renew", $payload, is_null($isQuote) ? [] : [
-            'quote' => $isQuote,
+            'quote' => $isQuote ? 'true' : 'false',
         ]);
 
         if ($isQuote) {
@@ -422,7 +422,7 @@ final class DomainsApi extends AbstractApi
         }
 
         $response = $this->client->post("v2/domains/{$domain}/restore", $payload, is_null($isQuote) ? [] : [
-            'quote' => $isQuote,
+            'quote' => $isQuote ? 'true' : 'false',
         ]);
 
         if ($isQuote) {
