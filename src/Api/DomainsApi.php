@@ -382,11 +382,11 @@ final class DomainsApi extends AbstractApi
         ];
 
         if ($billables instanceof BillableCollection) {
-            $payload['billables'] = $billables;
+            $payload['billables'] = $billables->toArray();
         }
 
         $response = $this->client->post("v2/domains/{$domain}/renew", $payload, is_null($isQuote) ? [] : [
-            'quote' => $isQuote,
+            'quote' => $isQuote ? 'true' : 'false',
         ]);
 
         if ($isQuote) {
@@ -418,11 +418,11 @@ final class DomainsApi extends AbstractApi
         ];
 
         if ($billables instanceof BillableCollection) {
-            $payload['billables'] = $billables;
+            $payload['billables'] = $billables->toArray();
         }
 
         $response = $this->client->post("v2/domains/{$domain}/restore", $payload, is_null($isQuote) ? [] : [
-            'quote' => $isQuote,
+            'quote' => $isQuote ? 'true' : 'false',
         ]);
 
         if ($isQuote) {
