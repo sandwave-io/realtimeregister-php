@@ -40,7 +40,7 @@ class ProcessInfo implements DomainObjectInterface
     {
         return new self(
             $json['commonName'],
-            $json['requiresAttention'],
+            $json['requiresAttention'] ?? false,
             $json['validations'] ?? null,
             $json['notes'] ?? null
         );
