@@ -3,7 +3,7 @@
 namespace Clients;
 
 use PHPUnit\Framework\TestCase;
-use SandwaveIo\RealtimeRegister\Domain\DomainControlValidationCollection;
+use SandwaveIo\RealtimeRegister\Domain\ResendDcvCollection;
 use SandwaveIo\RealtimeRegister\Tests\Helpers\MockedClientFactory;
 
 class CertificateApiProcessResendTest extends TestCase
@@ -17,12 +17,9 @@ class CertificateApiProcessResendTest extends TestCase
             MockedClientFactory::assertRoute('POST', '/v2/processes/' . $certificateId . '/resend', $this)
         );
 
-        $result = $sdk->certificates->resendDcv(
+        $sdk->certificates->resendDcv(
             1,
-            DomainControlValidationCollection::fromArray(include __DIR__ . '/../Domain/data/domain_control_validation.php')
+            ResendDcvCollection::fromArray(include __DIR__ . '/../Domain/data/domain_control_validation.php')
         );
-
-        self::assertArrayHasKey('commonName', $result);
-        self::assertSame('example', $result['commonName']);
     }
 }
