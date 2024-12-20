@@ -6,10 +6,8 @@ use SandwaveIo\RealtimeRegister\Domain\Enum\DomainDesignatedAgentEnum;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DomainFeatureEnum;
 use SandwaveIo\RealtimeRegister\Domain\Enum\DomainPossibleClientDomainStatusEnum;
 use SandwaveIo\RealtimeRegister\Domain\Enum\GDPRCategoryEnum;
-use SandwaveIo\RealtimeRegister\Domain\Enum\KeyDataAlgorithmEnum;
 use SandwaveIo\RealtimeRegister\Domain\Enum\ValidationCategoryEnum;
 use SandwaveIo\RealtimeRegister\Domain\Enum\WhoisExposureEnum;
-use SandwaveIo\RealtimeRegister\Exceptions\InvalidArgumentException;
 use Webmozart\Assert\Assert;
 
 final class TLDMetaData implements DomainObjectInterface
@@ -180,16 +178,6 @@ final class TLDMetaData implements DomainObjectInterface
             Assert::isArray($data['possibleClientDomainStatuses']);
             foreach ($data['possibleClientDomainStatuses'] as $status) {
                 DomainPossibleClientDomainStatusEnum::validate($status);
-            }
-        }
-        if (isset($data['allowedDnssecAlgorithms'])) {
-            Assert::isArray($data['allowedDnssecAlgorithms']);
-            foreach ($data['allowedDnssecAlgorithms'] as $key => $algo) {
-                try {
-                    KeyDataAlgorithmEnum::validate($algo);
-                } catch (InvalidArgumentException) {
-                    unset($data['allowedDnssecAlgorithms'][$key]);
-                }
             }
         }
         if (isset($data['validationCategory'])) {
