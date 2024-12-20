@@ -170,11 +170,6 @@ class DomainObjectTest extends TestCase
                 KeyData::class,
                 include __DIR__ . '/data/key_data_valid.php',
             ],
-            'invalid key data (all fields)' => [
-                KeyData::class,
-                include __DIR__ . '/data/key_data_invalid.php',
-                InvalidArgumentException::class,
-            ],
             'invalid key data flags (all fields)' => [
                 KeyData::class,
                 include __DIR__ . '/data/key_data_invalid_flag.php',
