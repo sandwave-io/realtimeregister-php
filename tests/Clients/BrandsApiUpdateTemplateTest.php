@@ -17,7 +17,7 @@ class BrandsApiUpdateTemplateTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             '',
-            MockedClientFactory::assertRoute('POST', "/v2/customers/{$customerHandle}/brands/{$brandHandle}/templates/{$templateName}/update", $this)
+            MockedClientFactory::assertRoute('POST', "v2/customers/{$customerHandle}/brands/{$brandHandle}/templates/{$templateName}/update", $this)
         );
 
         $sdk->brands->updateTemplate(

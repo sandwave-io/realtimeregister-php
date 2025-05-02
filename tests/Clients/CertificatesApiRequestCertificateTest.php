@@ -24,7 +24,7 @@ class CertificatesApiRequestCertificateTest extends TestCase
                     ], JSON_THROW_ON_ERROR),
                 );
             },
-            MockedClientFactory::assertRoute('POST', '/v2/ssl/certificates', $this)
+            MockedClientFactory::assertRoute('POST', 'v2/ssl/certificates', $this)
         );
 
         $processId = $sdk->certificates->requestCertificate(

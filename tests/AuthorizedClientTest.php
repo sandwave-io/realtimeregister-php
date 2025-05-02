@@ -19,7 +19,7 @@ class AuthorizedClientTest extends TestCase
 {
     public function test_construct(): void
     {
-        $client = new AuthorizedClient('https://example.com/api/v2/', 'bigsecretdonttellanyone');
+        $client = new AuthorizedClient('https://example.com/apiv2/', 'bigsecretdonttellanyone');
         $this->assertInstanceOf(AuthorizedClient::class, $client);
     }
 

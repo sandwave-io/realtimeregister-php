@@ -47,7 +47,7 @@ class MockedClientFactory
 
     public static function makeAuthorizedClient(callable $responseClosure, ?callable $assertClosure = null, ?LoggerInterface $logger = null): AuthorizedClient
     {
-        $fakeClient = new AuthorizedClient('https://example.com/api/v2/', 'bigsecretdonttellanyone', [], $logger);
+        $fakeClient = new AuthorizedClient('https://example.com/apiv2/', 'bigsecretdonttellanyone', [], $logger);
 
         $handlerStack = HandlerStack::create(new MockHandler([
             $responseClosure(),

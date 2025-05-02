@@ -16,7 +16,7 @@ final class BrandsApi extends AbstractApi
     /* @see https://dm.realtimeregister.com/docs/api/brands/get */
     public function get(string $customer, string $handle): Brand
     {
-        $response = $this->client->get("/v2/customers/{$customer}/brands/{$handle}");
+        $response = $this->client->get("v2/customers/{$customer}/brands/{$handle}");
         return Brand::fromArray($response->json());
     }
 
@@ -42,7 +42,7 @@ final class BrandsApi extends AbstractApi
             $query = array_merge($parameters, $query);
         }
 
-        $response = $this->client->get("/v2/customers/{$customer}/brands", $query);
+        $response = $this->client->get("v2/customers/{$customer}/brands", $query);
         return BrandCollection::fromArray($response->json());
     }
 
@@ -101,7 +101,7 @@ final class BrandsApi extends AbstractApi
             $payload['updatedDate'] = $updatedDate;
         }
 
-        $this->client->post("/v2/customers/{$customer}/brands/{$handle}", $payload);
+        $this->client->post("v2/customers/{$customer}/brands/{$handle}", $payload);
     }
 
     /**
@@ -190,13 +190,13 @@ final class BrandsApi extends AbstractApi
             $payload['updatedDate'] = $updatedDate;
         }
 
-        $this->client->post("/v2/customers/{$customer}/brands/{$handle}/update", $payload);
+        $this->client->post("v2/customers/{$customer}/brands/{$handle}/update", $payload);
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/brands/delete */
     public function delete(string $customer, string $handle): void
     {
-        $this->client->delete("/v2/customers/{$customer}/brands/{$handle}");
+        $this->client->delete("v2/customers/{$customer}/brands/{$handle}");
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/brands/templates/get */
@@ -204,7 +204,7 @@ final class BrandsApi extends AbstractApi
     {
         TemplateNameEnum::validate($name);
 
-        return Template::fromArray($this->client->get("/v2/customers/{$customer}/brands/{$brand}/templates/{$name}")->json());
+        return Template::fromArray($this->client->get("v2/customers/{$customer}/brands/{$brand}/templates/{$name}")->json());
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/brands/templates/list */
@@ -230,7 +230,7 @@ final class BrandsApi extends AbstractApi
             $query = array_merge($parameters, $query);
         }
 
-        $response = $this->client->get("/v2/customers/{$customer}/brands/{$brand}/templates", $query);
+        $response = $this->client->get("v2/customers/{$customer}/brands/{$brand}/templates", $query);
         return TemplateCollection::fromArray($response->json());
     }
 
@@ -255,7 +255,7 @@ final class BrandsApi extends AbstractApi
             $payload['html'] = $html;
         }
 
-        $this->client->post("/v2/customers/{$customer}/brands/{$brand}/templates/{$name}/update", $payload);
+        $this->client->post("v2/customers/{$customer}/brands/{$brand}/templates/{$name}/update", $payload);
     }
 
     /**
@@ -285,7 +285,7 @@ final class BrandsApi extends AbstractApi
         }
 
         return TemplatePreview::fromArray(
-            $this->client->get("/v2/customers/{$customer}/brands/{$brand}/templates/{$name}/preview", $payload)->json()
+            $this->client->get("v2/customers/{$customer}/brands/{$brand}/templates/{$name}/preview", $payload)->json()
         );
     }
 }

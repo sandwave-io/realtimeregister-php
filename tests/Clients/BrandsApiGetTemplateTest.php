@@ -18,7 +18,7 @@ class BrandsApiGetTemplateTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             json_encode(include __DIR__ . '/../Domain/data/template_valid.php'),
-            MockedClientFactory::assertRoute('GET', "/v2/customers/{$customerHandle}/brands/{$brandHandle}/templates/{$templateName}", $this)
+            MockedClientFactory::assertRoute('GET', "v2/customers/{$customerHandle}/brands/{$brandHandle}/templates/{$templateName}", $this)
         );
 
         $response = $sdk->brands->getTemplate($customerHandle, $brandHandle, $templateName);

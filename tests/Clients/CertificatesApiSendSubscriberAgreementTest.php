@@ -13,7 +13,7 @@ class CertificatesApiSendSubscriberAgreementTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             '',
-            MockedClientFactory::assertRoute('POST', '/v2/processes/1/send-subscriber-agreement', $this)
+            MockedClientFactory::assertRoute('POST', 'v2/processes/1/send-subscriber-agreement', $this)
         );
 
         $sdk->certificates->sendSubscriberAgreement(1, 'test@mail.com', LanguageEnum::ENGLISH);

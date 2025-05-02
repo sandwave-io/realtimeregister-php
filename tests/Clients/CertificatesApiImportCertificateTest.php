@@ -12,7 +12,7 @@ class CertificatesApiImportCertificateTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             '',
-            MockedClientFactory::assertRoute('POST', '/v2/ssl/import', $this)
+            MockedClientFactory::assertRoute('POST', 'v2/ssl/import', $this)
         );
 
         $sdk->certificates->importCertificate(

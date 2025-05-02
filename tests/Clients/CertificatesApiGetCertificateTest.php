@@ -46,7 +46,7 @@ class CertificatesApiGetCertificateTest extends TestCase
                 'certificate' => 'certificate',
                 'fingerprint' => 'fingerprint',
             ]),
-            MockedClientFactory::assertRoute('GET', '/v2/ssl/certificates/1', $this)
+            MockedClientFactory::assertRoute('GET', 'v2/ssl/certificates/1', $this)
         );
 
         $certificate = $sdk->certificates->getCertificate(1);

@@ -12,7 +12,7 @@ final class ProvidersApi extends AbstractApi
     /* @see https://dm.realtimeregister.com/docs/api/providers/get */
     public function get(string $name): Provider
     {
-        $response = $this->client->get("/v2/providers/REGISTRY/{$name}");
+        $response = $this->client->get("v2/providers/REGISTRY/{$name}");
         return Provider::fromArray($response->json());
     }
 
@@ -44,7 +44,7 @@ final class ProvidersApi extends AbstractApi
     /* @see https://dm.realtimeregister.com/docs/api/providers/downtime/get */
     public function getDowntime(int $id): Downtime
     {
-        return Downtime::fromArray($this->client->get("/v2/providers/downtime/{$id}")->json());
+        return Downtime::fromArray($this->client->get("v2/providers/downtime/{$id}")->json());
     }
 
     /* @see https://dm.realtimeregister.com/docs/api/providers/downtime/list */

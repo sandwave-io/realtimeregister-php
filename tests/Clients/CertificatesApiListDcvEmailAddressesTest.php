@@ -15,7 +15,7 @@ class CertificatesApiListDcvEmailAddressesTest extends TestCase
                 'test@mail.com',
                 'test5@mail.com',
             ]),
-            MockedClientFactory::assertRoute('GET', '/v2/ssl/dcvemailaddresslist/example.com', $this)
+            MockedClientFactory::assertRoute('GET', 'v2/ssl/dcvemailaddresslist/example.com', $this)
         );
 
         $addresses = $sdk->certificates->listDcvEmailAddresses('example.com');

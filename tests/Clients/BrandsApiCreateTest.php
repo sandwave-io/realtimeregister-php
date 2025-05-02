@@ -17,7 +17,7 @@ class BrandsApiCreateTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             '',
-            MockedClientFactory::assertRoute('POST', "/v2/customers/{$customerHandle}/brands/{$brandHandle}", $this)
+            MockedClientFactory::assertRoute('POST', "v2/customers/{$customerHandle}/brands/{$brandHandle}", $this)
         );
 
         $sdk->brands->create(

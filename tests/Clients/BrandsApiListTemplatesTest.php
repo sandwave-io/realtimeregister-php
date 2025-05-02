@@ -27,7 +27,7 @@ class BrandsApiListTemplatesTest extends TestCase
                     'limit'  => 10,
                 ],
             ]),
-            MockedClientFactory::assertRoute('GET', "/v2/customers/{$customerHandle}/brands/{$brandHandle}/templates", $this)
+            MockedClientFactory::assertRoute('GET', "v2/customers/{$customerHandle}/brands/{$brandHandle}/templates", $this)
         );
 
         $response = $sdk->brands->listTemplates($customerHandle, $brandHandle);
@@ -54,7 +54,7 @@ class BrandsApiListTemplatesTest extends TestCase
                     'limit'  => 10,
                 ],
             ]),
-            MockedClientFactory::assertRoute('GET', "/v2/customers/{$customerHandle}/brands/{$brandHandle}/templates", $this)
+            MockedClientFactory::assertRoute('GET', "v2/customers/{$customerHandle}/brands/{$brandHandle}/templates", $this)
         );
 
         $response = $sdk->brands->listTemplates($customerHandle, $brandHandle, 10, 0, $searchTextOnFields);
@@ -85,7 +85,7 @@ class BrandsApiListTemplatesTest extends TestCase
                     'limit'  => 10,
                 ],
             ]),
-            MockedClientFactory::assertRoute('GET', "/v2/customers/{$customerHandle}/brands/{$brandHandle}/templates", $this, [
+            MockedClientFactory::assertRoute('GET', "v2/customers/{$customerHandle}/brands/{$brandHandle}/templates", $this, [
                 'name' => 'EMAIL_HEADER',
                 'limit' => '10',
                 'offset' => '0',

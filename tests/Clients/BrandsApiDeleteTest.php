@@ -15,7 +15,7 @@ class BrandsApiDeleteTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             '',
-            MockedClientFactory::assertRoute('DELETE', "/v2/customers/{$customerHandle}/brands/{$brandHandle}", $this)
+            MockedClientFactory::assertRoute('DELETE', "v2/customers/{$customerHandle}/brands/{$brandHandle}", $this)
         );
 
         $sdk->brands->delete($customerHandle, $brandHandle);
