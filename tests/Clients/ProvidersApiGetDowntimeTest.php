@@ -13,7 +13,7 @@ class ProvidersApiGetDowntimeTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             json_encode(include __DIR__ . '/../Domain/data/downtime_valid.php'),
-            MockedClientFactory::assertRoute('GET', '/v2/providers/downtime/1', $this)
+            MockedClientFactory::assertRoute('GET', 'v2/providers/downtime/1', $this)
         );
 
         $response = $sdk->providers->getDowntime(1);

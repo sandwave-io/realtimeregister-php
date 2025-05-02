@@ -14,7 +14,7 @@ final class CertificatesApi extends AbstractApi
     /* @see https://dm.realtimeregister.com/docs/api/ssl/get */
     public function getCertificate(int $certificateId): Certificate
     {
-        $response = $this->client->get('/v2/ssl/certificates/' . $certificateId);
+        $response = $this->client->get('v2/ssl/certificates/' . $certificateId);
 
         return Certificate::fromArray($response->json());
     }
@@ -44,7 +44,7 @@ final class CertificatesApi extends AbstractApi
             $query = array_merge($parameters, $query);
         }
 
-        $response = $this->client->get('/v2/ssl/certificates', $query);
+        $response = $this->client->get('v2/ssl/certificates', $query);
 
         return CertificateCollection::fromArray($response->json());
     }
@@ -54,7 +54,7 @@ final class CertificatesApi extends AbstractApi
     {
         DownloadFormatEnum::validate($format);
 
-        $response = $this->client->get('/v2/ssl/certificates/' . $certificateId . '/download', ['format' => $format]);
+        $response = $this->client->get('v2/ssl/certificates/' . $certificateId . '/download', ['format' => $format]);
 
         return $response->text();
     }
@@ -62,7 +62,7 @@ final class CertificatesApi extends AbstractApi
     /* @see https://dm.realtimeregister.com/docs/api/ssl/dcvemailaddresslist */
     public function listDcvEmailAddresses(string $domainName): array
     {
-        $response = $this->client->get('/v2/ssl/dcvemailaddresslist/' . $domainName);
+        $response = $this->client->get('v2/ssl/dcvemailaddresslist/' . $domainName);
 
         return $response->json();
     }
@@ -70,7 +70,7 @@ final class CertificatesApi extends AbstractApi
     /* @see https://dm.realtimeregister.com/docs/api/ssl/products/get */
     public function getProduct(string $product): Product
     {
-        $response = $this->client->get('/v2/ssl/products/' . $product);
+        $response = $this->client->get('v2/ssl/products/' . $product);
 
         return Product::fromArray($response->json());
     }
@@ -100,7 +100,7 @@ final class CertificatesApi extends AbstractApi
             $query = array_merge($parameters, $query);
         }
 
-        $response = $this->client->get('/v2/ssl/products', $query);
+        $response = $this->client->get('v2/ssl/products', $query);
 
         return ProductCollection::fromArray($response->json());
     }
@@ -174,7 +174,7 @@ final class CertificatesApi extends AbstractApi
             $payload['dcv'] = $dcv;
         }
 
-        $response = $this->client->post('/v2/ssl/certificates', $payload);
+        $response = $this->client->post('v2/ssl/certificates', $payload);
 
         return (int) $response->headers()['x-process-id'][0];
     }
@@ -245,7 +245,7 @@ final class CertificatesApi extends AbstractApi
             $payload['dcv'] = $dcv;
         }
 
-        $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/renew', $payload);
+        $response = $this->client->post('v2/ssl/certificates/' . $certificateId . '/renew', $payload);
 
         return (int) $response->headers()['x-process-id'][0];
     }
@@ -304,7 +304,7 @@ final class CertificatesApi extends AbstractApi
             $payload['dcv'] = $dcv;
         }
 
-        $response = $this->client->post('/v2/ssl/certificates/' . $certificateId . '/reissue', $payload);
+        $response = $this->client->post('v2/ssl/certificates/' . $certificateId . '/reissue', $payload);
 
         return (int) $response->headers()['x-process-id'][0];
     }
@@ -318,7 +318,7 @@ final class CertificatesApi extends AbstractApi
             $payload['reason'] = $reason;
         }
 
-        $this->client->delete('/v2/ssl/certificates/' . $certificateId, $payload);
+        $this->client->delete('v2/ssl/certificates/' . $certificateId, $payload);
     }
 
     public function sendSubscriberAgreement(int $processId, string $email, ?string $language): void
@@ -331,7 +331,7 @@ final class CertificatesApi extends AbstractApi
             $payload['language'] = $language;
         }
 
-        $this->client->post('/v2/processes/' . $processId . '/send-subscriber-agreement', $payload);
+        $this->client->post('v2/processes/' . $processId . '/send-subscriber-agreement', $payload);
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/ssl/add-note */
@@ -341,7 +341,7 @@ final class CertificatesApi extends AbstractApi
             'message' => $message,
         ];
 
-        $this->client->post('/v2/processes/' . $processId . '/add-note', $payload);
+        $this->client->post('v2/processes/' . $processId . '/add-note', $payload);
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/ssl/schedule-validation-call */
@@ -351,7 +351,7 @@ final class CertificatesApi extends AbstractApi
             'date' => $date,
         ];
 
-        $this->client->post('/v2/processes/' . $processId . '/schedule-validation-call', $payload);
+        $this->client->post('v2/processes/' . $processId . '/schedule-validation-call', $payload);
     }
 
     /** @see https://dm.realtimeregister.com/docs/api/ssl/import */
@@ -370,6 +370,6 @@ final class CertificatesApi extends AbstractApi
             $payload['coc'] = $coc;
         }
 
-        $this->client->post('/v2/ssl/import', $payload);
+        $this->client->post('v2/ssl/import', $payload);
     }
 }

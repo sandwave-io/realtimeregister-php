@@ -26,7 +26,7 @@ class BrandsApiListTest extends TestCase
                     'limit'  => 10,
                 ],
             ]),
-            MockedClientFactory::assertRoute('GET', "/v2/customers/{$customerHandle}/brands", $this)
+            MockedClientFactory::assertRoute('GET', "v2/customers/{$customerHandle}/brands", $this)
         );
 
         $response = $sdk->brands->list($customerHandle);
@@ -52,7 +52,7 @@ class BrandsApiListTest extends TestCase
                     'limit'  => 3,
                 ],
             ]),
-            MockedClientFactory::assertRoute('GET', "/v2/customers/{$customerHandle}/brands", $this)
+            MockedClientFactory::assertRoute('GET', "v2/customers/{$customerHandle}/brands", $this)
         );
 
         $response = $sdk->brands->list($customerHandle, 3, 0, $searchTextOnFields);
@@ -82,7 +82,7 @@ class BrandsApiListTest extends TestCase
                     'limit'  => 3,
                 ],
             ]),
-            MockedClientFactory::assertRoute('GET', "/v2/customers/{$customerHandle}/brands", $this, [
+            MockedClientFactory::assertRoute('GET', "v2/customers/{$customerHandle}/brands", $this, [
                 'city' => 'testcity',
                 'country:in' => 'NL,BE',
                 'limit' => '3',

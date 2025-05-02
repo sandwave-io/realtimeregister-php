@@ -20,7 +20,7 @@ class CertificatesApiRenewCertificateTest extends TestCase
                     ]
                 );
             },
-            MockedClientFactory::assertRoute('POST', '/v2/ssl/certificates/1/renew', $this)
+            MockedClientFactory::assertRoute('POST', 'v2/ssl/certificates/1/renew', $this)
         );
 
         $processId = $sdk->certificates->renewCertificate(

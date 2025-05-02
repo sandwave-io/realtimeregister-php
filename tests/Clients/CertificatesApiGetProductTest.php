@@ -30,7 +30,7 @@ class CertificatesApiGetProductTest extends TestCase
                 'includedDomains' => 5,
                 'maxDomains' => 25,
             ]),
-            MockedClientFactory::assertRoute('GET', '/v2/ssl/products/ssl', $this)
+            MockedClientFactory::assertRoute('GET', 'v2/ssl/products/ssl', $this)
         );
 
         $product = $sdk->certificates->getProduct('ssl');

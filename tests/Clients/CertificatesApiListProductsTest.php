@@ -22,7 +22,7 @@ class CertificatesApiListProductsTest extends TestCase
                     'limit' => 5,
                 ],
             ]),
-            MockedClientFactory::assertRoute('GET', '/v2/ssl/products', $this, [
+            MockedClientFactory::assertRoute('GET', 'v2/ssl/products', $this, [
                 'limit' => '5',
                 'offset' => '0',
                 'q' => 'ssl',

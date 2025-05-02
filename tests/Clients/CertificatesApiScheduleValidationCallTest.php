@@ -13,7 +13,7 @@ class CertificatesApiScheduleValidationCallTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             '',
-            MockedClientFactory::assertRoute('POST', '/v2/processes/1/schedule-validation-call', $this)
+            MockedClientFactory::assertRoute('POST', 'v2/processes/1/schedule-validation-call', $this)
         );
 
         $sdk->certificates->scheduleValidationCall(1, new DateTimeImmutable());

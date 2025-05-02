@@ -13,7 +13,7 @@ class ProvidersApiGetTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             json_encode(include __DIR__ . '/../Domain/data/provider_valid.php'),
-            MockedClientFactory::assertRoute('GET', '/v2/providers/REGISTRY/providername', $this)
+            MockedClientFactory::assertRoute('GET', 'v2/providers/REGISTRY/providername', $this)
         );
 
         $response = $sdk->providers->get('providername');

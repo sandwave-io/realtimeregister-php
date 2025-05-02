@@ -12,7 +12,7 @@ class CertificatesApiRevokeCertificateTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             202,
             '',
-            MockedClientFactory::assertRoute('DELETE', '/v2/ssl/certificates/1', $this)
+            MockedClientFactory::assertRoute('DELETE', 'v2/ssl/certificates/1', $this)
         );
 
         $sdk->certificates->revokeCertificate(1, 'reason');

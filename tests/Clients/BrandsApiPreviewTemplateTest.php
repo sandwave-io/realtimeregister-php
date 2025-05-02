@@ -18,7 +18,7 @@ class BrandsApiPreviewTemplateTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             json_encode(include __DIR__ . '/../Domain/data/template_preview_valid.php'),
-            MockedClientFactory::assertRoute('GET', "/v2/customers/{$customerHandle}/brands/{$brandHandle}/templates/{$templateName}/preview", $this)
+            MockedClientFactory::assertRoute('GET', "v2/customers/{$customerHandle}/brands/{$brandHandle}/templates/{$templateName}/preview", $this)
         );
 
         $response = $sdk->brands->previewTemplate($customerHandle, $brandHandle, $templateName);
@@ -35,7 +35,7 @@ class BrandsApiPreviewTemplateTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             json_encode(include __DIR__ . '/../Domain/data/template_preview_valid.php'),
-            MockedClientFactory::assertRoute('GET', "/v2/customers/{$customerHandle}/brands/{$brandHandle}/templates/{$templateName}/preview", $this)
+            MockedClientFactory::assertRoute('GET', "v2/customers/{$customerHandle}/brands/{$brandHandle}/templates/{$templateName}/preview", $this)
         );
 
         $response = $sdk->brands->previewTemplate($customerHandle, $brandHandle, $templateName, $context);
@@ -51,7 +51,7 @@ class BrandsApiPreviewTemplateTest extends TestCase
         $sdk = MockedClientFactory::makeSdk(
             200,
             json_encode(include __DIR__ . '/../Domain/data/template_preview_valid.php'),
-            MockedClientFactory::assertRoute('GET', "/v2/customers/{$customerHandle}/brands/{$brandHandle}/templates/{$templateName}/preview", $this)
+            MockedClientFactory::assertRoute('GET', "v2/customers/{$customerHandle}/brands/{$brandHandle}/templates/{$templateName}/preview", $this)
         );
 
         $this->expectException(\InvalidArgumentException::class);

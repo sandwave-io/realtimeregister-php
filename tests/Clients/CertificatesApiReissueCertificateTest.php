@@ -20,7 +20,7 @@ class CertificatesApiReissueCertificateTest extends TestCase
                     ],
                 );
             },
-            MockedClientFactory::assertRoute('POST', '/v2/ssl/certificates/1/reissue', $this)
+            MockedClientFactory::assertRoute('POST', 'v2/ssl/certificates/1/reissue', $this)
         );
 
         $processId = $sdk->certificates->reissueCertificate(
