@@ -18,7 +18,7 @@ final class DomainTransferStatus implements DomainObjectInterface
 
     public string $status;
 
-    public DateTimeInterface $requestedDate;
+    public ?DateTimeInterface $requestedDate;
 
     public ?DateTimeInterface $actionDate;
 
@@ -33,7 +33,7 @@ final class DomainTransferStatus implements DomainObjectInterface
     private function __construct(
         string $domainName,
         string $status,
-        DateTimeInterface $requestedDate,
+        ?DateTimeInterface $requestedDate,
         string $type,
         ?int $processId,
         ?DateTimeInterface $actionDate,
@@ -63,7 +63,7 @@ final class DomainTransferStatus implements DomainObjectInterface
         return new DomainTransferStatus(
             $json['domainName'],
             $json['status'],
-            new DateTimeImmutable($json['requestedDate']),
+            isset($json['requestedDate']) ? new DateTimeImmutable($json['requestedDate']) : null,
             $json['type'],
             $json['processId'] ?? null,
             isset($json['actionDate']) ? new DateTimeImmutable($json['actionDate']) : null,
@@ -80,7 +80,7 @@ final class DomainTransferStatus implements DomainObjectInterface
                 'domainName' => $this->domainName,
                 'registrar' => $this->registrar,
                 'status' => $this->status,
-                'requestedDate' => $this->requestedDate->format('Y-m-d\TH:i:s\Z'),
+                'requestedDate' => $this->requestedDate ? $this->requestedDate->format('Y-m-d\TH:i:s\Z') : null,
                 'actionDate' => $this->actionDate ? $this->actionDate->format('Y-m-d\TH:i:s\Z') : null,
                 'expiryDate' => $this->expiryDate ? $this->expiryDate->format('Y-m-d\TH:i:s\Z') : null,
                 'type' => $this->type,
