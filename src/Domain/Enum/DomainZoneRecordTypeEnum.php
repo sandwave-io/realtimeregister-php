@@ -9,6 +9,7 @@ class DomainZoneRecordTypeEnum extends AbstractEnum
     public const TYPE_ALIAS = 'ALIAS';
     public const TYPE_CAA = 'CAA';
     public const TYPE_CNAME = 'CNAME';
+    public const TYPE_DNSKEY = 'DNSKEY';
     public const TYPE_HINFO = 'HINFO';
     public const TYPE_MBOXFW = 'MBOXFW';
     public const TYPE_MX = 'MX';
@@ -26,6 +27,7 @@ class DomainZoneRecordTypeEnum extends AbstractEnum
         self::TYPE_ALIAS,
         self::TYPE_CAA,
         self::TYPE_CNAME,
+        self::TYPE_DNSKEY,
         self::TYPE_HINFO,
         self::TYPE_MBOXFW,
         self::TYPE_MX,
